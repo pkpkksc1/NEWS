@@ -36,7 +36,7 @@ input {
 }
 
 .header {
-  padding: 52px 20px;
+  padding: 28px 20px;
   background:
     linear-gradient(
       135deg,
@@ -53,32 +53,32 @@ input {
 }
 
 .header-label {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   opacity: 0.9;
 }
 
 .header h1 {
   margin: 0;
-  font-size: clamp(30px, 6vw, 48px);
+  font-size: clamp(27px, 5vw, 40px);
 }
 
 .header-description {
-  max-width: 690px;
-  margin: 16px 0 20px;
-  font-size: 17px;
-  line-height: 1.7;
-  opacity: 0.95;
+  margin: 8px 0 13px;
+  font-size: 15px;
+  opacity: 0.92;
 }
 
 .update-box {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 10px;
+  gap: 7px;
+  padding: 7px 11px;
+  border-radius: 9px;
   background: rgba(255, 255, 255, 0.15);
+  font-size: 13px;
 }
 
 .update-box span {
@@ -87,27 +87,27 @@ input {
 
 .container {
   width: min(960px, calc(100% - 30px));
-  margin: 28px auto 60px;
+  margin: 22px auto 50px;
 }
 
 .control-panel {
-  padding: 22px;
+  padding: 19px;
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 16px;
   background: var(--surface);
   box-shadow: 0 8px 24px rgba(16, 24, 40, 0.05);
 }
 
 .control-panel label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   font-size: 14px;
   font-weight: 700;
 }
 
 .control-panel input {
   width: 100%;
-  padding: 14px 15px;
+  padding: 13px 14px;
   border: 1px solid #cfd4dc;
   border-radius: 11px;
   outline: none;
@@ -121,12 +121,12 @@ input {
 .button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 14px;
+  gap: 9px;
+  margin-top: 12px;
 }
 
 button {
-  padding: 11px 16px;
+  padding: 10px 15px;
   border: 0;
   border-radius: 10px;
   cursor: pointer;
@@ -155,23 +155,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  margin: 20px 0;
-  padding: 17px 20px;
+  gap: 18px;
+  margin: 15px 0;
+  padding: 13px 17px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 13px;
   background: var(--surface);
 }
 
 .information span {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   color: var(--sub-text);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .information strong {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .information p {
@@ -182,7 +182,7 @@ button {
 
 .news-list {
   display: grid;
-  gap: 18px;
+  gap: 17px;
 }
 
 .news-card {
@@ -235,14 +235,17 @@ button {
 }
 
 .chinese-title {
+  display: block;
   margin: 0;
-  font-size: 21px;
-  line-height: 1.45;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.5;
   word-break: break-word;
 }
 
 .korean-title {
-  margin: 8px 0 0;
+  display: block;
+  margin: 7px 0 0;
   color: var(--sub-text);
   font-size: 15px;
   font-weight: 500;
@@ -263,7 +266,7 @@ button {
 
 .news-content {
   display: none;
-  padding: 0 20px 22px 79px;
+  padding: 0 20px 23px 79px;
 }
 
 .news-card.open .news-content {
@@ -271,7 +274,7 @@ button {
 }
 
 .learning-block {
-  margin-top: 15px;
+  margin-top: 14px;
   padding: 17px;
   border-radius: 13px;
 }
@@ -283,7 +286,8 @@ button {
 
 .learning-block p {
   margin: 0;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.8;
 }
 
 .pinyin-block {
@@ -292,6 +296,12 @@ button {
 
 .pinyin-block h3 {
   color: var(--primary-dark);
+}
+
+.pinyin-block p {
+  color: #193fae;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .translation-block {
@@ -311,45 +321,51 @@ button {
 }
 
 .word-block {
-  margin-top: 15px;
+  margin-top: 21px;
 }
 
 .word-block h3 {
-  margin: 0 0 11px;
+  margin: 0 0 13px;
+  font-size: 18px;
 }
 
 .word-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
 }
 
 .word-item {
-  padding: 9px 11px;
+  padding: 14px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   background: #fafafa;
 }
 
 .word-chinese {
+  font-size: 22px;
   font-weight: 800;
 }
 
 .word-pinyin {
-  margin-left: 5px;
+  display: block;
+  margin-top: 5px;
   color: var(--primary);
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .word-meaning {
   display: block;
-  margin-top: 4px;
-  color: var(--sub-text);
-  font-size: 13px;
+  margin-top: 6px;
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .source-link {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 19px;
   color: var(--primary);
   font-size: 14px;
   font-weight: 700;
@@ -363,7 +379,7 @@ button {
 .loading-message,
 .empty-message,
 .error-message {
-  padding: 45px 20px;
+  padding: 40px 20px;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface);
@@ -372,29 +388,35 @@ button {
 }
 
 footer {
-  padding: 20px 20px 38px;
+  padding: 15px 20px 30px;
   color: var(--sub-text);
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 
 @media (max-width: 650px) {
   .header {
-    padding: 38px 20px;
+    padding: 23px 17px;
+  }
+
+  .container {
+    width: min(100% - 22px, 960px);
+    margin-top: 15px;
   }
 
   .information {
     align-items: flex-start;
     flex-direction: column;
+    gap: 7px;
   }
 
   .button-group button {
     flex: 1;
-    min-width: 110px;
+    min-width: 105px;
   }
 
   .news-header {
-    padding: 17px;
+    padding: 16px;
   }
 
   .rank {
@@ -405,10 +427,26 @@ footer {
   }
 
   .chinese-title {
-    font-size: 18px;
+    font-size: 19px;
   }
 
   .news-content {
-    padding: 0 17px 19px;
+    padding: 0 15px 19px;
+  }
+
+  .word-list {
+    grid-template-columns: 1fr;
+  }
+
+  .word-chinese {
+    font-size: 23px;
+  }
+
+  .word-pinyin {
+    font-size: 18px;
+  }
+
+  .word-meaning {
+    font-size: 17px;
   }
 }
