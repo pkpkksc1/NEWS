@@ -367,17 +367,42 @@ def create_learning_data(
 
         words = create_word_data(title)
 
-        learning_news.append(
-            {
-                "rank": rank,
-                "chinese": title,
-                "pinyin": make_pinyin(title),
-                "translation": translation,
-                "summary": summary,
-                "url": item["url"],
-                "words": words
-            }
-        )
+      # 핵심 표현 선정
+expression_word = (
+    words[0]["chinese"]
+    if words
+    else title
+)
+
+
+expression = {
+    "chinese": expression_word,
+    "pinyin": make_pinyin(expression_word),
+    "meaning": translate_to_korean(
+        expression_word,
+        fallback="뜻을 불러오지 못했습니다."
+    ),
+    "example": (
+        f"{expression_word}是什么意思？"
+    ),
+    "exampleMeaning": (
+        f"{expression_word}은 무슨 뜻인가요?"
+    )
+}
+
+
+learning_news.append(
+    {
+        "rank": rank,
+        "chinese": title,
+        "pinyin": make_pinyin(title),
+        "translation": translation,
+        "summary": summary,
+        "url": item["url"],
+        "expression": expression,
+        "words": words
+    }
+)
 
         time.sleep(1)
 
