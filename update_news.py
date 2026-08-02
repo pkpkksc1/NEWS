@@ -339,8 +339,6 @@ def create_word_data(title: str) -> list[dict[str, str]]:
 
 def create_learning_data(
     raw_news: list[dict[str, Any]]
-def create_learning_data(
-    raw_news: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
     """병음, 번역, 설명 번역, 단어 자료를 생성합니다."""
     learning_news = []
