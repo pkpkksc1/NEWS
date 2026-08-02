@@ -714,8 +714,8 @@ def make_email_html(data: dict[str, Any]) -> str:
 
 
 def send_email(data: dict[str, Any]) -> None:
-print("📧 send_email 함수 시작")
     """Gmail을 통해 이메일을 전송합니다."""
+    print("send_email 함수 시작")
 
     if not EMAIL_USER:
         raise RuntimeError(
@@ -800,37 +800,27 @@ print("📧 send_email 함수 시작")
             EMAIL_USER,
             EMAIL_APP_PASSWORD
         )
-print("📨 Gmail SMTP 전송 시도")
+
+        print("Gmail SMTP 전송 시도")
 
         smtp.send_message(
             message
         )
+
+        print("Gmail 전송 완료")
+
+
 if __name__ == "__main__":
-
     print("1. 바이두 TOP10 수집 시작")
-
     raw_news = fetch_baidu_top10()
 
-
     print("2. 병음·번역·단어 생성 시작")
-
-    learning_news = create_learning_data(
-        raw_news
-    )
-
+    learning_news = create_learning_data(raw_news)
 
     print("3. products.json 저장")
-
-    data = save_products_json(
-        learning_news
-    )
-
+    data = save_products_json(learning_news)
 
     print("4. 이메일 발송")
-
-    send_email(
-        data
-    )
-
+    send_email(data)
 
     print("완료")
