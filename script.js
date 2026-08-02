@@ -47,6 +47,9 @@ function createWordItems(words = []) {
 
 function createNewsCard(news) {
   const rankClass = news.rank <= 3 ? "top-three" : "";
+  const wordTotal = Array.isArray(news.words)
+    ? news.words.length
+    : 0;
 
   return `
     <article class="news-card">
@@ -89,7 +92,7 @@ function createNewsCard(news) {
         </div>
 
         <div class="word-block">
-          <h3>단어 정리</h3>
+          <h3>전체 단어 ${wordTotal}개</h3>
 
           <div class="word-list">
             ${createWordItems(news.words)}
@@ -172,7 +175,7 @@ async function loadNews() {
   try {
     newsList.innerHTML = `
       <p class="loading-message">
-        뉴스 데이터를 불러오는 중입니다.
+        데이터를 불러오는 중입니다.
       </p>
     `;
 
@@ -197,7 +200,7 @@ async function loadNews() {
     newsData = result.news;
 
     updatedAt.textContent =
-      result.updatedAt || "업데이트 시간 없음";
+      result.updatedAt || "시간 없음";
 
     renderNews();
   } catch (error) {
@@ -208,8 +211,8 @@ async function loadNews() {
 
     newsList.innerHTML = `
       <p class="error-message">
-        뉴스 정보를 불러오지 못했습니다.<br>
-        products.json 파일의 위치와 문법을 확인해 주세요.
+        데이터를 불러오지 못했습니다.<br>
+        products.json 파일을 확인해 주세요.
       </p>
     `;
   }
