@@ -538,10 +538,7 @@ def make_email_html(data: dict[str, Any]) -> str:
         summary = html.escape(
             str(item.get("summary", ""))
         )
-        url = html.escape(
-            str(item.get("url", BAIDU_URL))
-        )
-
+     
         words = item.get("words", [])
         words_html = make_word_html(words)
 
