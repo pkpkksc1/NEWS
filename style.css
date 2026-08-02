@@ -81,10 +81,6 @@ input {
   font-size: 13px;
 }
 
-.update-box span {
-  opacity: 0.85;
-}
-
 .container {
   width: min(960px, calc(100% - 30px));
   margin: 22px auto 50px;
@@ -118,37 +114,20 @@ input {
   box-shadow: 0 0 0 3px rgba(49, 94, 251, 0.12);
 }
 
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 12px;
-}
-
-button {
-  padding: 10px 15px;
+.primary-button {
+  width: 100%;
+  margin-top: 11px;
+  padding: 11px 16px;
   border: 0;
   border-radius: 10px;
+  background: var(--primary);
+  color: #ffffff;
   cursor: pointer;
   font-weight: 700;
 }
 
-.primary-button {
-  background: var(--primary);
-  color: #ffffff;
-}
-
 .primary-button:hover {
   background: var(--primary-dark);
-}
-
-.secondary-button {
-  background: #eef1f5;
-  color: #344054;
-}
-
-.secondary-button:hover {
-  background: #e4e8ee;
 }
 
 .information {
@@ -182,7 +161,7 @@ button {
 
 .news-list {
   display: grid;
-  gap: 17px;
+  gap: 20px;
 }
 
 .news-card {
@@ -194,21 +173,12 @@ button {
 }
 
 .news-header {
-  width: 100%;
   display: flex;
   align-items: flex-start;
   gap: 15px;
   padding: 20px;
-  border: 0;
-  border-radius: 0;
-  background: var(--surface);
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.news-header:hover {
   background: #fafbff;
+  border-bottom: 1px solid var(--border);
 }
 
 .rank {
@@ -236,7 +206,6 @@ button {
 
 .chinese-title {
   display: block;
-  margin: 0;
   font-size: 22px;
   font-weight: 800;
   line-height: 1.5;
@@ -245,43 +214,25 @@ button {
 
 .korean-title {
   display: block;
-  margin: 7px 0 0;
+  margin-top: 7px;
   color: var(--sub-text);
   font-size: 15px;
-  font-weight: 500;
   line-height: 1.6;
 }
 
-.toggle-icon {
-  flex: 0 0 auto;
-  margin-top: 7px;
-  color: var(--sub-text);
-  font-size: 22px;
-  transition: transform 0.2s ease;
-}
-
-.news-card.open .toggle-icon {
-  transform: rotate(180deg);
-}
-
 .news-content {
-  display: none;
-  padding: 0 20px 23px 79px;
-}
-
-.news-card.open .news-content {
-  display: block;
+  padding: 5px 20px 24px 79px;
 }
 
 .learning-block {
-  margin-top: 14px;
+  margin-top: 15px;
   padding: 17px;
   border-radius: 13px;
 }
 
 .learning-block h3 {
   margin: 0 0 9px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .learning-block p {
@@ -320,13 +271,18 @@ button {
   color: var(--yellow);
 }
 
+.summary-block p {
+  font-size: 17px;
+  line-height: 1.85;
+}
+
 .word-block {
-  margin-top: 21px;
+  margin-top: 22px;
 }
 
 .word-block h3 {
   margin: 0 0 13px;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .word-list {
@@ -343,7 +299,8 @@ button {
 }
 
 .word-chinese {
-  font-size: 22px;
+  display: block;
+  font-size: 23px;
   font-weight: 800;
 }
 
@@ -351,7 +308,7 @@ button {
   display: block;
   margin-top: 5px;
   color: var(--primary);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -359,21 +316,8 @@ button {
   display: block;
   margin-top: 6px;
   color: #475467;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.5;
-}
-
-.source-link {
-  display: inline-block;
-  margin-top: 19px;
-  color: var(--primary);
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.source-link:hover {
-  text-decoration: underline;
 }
 
 .loading-message,
@@ -410,11 +354,6 @@ footer {
     gap: 7px;
   }
 
-  .button-group button {
-    flex: 1;
-    min-width: 105px;
-  }
-
   .news-header {
     padding: 16px;
   }
@@ -427,11 +366,11 @@ footer {
   }
 
   .chinese-title {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   .news-content {
-    padding: 0 15px 19px;
+    padding: 2px 15px 20px;
   }
 
   .word-list {
@@ -439,7 +378,7 @@ footer {
   }
 
   .word-chinese {
-    font-size: 23px;
+    font-size: 24px;
   }
 
   .word-pinyin {
