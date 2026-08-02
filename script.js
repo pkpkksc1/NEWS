@@ -67,22 +67,45 @@ function createNewsCard(news) {
           <p>${escapeHtml(news.pinyin)}</p>
         </div>
 
-        <div class="learning-block translation-block">
-          <h3>한국어 해석</h3>
-          <p>${escapeHtml(news.translation)}</p>
-        </div>
+       <div class="learning-block expression-block">
+  <h3>⭐ 중국어 핵심 표현</h3>
 
-        <div class="learning-block summary-block">
-          <h3>내용 요약</h3>
-          <p>${escapeHtml(news.summary)}</p>
-        </div>
+  <div class="expression-box">
 
-        <div class="word-block">
-          <h3>전체 단어 ${wordTotal}개</h3>
+    <div class="expression-chinese">
+      ${escapeHtml(
+        news.expression?.chinese || ""
+      )}
+    </div>
 
-          <div class="word-list">
-            ${createWordItems(news.words)}
-          </div>
+    <div class="expression-pinyin">
+      ${escapeHtml(
+        news.expression?.pinyin || ""
+      )}
+    </div>
+
+    <div class="expression-meaning">
+      ${escapeHtml(
+        news.expression?.meaning || ""
+      )}
+    </div>
+
+    <div class="expression-example">
+      <strong>예문</strong><br>
+
+      ${escapeHtml(
+        news.expression?.example || ""
+      )}
+
+      <br>
+
+      ${escapeHtml(
+        news.expression?.exampleMeaning || ""
+      )}
+    </div>
+
+  </div>
+</div>
         </div>
       </div>
     </article>
