@@ -339,6 +339,8 @@ def create_word_data(title: str) -> list[dict[str, str]]:
 
 def create_learning_data(
     raw_news: list[dict[str, Any]]
+def create_learning_data(
+    raw_news: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
     """병음, 번역, 설명 번역, 단어 자료를 생성합니다."""
     learning_news = []
@@ -365,49 +367,75 @@ def create_learning_data(
                 "바이두에 상세 설명이 표시되지 않았습니다."
             )
 
+        # 전체 단어 생성
         words = create_word_data(title)
 
-      # 핵심 표현 선정
-expression_word = (
-    words[0]["chinese"]
-    if words
-    else title
-)
+
+        # ==========================
+        # 중국어 핵심 표현 생성
+        # ==========================
+
+        expression_word = (
+            words[0]["chinese"]
+            if words
+            else title
+        )
 
 
-expression = {
-    "chinese": expression_word,
-    "pinyin": make_pinyin(expression_word),
-    "meaning": translate_to_korean(
-        expression_word,
-        fallback="뜻을 불러오지 못했습니다."
-    ),
-    "example": (
-        f"{expression_word}是什么意思？"
-    ),
-    "exampleMeaning": (
-        f"{expression_word}은 무슨 뜻인가요?"
-    )
-}
+        expression = {
+            "chinese": expression_word,
+
+            "pinyin": make_pinyin(
+                expression_word
+            ),
+
+            "meaning": translate_to_korean(
+                expression_word,
+                fallback="뜻을 불러오지 못했습니다."
+            ),
+
+            "example": (
+                f"{expression_word}是什么意思？"
+            ),
+
+            "exampleMeaning": (
+                f"{expression_word}은 무슨 뜻인가요?"
+            )
+        }
 
 
-learning_news.append(
-    {
-        "rank": rank,
-        "chinese": title,
-        "pinyin": make_pinyin(title),
-        "translation": translation,
-        "summary": summary,
-        "url": item["url"],
-        "expression": expression,
-        "words": words
-    }
-)
+        # ==========================
+        # 저장 데이터 생성
+        # ==========================
 
+        learning_news.append(
+            {
+                "rank": rank,
+
+                "chinese": title,
+
+                "pinyin": make_pinyin(
+                    title
+                ),
+
+                "translation": translation,
+
+                "summary": summary,
+
+                "url": item["url"],
+
+                "expression": expression,
+
+                "words": words
+            }
+        )
+
+
+        # 무료 번역 서버 보호
         time.sleep(1)
 
-    return learning_news
 
+    return learning_news
 
 def save_products_json(
     news: list[dict[str, Any]]
