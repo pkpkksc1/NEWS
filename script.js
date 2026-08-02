@@ -2,15 +2,7 @@ const newsList = document.querySelector("#newsList");
 const searchInput = document.querySelector("#searchInput");
 const newsCount = document.querySelector("#newsCount");
 const updatedAt = document.querySelector("#updatedAt");
-
-const expandAllButton =
-  document.querySelector("#expandAllButton");
-
-const collapseAllButton =
-  document.querySelector("#collapseAllButton");
-
-const refreshButton =
-  document.querySelector("#refreshButton");
+const refreshButton = document.querySelector("#refreshButton");
 
 let newsData = [];
 
@@ -53,16 +45,12 @@ function createNewsCard(news) {
 
   return `
     <article class="news-card">
-      <button
-        type="button"
-        class="news-header"
-        aria-expanded="false"
-      >
+      <div class="news-header">
         <span class="rank ${rankClass}">
           ${escapeHtml(news.rank)}
         </span>
 
-        <span class="title-group">
+        <div class="title-group">
           <span class="chinese-title">
             ${escapeHtml(news.chinese)}
           </span>
@@ -70,10 +58,8 @@ function createNewsCard(news) {
           <span class="korean-title">
             ${escapeHtml(news.translation)}
           </span>
-        </span>
-
-        <span class="toggle-icon">⌄</span>
-      </button>
+        </div>
+      </div>
 
       <div class="news-content">
         <div class="learning-block pinyin-block">
@@ -98,35 +84,9 @@ function createNewsCard(news) {
             ${createWordItems(news.words)}
           </div>
         </div>
-
-        <a
-          class="source-link"
-          href="${escapeHtml(news.url)}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          바이두에서 확인하기 →
-        </a>
       </div>
     </article>
   `;
-}
-
-function addCardEvents() {
-  const cards = document.querySelectorAll(".news-card");
-
-  cards.forEach((card) => {
-    const button = card.querySelector(".news-header");
-
-    button.addEventListener("click", () => {
-      const isOpen = card.classList.toggle("open");
-
-      button.setAttribute(
-        "aria-expanded",
-        String(isOpen)
-      );
-    });
-  });
 }
 
 function renderNews() {
@@ -167,8 +127,6 @@ function renderNews() {
   newsList.innerHTML = filteredNews
     .map(createNewsCard)
     .join("");
-
-  addCardEvents();
 }
 
 async function loadNews() {
@@ -219,31 +177,6 @@ async function loadNews() {
 }
 
 searchInput.addEventListener("input", renderNews);
-
-expandAllButton.addEventListener("click", () => {
-  document
-    .querySelectorAll(".news-card")
-    .forEach((card) => {
-      card.classList.add("open");
-
-      card
-        .querySelector(".news-header")
-        .setAttribute("aria-expanded", "true");
-    });
-});
-
-collapseAllButton.addEventListener("click", () => {
-  document
-    .querySelectorAll(".news-card")
-    .forEach((card) => {
-      card.classList.remove("open");
-
-      card
-        .querySelector(".news-header")
-        .setAttribute("aria-expanded", "false");
-    });
-});
-
 refreshButton.addEventListener("click", loadNews);
 
 loadNews();
