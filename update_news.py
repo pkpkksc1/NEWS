@@ -800,6 +800,7 @@ print("📧 send_email 함수 시작")
             EMAIL_USER,
             EMAIL_APP_PASSWORD
         )
+print("📨 Gmail SMTP 전송 시도")
 
         smtp.send_message(
             message
