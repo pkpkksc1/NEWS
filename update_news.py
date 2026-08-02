@@ -714,6 +714,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
 
 def send_email(data: dict[str, Any]) -> None:
+print("📧 send_email 함수 시작")
     """Gmail을 통해 이메일을 전송합니다."""
 
     if not EMAIL_USER:
