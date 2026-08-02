@@ -448,3 +448,83 @@ footer {
 .expression-example strong {
   color: #e5484d;
 }
+/* ==========================
+   ⭐ 중국어 핵심 표현 박스
+========================== */
+
+
+.expression-block {
+  background: #fff8dc;
+  border: 1px solid #f2d675;
+  border-radius: 14px;
+  padding: 17px;
+}
+
+
+.expression-block h3 {
+  margin: 0 0 12px;
+  color: #8a6500;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+
+.expression-box {
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #f1e4b0;
+}
+
+
+
+/* 중국어 표현 */
+
+.expression-chinese {
+  font-size: 30px;
+  font-weight: 900;
+  color: #18202f;
+  line-height: 1.4;
+}
+
+
+
+/* 병음 */
+
+.expression-pinyin {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #315efb;
+}
+
+
+
+/* 뜻 */
+
+.expression-meaning {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #16794a;
+}
+
+
+
+/* 예문 */
+
+.expression-example {
+  margin-top: 16px;
+  padding: 13px;
+  border-radius: 10px;
+  background: #fafafa;
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+
+.expression-example strong {
+  color: #e5484d;
+  font-size: 15px;
+}
