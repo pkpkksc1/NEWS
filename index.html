@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>바이두 TOP10 중국어 학습</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <p class="header-label">百度热搜学习</p>
+
+      <h1>바이두 실시간 TOP10</h1>
+
+      <p class="header-description">
+        중국의 인기 검색어를 중국어 원문, 병음, 해석,
+        단어 정리 순서로 공부해 보세요.
+      </p>
+
+      <div class="update-box">
+        <span>마지막 업데이트</span>
+        <strong id="updatedAt">확인 중</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="control-panel">
+      <label for="searchInput">뉴스 검색</label>
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="중국어 제목 또는 한국어 해석 검색"
+        autocomplete="off"
+      >
+
+      <div class="button-group">
+        <button
+          type="button"
+          id="expandAllButton"
+          class="secondary-button"
+        >
+          모두 펼치기
+        </button>
+
+        <button
+          type="button"
+          id="collapseAllButton"
+          class="secondary-button"
+        >
+          모두 접기
+        </button>
+
+        <button
+          type="button"
+          id="refreshButton"
+          class="primary-button"
+        >
+          새로고침
+        </button>
+      </div>
+    </section>
+
+    <section class="information">
+      <div>
+        <span>표시 중인 뉴스</span>
+        <strong id="newsCount">0개</strong>
+      </div>
+
+      <p>
+        바이두 인기 검색어 순위는 수시로 변경될 수 있습니다.
+      </p>
+    </section>
+
+    <section
+      id="newsList"
+      class="news-list"
+      aria-live="polite"
+    >
+      <p class="loading-message">
+        뉴스 데이터를 불러오는 중입니다.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      본 페이지는 중국어 학습용이며 뉴스 내용은 원문 출처에서
+      다시 확인해 주세요.
+    </p>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
