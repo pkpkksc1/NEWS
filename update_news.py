@@ -803,3 +803,32 @@ def send_email(data: dict[str, Any]) -> None:
         smtp.send_message(
             message
         )
+if __name__ == "__main__":
+
+    print("1. 바이두 TOP10 수집 시작")
+
+    raw_news = fetch_baidu_top10()
+
+
+    print("2. 병음·번역·단어 생성 시작")
+
+    learning_news = create_learning_data(
+        raw_news
+    )
+
+
+    print("3. products.json 저장")
+
+    data = save_products_json(
+        learning_news
+    )
+
+
+    print("4. 이메일 발송")
+
+    send_email(
+        data
+    )
+
+
+    print("완료")
