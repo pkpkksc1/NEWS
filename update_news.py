@@ -664,6 +664,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
 def send_email(data: dict[str, Any]) -> None:
     """Gmail을 통해 이메일을 전송합니다."""
+
     if not EMAIL_USER:
         raise RuntimeError(
             "EMAIL_USER가 설정되지 않았습니다."
@@ -679,67 +680,75 @@ def send_email(data: dict[str, Any]) -> None:
             "EMAIL_TO가 설정되지 않았습니다."
         )
 
+
+    # ==========================
+    # 이메일 제목 자동 생성
+    # ==========================
+
+    updated_time = data["updatedAt"]
+
+    date_part, time_part = updated_time.split(" ")
+
+    hour = int(
+        time_part.split(":")[0]
+    )
+
+
+    if hour < 10:
+        period = "아침 뉴스"
+
+    elif hour < 15:
+        period = "점심 뉴스"
+
+    else:
+        period = "오후 뉴스"
+
+
+    email_subject = (
+        f"🇨🇳 오늘의 바이두 중국어 TOP10 | "
+        f"{date_part} {period}"
+    )
+
+
+    # ==========================
+    # 이메일 생성
+    # ==========================
+
     message = EmailMessage()
 
-    message["Subject"] = (
-        f"[바이두 TOP10 중국어] {data['updatedAt']}"
-    )
+    message["Subject"] = email_subject
+
     message["From"] = EMAIL_USER
+
     message["To"] = EMAIL_TO
+
 
     message.set_content(
         "HTML 이메일을 지원하는 메일 앱에서 확인해 주세요."
     )
+
 
     message.add_alternative(
         make_email_html(data),
         subtype="html"
     )
 
+
+    # ==========================
+    # Gmail 발송
+    # ==========================
+
     with smtplib.SMTP_SSL(
         "smtp.gmail.com",
         465,
         timeout=30
     ) as smtp:
+
         smtp.login(
             EMAIL_USER,
             EMAIL_APP_PASSWORD
         )
-        smtp.send_message(message)
 
-
-def main() -> None:
-    print("1. 바이두 TOP10 수집 시작")
-    raw_news = fetch_baidu_top10()
-
-    for item in raw_news:
-        print(
-            f"{item['rank']}위: "
-            f"{item['chinese']}"
+        smtp.send_message(
+            message
         )
-
-    print("2. 무료 병음·번역·단어 생성 시작")
-    learning_news = create_learning_data(
-        raw_news
-    )
-
-    print("3. products.json 저장")
-    saved_data = save_products_json(
-        learning_news
-    )
-
-    print("4. 이메일 발송")
-    send_email(saved_data)
-
-    print("완료")
-
-
-if __name__ == "__main__":
-    try:
-        main()
-    except Exception as error:
-        print(
-            f"오류: {error}",
-            file=sys.stderr
-        )
-        raise
