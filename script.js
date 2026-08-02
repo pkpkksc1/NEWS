@@ -1,0 +1,246 @@
+const newsList = document.querySelector("#newsList");
+const searchInput = document.querySelector("#searchInput");
+const newsCount = document.querySelector("#newsCount");
+const updatedAt = document.querySelector("#updatedAt");
+
+const expandAllButton =
+  document.querySelector("#expandAllButton");
+
+const collapseAllButton =
+  document.querySelector("#collapseAllButton");
+
+const refreshButton =
+  document.querySelector("#refreshButton");
+
+let newsData = [];
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function createWordItems(words = []) {
+  return words
+    .map((word) => {
+      return `
+        <div class="word-item">
+          <span class="word-chinese">
+            ${escapeHtml(word.chinese)}
+          </span>
+
+          <span class="word-pinyin">
+            ${escapeHtml(word.pinyin)}
+          </span>
+
+          <span class="word-meaning">
+            ${escapeHtml(word.meaning)}
+          </span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function createNewsCard(news) {
+  const rankClass = news.rank <= 3 ? "top-three" : "";
+
+  return `
+    <article class="news-card">
+      <button
+        type="button"
+        class="news-header"
+        aria-expanded="false"
+      >
+        <span class="rank ${rankClass}">
+          ${escapeHtml(news.rank)}
+        </span>
+
+        <span class="title-group">
+          <span class="chinese-title">
+            ${escapeHtml(news.chinese)}
+          </span>
+
+          <span class="korean-title">
+            ${escapeHtml(news.translation)}
+          </span>
+        </span>
+
+        <span class="toggle-icon">⌄</span>
+      </button>
+
+      <div class="news-content">
+        <div class="learning-block pinyin-block">
+          <h3>병음</h3>
+          <p>${escapeHtml(news.pinyin)}</p>
+        </div>
+
+        <div class="learning-block translation-block">
+          <h3>한국어 해석</h3>
+          <p>${escapeHtml(news.translation)}</p>
+        </div>
+
+        <div class="learning-block summary-block">
+          <h3>내용 요약</h3>
+          <p>${escapeHtml(news.summary)}</p>
+        </div>
+
+        <div class="word-block">
+          <h3>단어 정리</h3>
+
+          <div class="word-list">
+            ${createWordItems(news.words)}
+          </div>
+        </div>
+
+        <a
+          class="source-link"
+          href="${escapeHtml(news.url)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          바이두에서 확인하기 →
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+function addCardEvents() {
+  const cards = document.querySelectorAll(".news-card");
+
+  cards.forEach((card) => {
+    const button = card.querySelector(".news-header");
+
+    button.addEventListener("click", () => {
+      const isOpen = card.classList.toggle("open");
+
+      button.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+    });
+  });
+}
+
+function renderNews() {
+  const keyword = searchInput.value
+    .trim()
+    .toLowerCase();
+
+  const filteredNews = newsData.filter((news) => {
+    const searchableText = [
+      news.chinese,
+      news.pinyin,
+      news.translation,
+      news.summary,
+      ...(news.words ?? []).flatMap((word) => [
+        word.chinese,
+        word.pinyin,
+        word.meaning
+      ])
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchableText.includes(keyword);
+  });
+
+  newsCount.textContent = `${filteredNews.length}개`;
+
+  if (filteredNews.length === 0) {
+    newsList.innerHTML = `
+      <p class="empty-message">
+        검색 결과가 없습니다.
+      </p>
+    `;
+
+    return;
+  }
+
+  newsList.innerHTML = filteredNews
+    .map(createNewsCard)
+    .join("");
+
+  addCardEvents();
+}
+
+async function loadNews() {
+  try {
+    newsList.innerHTML = `
+      <p class="loading-message">
+        뉴스 데이터를 불러오는 중입니다.
+      </p>
+    `;
+
+    const response = await fetch(
+      `./products.json?time=${Date.now()}`
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `데이터를 불러오지 못했습니다: ${response.status}`
+      );
+    }
+
+    const result = await response.json();
+
+    if (!Array.isArray(result.news)) {
+      throw new Error(
+        "products.json의 news 항목이 올바르지 않습니다."
+      );
+    }
+
+    newsData = result.news;
+
+    updatedAt.textContent =
+      result.updatedAt || "업데이트 시간 없음";
+
+    renderNews();
+  } catch (error) {
+    console.error(error);
+
+    newsCount.textContent = "0개";
+    updatedAt.textContent = "불러오기 실패";
+
+    newsList.innerHTML = `
+      <p class="error-message">
+        뉴스 정보를 불러오지 못했습니다.<br>
+        products.json 파일의 위치와 문법을 확인해 주세요.
+      </p>
+    `;
+  }
+}
+
+searchInput.addEventListener("input", renderNews);
+
+expandAllButton.addEventListener("click", () => {
+  document
+    .querySelectorAll(".news-card")
+    .forEach((card) => {
+      card.classList.add("open");
+
+      card
+        .querySelector(".news-header")
+        .setAttribute("aria-expanded", "true");
+    });
+});
+
+collapseAllButton.addEventListener("click", () => {
+  document
+    .querySelectorAll(".news-card")
+    .forEach((card) => {
+      card.classList.remove("open");
+
+      card
+        .querySelector(".news-header")
+        .setAttribute("aria-expanded", "false");
+    });
+});
+
+refreshButton.addEventListener("click", loadNews);
+
+loadNews();
