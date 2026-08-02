@@ -636,18 +636,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
                     {words_html}
 
-                    <p style="margin:18px 0 0;">
-                        <a
-                            href="{url}"
-                            style="
-                                color:#315efb;
-                                font-weight:700;
-                                text-decoration:none;
-                            "
-                        >
-                            바이두에서 확인하기 →
-                        </a>
-                    </p>
+            
                 </div>
             </section>
             """
