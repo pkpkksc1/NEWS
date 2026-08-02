@@ -4,38 +4,38 @@ import os
 import re
 import smtplib
 import sys
+import time
 from datetime import datetime
 from email.message import EmailMessage
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
-from openai import OpenAI
+import jieba
+from deep_translator import GoogleTranslator
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
+from pypinyin import Style, lazy_pinyin
 
 
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
 OUTPUT_FILE = Path("products.json")
-
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
-OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
 
 EMAIL_USER = os.getenv("EMAIL_USER", "").strip()
 EMAIL_APP_PASSWORD = os.getenv(
     "EMAIL_APP_PASSWORD",
     ""
 ).replace(" ", "").strip()
-
 EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
 
 
 def clean_text(value: str) -> str:
-    """여러 공백과 줄바꿈을 하나로 정리합니다."""
+    """공백과 줄바꿈을 정리합니다."""
     return re.sub(r"\s+", " ", value or "").strip()
 
 
 def is_possible_news_title(title: str, href: str) -> bool:
-    """바이두 페이지의 링크가 뉴스 제목인지 대략 판단합니다."""
+    """링크가 바이두 인기 검색어 제목인지 판단합니다."""
     if not title or not href:
         return False
 
@@ -65,7 +65,6 @@ def is_possible_news_title(title: str, href: str) -> bool:
     if len(title) < 2 or len(title) > 100:
         return False
 
-    # 바이두 검색 결과 또는 바이두 뉴스 연결 주소
     valid_link = (
         "baidu.com/s?" in href
         or "baidu.com/from=" in href
@@ -76,10 +75,7 @@ def is_possible_news_title(title: str, href: str) -> bool:
 
 
 def extract_summary_from_anchor(anchor: Any, title: str) -> str:
-    """
-    뉴스 제목 링크의 상위 요소에서 바이두가 표시한
-    짧은 설명을 찾아냅니다.
-    """
+    """제목 주변에서 바이두의 짧은 설명을 찾습니다."""
     try:
         text = anchor.evaluate(
             """
@@ -91,7 +87,7 @@ def extract_summary_from_anchor(anchor: Any, title: str) -> str:
 
                     if (
                         value.includes("热搜指数") &&
-                        value.length < 1200
+                        value.length < 1500
                     ) {
                         return value;
                     }
@@ -140,12 +136,11 @@ def extract_summary_from_anchor(anchor: Any, title: str) -> str:
     if not candidates:
         return ""
 
-    # 보통 가장 긴 문장이 바이두의 뉴스 설명입니다.
     return max(candidates, key=len)[:500]
 
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
-    """Playwright로 바이두 실시간 검색어 TOP10을 가져옵니다."""
+    """바이두 실시간 검색어 TOP10을 가져옵니다."""
     results: list[dict[str, Any]] = []
     used_titles: set[str] = set()
 
@@ -184,8 +179,6 @@ def fetch_baidu_top10() -> list[dict[str, Any]]:
                     timeout=20000
                 )
             except PlaywrightTimeoutError:
-                # 광고나 추적 요청 때문에 networkidle이 되지 않아도
-                # 페이지 내용이 이미 표시됐을 수 있습니다.
                 pass
 
             page.wait_for_timeout(4000)
@@ -194,7 +187,9 @@ def fetch_baidu_top10() -> list[dict[str, Any]]:
 
             for anchor in anchors:
                 try:
-                    title = clean_text(anchor.inner_text(timeout=2000))
+                    title = clean_text(
+                        anchor.inner_text(timeout=2000)
+                    )
                     href = anchor.get_attribute("href") or ""
                 except Exception:
                     continue
@@ -202,10 +197,6 @@ def fetch_baidu_top10() -> list[dict[str, Any]]:
                 if not is_possible_news_title(title, href):
                     continue
 
-                if title in used_titles:
-                    continue
-
-                # "标题 热", "标题 新"처럼 붙어 나온 표시 제거
                 title = re.sub(
                     r"\s+(热|新|爆|沸)$",
                     "",
@@ -247,143 +238,165 @@ def fetch_baidu_top10() -> list[dict[str, Any]]:
     return results
 
 
-def remove_markdown_code_fence(text: str) -> str:
-    """모델 응답에 ```json 코드 블록이 붙으면 제거합니다."""
-    value = text.strip()
+def translate_to_korean(
+    text: str,
+    fallback: str = "번역하지 못했습니다."
+) -> str:
+    """중국어를 한국어로 무료 번역합니다."""
+    text = clean_text(text)
 
-    value = re.sub(
-        r"^```(?:json)?\s*",
-        "",
-        value,
-        flags=re.IGNORECASE
+    if not text:
+        return fallback
+
+    for attempt in range(3):
+        try:
+            translated = GoogleTranslator(
+                source="zh-CN",
+                target="ko"
+            ).translate(text)
+
+            if translated:
+                return clean_text(translated)
+
+        except Exception as error:
+            print(
+                f"번역 재시도 {attempt + 1}/3: {error}"
+            )
+            time.sleep(2 + attempt)
+
+    return fallback
+
+
+def make_pinyin(text: str) -> str:
+    """중국어 문장을 성조가 포함된 병음으로 바꿉니다."""
+    result = lazy_pinyin(
+        text,
+        style=Style.TONE,
+        neutral_tone_with_five=False,
+        errors=lambda value: list(value)
     )
 
-    value = re.sub(r"\s*```$", "", value)
+    return " ".join(result)
 
-    return value.strip()
+
+def is_useful_word(word: str) -> bool:
+    """공백과 문장부호만 있는 항목을 제외합니다."""
+    value = clean_text(word)
+
+    if not value:
+        return False
+
+    if re.fullmatch(r"[\W_]+", value):
+        return False
+
+    return True
+
+
+def split_chinese_words(text: str) -> list[str]:
+    """중국어 제목을 어절 단위로 나눕니다."""
+    segmented = jieba.lcut(
+        text,
+        cut_all=False
+    )
+
+    words = []
+
+    for word in segmented:
+        word = clean_text(word)
+
+        if not is_useful_word(word):
+            continue
+
+        words.append(word)
+
+    return words
+
+
+def create_word_data(title: str) -> list[dict[str, str]]:
+    """제목의 모든 단어에 병음과 뜻을 붙입니다."""
+    words = split_chinese_words(title)
+    result = []
+
+    for word in words:
+        meaning = translate_to_korean(
+            word,
+            fallback="뜻을 불러오지 못했습니다."
+        )
+
+        result.append(
+            {
+                "chinese": word,
+                "pinyin": make_pinyin(word),
+                "meaning": meaning
+            }
+        )
+
+        # 무료 번역 서버에 너무 빠르게 요청하지 않도록 대기
+        time.sleep(0.4)
+
+    return result
 
 
 def create_learning_data(
     raw_news: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
-    """
-    OpenAI API로 병음, 한국어 번역, 요약,
-    제목의 전체 단어 정보를 생성합니다.
-    """
-    if not OPENAI_API_KEY:
-        raise RuntimeError(
-            "OPENAI_API_KEY가 설정되지 않았습니다."
+    """병음, 번역, 설명 번역, 단어 자료를 생성합니다."""
+    learning_news = []
+
+    for item in raw_news:
+        rank = item["rank"]
+        title = item["chinese"]
+        source_summary = item.get("sourceSummary", "")
+
+        print(f"{rank}위 제목 번역 중: {title}")
+
+        translation = translate_to_korean(
+            title,
+            fallback="제목을 번역하지 못했습니다."
         )
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+        if source_summary:
+            summary = translate_to_korean(
+                source_summary,
+                fallback="내용 설명을 번역하지 못했습니다."
+            )
+        else:
+            summary = (
+                "바이두에 상세 설명이 표시되지 않았습니다."
+            )
 
-    input_data = [
-        {
-            "rank": item["rank"],
-            "chinese": item["chinese"],
-            "sourceSummary": item["sourceSummary"],
-            "url": item["url"]
-        }
-        for item in raw_news
-    ]
+        words = create_word_data(title)
 
-    prompt = f"""
-다음은 바이두 실시간 검색어 TOP10 데이터이다.
-
-각 항목을 한국인 중국어 학습자를 위한 자료로 변환하라.
-
-중요 규칙:
-1. 원래 순위와 중국어 제목을 절대로 변경하지 않는다.
-2. pinyin에는 제목 전체의 정확한 성조 병음을 작성한다.
-3. translation에는 자연스러운 한국어 제목 번역을 작성한다.
-4. summary에는 제공된 중국어 설명만 근거로 한국어 1~2문장으로
-   요약한다. 설명이 비어 있으면 제목을 바탕으로 추측하지 말고
-   "바이두에 상세 설명이 표시되지 않았습니다."라고 작성한다.
-5. words에는 제목에 사용된 단어를 처음부터 끝까지 빠짐없이
-   순서대로 넣는다.
-6. 조사, 개사, 수사, 양사, 고유명사도 생략하지 않는다.
-7. 중국어 문장을 자연스러운 어절 단위로 분리한다.
-8. words의 각 항목에는 chinese, pinyin, meaning을 넣는다.
-9. 같은 위치의 글자를 단어와 숙어로 중복 등록하지 않는다.
-10. JSON 이외의 설명, 마크다운, 코드 블록은 출력하지 않는다.
-
-반드시 아래 구조의 JSON 객체로만 응답하라.
-
-{{
-  "news": [
-    {{
-      "rank": 1,
-      "chinese": "중국어 원문",
-      "pinyin": "전체 병음",
-      "translation": "한국어 해석",
-      "summary": "한국어 요약",
-      "url": "원문 링크",
-      "words": [
-        {{
-          "chinese": "단어",
-          "pinyin": "병음",
-          "meaning": "한국어 뜻"
-        }}
-      ]
-    }}
-  ]
-}}
-
-입력 데이터:
-{json.dumps(input_data, ensure_ascii=False, indent=2)}
-""".strip()
-
-    response = client.responses.create(
-        model=OPENAI_MODEL,
-        instructions=(
-            "당신은 중국어 뉴스 번역 및 중국어 교육 전문가이다. "
-            "사실을 추가로 만들어내지 말고 반드시 유효한 JSON만 "
-            "출력한다."
-        ),
-        input=prompt,
-        store=False
-    )
-
-    output_text = remove_markdown_code_fence(
-        response.output_text
-    )
-
-    try:
-        parsed = json.loads(output_text)
-    except json.JSONDecodeError as error:
-        raise RuntimeError(
-            "OpenAI 응답을 JSON으로 해석하지 못했습니다."
-        ) from error
-
-    news = parsed.get("news")
-
-    if not isinstance(news, list) or len(news) != 10:
-        raise RuntimeError(
-            "OpenAI 응답의 뉴스 개수가 10개가 아닙니다."
+        learning_news.append(
+            {
+                "rank": rank,
+                "chinese": title,
+                "pinyin": make_pinyin(title),
+                "translation": translation,
+                "summary": summary,
+                "url": item["url"],
+                "words": words
+            }
         )
 
-    # 모델이 URL이나 순위를 바꾸지 못하도록 원본 값을 다시 적용
-    for index, item in enumerate(news):
-        item["rank"] = raw_news[index]["rank"]
-        item["chinese"] = raw_news[index]["chinese"]
-        item["url"] = raw_news[index]["url"]
+        time.sleep(1)
 
-        words = item.get("words", [])
-
-        if not isinstance(words, list):
-            item["words"] = []
-
-    return news
+    return learning_news
 
 
-def save_products_json(news: list[dict[str, Any]]) -> dict[str, Any]:
-    """홈페이지가 읽는 products.json을 새 내용으로 교체합니다."""
-    now = datetime.now().astimezone()
+def save_products_json(
+    news: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """홈페이지가 읽는 JSON 파일을 저장합니다."""
+    now = datetime.now(
+        ZoneInfo("Asia/Seoul")
+    )
 
     data = {
         "updatedAt": now.strftime("%Y-%m-%d %H:%M"),
         "source": "Baidu Hot Search",
         "sourceUrl": BAIDU_URL,
+        "translationMethod": "무료 자동 번역",
         "news": news
     }
 
@@ -400,19 +413,19 @@ def save_products_json(news: list[dict[str, Any]]) -> dict[str, Any]:
     return data
 
 
-def make_word_html(words: list[dict[str, Any]]) -> str:
-    """이메일 안에 표시할 단어 목록 HTML을 만듭니다."""
+def make_word_html(
+    words: list[dict[str, Any]]
+) -> str:
+    """이메일용 단어 목록을 만듭니다."""
     word_items = []
 
     for word in words:
         chinese = html.escape(
             str(word.get("chinese", ""))
         )
-
         pinyin = html.escape(
             str(word.get("pinyin", ""))
         )
-
         meaning = html.escape(
             str(word.get("meaning", ""))
         )
@@ -427,7 +440,7 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
                 background:#fafafa;
             ">
                 <div style="
-                    font-size:21px;
+                    font-size:22px;
                     font-weight:700;
                 ">
                     {chinese}
@@ -436,7 +449,7 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
                 <div style="
                     margin-top:4px;
                     color:#315efb;
-                    font-size:17px;
+                    font-size:18px;
                     font-weight:600;
                 ">
                     {pinyin}
@@ -445,7 +458,7 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
                 <div style="
                     margin-top:5px;
                     color:#475467;
-                    font-size:16px;
+                    font-size:17px;
                 ">
                     {meaning}
                 </div>
@@ -457,20 +470,29 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
 
 
 def make_email_html(data: dict[str, Any]) -> str:
-    """TOP10 학습자료 전체를 이메일 HTML로 만듭니다."""
+    """TOP10 전체를 이메일 HTML로 만듭니다."""
     cards = []
 
     for item in data["news"]:
         rank = int(item.get("rank", 0))
-        chinese = html.escape(str(item.get("chinese", "")))
-        pinyin = html.escape(str(item.get("pinyin", "")))
+        chinese = html.escape(
+            str(item.get("chinese", ""))
+        )
+        pinyin = html.escape(
+            str(item.get("pinyin", ""))
+        )
         translation = html.escape(
             str(item.get("translation", ""))
         )
-        summary = html.escape(str(item.get("summary", "")))
-        url = html.escape(str(item.get("url", BAIDU_URL)))
+        summary = html.escape(
+            str(item.get("summary", ""))
+        )
+        url = html.escape(
+            str(item.get("url", BAIDU_URL))
+        )
 
-        words_html = make_word_html(item.get("words", []))
+        words = item.get("words", [])
+        words_html = make_word_html(words)
 
         cards.append(
             f"""
@@ -543,7 +565,7 @@ def make_email_html(data: dict[str, Any]) -> str:
                         color:#8a6500;
                         font-size:15px;
                     ">
-                        내용 요약
+                        내용
                     </h3>
 
                     <p style="
@@ -558,7 +580,7 @@ def make_email_html(data: dict[str, Any]) -> str:
                         margin:0 0 9px;
                         font-size:18px;
                     ">
-                        전체 단어 {len(item.get("words", []))}개
+                        전체 단어 {len(words)}개
                     </h3>
 
                     {words_html}
@@ -580,7 +602,9 @@ def make_email_html(data: dict[str, Any]) -> str:
             """
         )
 
-    updated_at = html.escape(str(data["updatedAt"]))
+    updated_at = html.escape(
+        str(data["updatedAt"])
+    )
 
     return f"""
     <!DOCTYPE html>
@@ -598,7 +622,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             padding:24px 14px;
         ">
             <header style="
-                padding:24px;
+                padding:22px;
                 margin-bottom:20px;
                 border-radius:16px;
                 background:#315efb;
@@ -621,18 +645,17 @@ def make_email_html(data: dict[str, Any]) -> str:
                 <div style="font-size:14px;">
                     업데이트: {updated_at}
                 </div>
+
+                <div style="
+                    margin-top:6px;
+                    font-size:12px;
+                    opacity:0.85;
+                ">
+                    무료 자동 번역을 사용했습니다.
+                </div>
             </header>
 
             {''.join(cards)}
-
-            <footer style="
-                padding:12px;
-                color:#667085;
-                font-size:12px;
-                text-align:center;
-            ">
-                중국어 학습용 자동 메일입니다.
-            </footer>
         </div>
     </body>
     </html>
@@ -640,9 +663,11 @@ def make_email_html(data: dict[str, Any]) -> str:
 
 
 def send_email(data: dict[str, Any]) -> None:
-    """Gmail SMTP를 사용해 학습자료를 전송합니다."""
+    """Gmail을 통해 이메일을 전송합니다."""
     if not EMAIL_USER:
-        raise RuntimeError("EMAIL_USER가 설정되지 않았습니다.")
+        raise RuntimeError(
+            "EMAIL_USER가 설정되지 않았습니다."
+        )
 
     if not EMAIL_APP_PASSWORD:
         raise RuntimeError(
@@ -650,14 +675,15 @@ def send_email(data: dict[str, Any]) -> None:
         )
 
     if not EMAIL_TO:
-        raise RuntimeError("EMAIL_TO가 설정되지 않았습니다.")
+        raise RuntimeError(
+            "EMAIL_TO가 설정되지 않았습니다."
+        )
 
     message = EmailMessage()
 
     message["Subject"] = (
         f"[바이두 TOP10 중국어] {data['updatedAt']}"
     )
-
     message["From"] = EMAIL_USER
     message["To"] = EMAIL_TO
 
@@ -679,7 +705,6 @@ def send_email(data: dict[str, Any]) -> None:
             EMAIL_USER,
             EMAIL_APP_PASSWORD
         )
-
         smtp.send_message(message)
 
 
@@ -693,11 +718,15 @@ def main() -> None:
             f"{item['chinese']}"
         )
 
-    print("2. 병음·번역·요약·단어 생성 시작")
-    learning_news = create_learning_data(raw_news)
+    print("2. 무료 병음·번역·단어 생성 시작")
+    learning_news = create_learning_data(
+        raw_news
+    )
 
     print("3. products.json 저장")
-    saved_data = save_products_json(learning_news)
+    saved_data = save_products_json(
+        learning_news
+    )
 
     print("4. 이메일 발송")
     send_email(saved_data)
@@ -709,5 +738,8 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as error:
-        print(f"오류: {error}", file=sys.stderr)
+        print(
+            f"오류: {error}",
+            file=sys.stderr
+        )
         raise
