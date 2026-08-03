@@ -4,13 +4,14 @@ on:
   workflow_dispatch:
 
   schedule:
-    # 한국 시간 평일 오전 7시
-    # UTC 기준 전날 22시이므로 일요일~목요일에 실행
-    - cron: "0 22 * * 0-4"
+    # 한국 시간 오전 6시 10분
+    - cron: "10 21 * * *"
 
-    # 한국 시간 평일 오후 1시
-    # UTC 기준 같은 날 04시이므로 월요일~금요일에 실행
-    - cron: "0 4 * * 1-5"
+    # 한국 시간 오후 12시 10분
+    - cron: "10 3 * * *"
+
+    # 한국 시간 오후 4시 10분
+    - cron: "10 7 * * *"
 
 permissions:
   contents: write
@@ -46,7 +47,6 @@ jobs:
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
         run: |
           python update_news.py
 
