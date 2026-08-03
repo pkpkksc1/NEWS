@@ -6,7 +6,7 @@ import re
 import smtplib
 import time
 import traceback
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.message import EmailMessage
 from pathlib import Path
 from typing import Any
@@ -22,7 +22,7 @@ from chinese_calendar import get_holiday_detail, is_holiday
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.1-trilingual-365"
+DATA_SCHEMA_VERSION = "v2.2-daily-dashboard"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -583,9 +583,75 @@ def load_cached_news(fingerprint: str) -> list[dict[str, Any]] | None:
     return cached_news
 
 
+def _first_expression(news: list[dict[str, Any]]) -> dict[str, Any]:
+    """첫 번째 뉴스에서 오늘의 표현을 고릅니다."""
+    if not news:
+        return {}
+    first = news[0] if isinstance(news[0], dict) else {}
+    expressions = first.get("expressions", [])
+    if isinstance(expressions, list):
+        for expression in expressions:
+            if isinstance(expression, dict) and clean_text(str(expression.get("chinese", ""))):
+                return dict(expression)
+    legacy = first.get("expression")
+    return dict(legacy) if isinstance(legacy, dict) else {}
+
+
+def _today_word(news: list[dict[str, Any]], expression: dict[str, Any]) -> dict[str, Any]:
+    """뉴스 단어 중 오늘의 표현과 겹치지 않는 첫 단어를 고릅니다."""
+    expression_chinese = clean_text(str(expression.get("chinese", "")))
+    for item in news:
+        if not isinstance(item, dict):
+            continue
+        words = item.get("words", [])
+        if not isinstance(words, list):
+            continue
+        for word in words:
+            if not isinstance(word, dict):
+                continue
+            chinese = clean_text(str(word.get("chinese", "")))
+            if chinese and chinese != expression_chinese:
+                result = dict(word)
+                result["pinyin"] = clean_text(str(result.get("pinyin", ""))) or make_pinyin(chinese)
+                return result
+    return {}
+
+
+def _build_expression_history(today_expression: dict[str, Any], today_date: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """오늘의 표현 이력을 보관하고 3일 전 복습 표현을 찾습니다."""
+    existing: dict[str, Any] = {}
+    if OUTPUT_FILE.exists():
+        try:
+            loaded = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+            existing = loaded if isinstance(loaded, dict) else {}
+        except (OSError, json.JSONDecodeError):
+            existing = {}
+
+    history = existing.get("expressionHistory", [])
+    if not isinstance(history, list):
+        history = []
+    cleaned = [item for item in history if isinstance(item, dict) and item.get("date") != today_date]
+
+    if today_expression:
+        entry = dict(today_expression)
+        entry["date"] = today_date
+        cleaned.append(entry)
+    cleaned = cleaned[-40:]
+
+    target_date = (datetime.strptime(today_date, "%Y-%m-%d").date() - timedelta(days=3)).isoformat()
+    review = next((dict(item) for item in cleaned if item.get("date") == target_date), {})
+    if not review and len(cleaned) >= 4:
+        review = dict(cleaned[-4])
+    return cleaned, review
+
+
 def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: bool) -> dict[str, Any]:
     """홈페이지가 읽는 JSON 파일을 원자적으로 저장합니다."""
     now = datetime.now(ZoneInfo("Asia/Seoul"))
+    today_date = now.strftime("%Y-%m-%d")
+    today_expression = _first_expression(news)
+    today_word = _today_word(news, today_expression)
+    expression_history, review_expression = _build_expression_history(today_expression, today_date)
     data = {
         "updatedAt": now.strftime("%Y-%m-%d %H:%M"),
         "source": "Baidu Hot Search",
@@ -594,6 +660,10 @@ def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: b
         "schemaVersion": DATA_SCHEMA_VERSION,
         "sourceFingerprint": fingerprint,
         "apiUsedThisRun": api_used,
+        "todayExpression": today_expression,
+        "todayWord": today_word,
+        "reviewExpression": review_expression,
+        "expressionHistory": expression_history,
         "dailyConversation": get_daily_conversations(),
         "news": news,
     }
@@ -630,15 +700,10 @@ def make_email_html(data: dict[str, Any]) -> str:
     """TOP10 전체를 보기 좋은 이메일 HTML로 만듭니다."""
     news_items = data.get("news", [])
 
-    # 오늘의 표현은 1위 뉴스의 첫 번째 표현을 사용합니다.
-    today_expression: dict[str, Any] = {}
-    if news_items:
-        first_item = news_items[0]
-        expressions = first_item.get("expressions", [])
-        if isinstance(expressions, list) and expressions:
-            today_expression = expressions[0] if isinstance(expressions[0], dict) else {}
-        elif isinstance(first_item.get("expression"), dict):
-            today_expression = first_item.get("expression", {})
+    # 저장 단계에서 선정한 오늘의 표현을 사용합니다.
+    today_expression = data.get("todayExpression", {})
+    if not isinstance(today_expression, dict):
+        today_expression = {}
 
     today_expression_html = ""
     if today_expression:
@@ -654,6 +719,31 @@ def make_email_html(data: dict[str, Any]) -> str:
                 <div style="margin-top:3px;color:#315efb;font-weight:600;">{html.escape(str(today_expression.get('examplePinyin', '')))}</div>
                 <div style="margin-top:3px;color:#667085;">{html.escape(str(today_expression.get('exampleMeaning', '')))}</div>
             </div>
+        </section>
+        """
+
+    today_word = data.get("todayWord", {})
+    today_word_html = ""
+    if isinstance(today_word, dict) and today_word.get("chinese"):
+        today_word_html = f"""
+        <section style="margin:0 0 24px;padding:22px;border:1px solid #b7e4c7;border-radius:18px;background:linear-gradient(135deg,#f3fff7 0%,#e7f9ee 100%);">
+            <div style="margin-bottom:10px;color:#16794a;font-size:13px;font-weight:800;letter-spacing:.08em;">⭐ 오늘의 단어</div>
+            <div style="font-size:29px;font-weight:900;color:#18202f;">{html.escape(str(today_word.get('chinese', '')))}</div>
+            <div style="margin-top:7px;color:#315efb;font-size:19px;font-weight:700;">{html.escape(str(today_word.get('pinyin', '')))}</div>
+            <div style="margin-top:8px;color:#16794a;font-size:18px;font-weight:700;">{html.escape(str(today_word.get('meaning', '')))}</div>
+        </section>
+        """
+
+    review_expression = data.get("reviewExpression", {})
+    review_html = ""
+    if isinstance(review_expression, dict) and review_expression.get("chinese"):
+        review_html = f"""
+        <section style="margin:0 0 24px;padding:22px;border:1px solid #d0d5dd;border-radius:18px;background:#f8fafc;">
+            <div style="margin-bottom:10px;color:#475467;font-size:13px;font-weight:800;letter-spacing:.08em;">🔁 3일 전 복습</div>
+            <div style="font-size:27px;font-weight:900;color:#18202f;">{html.escape(str(review_expression.get('chinese', '')))}</div>
+            <div style="margin-top:7px;color:#315efb;font-size:18px;font-weight:700;">{html.escape(str(review_expression.get('pinyin', '')))}</div>
+            <div style="margin-top:8px;color:#16794a;font-size:17px;font-weight:700;">{html.escape(str(review_expression.get('meaning', '')))}</div>
+            <div style="margin-top:12px;color:#667085;font-size:13px;">{html.escape(str(review_expression.get('date', '')))} 학습 표현</div>
         </section>
         """
 
@@ -778,14 +868,15 @@ def make_email_html(data: dict[str, Any]) -> str:
             </header>
 
             {today_expression_html}
+            {today_word_html}
+            {conversation_html}
+            {review_html}
 
-            <div style="margin:0 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
+            <div style="margin:24px 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
                 오늘의 바이두 실시간 인기 뉴스 10개를 중국어 학습용으로 정리했습니다.
             </div>
 
             {''.join(cards)}
-
-            {conversation_html}
 
             <footer style="padding:18px 8px;color:#98a2b3;font-size:12px;line-height:1.7;text-align:center;">
                 중국어 학습용 자동 뉴스 메일입니다.<br>

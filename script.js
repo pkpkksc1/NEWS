@@ -3,6 +3,7 @@ const searchInput = document.querySelector("#searchInput");
 const newsCount = document.querySelector("#newsCount");
 const updatedAt = document.querySelector("#updatedAt");
 const refreshButton = document.querySelector("#refreshButton");
+const dailyDashboard = document.querySelector("#dailyDashboard");
 
 let newsData = [];
 
@@ -16,6 +17,97 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+
+
+
+function speakChinese(text, rate = 0.85) {
+  const value = String(text || "").trim();
+  if (!value || !("speechSynthesis" in window)) {
+    alert("이 브라우저에서는 음성 재생을 지원하지 않습니다.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(value);
+  utterance.lang = "zh-CN";
+  utterance.rate = rate;
+  const voices = window.speechSynthesis.getVoices();
+  const chineseVoice = voices.find((voice) =>
+    /zh[-_](CN|Hans)/i.test(voice.lang) || /Xiaoxiao|Huihui|Mandarin|普通话/i.test(voice.name)
+  );
+  if (chineseVoice) utterance.voice = chineseVoice;
+  window.speechSynthesis.speak(utterance);
+}
+
+function audioButton(text, label = "듣기") {
+  if (!text) return "";
+  return `<button type="button" class="tts-button" data-speak="${escapeHtml(text)}" aria-label="${escapeHtml(label)}">🔊 ${escapeHtml(label)}</button>`;
+}
+
+function expressionCard(title, icon, item, className) {
+  if (!item || !item.chinese) {
+    return `
+      <article class="daily-card ${className} empty-daily-card">
+        <div class="daily-card-label">${icon} ${escapeHtml(title)}</div>
+        <p>표현 이력이 쌓이면 표시됩니다.</p>
+      </article>
+    `;
+  }
+  return `
+    <article class="daily-card ${className}">
+      <div class="daily-card-label">${icon} ${escapeHtml(title)}</div>
+      <div class="daily-card-chinese">${escapeHtml(item.chinese)}</div>
+      <div class="daily-card-pinyin">${escapeHtml(item.pinyin || "")}</div>
+      <div class="daily-card-meaning">${escapeHtml(item.meaning || "")}</div>
+      ${item.example ? `
+        <div class="daily-card-example">
+          <strong>예문</strong>
+          <div>${escapeHtml(item.example)}</div>
+          <div class="daily-card-pinyin small">${escapeHtml(item.examplePinyin || "")}</div>
+          <div>${escapeHtml(item.exampleMeaning || "")}</div>
+        </div>
+      ` : ""}
+      <div class="daily-card-actions">${audioButton(item.chinese, `${title} 듣기`)}</div>
+      ${item.date ? `<div class="review-date">${escapeHtml(item.date)} 학습 표현</div>` : ""}
+    </article>
+  `;
+}
+
+function conversationCard(items = []) {
+  const rows = items.map((item, index) => `
+    <div class="conversation-row">
+      <div class="conversation-number">${index + 1}</div>
+      <div class="conversation-copy">
+        <div class="conversation-chinese">${escapeHtml(item.chinese)}</div>
+        <div class="daily-card-pinyin">${escapeHtml(item.pinyin || "")}</div>
+        <div class="conversation-meaning">${escapeHtml(item.meaning || "")}</div>
+      </div>
+      ${audioButton(item.chinese, "듣기")}
+    </div>
+  `).join("");
+  return `
+    <article class="daily-card conversation-card">
+      <div class="daily-card-label">💬 오늘의 회화 3문장</div>
+      <div class="conversation-list">${rows || "회화 데이터가 없습니다."}</div>
+    </article>
+  `;
+}
+
+function renderDashboard(result) {
+  if (!dailyDashboard) return;
+  dailyDashboard.innerHTML = `
+    <div class="daily-dashboard-heading">
+      <p class="section-eyebrow">每天十五分钟</p>
+      <h2>오늘의 중국어</h2>
+      <p>표현과 단어를 익히고, 회화로 말해 본 뒤 3일 전 내용을 복습하세요.</p>
+    </div>
+    <div class="daily-grid">
+      ${expressionCard("오늘의 표현", "✨", result.todayExpression, "expression-daily-card")}
+      ${expressionCard("오늘의 단어", "⭐", result.todayWord, "word-daily-card")}
+      ${conversationCard(result.dailyConversation || [])}
+      ${expressionCard("3일 전 복습", "🔁", result.reviewExpression, "review-daily-card")}
+    </div>
+  `;
+}
 
 function createWordItems(words = []) {
 
@@ -459,7 +551,7 @@ async function loadNews(){
     newsData =
       result.news;
 
-
+    renderDashboard(result);
 
     updatedAt.textContent =
       result.updatedAt || "시간 없음";
@@ -511,6 +603,12 @@ async function loadNews(){
 
 
 
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-speak]");
+  if (!button) return;
+  speakChinese(button.dataset.speak || "");
+});
 
 searchInput.addEventListener(
   "input",

@@ -585,3 +585,125 @@ footer {
   font-weight: 600;
   line-height: 1.65;
 }
+
+/* 오늘의 학습 대시보드 */
+.daily-dashboard {
+  margin: 0 0 34px;
+}
+
+.daily-dashboard-heading,
+.news-section-heading {
+  margin-bottom: 18px;
+}
+
+.daily-dashboard-heading h2,
+.news-section-heading h2 {
+  margin: 4px 0 8px;
+  font-size: clamp(1.65rem, 4vw, 2.25rem);
+}
+
+.daily-dashboard-heading p,
+.news-section-heading p {
+  margin: 0;
+  color: #667085;
+  line-height: 1.7;
+}
+
+.section-eyebrow {
+  color: #315efb !important;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.daily-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.daily-card {
+  padding: 22px;
+  border: 1px solid #e4e7ec;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, .07);
+}
+
+.expression-daily-card { background: linear-gradient(135deg, #fffaf0, #fff3c4); border-color: #f4d06f; }
+.word-daily-card { background: linear-gradient(135deg, #f3fff7, #e7f9ee); border-color: #b7e4c7; }
+.conversation-card { grid-column: 1 / -1; background: linear-gradient(135deg, #f5f8ff, #eaf1ff); border-color: #b2ccff; }
+.review-daily-card { grid-column: 1 / -1; background: #f8fafc; }
+
+.daily-card-label {
+  margin-bottom: 12px;
+  font-size: .82rem;
+  font-weight: 900;
+  letter-spacing: .05em;
+}
+
+.daily-card-chinese {
+  font-size: clamp(1.65rem, 4vw, 2.15rem);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.daily-card-pinyin {
+  margin-top: 7px;
+  color: #315efb;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.daily-card-pinyin.small { font-size: .94rem; }
+.daily-card-meaning { margin-top: 7px; color: #16794a; font-size: 1.05rem; font-weight: 800; }
+.daily-card-example { margin-top: 15px; padding: 13px; border-radius: 12px; background: rgba(255,255,255,.72); line-height: 1.7; }
+.daily-card-actions { margin-top: 15px; }
+.review-date { margin-top: 12px; color: #667085; font-size: .78rem; }
+
+.tts-button {
+  border: 1px solid #b2ccff;
+  border-radius: 999px;
+  padding: 7px 11px;
+  background: #fff;
+  color: #2149d8;
+  font: inherit;
+  font-size: .82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.tts-button:hover { background: #eef3ff; }
+
+.conversation-list { display: grid; gap: 10px; }
+.conversation-row {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.8);
+}
+.conversation-number {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #315efb;
+  color: #fff;
+  font-weight: 900;
+}
+.conversation-chinese { font-size: 1.1rem; font-weight: 900; }
+.conversation-meaning { margin-top: 4px; color: #475467; }
+.news-section-heading { margin-top: 38px; padding-top: 28px; border-top: 1px solid #e4e7ec; }
+.empty-daily-card p { color: #667085; }
+
+@media (max-width: 700px) {
+  .daily-grid { grid-template-columns: 1fr; }
+  .conversation-card, .review-daily-card { grid-column: auto; }
+  .conversation-row { grid-template-columns: 28px minmax(0, 1fr); }
+  .conversation-row .tts-button { grid-column: 2; justify-self: start; }
+}
