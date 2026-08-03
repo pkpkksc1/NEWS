@@ -684,3 +684,99 @@ footer {
     gap: 7px;
   }
 }
+
+/* ==========================
+   매일 쓰는 중국어 회화 3문장
+========================== */
+.conversation-section {
+  margin-top: 26px;
+  padding: 22px;
+  border: 1px solid #b2ccff;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f5f8ff 0%, #eaf1ff 100%);
+  box-shadow: 0 8px 24px rgba(49, 94, 251, 0.08);
+}
+
+.conversation-heading span {
+  color: #2149d8;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.conversation-heading h2 {
+  margin: 6px 0 16px;
+  font-size: 22px;
+}
+
+.conversation-list {
+  display: grid;
+  gap: 12px;
+}
+
+.conversation-item {
+  display: flex;
+  gap: 13px;
+  padding: 16px;
+  border: 1px solid #d6e4ff;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.conversation-number {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: #315efb;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.conversation-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.conversation-chinese-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.conversation-chinese {
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.conversation-pinyin {
+  margin-top: 5px;
+  color: #315efb;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.conversation-meaning {
+  margin-top: 6px;
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+@media (max-width: 650px) {
+  .conversation-section {
+    padding: 16px;
+  }
+
+  .conversation-item {
+    padding: 14px;
+  }
+
+  .conversation-chinese-row {
+    flex-direction: column;
+  }
+}

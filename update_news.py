@@ -15,6 +15,7 @@ from openai import OpenAI
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 from pypinyin import Style, lazy_pinyin
+from chinese_calendar import get_holiday_detail, is_holiday
 
 
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
@@ -26,6 +27,41 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
 EMAIL_USER = os.getenv("EMAIL_USER", "").strip()
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
 EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
+MIN_NEW_NEWS = int(os.getenv("MIN_NEW_NEWS", "3"))
+
+
+CONVERSATION_BANK = [
+    ("你好，很高兴认识你。", "안녕하세요, 만나서 반가워요."),
+    ("你今天过得怎么样？", "오늘 하루 어떻게 보냈어요?"),
+    ("我先走了，明天见。", "저 먼저 갈게요. 내일 봐요."),
+    ("请稍等一下。", "잠시만 기다려 주세요."),
+    ("没关系，慢慢来。", "괜찮아요. 천천히 하세요."),
+    ("你能再说一遍吗？", "다시 한 번 말해 줄 수 있어요?"),
+    ("我没听懂。", "잘 알아듣지 못했어요."),
+    ("这个多少钱？", "이거 얼마예요?"),
+    ("可以便宜一点吗？", "조금 싸게 해 주실 수 있나요?"),
+    ("我要这个。", "이걸로 할게요."),
+    ("请给我一杯水。", "물 한 잔 주세요."),
+    ("这个很好吃。", "이거 정말 맛있어요."),
+    ("我不吃辣。", "저는 매운 것을 먹지 않아요."),
+    ("洗手间在哪里？", "화장실은 어디에 있나요?"),
+    ("怎么去地铁站？", "지하철역에 어떻게 가나요?"),
+    ("请帮我一下。", "저 좀 도와주세요."),
+    ("我马上回来。", "금방 돌아올게요."),
+    ("今天有点忙。", "오늘은 조금 바빠요."),
+    ("我觉得很不错。", "제 생각에는 아주 괜찮아요."),
+    ("我们一起去吧。", "우리 같이 가요."),
+    ("你有时间吗？", "시간 있어요?"),
+    ("我还没决定。", "아직 결정하지 않았어요."),
+    ("不用担心。", "걱정하지 마세요."),
+    ("当然可以。", "물론 괜찮아요."),
+    ("真的很感谢你。", "정말 고마워요."),
+    ("不好意思，我迟到了。", "미안해요, 제가 늦었어요."),
+    ("请问，现在几点？", "실례합니다, 지금 몇 시예요?"),
+    ("今天天气真好。", "오늘 날씨가 정말 좋아요."),
+    ("下次再联系。", "다음에 다시 연락해요."),
+    ("祝你今天愉快。", "오늘 즐거운 하루 보내세요."),
+]
 
 
 def clean_text(value: str) -> str:
@@ -107,6 +143,58 @@ def extract_summary_from_anchor(anchor: Any, title: str) -> str:
             seen.add(candidate)
 
     return " ".join(unique_candidates)[:2400]
+
+
+def should_skip_for_calendar() -> tuple[bool, str]:
+    """한국 시간 기준 주말 또는 중국 법정 공휴일이면 실행을 건너뜁니다."""
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+    if today.weekday() >= 5:
+        return True, "주말"
+
+    try:
+        holiday, holiday_name = get_holiday_detail(today)
+        if holiday and is_holiday(today):
+            return True, f"중국 공휴일({holiday_name or '공휴일'})"
+    except NotImplementedError:
+        print(f"주의: {today.year}년 중국 공휴일 데이터가 없어 평일 기준으로 계속합니다.")
+
+    return False, ""
+
+
+def load_existing_titles() -> set[str]:
+    """기존 products.json에서 뉴스 제목을 읽습니다."""
+    if not OUTPUT_FILE.exists():
+        return set()
+    try:
+        existing = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return set()
+    news = existing.get("news", [])
+    if not isinstance(news, list):
+        return set()
+    return {
+        clean_text(str(item.get("chinese", "")))
+        for item in news
+        if isinstance(item, dict) and clean_text(str(item.get("chinese", "")))
+    }
+
+
+def count_new_news(raw_news: list[dict[str, Any]], existing_titles: set[str]) -> int:
+    """기존 목록에 없던 제목의 수를 계산합니다."""
+    if not existing_titles:
+        return len(raw_news)
+    return sum(1 for item in raw_news if clean_text(str(item.get("chinese", ""))) not in existing_titles)
+
+
+def get_daily_conversations() -> list[dict[str, str]]:
+    """API 호출 없이 날짜별 자주 쓰는 회화 3문장을 고릅니다."""
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+    start = (today.toordinal() * 3) % len(CONVERSATION_BANK)
+    selected = [CONVERSATION_BANK[(start + i) % len(CONVERSATION_BANK)] for i in range(3)]
+    return [
+        {"chinese": chinese, "pinyin": make_pinyin(chinese), "meaning": meaning}
+        for chinese, meaning in selected
+    ]
 
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
@@ -463,6 +551,7 @@ def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: b
         "translationMethod": f"OpenAI API ({OPENAI_MODEL})",
         "sourceFingerprint": fingerprint,
         "apiUsedThisRun": api_used,
+        "dailyConversation": get_daily_conversations(),
         "news": news,
     }
 
@@ -605,6 +694,28 @@ def make_email_html(data: dict[str, Any]) -> str:
             """
         )
 
+    conversation_items = data.get("dailyConversation", [])
+    conversation_html = ""
+    if isinstance(conversation_items, list) and conversation_items:
+        rows = "".join(
+            f"""
+            <div style="margin:10px 0;padding:15px;border:1px solid #d6e4ff;border-radius:13px;background:#ffffff;">
+                <div style="font-size:21px;font-weight:800;color:#18202f;">{html.escape(str(item.get('chinese', '')))}</div>
+                <div style="margin-top:5px;font-size:17px;font-weight:700;color:#315efb;">{html.escape(str(item.get('pinyin', '')))}</div>
+                <div style="margin-top:7px;font-size:16px;color:#475467;">{html.escape(str(item.get('meaning', '')))}</div>
+            </div>
+            """
+            for item in conversation_items
+            if isinstance(item, dict)
+        )
+        conversation_html = f"""
+        <section style="margin:26px 0 18px;padding:20px;border:1px solid #b2ccff;border-radius:18px;background:linear-gradient(135deg,#f5f8ff 0%,#eaf1ff 100%);">
+            <div style="margin-bottom:6px;color:#2149d8;font-size:13px;font-weight:800;letter-spacing:.06em;">💬 매일 쓰는 중국어 회화</div>
+            <h2 style="margin:0 0 13px;font-size:22px;color:#18202f;">오늘의 회화 3문장</h2>
+            {rows}
+        </section>
+        """
+
     updated_at = html.escape(str(data["updatedAt"]))
     method = html.escape(str(data.get("translationMethod", "OpenAI API")))
     return f"""
@@ -631,6 +742,8 @@ def make_email_html(data: dict[str, Any]) -> str:
             </div>
 
             {''.join(cards)}
+
+            {conversation_html}
 
             <footer style="padding:18px 8px;color:#98a2b3;font-size:12px;line-height:1.7;text-align:center;">
                 중국어 학습용 자동 뉴스 메일입니다.<br>
@@ -669,25 +782,37 @@ def send_email(data: dict[str, Any]) -> None:
 
 
 def main() -> None:
+    skip, reason = should_skip_for_calendar()
+    if skip:
+        print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
+        return
+
     print("1. 바이두 TOP10 수집 시작")
+    existing_titles = load_existing_titles()
     raw_news = fetch_baidu_top10()
+    new_news_count = count_new_news(raw_news, existing_titles)
+    print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 발송 기준: {MIN_NEW_NEWS}개")
+
+    if new_news_count < MIN_NEW_NEWS:
+        print("새 뉴스가 기준보다 적어 GPT API 호출, products.json 갱신, 이메일 발송을 모두 건너뜁니다.")
+        return
 
     fingerprint = make_source_fingerprint(raw_news)
     cached_news = load_cached_news(fingerprint)
 
     if cached_news is not None:
-        print("2. 이전과 동일한 뉴스입니다. GPT API 호출 없이 기존 결과를 재사용합니다.")
+        print("3. 이전과 동일한 뉴스입니다. GPT API 호출 없이 기존 결과를 재사용합니다.")
         learning_news = cached_news
         api_used = False
     else:
-        print("2. 새 뉴스 감지 · OpenAI API 학습자료 생성 시작")
+        print("3. 발송 조건 충족 · OpenAI API 학습자료 생성 시작")
         learning_news = create_learning_data(raw_news)
         api_used = True
 
-    print("3. products.json 안전 저장")
+    print("4. products.json 안전 저장")
     data = save_products_json(learning_news, fingerprint, api_used)
 
-    print("4. 이메일 발송")
+    print("5. 이메일 발송")
     send_email(data)
     print("완료")
 

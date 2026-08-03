@@ -5,6 +5,7 @@ const updatedAt = document.querySelector("#updatedAt");
 const refreshButton = document.querySelector("#refreshButton");
 
 let newsData = [];
+let dailyConversation = [];
 
 
 function escapeHtml(value) {
@@ -363,6 +364,37 @@ function createNewsCard(news) {
 
 
 
+function createConversationSection(items = []) {
+  if (!Array.isArray(items) || items.length === 0) {
+    return "";
+  }
+
+  return `
+    <section class="conversation-section">
+      <div class="conversation-heading">
+        <span>💬 매일 쓰는 중국어 회화</span>
+        <h2>오늘의 회화 3문장</h2>
+      </div>
+      <div class="conversation-list">
+        ${items.map((item, index) => `
+          <article class="conversation-item">
+            <div class="conversation-number">${index + 1}</div>
+            <div class="conversation-content">
+              <div class="conversation-chinese-row">
+                <strong class="conversation-chinese">${escapeHtml(item.chinese)}</strong>
+                ${createTtsButton(item.chinese, "회화 문장 듣기")}
+              </div>
+              <div class="conversation-pinyin">${escapeHtml(item.pinyin)}</div>
+              <div class="conversation-meaning">${escapeHtml(item.meaning)}</div>
+            </div>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
+
 function renderNews() {
 
 
@@ -449,7 +481,8 @@ function renderNews() {
   newsList.innerHTML =
     filteredNews
       .map(createNewsCard)
-      .join("");
+      .join("") +
+    (keyword ? "" : createConversationSection(dailyConversation));
 
 }
 
@@ -512,6 +545,10 @@ async function loadNews(){
 
     newsData =
       result.news;
+
+    dailyConversation = Array.isArray(result.dailyConversation)
+      ? result.dailyConversation
+      : [];
 
 
 
