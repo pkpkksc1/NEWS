@@ -20,23 +20,24 @@ function escapeHtml(value) {
 function createWordItems(words = []) {
 
   return words
-    .map((word, index) => {
+    .map((word) => {
 
       return `
-        <details class="word-item">
+        <div class="word-item">
 
-          <summary class="word-summary">
-            <span class="word-number">${index + 1}</span>
-            <span class="word-chinese">${escapeHtml(word.chinese)}</span>
-            <span class="word-toggle" aria-hidden="true">보기</span>
-          </summary>
+          <span class="word-chinese">
+            ${escapeHtml(word.chinese)}
+          </span>
 
-          <div class="word-detail">
-            <span class="word-pinyin">${escapeHtml(word.pinyin)}</span>
-            <span class="word-meaning">${escapeHtml(word.meaning)}</span>
-          </div>
+          <span class="word-pinyin">
+            ${escapeHtml(word.pinyin)}
+          </span>
 
-        </details>
+          <span class="word-meaning">
+            ${escapeHtml(word.meaning)}
+          </span>
+
+        </div>
       `;
 
     })
@@ -48,32 +49,56 @@ function createWordItems(words = []) {
 
 function createExpression(news) {
 
-  const expressions = Array.isArray(news.expressions) && news.expressions.length
-    ? news.expressions
-    : (news.expression ? [news.expression] : []);
+  const expression = news.expression;
 
-  if (expressions.length === 0) {
+  if (!expression) {
     return "";
   }
 
+
   return `
     <div class="learning-block expression-block">
-      <h3>⭐ 중국어 핵심 표현</h3>
-      <div class="expression-list">
-        ${expressions.map((expression, index) => `
-          <div class="expression-box">
-            <div class="expression-number">표현 ${index + 1}</div>
-            <div class="expression-chinese">${escapeHtml(expression.chinese)}</div>
-            <div class="expression-pinyin">${escapeHtml(expression.pinyin)}</div>
-            <div class="expression-meaning">${escapeHtml(expression.meaning)}</div>
-            <div class="expression-example">
-              <strong>예문</strong><br>
-              ${escapeHtml(expression.example)}<br>
-              ${escapeHtml(expression.exampleMeaning)}
-            </div>
-          </div>
-        `).join("")}
+
+      <h3>
+        ⭐ 중국어 핵심 표현
+      </h3>
+
+
+      <div class="expression-box">
+
+        <div class="expression-chinese">
+          ${escapeHtml(expression.chinese)}
+        </div>
+
+
+        <div class="expression-pinyin">
+          ${escapeHtml(expression.pinyin)}
+        </div>
+
+
+        <div class="expression-meaning">
+          ${escapeHtml(expression.meaning)}
+        </div>
+
+
+        <div class="expression-example">
+
+          <strong>
+            예문
+          </strong>
+
+          <br>
+
+          ${escapeHtml(expression.example)}
+
+          <br>
+
+          ${escapeHtml(expression.exampleMeaning)}
+
+        </div>
+
       </div>
+
     </div>
   `;
 }
@@ -95,21 +120,6 @@ function createKeyPoints(points = []) {
     </div>
   `;
 }
-
-
-function createSourceExcerpt(news) {
-  if (!news.sourceExcerpt) {
-    return "";
-  }
-
-  return `
-    <div class="learning-block source-excerpt-block">
-      <h3>중국어 원문 발췌</h3>
-      <p>${escapeHtml(news.sourceExcerpt)}</p>
-    </div>
-  `;
-}
-
 
 
 function createNewsCard(news) {
@@ -214,22 +224,34 @@ function createNewsCard(news) {
 
 
 
-        <!-- 중국어 원문 발췌 -->
-
-        ${createSourceExcerpt(news)}
-
-
         <!-- 자세한 내용 -->
 
-        <div class="learning-block summary-block">
+        <div class="learning-block summary-block detail-learning-block">
 
           <h3>
             자세한 내용
           </h3>
 
-          <p>
-            ${escapeHtml(news.summary)}
-          </p>
+          <div class="detail-language-row">
+            <span class="detail-label chinese-label">중국어</span>
+            <p class="detail-chinese">
+              ${escapeHtml(news.detailChinese || "바이두에 상세 설명이 표시되지 않았습니다.")}
+            </p>
+          </div>
+
+          <div class="detail-language-row">
+            <span class="detail-label pinyin-label">병음</span>
+            <p class="detail-pinyin">
+              ${escapeHtml(news.detailPinyin || "-")}
+            </p>
+          </div>
+
+          <div class="detail-language-row">
+            <span class="detail-label korean-label">한국어</span>
+            <p class="detail-korean">
+              ${escapeHtml(news.summary)}
+            </p>
+          </div>
 
         </div>
 
@@ -251,7 +273,6 @@ function createNewsCard(news) {
           <h3>
             전체 단어 ${wordTotal}개
           </h3>
-          <p class="word-help">단어를 누르면 병음과 뜻이 펼쳐집니다.</p>
 
 
           <div class="word-list">
@@ -303,18 +324,9 @@ function renderNews() {
         news.summary,
 
 
-        news.sourceExcerpt,
+        news.expression?.chinese,
 
-        ...(news.keyPoints ?? []),
-
-        ...(news.expressions ?? (news.expression ? [news.expression] : []))
-          .flatMap((expression) => [
-            expression.chinese,
-            expression.pinyin,
-            expression.meaning,
-            expression.example,
-            expression.exampleMeaning
-          ]),
+        news.expression?.meaning,
 
 
         ...(news.words ?? [])

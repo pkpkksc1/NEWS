@@ -373,7 +373,9 @@ def validate_and_merge_learning_data(
                 "pinyin": make_pinyin(title),
                 "translation": translation,
                 "summary": summary,
-                "sourceExcerpt": clean_text(str(raw.get("sourceSummary", ""))),
+                "detailChinese": clean_text(str(raw.get("sourceSummary", ""))),
+                "detailPinyin": make_pinyin(clean_text(str(raw.get("sourceSummary", "")))),
+                "sourceExcerpt": "",
                 "keyPoints": key_points,
                 "url": raw["url"],
                 # 기존 화면과의 호환을 위해 첫 표현도 expression에 저장합니다.
@@ -529,13 +531,14 @@ def make_email_html(data: dict[str, Any]) -> str:
         pinyin = html.escape(str(item.get("pinyin", "")))
         translation = html.escape(str(item.get("translation", "")))
         summary = html.escape(str(item.get("summary", "")))
+        detail_chinese = html.escape(str(item.get("detailChinese", "")))
+        detail_pinyin = html.escape(str(item.get("detailPinyin", "")))
         key_points = item.get("keyPoints", [])
         expressions = item.get("expressions", [])
         if not isinstance(expressions, list) or not expressions:
             expression = item.get("expression", {})
             expressions = [expression] if isinstance(expression, dict) else []
         words = item.get("words", [])
-        url = html.escape(str(item.get("url", "")), quote=True)
 
         key_points_html = ""
         if key_points:
@@ -565,14 +568,6 @@ def make_email_html(data: dict[str, Any]) -> str:
             </div>
             """
 
-        link_html = ""
-        if url:
-            link_html = f"""
-            <div style="margin-top:18px;text-align:right;">
-                <a href="{url}" style="display:inline-block;padding:10px 15px;border-radius:9px;background:#315efb;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700;">바이두에서 보기 →</a>
-            </div>
-            """
-
         cards.append(
             f"""
             <section style="margin:0 0 22px;border:1px solid #e4e7ec;border-radius:18px;overflow:hidden;background:#ffffff;box-shadow:0 8px 28px rgba(16,24,40,.06);">
@@ -587,8 +582,15 @@ def make_email_html(data: dict[str, Any]) -> str:
                         <div style="font-size:17px;line-height:1.7;font-weight:700;">{translation}</div>
                     </div>
 
-                    <h3 style="margin:0 0 8px;color:#8a6500;font-size:16px;">📰 자세한 내용</h3>
-                    <p style="margin:0 0 19px;color:#344054;font-size:16px;line-height:1.9;">{summary}</p>
+                    <h3 style="margin:0 0 10px;color:#8a6500;font-size:16px;">📰 자세한 내용</h3>
+                    <div style="margin-bottom:19px;padding:16px;border-radius:13px;background:#fff8dc;border:1px solid #f2d675;">
+                        <div style="margin-bottom:5px;color:#8a6500;font-size:12px;font-weight:800;">중국어</div>
+                        <div style="font-size:17px;line-height:1.85;font-weight:700;color:#18202f;">{detail_chinese or '바이두에 상세 설명이 표시되지 않았습니다.'}</div>
+                        <div style="margin-top:14px;margin-bottom:5px;color:#315efb;font-size:12px;font-weight:800;">병음</div>
+                        <div style="font-size:16px;line-height:1.85;color:#315efb;font-weight:700;">{detail_pinyin or '-'}</div>
+                        <div style="margin-top:14px;margin-bottom:5px;color:#16794a;font-size:12px;font-weight:800;">한국어</div>
+                        <div style="font-size:16px;line-height:1.9;color:#344054;">{summary}</div>
+                    </div>
 
                     <h3 style="margin:0 0 8px;color:#b54708;font-size:16px;">📌 핵심 내용</h3>
                     <div style="margin-bottom:19px;">{key_points_html}</div>
@@ -598,7 +600,6 @@ def make_email_html(data: dict[str, Any]) -> str:
 
                     <h3 style="margin:0 0 10px;color:#18202f;font-size:17px;">📚 핵심 단어 {len(words)}개</h3>
                     {make_word_html(words)}
-                    {link_html}
                 </div>
             </section>
             """
