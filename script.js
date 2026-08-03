@@ -17,6 +17,58 @@ function escapeHtml(value) {
 }
 
 
+
+function speakChinese(text) {
+  const content = String(text ?? "").trim();
+
+  if (!content) {
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    alert("이 브라우저는 음성 읽기를 지원하지 않습니다.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(content);
+  utterance.lang = "zh-CN";
+  utterance.rate = 0.86;
+  utterance.pitch = 1;
+
+  const voices = window.speechSynthesis.getVoices();
+  const chineseVoice = voices.find((voice) =>
+    voice.lang?.toLowerCase().startsWith("zh-cn")
+  ) || voices.find((voice) =>
+    voice.lang?.toLowerCase().startsWith("zh")
+  );
+
+  if (chineseVoice) {
+    utterance.voice = chineseVoice;
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
+
+function createTtsButton(text, label = "중국어 듣기") {
+  const encodedText = encodeURIComponent(String(text ?? ""));
+
+  return `
+    <button
+      type="button"
+      class="tts-button"
+      data-tts-text="${encodedText}"
+      aria-label="${escapeHtml(label)}"
+      title="${escapeHtml(label)}"
+    >
+      🔊 듣기
+    </button>
+  `;
+}
+
+
 function createWordItems(words = []) {
 
   return words
@@ -25,9 +77,12 @@ function createWordItems(words = []) {
       return `
         <div class="word-item">
 
-          <span class="word-chinese">
-            ${escapeHtml(word.chinese)}
-          </span>
+          <div class="word-title-row">
+            <span class="word-chinese">
+              ${escapeHtml(word.chinese)}
+            </span>
+            ${createTtsButton(word.chinese, `${word.chinese} 듣기`)}
+          </div>
 
           <span class="word-pinyin">
             ${escapeHtml(word.pinyin)}
@@ -66,8 +121,11 @@ function createExpression(news) {
 
       <div class="expression-box">
 
-        <div class="expression-chinese">
-          ${escapeHtml(expression.chinese)}
+        <div class="expression-title-row">
+          <div class="expression-chinese">
+            ${escapeHtml(expression.chinese)}
+          </div>
+          ${createTtsButton(expression.chinese, "핵심 표현 듣기")}
         </div>
 
 
@@ -154,9 +212,12 @@ function createNewsCard(news) {
         <div class="title-group">
 
 
-          <span class="chinese-title">
-            ${escapeHtml(news.chinese)}
-          </span>
+          <div class="chinese-title-row">
+            <span class="chinese-title">
+              ${escapeHtml(news.chinese)}
+            </span>
+            ${createTtsButton(news.chinese, "뉴스 제목 듣기")}
+          </div>
 
 
           <span class="korean-title">
@@ -233,9 +294,12 @@ function createNewsCard(news) {
           </h3>
 
           <div class="detail-language-row">
-            <span class="detail-label chinese-label">중국어</span>
+            <div class="detail-label-row">
+              <span class="detail-label chinese-label">중국어</span>
+              ${createTtsButton(news.detailChinese || news.chinese, "자세한 중국어 내용 듣기")}
+            </div>
             <p class="detail-chinese">
-              ${escapeHtml(news.detailChinese || "바이두에 상세 설명이 표시되지 않았습니다.")}
+              ${escapeHtml(news.detailChinese || "상세 중국어 내용이 없습니다.")}
             </p>
           </div>
 
@@ -514,6 +578,25 @@ refreshButton.addEventListener(
   loadNews
 );
 
+
+
+
+newsList.addEventListener("click", (event) => {
+  const button = event.target.closest(".tts-button");
+
+  if (!button) {
+    return;
+  }
+
+  try {
+    speakChinese(decodeURIComponent(button.dataset.ttsText || ""));
+  } catch (error) {
+    console.error("TTS 실행 오류", error);
+  }
+});
+
+
+window.speechSynthesis?.getVoices();
 
 
 loadNews();

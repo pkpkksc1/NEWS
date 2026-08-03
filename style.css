@@ -616,3 +616,71 @@ footer {
   color: #344054;
   font-size: 17px !important;
 }
+
+/* ==========================
+   무료 브라우저 중국어 TTS
+========================== */
+
+.chinese-title-row,
+.expression-title-row,
+.word-title-row,
+.detail-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.chinese-title-row {
+  align-items: flex-start;
+}
+
+.chinese-title-row .chinese-title,
+.expression-title-row .expression-chinese,
+.word-title-row .word-chinese {
+  flex: 1;
+  min-width: 0;
+}
+
+.tts-button {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #315efb;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tts-button:hover {
+  border-color: #315efb;
+  background: #eef3ff;
+}
+
+.tts-button:focus-visible {
+  outline: 3px solid rgba(49, 94, 251, 0.2);
+  outline-offset: 2px;
+}
+
+.detail-label-row {
+  margin-bottom: 7px;
+}
+
+.detail-label-row .detail-label {
+  margin-bottom: 0;
+}
+
+@media (max-width: 650px) {
+  .tts-button {
+    padding: 7px 9px;
+    font-size: 12px;
+  }
+
+  .chinese-title-row {
+    gap: 7px;
+  }
+}
