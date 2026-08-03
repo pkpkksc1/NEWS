@@ -30,38 +30,8 @@ EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
 MIN_NEW_NEWS = int(os.getenv("MIN_NEW_NEWS", "3"))
 
 
-CONVERSATION_BANK = [
-    ("你好，很高兴认识你。", "안녕하세요, 만나서 반가워요."),
-    ("你今天过得怎么样？", "오늘 하루 어떻게 보냈어요?"),
-    ("我先走了，明天见。", "저 먼저 갈게요. 내일 봐요."),
-    ("请稍等一下。", "잠시만 기다려 주세요."),
-    ("没关系，慢慢来。", "괜찮아요. 천천히 하세요."),
-    ("你能再说一遍吗？", "다시 한 번 말해 줄 수 있어요?"),
-    ("我没听懂。", "잘 알아듣지 못했어요."),
-    ("这个多少钱？", "이거 얼마예요?"),
-    ("可以便宜一点吗？", "조금 싸게 해 주실 수 있나요?"),
-    ("我要这个。", "이걸로 할게요."),
-    ("请给我一杯水。", "물 한 잔 주세요."),
-    ("这个很好吃。", "이거 정말 맛있어요."),
-    ("我不吃辣。", "저는 매운 것을 먹지 않아요."),
-    ("洗手间在哪里？", "화장실은 어디에 있나요?"),
-    ("怎么去地铁站？", "지하철역에 어떻게 가나요?"),
-    ("请帮我一下。", "저 좀 도와주세요."),
-    ("我马上回来。", "금방 돌아올게요."),
-    ("今天有点忙。", "오늘은 조금 바빠요."),
-    ("我觉得很不错。", "제 생각에는 아주 괜찮아요."),
-    ("我们一起去吧。", "우리 같이 가요."),
-    ("你有时间吗？", "시간 있어요?"),
-    ("我还没决定。", "아직 결정하지 않았어요."),
-    ("不用担心。", "걱정하지 마세요."),
-    ("当然可以。", "물론 괜찮아요."),
-    ("真的很感谢你。", "정말 고마워요."),
-    ("不好意思，我迟到了。", "미안해요, 제가 늦었어요."),
-    ("请问，现在几点？", "실례합니다, 지금 몇 시예요?"),
-    ("今天天气真好。", "오늘 날씨가 정말 좋아요."),
-    ("下次再联系。", "다음에 다시 연락해요."),
-    ("祝你今天愉快。", "오늘 즐거운 하루 보내세요."),
-]
+CONVERSATION_FILE = Path("daily_conversations.json")
+
 
 
 def clean_text(value: str) -> str:
@@ -187,14 +157,57 @@ def count_new_news(raw_news: list[dict[str, Any]], existing_titles: set[str]) ->
 
 
 def get_daily_conversations() -> list[dict[str, str]]:
-    """API 호출 없이 날짜별 자주 쓰는 회화 3문장을 고릅니다."""
-    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
-    start = (today.toordinal() * 3) % len(CONVERSATION_BANK)
-    selected = [CONVERSATION_BANK[(start + i) % len(CONVERSATION_BANK)] for i in range(3)]
-    return [
-        {"chinese": chinese, "pinyin": make_pinyin(chinese), "meaning": meaning}
-        for chinese, meaning in selected
+    """365개 세트 중 오늘 날짜에 해당하는 회화 3문장을 읽습니다."""
+    fallback = [
+        {"chinese": "你好，很高兴认识你。", "pinyin": make_pinyin("你好，很高兴认识你。"), "meaning": "안녕하세요, 만나서 반가워요."},
+        {"chinese": "请再说一遍。", "pinyin": make_pinyin("请再说一遍。"), "meaning": "다시 한 번 말해 주세요."},
+        {"chinese": "明天再联系。", "pinyin": make_pinyin("明天再联系。"), "meaning": "내일 다시 연락해요."},
     ]
+    try:
+        payload = json.loads(CONVERSATION_FILE.read_text(encoding="utf-8"))
+        days = payload.get("days", [])
+        if not isinstance(days, list) or len(days) != 365:
+            raise ValueError("회화 데이터는 365개 세트여야 합니다.")
+        today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+        # 고정 기준일부터 지난 날짜를 사용하므로 어떤 연속 365일 안에서도 중복되지 않습니다.
+        index = (today.toordinal() - 1) % 365
+        selected = days[index].get("sentences", [])
+        if not isinstance(selected, list) or len(selected) != 3:
+            raise ValueError("오늘의 회화는 3문장이어야 합니다.")
+        result = []
+        for item in selected:
+            chinese = clean_text(str(item.get("chinese", "")))
+            meaning = clean_text(str(item.get("meaning", "")))
+            pinyin = clean_text(str(item.get("pinyin", ""))) or make_pinyin(chinese)
+            if not chinese or not meaning:
+                raise ValueError("회화 문장 필드가 비어 있습니다.")
+            result.append({"chinese": chinese, "pinyin": pinyin, "meaning": meaning})
+        return result
+    except (OSError, json.JSONDecodeError, ValueError, TypeError) as error:
+        print(f"회화 데이터 읽기 실패 · 기본 3문장 사용: {error}")
+        return fallback
+
+
+def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
+    """핵심 표현의 병음이 빠진 기존 데이터도 로컬에서 자동 보완합니다."""
+    for item in news_items:
+        if not isinstance(item, dict):
+            continue
+        expressions = item.get("expressions")
+        if not isinstance(expressions, list):
+            expressions = []
+        legacy = item.get("expression")
+        if isinstance(legacy, dict) and not expressions:
+            expressions = [legacy]
+        for expression in expressions:
+            if not isinstance(expression, dict):
+                continue
+            chinese = clean_text(str(expression.get("chinese", "")))
+            if chinese and not clean_text(str(expression.get("pinyin", ""))):
+                expression["pinyin"] = make_pinyin(chinese)
+        if expressions:
+            item["expressions"] = expressions
+            item["expression"] = expressions[0]
 
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
@@ -808,6 +821,8 @@ def main() -> None:
         print("3. 발송 조건 충족 · OpenAI API 학습자료 생성 시작")
         learning_news = create_learning_data(raw_news)
         api_used = True
+
+    ensure_expression_pinyin(learning_news)
 
     print("4. products.json 안전 저장")
     data = save_products_json(learning_news, fingerprint, api_used)
