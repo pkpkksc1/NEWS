@@ -281,8 +281,14 @@ input {
 }
 
 .word-block h3 {
-  margin: 0 0 13px;
+  margin: 0;
   font-size: 19px;
+}
+
+.word-help {
+  margin: 6px 0 13px;
+  color: var(--sub-text);
+  font-size: 13px;
 }
 
 .word-list {
@@ -292,21 +298,92 @@ input {
 }
 
 .word-item {
-  padding: 14px;
+  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.word-item[open] {
+  border-color: #b9c8ff;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(49, 94, 251, 0.09);
+}
+
+.word-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 12px 14px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.word-summary::-webkit-details-marker {
+  display: none;
+}
+
+.word-summary:focus-visible {
+  outline: 3px solid rgba(49, 94, 251, 0.2);
+  outline-offset: -3px;
+}
+
+.word-number {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .word-chinese {
-  display: block;
-  font-size: 23px;
+  flex: 1;
+  min-width: 0;
+  font-size: 22px;
   font-weight: 800;
+}
+
+.word-toggle {
+  flex: 0 0 auto;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.word-toggle::after {
+  content: " ＋";
+}
+
+.word-item[open] .word-toggle {
+  font-size: 0;
+}
+
+.word-item[open] .word-toggle::before {
+  content: "닫기";
+  font-size: 12px;
+}
+
+.word-item[open] .word-toggle::after {
+  content: " －";
+  font-size: 12px;
+}
+
+.word-detail {
+  padding: 0 14px 15px 52px;
+  border-top: 1px dashed var(--border);
 }
 
 .word-pinyin {
   display: block;
-  margin-top: 5px;
+  margin-top: 12px;
   color: var(--primary);
   font-size: 18px;
   font-weight: 700;
@@ -314,7 +391,7 @@ input {
 
 .word-meaning {
   display: block;
-  margin-top: 6px;
+  margin-top: 7px;
   color: #475467;
   font-size: 17px;
   line-height: 1.5;

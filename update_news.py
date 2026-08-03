@@ -307,8 +307,8 @@ def validate_and_merge_learning_data(
             if clean_text(str(point))
         ][:4]
 
-        if not expressions_raw:
-            raise RuntimeError(f"GPT의 {rank}위 핵심 표현이 비어 있습니다.")
+        # 핵심 표현은 모델이 간혹 빈 배열로 반환할 수 있으므로 전체 실행을
+        # 실패시키지 않습니다. 아래에서 단어 목록 또는 제목으로 안전하게 보완합니다.
         if not isinstance(words_raw, list) or not words_raw:
             raise RuntimeError(f"GPT의 {rank}위 단어 목록이 비어 있습니다.")
 
@@ -326,9 +326,6 @@ def validate_and_merge_learning_data(
             }
             if all(expression.values()):
                 expressions.append(expression)
-        if not expressions:
-            raise RuntimeError(f"GPT의 {rank}위 핵심 표현에 유효한 값이 없습니다.")
-
         words: list[dict[str, str]] = []
         seen_words: set[str] = set()
         for word in words_raw:
@@ -351,6 +348,23 @@ def validate_and_merge_learning_data(
 
         if not words:
             raise RuntimeError(f"GPT의 {rank}위 유효 단어 목록이 비어 있습니다.")
+
+        # GPT가 핵심 표현을 누락했거나 일부 필드를 비워 반환한 경우에도
+        # API를 재호출하지 않고 첫 번째 유효 단어로 대체합니다.
+        if not expressions:
+            fallback = words[0]
+            fallback_chinese = fallback["chinese"]
+            fallback_meaning = fallback["meaning"]
+            expressions = [
+                {
+                    "chinese": fallback_chinese,
+                    "pinyin": fallback["pinyin"],
+                    "meaning": fallback_meaning,
+                    "example": f"“{fallback_chinese}”是今天新闻中的重要表达。",
+                    "exampleMeaning": f"‘{fallback_chinese}’는 오늘 뉴스의 중요한 표현입니다.",
+                }
+            ]
+            print(f"{rank}위 핵심 표현 누락 · 단어 '{fallback_chinese}'로 자동 보완")
 
         result.append(
             {
@@ -400,7 +414,7 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
             return validate_and_merge_learning_data(raw_news, parsed)
         except Exception as error:
             last_error = error
-            print(f"GPT 처리 실패 {attempt + 1}/3: {error}")
+            print(f"GPT 처리 실패 {attempt + 1}/2: {error}")
             if attempt < 1:
                 time.sleep(4)
 

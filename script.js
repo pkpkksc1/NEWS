@@ -20,24 +20,23 @@ function escapeHtml(value) {
 function createWordItems(words = []) {
 
   return words
-    .map((word) => {
+    .map((word, index) => {
 
       return `
-        <div class="word-item">
+        <details class="word-item">
 
-          <span class="word-chinese">
-            ${escapeHtml(word.chinese)}
-          </span>
+          <summary class="word-summary">
+            <span class="word-number">${index + 1}</span>
+            <span class="word-chinese">${escapeHtml(word.chinese)}</span>
+            <span class="word-toggle" aria-hidden="true">보기</span>
+          </summary>
 
-          <span class="word-pinyin">
-            ${escapeHtml(word.pinyin)}
-          </span>
+          <div class="word-detail">
+            <span class="word-pinyin">${escapeHtml(word.pinyin)}</span>
+            <span class="word-meaning">${escapeHtml(word.meaning)}</span>
+          </div>
 
-          <span class="word-meaning">
-            ${escapeHtml(word.meaning)}
-          </span>
-
-        </div>
+        </details>
       `;
 
     })
@@ -252,6 +251,7 @@ function createNewsCard(news) {
           <h3>
             전체 단어 ${wordTotal}개
           </h3>
+          <p class="word-help">단어를 누르면 병음과 뜻이 펼쳐집니다.</p>
 
 
           <div class="word-list">
