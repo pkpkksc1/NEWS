@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-08-03 23:30",
+  "updatedAt": "2026-08-04 08:14",
   "source": "Baidu Hot Search",
   "sourceUrl": "https://top.baidu.com/board?tab=realtime",
   "translationMethod": "OpenAI API (gpt-5-mini)",
   "schemaVersion": "v2.2-daily-dashboard",
-  "sourceFingerprint": "412182c1282687607787feaeab10042995d81df0d3079ced2d0df733090b4a89",
+  "sourceFingerprint": "3d27655c0342614415928321e163eaaea14bcf5d1b6a845101fad18e504fde15",
   "apiUsedThisRun": true,
   "todayExpression": {
     "chinese": "实业报国",
     "pinyin": "shí yè bào guó",
-    "meaning": "산업으로 국가에 보답하다",
-    "example": "许多人认为以实业报国是推动经济发展的重要方式。",
-    "examplePinyin": "xǔ duō rén rèn wéi yǐ shí yè bào guó shì tuī dòng jīng jì fā zhǎn de zhòng yào fāng shì 。",
-    "exampleMeaning": "많은 사람들은 실업으로 나라에 보답하는 것이 경제 발전을 촉진하는 중요한 방식이라고 생각한다."
+    "meaning": "실업으로 나라에 보답하다",
+    "example": "许多企业家秉持实业报国的理念，投身实体经济建设。",
+    "examplePinyin": "xǔ duō qǐ yè jiā bǐng chí shí yè bào guó de lǐ niàn ， tóu shēn shí tǐ jīng jì jiàn shè 。",
+    "exampleMeaning": "많은 기업가가 실업으로 나라에 보답한다는 신념을 지니고 실물경제 건설에 참여하고 있다."
   },
   "todayWord": {
     "chinese": "实业",
     "pinyin": "shí yè",
-    "meaning": "실업, 산업(제조업·실물 경제)"
+    "meaning": "실물 산업"
   },
   "reviewExpression": {},
   "expressionHistory": [
@@ -29,23 +29,32 @@
       "examplePinyin": "xǔ duō rén rèn wéi yǐ shí yè bào guó shì tuī dòng jīng jì fā zhǎn de zhòng yào fāng shì 。",
       "exampleMeaning": "많은 사람들은 실업으로 나라에 보답하는 것이 경제 발전을 촉진하는 중요한 방식이라고 생각한다.",
       "date": "2026-08-03"
+    },
+    {
+      "chinese": "实业报国",
+      "pinyin": "shí yè bào guó",
+      "meaning": "실업으로 나라에 보답하다",
+      "example": "许多企业家秉持实业报国的理念，投身实体经济建设。",
+      "examplePinyin": "xǔ duō qǐ yè jiā bǐng chí shí yè bào guó de lǐ niàn ， tóu shēn shí tǐ jīng jì jiàn shè 。",
+      "exampleMeaning": "많은 기업가가 실업으로 나라에 보답한다는 신념을 지니고 실물경제 건설에 참여하고 있다.",
+      "date": "2026-08-04"
     }
   ],
   "dailyConversation": [
     {
-      "chinese": "今天下午我们一起拍照吧。",
-      "pinyin": "jīn tiān xià wǔ wǒ men yì qǐ pāi zhào ba 。",
-      "meaning": "오늘 오후에 우리 같이 사진을 찍어요."
+      "chinese": "明天早上我们一起学习中文吧。",
+      "pinyin": "míng tiān zǎo shàng wǒ men yì qǐ xué xí zhōng wén ba 。",
+      "meaning": "내일 아침에 우리 같이 중국어를 공부해요."
     },
     {
-      "chinese": "请帮我准备一下这个地址，可以吗？",
-      "pinyin": "qǐng bāng wǒ zhǔn bèi yī xià zhè ge dì zhǐ ， kě yǐ ma ？",
-      "meaning": "이 주소: 준비해 주세요, 괜찮을까요?"
+      "chinese": "请帮我准备一下付款方式，谢谢。",
+      "pinyin": "qǐng bāng wǒ zhǔn bèi yī xià fù kuǎn fāng shì ， xiè xiè 。",
+      "meaning": "결제 방법: 준비해 주세요, 감사합니다."
     },
     {
-      "chinese": "如果你方便，我就马上过去。",
-      "pinyin": "rú guǒ nǐ fāng biàn ， wǒ jiù mǎ shàng guò qù 。",
-      "meaning": "편하시면 바로 갈게요."
+      "chinese": "如果工作结束得早，我就再确认一次，别担心。",
+      "pinyin": "rú guǒ gōng zuò jié shù dé zǎo ， wǒ jiù zài què rèn yī cì ， bié dān xīn 。",
+      "meaning": "일이 일찍 끝나면 다시 확인할게요, 걱정하지 마세요."
     }
   ],
   "news": [
@@ -53,47 +62,39 @@
       "rank": 1,
       "chinese": "实业报国志 接力谱新篇",
       "pinyin": "shí yè bào guó zhì   jiē lì pǔ xīn piān",
-      "translation": "실업으로 나라에 보답하겠다는 뜻, 새 장을 이어가다",
-      "summary": "산업이 번영해야 국가가 번영한다는 취지의 내용입니다. 시진핑 총서기는 우수한 기업가는 국가와 민족에 대한 숭고한 사명감과 강한 책임감을 가져야 한다고 강조했습니다. 그는 기업 발전을 국가의 번영, 민족의 흥성, 국민의 행복과 긴밀히 결합해야 한다고 지적했습니다.",
+      "translation": "실업으로 나라에 기여하겠다는 뜻, 새로운 장을 잇다",
+      "summary": "‘실업이 흥하면 국가가 흥한다’는 취지로 보도되었습니다. 시진핑 총서기는 우수한 기업가는 국가와 민족에 대한 숭고한 사명감과 강한 책임감을 가져야 한다고 지적했습니다. 그는 기업 발전을 국가 번영, 민족 흥성, 국민 행복과 밀접하게 연결해야 한다고 강조했습니다.",
       "detailChinese": "实业兴则国家兴。习近平总书记指出，优秀企业家必须对国家、对民族怀有崇高使命感和强烈责任感，把企业发展同国家繁荣、民族兴盛、人民幸福紧密结合在一起，主... 查看更多",
       "detailPinyin": "shí yè xīng zé guó jiā xīng 。 xí jìn píng zǒng shū jì zhǐ chū ， yōu xiù qǐ yè jiā bì xū duì guó jiā 、 duì mín zú huái yǒu chóng gāo shǐ mìng gǎn hé qiáng liè zé rèn gǎn ， bǎ qǐ yè fā zhǎn tóng guó jiā fán róng 、 mín zú xīng shèng 、 rén mín xìng fú jǐn mì jié hé zài yì qǐ ， zhǔ . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "우수한 기업가는 국가와 민족에 대한 사명감과 책임감을 가져야 한다.",
+      "keyPoint": "시진핑은 기업가가 사명감으로 기업 발전을 국가 번영과 연결해야 한다고 말했다.",
       "keyPoints": [
-        "우수한 기업가는 국가와 민족에 대한 사명감과 책임감을 가져야 한다."
+        "시진핑은 기업가가 사명감으로 기업 발전을 국가 번영과 연결해야 한다고 말했다."
       ],
       "url": "https://www.baidu.com/s?wd=%E5%AE%9E%E4%B8%9A%E6%8A%A5%E5%9B%BD%E5%BF%97+%E6%8E%A5%E5%8A%9B%E8%B0%B1%E6%96%B0%E7%AF%87&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
         "chinese": "实业报国",
         "pinyin": "shí yè bào guó",
-        "meaning": "산업으로 국가에 보답하다",
-        "example": "许多人认为以实业报国是推动经济发展的重要方式。",
-        "examplePinyin": "xǔ duō rén rèn wéi yǐ shí yè bào guó shì tuī dòng jīng jì fā zhǎn de zhòng yào fāng shì 。",
-        "exampleMeaning": "많은 사람들은 실업으로 나라에 보답하는 것이 경제 발전을 촉진하는 중요한 방식이라고 생각한다."
+        "meaning": "실업으로 나라에 보답하다",
+        "example": "许多企业家秉持实业报国的理念，投身实体经济建设。",
+        "examplePinyin": "xǔ duō qǐ yè jiā bǐng chí shí yè bào guó de lǐ niàn ， tóu shēn shí tǐ jīng jì jiàn shè 。",
+        "exampleMeaning": "많은 기업가가 실업으로 나라에 보답한다는 신념을 지니고 실물경제 건설에 참여하고 있다."
       },
       "expressions": [
         {
           "chinese": "实业报国",
           "pinyin": "shí yè bào guó",
-          "meaning": "산업으로 국가에 보답하다",
-          "example": "许多人认为以实业报国是推动经济发展的重要方式。",
-          "examplePinyin": "xǔ duō rén rèn wéi yǐ shí yè bào guó shì tuī dòng jīng jì fā zhǎn de zhòng yào fāng shì 。",
-          "exampleMeaning": "많은 사람들은 실업으로 나라에 보답하는 것이 경제 발전을 촉진하는 중요한 방식이라고 생각한다."
-        },
-        {
-          "chinese": "谱新篇",
-          "pinyin": "pǔ xīn piān",
-          "meaning": "새 장을 쓰다(새로운 국면을 열다)",
-          "example": "企业要通过创新为时代谱新篇，为社会创造更多价值。",
-          "examplePinyin": "qǐ yè yào tōng guò chuàng xīn wéi shí dài pǔ xīn piān ， wèi shè huì chuàng zào gèng duō jià zhí 。",
-          "exampleMeaning": "기업은 혁신을 통해 시대에 새로운 장을 열고 사회에 더 많은 가치를 창출해야 한다."
+          "meaning": "실업으로 나라에 보답하다",
+          "example": "许多企业家秉持实业报国的理念，投身实体经济建设。",
+          "examplePinyin": "xǔ duō qǐ yè jiā bǐng chí shí yè bào guó de lǐ niàn ， tóu shēn shí tǐ jīng jì jiàn shè 。",
+          "exampleMeaning": "많은 기업가가 실업으로 나라에 보답한다는 신념을 지니고 실물경제 건설에 참여하고 있다."
         }
       ],
       "words": [
         {
           "chinese": "实业",
           "pinyin": "shí yè",
-          "meaning": "실업, 산업(제조업·실물 경제)"
+          "meaning": "실물 산업"
         },
         {
           "chinese": "报国",
@@ -101,62 +102,152 @@
           "meaning": "나라에 보답하다"
         },
         {
-          "chinese": "接力",
-          "pinyin": "jiē lì",
-          "meaning": "이어받아 이어가다"
+          "chinese": "使命感",
+          "pinyin": "shǐ mìng gǎn",
+          "meaning": "사명감"
         },
         {
-          "chinese": "谱新篇",
-          "pinyin": "pǔ xīn piān",
-          "meaning": "새로운 장을 쓰다"
+          "chinese": "责任感",
+          "pinyin": "zé rèn gǎn",
+          "meaning": "책임감"
+        },
+        {
+          "chinese": "企业发展",
+          "pinyin": "qǐ yè fā zhǎn",
+          "meaning": "기업 발전"
+        },
+        {
+          "chinese": "国家繁荣",
+          "pinyin": "guó jiā fán róng",
+          "meaning": "국가 번영"
+        },
+        {
+          "chinese": "民族兴盛",
+          "pinyin": "mín zú xīng shèng",
+          "meaning": "민족의 번영"
+        },
+        {
+          "chinese": "人民幸福",
+          "pinyin": "rén mín xìng fú",
+          "meaning": "국민의 행복"
         }
       ]
     },
     {
       "rank": 2,
-      "chinese": "含糖碳酸饮料大势已去",
-      "pinyin": "hán táng tàn suān yǐn liào dà shì yǐ qù",
-      "translation": "설탕 함유 탄산음료의 대세는 저물었다",
-      "summary": "2026년은 국내 음료 업계 판도가 재편되는 중요한 해로 언급됩니다. 무설탕 음료가 슈퍼와 편의점 냉장 진열의 핵심 자리를 계속 차지하고 있습니다. 올여름 전통적으로 시장을 주도해온 설탕 함유 탄산음료의 위상이 눈에 띄게 쇠퇴했습니다.",
-      "detailChinese": "2026年是国内饮料行业格局重塑的关键一年，无糖饮料继续抢占商超、便利店冷柜核心陈列位置，今夏，曾长期占据市场主流的含糖碳酸饮料风光不再。 查看更多",
-      "detailPinyin": "2 0 2 6 nián shì guó nèi yǐn liào háng yè gé jú zhòng sù de guān jiàn yī nián ， wú táng yǐn liào jì xù qiǎng zhàn shāng chāo 、 biàn lì diàn lěng guì hé xīn chén liè wèi zhì ， jīn xià ， céng cháng qī zhàn jù shì chǎng zhǔ liú de hán táng tàn suān yǐn liào fēng guāng bù zài 。   chá kàn gèng duō",
+      "chinese": "DeepSeek 斩杀线",
+      "pinyin": "D e e p S e e k   zhǎn shā xiàn",
+      "translation": "DeepSeek의 결정적 가격선",
+      "summary": "7월 31일 DeepSeek V4 Flash 정식 버전이 출시되었습니다. 이 모델은 극적인 가성비로 글로벌 대형 모델 시장의 판도를 재편하려 한다고 보도되었습니다. 모델의 출력 단가는 백만 토큰당 2위안으로 책정되어 있습니다.",
+      "detailChinese": "7月31日，DeepSeek V4 Flash正式版上线，以极致性价比重塑全球大模型市场格局。该模型输出定价仅每百万Token 2元人民币，比Cla... 查看更多",
+      "detailPinyin": "7 yuè 3 1 rì ， D e e p S e e k   V 4   F l a s h zhèng shì bǎn shàng xiàn ， yǐ jí zhì xìng jià bǐ zhòng sù quán qiú dà mó xíng shì chǎng gé jú 。 gāi mó xíng shū chū dìng jià jǐn měi bǎi wàn T o k e n   2 yuán rén mín bì ， bǐ C l a . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "무설탕 음료가 주요 진열 자리를 차지하며 설탕 탄산음료의 주도력이 약화됐다.",
+      "keyPoint": "DeepSeek V4 Flash가 저렴한 비용으로 대형 모델 시장 재편을 노리고 있다.",
       "keyPoints": [
-        "무설탕 음료가 주요 진열 자리를 차지하며 설탕 탄산음료의 주도력이 약화됐다."
+        "DeepSeek V4 Flash가 저렴한 비용으로 대형 모델 시장 재편을 노리고 있다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E5%90%AB%E7%B3%96%E7%A2%B3%E9%85%B8%E9%A5%AE%E6%96%99%E5%A4%A7%E5%8A%BF%E5%B7%B2%E5%8E%BB&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=DeepSeek+%E6%96%A9%E6%9D%80%E7%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "含糖",
-        "pinyin": "hán táng",
-        "meaning": "설탕을 포함한",
-        "example": "许多消费者正在减少含糖饮料的摄入以保持健康。",
-        "examplePinyin": "xǔ duō xiāo fèi zhě zhèng zài jiǎn shǎo hán táng yǐn liào de shè rù yǐ bǎo chí jiàn kāng 。",
-        "exampleMeaning": "많은 소비자들이 건강을 위해 설탕 음료 섭취를 줄이고 있다."
+        "chinese": "斩杀线",
+        "pinyin": "zhǎn shā xiàn",
+        "meaning": "결정적으로 승부를 가르는(가격 등) 기준선",
+        "example": "厂商希望通过更低的斩杀线吸引更多用户关注。",
+        "examplePinyin": "chǎng shāng xī wàng tōng guò gèng dī de zhǎn shā xiàn xī yǐn gèng duō yòng hù guān zhù 。",
+        "exampleMeaning": "업체는 더 낮은 결정적 가격선으로 더 많은 사용자의 관심을 끌기를 바란다."
       },
       "expressions": [
         {
-          "chinese": "含糖",
-          "pinyin": "hán táng",
-          "meaning": "설탕을 포함한",
-          "example": "许多消费者正在减少含糖饮料的摄入以保持健康。",
-          "examplePinyin": "xǔ duō xiāo fèi zhě zhèng zài jiǎn shǎo hán táng yǐn liào de shè rù yǐ bǎo chí jiàn kāng 。",
-          "exampleMeaning": "많은 소비자들이 건강을 위해 설탕 음료 섭취를 줄이고 있다."
+          "chinese": "斩杀线",
+          "pinyin": "zhǎn shā xiàn",
+          "meaning": "결정적으로 승부를 가르는(가격 등) 기준선",
+          "example": "厂商希望通过更低的斩杀线吸引更多用户关注。",
+          "examplePinyin": "chǎng shāng xī wàng tōng guò gèng dī de zhǎn shā xiàn xī yǐn gèng duō yòng hù guān zhù 。",
+          "exampleMeaning": "업체는 더 낮은 결정적 가격선으로 더 많은 사용자의 관심을 끌기를 바란다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "DeepSeek",
+          "pinyin": "D e e p S e e k",
+          "meaning": "제품명·브랜드명"
+        },
+        {
+          "chinese": "斩杀线",
+          "pinyin": "zhǎn shā xiàn",
+          "meaning": "결정적 가격선"
+        },
+        {
+          "chinese": "正式版",
+          "pinyin": "zhèng shì bǎn",
+          "meaning": "정식 버전"
+        },
+        {
+          "chinese": "性价比",
+          "pinyin": "xìng jià bǐ",
+          "meaning": "가성비"
+        },
+        {
+          "chinese": "全球",
+          "pinyin": "quán qiú",
+          "meaning": "전세계"
+        },
+        {
+          "chinese": "大模型",
+          "pinyin": "dà mó xíng",
+          "meaning": "대형(인공지능) 모델"
+        },
+        {
+          "chinese": "定价",
+          "pinyin": "dìng jià",
+          "meaning": "가격 책정"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "chinese": "含糖碳酸饮料大势已去",
+      "pinyin": "hán táng tàn suān yǐn liào dà shì yǐ qù",
+      "translation": "설탕 함유 탄산음료의 기세가 한풀 꺾이다",
+      "summary": "2026년은 국내 음료 산업의 판도가 재편되는 중요한 해라고 전해졌습니다. 무설탕 음료가 계속해서 대형마트와 편의점 냉장 진열의 핵심 자리를 차지하고 있습니다. 올여름에는 오랫동안 시장 주류였던 설탕 함유 탄산음료의 위상이 예전 같지 않다고 보도되었습니다.",
+      "detailChinese": "2026年是国内饮料行业格局重塑的关键一年，无糖饮料继续抢占商超、便利店冷柜核心陈列位置，今夏，曾长期占据市场主流的含糖碳酸饮料风光不再。 查看更多",
+      "detailPinyin": "2 0 2 6 nián shì guó nèi yǐn liào háng yè gé jú zhòng sù de guān jiàn yī nián ， wú táng yǐn liào jì xù qiǎng zhàn shāng chāo 、 biàn lì diàn lěng guì hé xīn chén liè wèi zhì ， jīn xià ， céng cháng qī zhàn jù shì chǎng zhǔ liú de hán táng tàn suān yǐn liào fēng guāng bù zài 。   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "무설탕 음료가 시장 주도권을 넓히며 설탕 탄산음료의 입지는 약해졌다.",
+      "keyPoints": [
+        "무설탕 음료가 시장 주도권을 넓히며 설탕 탄산음료의 입지는 약해졌다."
+      ],
+      "url": "https://www.baidu.com/s?wd=%E5%90%AB%E7%B3%96%E7%A2%B3%E9%85%B8%E9%A5%AE%E6%96%99%E5%A4%A7%E5%8A%BF%E5%B7%B2%E5%8E%BB&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "含糖碳酸饮料",
+        "pinyin": "hán táng tàn suān yǐn liào",
+        "meaning": "설탕이 들어간 탄산음료",
+        "example": "含糖碳酸饮料曾长期占据市场主流，但如今销量逐渐下滑。",
+        "examplePinyin": "hán táng tàn suān yǐn liào céng cháng qī zhàn jù shì chǎng zhǔ liú ， dàn rú jīn xiāo liàng zhú jiàn xià huá 。",
+        "exampleMeaning": "설탕 함유 탄산음료는 오랫동안 시장을 지배했지만 현재 판매량이 점차 줄고 있다."
+      },
+      "expressions": [
+        {
+          "chinese": "含糖碳酸饮料",
+          "pinyin": "hán táng tàn suān yǐn liào",
+          "meaning": "설탕이 들어간 탄산음료",
+          "example": "含糖碳酸饮料曾长期占据市场主流，但如今销量逐渐下滑。",
+          "examplePinyin": "hán táng tàn suān yǐn liào céng cháng qī zhàn jù shì chǎng zhǔ liú ， dàn rú jīn xiāo liàng zhú jiàn xià huá 。",
+          "exampleMeaning": "설탕 함유 탄산음료는 오랫동안 시장을 지배했지만 현재 판매량이 점차 줄고 있다."
         },
         {
           "chinese": "大势已去",
           "pinyin": "dà shì yǐ qù",
-          "meaning": "주도적 흐름이 사라졌다, 대세가 저물었다",
-          "example": "随着新技术出现，旧有行业的大势已去，需要转型升级。",
-          "examplePinyin": "suí zhe xīn jì shù chū xiàn ， jiù yǒu háng yè de dà shì yǐ qù ， xū yào zhuǎn xíng shēng jí 。",
-          "exampleMeaning": "신기술이 등장하면서 기존 산업의 대세가 저물어 전환과 업그레이드가 필요하다."
+          "meaning": "기세가 꺾이다, 전성기가 지나다",
+          "example": "随着消费者偏好改变，那些曾风靡一时的产品大势已去。",
+          "examplePinyin": "suí zhe xiāo fèi zhě piān hǎo gǎi biàn ， nà xiē céng fēng mǐ yī shí de chǎn pǐn dà shì yǐ qù 。",
+          "exampleMeaning": "소비자 선호가 바뀌면서 한때 유행하던 제품들의 전성기는 지고 있다."
         }
       ],
       "words": [
         {
           "chinese": "含糖",
           "pinyin": "hán táng",
-          "meaning": "설탕이 든"
+          "meaning": "설탕 함유"
         },
         {
           "chinese": "碳酸饮料",
@@ -164,64 +255,29 @@
           "meaning": "탄산음료"
         },
         {
-          "chinese": "大势已去",
-          "pinyin": "dà shì yǐ qù",
-          "meaning": "대세가 저물었다"
-        }
-      ]
-    },
-    {
-      "rank": 3,
-      "chinese": "DeepSeek 斩杀线",
-      "pinyin": "D e e p S e e k   zhǎn shā xiàn",
-      "translation": "DeepSeek의 결정타(가격 파괴선)",
-      "summary": "7월 31일 DeepSeek V4 Flash 정식 버전이 출시되었습니다. 이 모델은 극도의 가성비로 글로벌 대형 모델 시장의 판도를 재구성하려 한다고 전해집니다. 출력 가격은 백만 토큰당 단 2위안으로 책정되었습니다.",
-      "detailChinese": "7月31日，DeepSeek V4 Flash正式版上线，以极致性价比重塑全球大模型市场格局。该模型输出定价仅每百万Token 2元人民币，比Cla... 查看更多",
-      "detailPinyin": "7 yuè 3 1 rì ， D e e p S e e k   V 4   F l a s h zhèng shì bǎn shàng xiàn ， yǐ jí zhì xìng jià bǐ zhòng sù quán qiú dà mó xíng shì chǎng gé jú 。 gāi mó xíng shū chū dìng jià jǐn měi bǎi wàn T o k e n   2 yuán rén mín bì ， bǐ C l a . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "DeepSeek V4 Flash는 백만 토큰당 2위안의 저렴한 가격으로 출시됐다.",
-      "keyPoints": [
-        "DeepSeek V4 Flash는 백만 토큰당 2위안의 저렴한 가격으로 출시됐다."
-      ],
-      "url": "https://www.baidu.com/s?wd=DeepSeek+%E6%96%A9%E6%9D%80%E7%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "斩杀线",
-        "pinyin": "zhǎn shā xiàn",
-        "meaning": "결정타가 되는 가격선(경쟁을 끝내는 수준의 가격)",
-        "example": "厂商以低价设下斩杀线，迫使对手调整策略。",
-        "examplePinyin": "chǎng shāng yǐ dī jià shè xià zhǎn shā xiàn ， pò shǐ duì shǒu tiáo zhěng cè lüè 。",
-        "exampleMeaning": "업체가 저가로 가격 결전선을 세워 경쟁사를 전략 재조정으로 몰아넣었다."
-      },
-      "expressions": [
-        {
-          "chinese": "斩杀线",
-          "pinyin": "zhǎn shā xiàn",
-          "meaning": "결정타가 되는 가격선(경쟁을 끝내는 수준의 가격)",
-          "example": "厂商以低价设下斩杀线，迫使对手调整策略。",
-          "examplePinyin": "chǎng shāng yǐ dī jià shè xià zhǎn shā xiàn ， pò shǐ duì shǒu tiáo zhěng cè lüè 。",
-          "exampleMeaning": "업체가 저가로 가격 결전선을 세워 경쟁사를 전략 재조정으로 몰아넣었다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "DeepSeek",
-          "pinyin": "D e e p S e e k",
-          "meaning": "제품·브랜드명"
+          "chinese": "无糖",
+          "pinyin": "wú táng",
+          "meaning": "무설탕"
         },
         {
-          "chinese": "斩杀线",
-          "pinyin": "zhǎn shā xiàn",
-          "meaning": "결정타 가격선"
+          "chinese": "商超",
+          "pinyin": "shāng chāo",
+          "meaning": "대형마트·상업시설"
         },
         {
-          "chinese": "V4",
-          "pinyin": "V 4",
-          "meaning": "버전명"
+          "chinese": "便利店",
+          "pinyin": "biàn lì diàn",
+          "meaning": "편의점"
         },
         {
-          "chinese": "Flash",
-          "pinyin": "F l a s h",
-          "meaning": "제품명(속칭)"
+          "chinese": "陈列位置",
+          "pinyin": "chén liè wèi zhì",
+          "meaning": "진열 위치"
+        },
+        {
+          "chinese": "市场主流",
+          "pinyin": "shì chǎng zhǔ liú",
+          "meaning": "시장 주류"
         }
       ]
     },
@@ -229,480 +285,533 @@
       "rank": 4,
       "chinese": "穿山跨海的“黄金大外环”要来了",
       "pinyin": "chuān shān kuà hǎi de “ huáng jīn dà wài huán ” yào lái le",
-      "translation": "산을 넘고 바다를 잇는 '황금 대외환'이 다가온다",
-      "summary": "약 2만7천 킬로미터에 달하는 외부 환로가 언급됩니다. G219, G331, G228 세 국도를 앞뒤로 연결하면 국경과 해안을 관통하는 '대외환'이 형성된다고 전합니다. 이로써 광범위한 지역을 잇는 대형 도로망이 만들어질 것이라는 취지입니다.",
+      "translation": "산을 넘고 바다를 건너는 '황금 대외환'이 온다",
+      "summary": "한 외곽 도로의 길이가 얼마나 될 수 있느냐는 질문에 약 2.7만 킬로미터라는 답이 제시되었습니다. 만약 G219, G331, G228 세 국도를 처음부터 끝까지 잇는다면 국경과 해안을 관통하는 '대외환'이 형성된다고 보도됐습니다. 해당 연결선의 길이는 상당히 긴 것으로 소개되었습니다.",
       "detailChinese": "一条外环路，可以有多长？答案是约2.7万公里。倘若将G219、G331和G228三条国道首尾相接，将形成一条贯通我国沿边沿海的“大外环”，长度相当于... 查看更多",
       "detailPinyin": "yī tiáo wài huán lù ， kě yǐ yǒu duō zhǎng ？ dá àn shì yuē 2 . 7 wàn gōng lǐ 。 tǎng ruò jiāng G 2 1 9 、 G 3 3 1 hé G 2 2 8 sān tiáo guó dào shǒu wěi xiāng jiē ， jiāng xíng chéng yī tiáo guàn tōng wǒ guó yán biān yán hǎi de “ dà wài huán ” ， cháng dù xiāng dāng yú . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "G219·G331·G228을 연결하면 약 2만7천 km의 대외환이 형성된다.",
+      "keyPoint": "세 국도를 연결하면 약 2.7만km에 이르는 '대외환'이 만들어질 수 있다.",
       "keyPoints": [
-        "G219·G331·G228을 연결하면 약 2만7천 km의 대외환이 형성된다."
+        "세 국도를 연결하면 약 2.7만km에 이르는 '대외환'이 만들어질 수 있다."
       ],
       "url": "https://www.baidu.com/s?wd=%E7%A9%BF%E5%B1%B1%E8%B7%A8%E6%B5%B7%E7%9A%84%E2%80%9C%E9%BB%84%E9%87%91%E5%A4%A7%E5%A4%96%E7%8E%AF%E2%80%9D%E8%A6%81%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
         "chinese": "穿山跨海",
         "pinyin": "chuān shān kuà hǎi",
-        "meaning": "산을 뚫고 바다를 건너다(광범위하게 연결하다)",
-        "example": "这条新路将穿山跨海，连接沿线多个城市。",
-        "examplePinyin": "zhè tiáo xīn lù jiāng chuān shān kuà hǎi ， lián jiē yán xiàn duō gè chéng shì 。",
-        "exampleMeaning": "이 새 길은 산을 넘고 바다를 건너 여러 도시를 연결할 것이다."
+        "meaning": "산을 넘고 바다를 건너다, 광범위하게 연결되다",
+        "example": "新规划的道路将穿山跨海，连接沿边沿海多个地区。",
+        "examplePinyin": "xīn guī huà de dào lù jiāng chuān shān kuà hǎi ， lián jiē yán biān yán hǎi duō gè dì qū 。",
+        "exampleMeaning": "새로 계획된 도로는 산을 넘고 바다를 건너 여러 연안·접경 지역을 연결할 것이다."
       },
       "expressions": [
         {
           "chinese": "穿山跨海",
           "pinyin": "chuān shān kuà hǎi",
-          "meaning": "산을 뚫고 바다를 건너다(광범위하게 연결하다)",
-          "example": "这条新路将穿山跨海，连接沿线多个城市。",
-          "examplePinyin": "zhè tiáo xīn lù jiāng chuān shān kuà hǎi ， lián jiē yán xiàn duō gè chéng shì 。",
-          "exampleMeaning": "이 새 길은 산을 넘고 바다를 건너 여러 도시를 연결할 것이다."
+          "meaning": "산을 넘고 바다를 건너다, 광범위하게 연결되다",
+          "example": "新规划的道路将穿山跨海，连接沿边沿海多个地区。",
+          "examplePinyin": "xīn guī huà de dào lù jiāng chuān shān kuà hǎi ， lián jiē yán biān yán hǎi duō gè dì qū 。",
+          "exampleMeaning": "새로 계획된 도로는 산을 넘고 바다를 건너 여러 연안·접경 지역을 연결할 것이다."
         },
         {
-          "chinese": "大外环",
-          "pinyin": "dà wài huán",
-          "meaning": "큰 외부 환로(광범위하게 둘러싼 도로망)",
-          "example": "规划中的大外环将加强沿边沿海地区的交通互联。",
-          "examplePinyin": "guī huà zhōng de dà wài huán jiāng jiā qiáng yán biān yán hǎi dì qū de jiāo tōng hù lián 。",
-          "exampleMeaning": "계획된 대외환은 접경과 해안 지역의 교통 연결을 강화할 것이다."
+          "chinese": "黄金大外环",
+          "pinyin": "huáng jīn dà wài huán",
+          "meaning": "황금 같은 중요 외부 순환로(비유적 명칭)",
+          "example": "建设黄金大外环有助于促进沿边沿海地区的连通与发展。",
+          "examplePinyin": "jiàn shè huáng jīn dà wài huán yǒu zhù yú cù jìn yán biān yán hǎi dì qū de lián tōng yǔ fā zhǎn 。",
+          "exampleMeaning": "황금 대외환 건설은 연안 및 접경 지역의 연결과 발전을 촉진하는 데 도움이 된다."
         }
       ],
       "words": [
         {
-          "chinese": "穿山跨海",
-          "pinyin": "chuān shān kuà hǎi",
-          "meaning": "산을 넘어 바다를 가로지르다"
+          "chinese": "穿山",
+          "pinyin": "chuān shān",
+          "meaning": "산을 통과하다"
+        },
+        {
+          "chinese": "跨海",
+          "pinyin": "kuà hǎi",
+          "meaning": "바다를 건너다"
         },
         {
           "chinese": "黄金",
           "pinyin": "huáng jīn",
-          "meaning": "황금, 매우 중요한"
+          "meaning": "중요·핵심(비유)"
         },
         {
           "chinese": "大外环",
           "pinyin": "dà wài huán",
-          "meaning": "큰 외부 환로(광범위한 도로망)"
+          "meaning": "대형 외부 순환로"
         },
         {
-          "chinese": "G219",
-          "pinyin": "G 2 1 9",
-          "meaning": "국도 G219"
+          "chinese": "国道",
+          "pinyin": "guó dào",
+          "meaning": "국도"
         },
         {
-          "chinese": "G331",
-          "pinyin": "G 3 3 1",
-          "meaning": "국도 G331"
+          "chinese": "贯通",
+          "pinyin": "guàn tōng",
+          "meaning": "관통하여 이어지다"
         },
         {
-          "chinese": "G228",
-          "pinyin": "G 2 2 8",
-          "meaning": "국도 G228"
+          "chinese": "沿边沿海",
+          "pinyin": "yán biān yán hǎi",
+          "meaning": "접경과 연안 지역"
         }
       ]
     },
     {
       "rank": 5,
-      "chinese": "员工泡水2小时捞手机获表扬无奖励",
-      "pinyin": "yuán gōng pào shuǐ 2 xiǎo shí lāo shǒu jī huò biǎo yáng wú jiǎng lì",
-      "translation": "직원 물에 들어가 2시간 만에 휴대폰 건져 칭찬은 받았지만 보상은 없다",
-      "summary": "최근 하남성의 한 관광지에서 방문객의 휴대전화가 호수에 빠지는 사고가 있었습니다. 경내 직원은 떠 있는 다리의 나무판을 떼고 물에 들어가 약 2시간 만에 휴대전화를 건져 올렸습니다. 해당 관광지 경영자는 이 행동을 칭찬할 만하다고 했지만 보상은 하지 않겠다고 밝혔습니다.",
-      "detailChinese": "近日，河南平顶山鲁山县阿婆寨景区一名游客的‌iPhone17‌掉入湖中，景区工作人员‌拆浮桥木板后泡水2小时将其捞起，景区老板称此举‌值得表扬但无特... 查看更多",
-      "detailPinyin": "jìn rì ， hé nán píng dǐng shān lǔ shān xiàn ā pó zhài jǐng qū yī míng yóu kè de ‌ i P h o n e 1 7 ‌ diào rù hú zhōng ， jǐng qū gōng zuò rén yuán ‌ chāi fú qiáo mù bǎn hòu pào shuǐ 2 xiǎo shí jiāng qí lāo qǐ ， jǐng qū lǎo bǎn chēng cǐ jǔ ‌ zhí de biǎo yáng dàn wú tè . . .   chá kàn gèng duō",
+      "chinese": "进口豪车在华卖不动了",
+      "pinyin": "jìn kǒu háo chē zài huá mài bù dòng le",
+      "translation": "수입 고급차가 중국에서 잘 팔리지 않는다",
+      "summary": "올해 상반기 국내 수입 럭셔리카 시장이 전반적으로 축소되었다고 보도되었습니다. 대부분의 초호화 브랜드가 판매량이 하락했고, 오직 람보르기니만이 성장을 기록했습니다. 보도에 따르면 포르셰와 페라리는 '판매량은 줄었지만 이익은 증가'하는 양상을 보였다고 합니다.",
+      "detailChinese": "今年上半年国内进口豪华车市场整体收缩，多数超豪华品牌销量下滑，仅兰博基尼实现增长。保时捷、法拉利呈现“销量下滑、利润上涨”态势，依靠高端车型组合与定... 查看更多",
+      "detailPinyin": "jīn nián shàng bàn nián guó nèi jìn kǒu háo huá chē shì chǎng zhěng tǐ shōu suō ， duō shù chāo háo huá pǐn pái xiāo liàng xià huá ， jǐn lán bó jī ní shí xiàn zēng zhǎng 。 bǎo shí jié 、 fǎ lā lì chéng xiàn “ xiāo liàng xià huá 、 lì rùn shàng zhǎng ” tài shì ， yī kào gāo duān chē xíng zǔ hé yǔ dìng . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "직원이 2시간 물에 들어가 휴대폰을 건져 올렸으나 보상은 없었다.",
+      "keyPoint": "올해 상반기 수입 럭셔리카 시장이 축소되며 대부분 브랜드 판매가 감소했다.",
       "keyPoints": [
-        "직원이 2시간 물에 들어가 휴대폰을 건져 올렸으나 보상은 없었다."
+        "올해 상반기 수입 럭셔리카 시장이 축소되며 대부분 브랜드 판매가 감소했다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E5%91%98%E5%B7%A5%E6%B3%A1%E6%B0%B42%E5%B0%8F%E6%97%B6%E6%8D%9E%E6%89%8B%E6%9C%BA%E8%8E%B7%E8%A1%A8%E6%89%AC%E6%97%A0%E5%A5%96%E5%8A%B1&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E8%BF%9B%E5%8F%A3%E8%B1%AA%E8%BD%A6%E5%9C%A8%E5%8D%8E%E5%8D%96%E4%B8%8D%E5%8A%A8%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "泡水",
-        "pinyin": "pào shuǐ",
-        "meaning": "물에 잠기다/물속에 들어가다",
-        "example": "为了救回客人的手机，工作人员不得不下水泡水捞东西。",
-        "examplePinyin": "wèi le jiù huí kè rén de shǒu jī ， gōng zuò rén yuán bù dé bù xià shuǐ pào shuǐ lāo dōng xī 。",
-        "exampleMeaning": "손님의 휴대전화를 건지기 위해 직원이 물속에 들어가 물건을 건져야 했다."
+        "chinese": "进口豪车",
+        "pinyin": "jìn kǒu háo chē",
+        "meaning": "수입 고급 자동차",
+        "example": "近年来，进口豪车在不同细分市场的表现各异。",
+        "examplePinyin": "jìn nián lái ， jìn kǒu háo chē zài bù tóng xì fēn shì chǎng de biǎo xiàn gè yì 。",
+        "exampleMeaning": "최근 몇 년간 수입 고급차는 세부 시장별로 성과가 달랐다."
       },
       "expressions": [
         {
-          "chinese": "泡水",
-          "pinyin": "pào shuǐ",
-          "meaning": "물에 잠기다/물속에 들어가다",
-          "example": "为了救回客人的手机，工作人员不得不下水泡水捞东西。",
-          "examplePinyin": "wèi le jiù huí kè rén de shǒu jī ， gōng zuò rén yuán bù dé bù xià shuǐ pào shuǐ lāo dōng xī 。",
-          "exampleMeaning": "손님의 휴대전화를 건지기 위해 직원이 물속에 들어가 물건을 건져야 했다."
+          "chinese": "进口豪车",
+          "pinyin": "jìn kǒu háo chē",
+          "meaning": "수입 고급 자동차",
+          "example": "近年来，进口豪车在不同细分市场的表现各异。",
+          "examplePinyin": "jìn nián lái ， jìn kǒu háo chē zài bù tóng xì fēn shì chǎng de biǎo xiàn gè yì 。",
+          "exampleMeaning": "최근 몇 년간 수입 고급차는 세부 시장별로 성과가 달랐다."
         },
         {
-          "chinese": "获表扬",
-          "pinyin": "huò biǎo yáng",
-          "meaning": "칭찬을 받다",
-          "example": "他的勇敢行为得到了领导的获表扬。",
-          "examplePinyin": "tā de yǒng gǎn xíng wéi dé dào le lǐng dǎo de huò biǎo yáng 。",
-          "exampleMeaning": "그의 용감한 행동은 지도자의 칭찬을 받았다."
+          "chinese": "卖不动",
+          "pinyin": "mài bù dòng",
+          "meaning": "판매가 잘 되지 않다",
+          "example": "在需求下降的情况下，这类车型出现了明显的卖不动现象。",
+          "examplePinyin": "zài xū qiú xià jiàng de qíng kuàng xià ， zhè lèi chē xíng chū xiàn le míng xiǎn de mài bù dòng xiàn xiàng 。",
+          "exampleMeaning": "수요 감소로 인해 이러한 차종들은 판매가 잘 되지 않는 현상이 나타났다."
         }
       ],
       "words": [
         {
-          "chinese": "员工",
-          "pinyin": "yuán gōng",
-          "meaning": "직원"
+          "chinese": "进口",
+          "pinyin": "jìn kǒu",
+          "meaning": "수입"
         },
         {
-          "chinese": "泡水",
-          "pinyin": "pào shuǐ",
-          "meaning": "물에 들어가다"
+          "chinese": "豪车",
+          "pinyin": "háo chē",
+          "meaning": "고급 자동차"
         },
         {
-          "chinese": "捞手机",
-          "pinyin": "lāo shǒu jī",
-          "meaning": "휴대전화를 건져 올리다"
+          "chinese": "市场",
+          "pinyin": "shì chǎng",
+          "meaning": "시장"
         },
         {
-          "chinese": "获表扬",
-          "pinyin": "huò biǎo yáng",
-          "meaning": "칭찬을 받다"
+          "chinese": "销量",
+          "pinyin": "xiāo liàng",
+          "meaning": "판매량"
         },
         {
-          "chinese": "无奖励",
-          "pinyin": "wú jiǎng lì",
-          "meaning": "보상이 없다"
+          "chinese": "上半年",
+          "pinyin": "shàng bàn nián",
+          "meaning": "상반기"
+        },
+        {
+          "chinese": "利润",
+          "pinyin": "lì rùn",
+          "meaning": "이익"
+        },
+        {
+          "chinese": "高端车型",
+          "pinyin": "gāo duān chē xíng",
+          "meaning": "고급 모델"
         }
       ]
     },
     {
       "rank": 6,
-      "chinese": "大连海底隧道看不到鱼",
-      "pinyin": "dà lián hǎi dǐ suì dào kàn bú dào yú",
-      "translation": "대련 해저 터널에서는 물고기를 볼 수 없다",
-      "summary": "최근 한 부모가 아이와 함께 대련의 '해저 터널'을 방문했으나 기대한 해양 경관이 없어 아이가 울음을 터뜨렸습니다. 관계 당국은 인터넷에 떠도는 해저 장면 사진들이 합성(P图)이라고 밝혔습니다. 실제 터널 내부 벽은 콘크리트 구조이며, 아름다운 해저 사진들은 후처리된 것이라고 공식 해명했습니다.",
-      "detailChinese": "近日，有家长带孩子打卡大连“海底隧道”，孩子发现没有海景当场大哭。官方辟谣：网传海景图为P图，隧道内壁实为水泥结构，网传绝美海底画面均为网友后期P图... 查看更多",
-      "detailPinyin": "jìn rì ， yǒu jiā zhǎng dài hái zi dǎ kǎ dà lián “ hǎi dǐ suì dào ” ， hái zi fā xiàn méi yǒu hǎi jǐng dāng chǎng dà kū 。 guān fāng pì yáo ： wǎng chuán hǎi jǐng tú wèi P tú ， suì dào nèi bì shí wèi shuǐ ní jié gòu ， wǎng chuán jué měi hǎi dǐ huà miàn jūn wèi wǎng yǒu hòu qī P tú . . .   chá kàn gèng duō",
+      "chinese": "“江西球王”杨志军单场轰101分",
+      "pinyin": "“ jiāng xī qiú wáng ” yáng zhì jūn dān chǎng hōng 1 0 1 fēn",
+      "translation": "‘강시(江西) 농구왕’ 양즈쥔, 한 경기 101점 폭발",
+      "summary": "지난 강시성 이춘시의 농구 리그 경기에서 '강시의 농구왕' 양지군이 이끄는 명월산 팀이 위안저우구 팀에 121 대 75로 크게 이겼습니다. 양지군은 경기 출전 시간 33분 동안 활약했으며, 보도에 따르면 단일 경기에서 28개의 3점슛을 포함해 101점을 기록했습니다. 이러한 경기력으로 팀의 대승을 이끌었다고 전해졌습니다.",
+      "detailChinese": "在此前进行的江西省宜春市篮球联赛中，“江西球王”杨志军所率领的明月山队121比75大胜袁州区队。本场比赛，杨志军上场33分钟，单场命中28个三分球、... 查看更多",
+      "detailPinyin": "zài cǐ qián jìn xíng de jiāng xī shěng yí chūn shì lán qiú lián sài zhōng ， “ jiāng xī qiú wáng ” yáng zhì jūn suǒ shuài lǐng de míng yuè shān duì 1 2 1 bǐ 7 5 dà shèng yuán zhōu qū duì 。 běn chǎng bǐ sài ， yáng zhì jūn shàng chǎng 3 3 fēn zhōng ， dān chǎng mìng zhòng 2 8 gè sān fēn qiú 、 . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "공식 발표에 따르면 터널 내부는 콘크리트 구조이며 유포된 해저 사진은 합성이다.",
+      "keyPoint": "양지군이 한 경기에서 101점을 기록하며 팀의 대승을 이끌었다.",
       "keyPoints": [
-        "공식 발표에 따르면 터널 내부는 콘크리트 구조이며 유포된 해저 사진은 합성이다."
+        "양지군이 한 경기에서 101점을 기록하며 팀의 대승을 이끌었다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E5%A4%A7%E8%BF%9E%E6%B5%B7%E5%BA%95%E9%9A%A7%E9%81%93%E7%9C%8B%E4%B8%8D%E5%88%B0%E9%B1%BC&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E6%B1%9F%E8%A5%BF%E7%90%83%E7%8E%8B%E2%80%9D%E6%9D%A8%E5%BF%97%E5%86%9B%E5%8D%95%E5%9C%BA%E8%BD%B0101%E5%88%86&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "海底隧道",
-        "pinyin": "hǎi dǐ suì dào",
-        "meaning": "해저 터널",
-        "example": "很多城市建设海底隧道以改善交通联通。",
-        "examplePinyin": "hěn duō chéng shì jiàn shè hǎi dǐ suì dào yǐ gǎi shàn jiāo tōng lián tōng 。",
-        "exampleMeaning": "많은 도시가 교통 연결을 개선하기 위해 해저 터널을 건설한다."
+        "chinese": "江西球王",
+        "pinyin": "jiāng xī qiú wáng",
+        "meaning": "강시성(江西)의 농구 황제·명수",
+        "example": "作为江西球王，他在当地球迷中享有极高声誉。",
+        "examplePinyin": "zuò wéi jiāng xī qiú wáng ， tā zài dāng dì qiú mí zhōng xiǎng yǒu jí gāo shēng yù 。",
+        "exampleMeaning": "강시의 농구왕으로서 그는 지역 팬들 사이에서 매우 높은 명성을 누리고 있다."
       },
       "expressions": [
         {
-          "chinese": "海底隧道",
-          "pinyin": "hǎi dǐ suì dào",
-          "meaning": "해저 터널",
-          "example": "很多城市建设海底隧道以改善交通联通。",
-          "examplePinyin": "hěn duō chéng shì jiàn shè hǎi dǐ suì dào yǐ gǎi shàn jiāo tōng lián tōng 。",
-          "exampleMeaning": "많은 도시가 교통 연결을 개선하기 위해 해저 터널을 건설한다."
+          "chinese": "江西球王",
+          "pinyin": "jiāng xī qiú wáng",
+          "meaning": "강시성(江西)의 농구 황제·명수",
+          "example": "作为江西球王，他在当地球迷中享有极高声誉。",
+          "examplePinyin": "zuò wéi jiāng xī qiú wáng ， tā zài dāng dì qiú mí zhōng xiǎng yǒu jí gāo shēng yù 。",
+          "exampleMeaning": "강시의 농구왕으로서 그는 지역 팬들 사이에서 매우 높은 명성을 누리고 있다."
         },
         {
-          "chinese": "看不到鱼",
-          "pinyin": "kàn bú dào yú",
-          "meaning": "물고기를 볼 수 없다(기대한 장면이 없다)",
-          "example": "孩子以为能看到海洋生物，结果走进去才发现看不到鱼。",
-          "examplePinyin": "hái zi yǐ wéi néng kàn dào hǎi yáng shēng wù ， jié guǒ zǒu jìn qù cái fā xiàn kàn bú dào yú 。",
-          "exampleMeaning": "아이는 바다 생물을 볼 줄 알았지만 들어가 보니 물고기를 볼 수 없다는 것을 알았다."
+          "chinese": "单场轰",
+          "pinyin": "dān chǎng hōng",
+          "meaning": "한 경기에서 폭발적인 득점을 하다",
+          "example": "这位球员今晚单场轰下50分，成为全场焦点。",
+          "examplePinyin": "zhè wèi qiú yuán jīn wǎn dān chǎng hōng xià 5 0 fēn ， chéng wéi quán chǎng jiāo diǎn 。",
+          "exampleMeaning": "이 선수는 오늘 밤 한 경기에서 50점을 터뜨려 경기의 중심이 되었다."
         }
       ],
       "words": [
         {
-          "chinese": "大连",
-          "pinyin": "dà lián",
-          "meaning": "대련(도시명)"
+          "chinese": "球王",
+          "pinyin": "qiú wáng",
+          "meaning": "최고의 선수(농구 등)"
         },
         {
-          "chinese": "海底隧道",
-          "pinyin": "hǎi dǐ suì dào",
-          "meaning": "해저 터널"
+          "chinese": "单场",
+          "pinyin": "dān chǎng",
+          "meaning": "단일 경기"
         },
         {
-          "chinese": "看不到",
-          "pinyin": "kàn bú dào",
-          "meaning": "볼 수 없다"
+          "chinese": "轰",
+          "pinyin": "hōng",
+          "meaning": "폭발적으로 득점하다"
         },
         {
-          "chinese": "鱼",
-          "pinyin": "yú",
-          "meaning": "물고기"
+          "chinese": "分",
+          "pinyin": "fēn",
+          "meaning": "점수"
+        },
+        {
+          "chinese": "三分球",
+          "pinyin": "sān fēn qiú",
+          "meaning": "3점 슛"
+        },
+        {
+          "chinese": "大胜",
+          "pinyin": "dà shèng",
+          "meaning": "대승"
+        },
+        {
+          "chinese": "上场时间",
+          "pinyin": "shàng chǎng shí jiān",
+          "meaning": "출전 시간"
         }
       ]
     },
     {
       "rank": 7,
-      "chinese": "放假7天 准备买票",
-      "pinyin": "fàng jià 7 tiān   zhǔn bèi mǎi piào",
-      "translation": "휴가 7일, 표 예매 준비하세요",
-      "summary": "국무원 총리실의 통지에 따르면 2026년 국경절은 10월 1일(목)부터 7일(수)까지 7일간의 휴가로 지정되었습니다. 이에 따라 기차표 예약 달력이 공개되었습니다. 여행 및 이동 계획을 세우기 위해 예매 일정을 확인하라는 내용이 함께 전해졌습니다.",
-      "detailChinese": "依据国务院办公厅《关于2026年部分节假日安排的通知》，2026年国庆节10月1日（周四）至7日（周三）放假7天。国庆假期火车票预约日历来了，京沪高... 查看更多",
-      "detailPinyin": "yī jù guó wù yuàn bàn gōng tīng 《 guān yú 2 0 2 6 nián bù fèn jié jià rì ān pái de tōng zhī 》 ， 2 0 2 6 nián guó qìng jié 1 0 yuè 1 rì （ zhōu sì ） zhì 7 rì （ zhōu sān ） fàng jià 7 tiān 。 guó qìng jià qī huǒ chē piào yù yuē rì lì lái le ， jīng hù gāo . . .   chá kàn gèng duō",
+      "chinese": "贵州一景区有游客跌入68级瀑布",
+      "pinyin": "guì zhōu yī jǐng qū yǒu yóu kè diē rù 6 8 jí pù bù",
+      "translation": "구이저우의 한 관광지에서 관광객이 68단 폭포에 떨어졌다",
+      "summary": "바이두에 상세 설명이 표시되지 않았습니다.",
+      "detailChinese": "",
+      "detailPinyin": "",
       "sourceExcerpt": "",
-      "keyPoint": "2026년 국경절은 10월1일부터 7일까지 7일간이며 기차표 예약 달력이 공개됐다.",
-      "keyPoints": [
-        "2026년 국경절은 10월1일부터 7일까지 7일간이며 기차표 예약 달력이 공개됐다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E6%94%BE%E5%81%877%E5%A4%A9+%E5%87%86%E5%A4%87%E4%B9%B0%E7%A5%A8&sa=fyb_news&rsv_dl=fyb_news",
+      "keyPoint": "",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E8%B4%B5%E5%B7%9E%E4%B8%80%E6%99%AF%E5%8C%BA%E6%9C%89%E6%B8%B8%E5%AE%A2%E8%B7%8C%E5%85%A568%E7%BA%A7%E7%80%91%E5%B8%83&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "放假7天",
-        "pinyin": "fàng jià 7 tiān",
-        "meaning": "7일간 휴가가 주어지다",
-        "example": "今年国庆放假7天，很多人开始安排出行计划。",
-        "examplePinyin": "jīn nián guó qìng fàng jià 7 tiān ， hěn duō rén kāi shǐ ān pái chū xíng jì huà 。",
-        "exampleMeaning": "올해 국경절에는 7일간 휴가가 주어져 많은 사람들이 여행 계획을 세우기 시작했다."
+        "chinese": "跌入",
+        "pinyin": "diē rù",
+        "meaning": "떨어지다",
+        "example": "游客不慎跌入溪流，幸好获救及时。",
+        "examplePinyin": "yóu kè bù shèn diē rù xī liú ， xìng hǎo huò jiù jí shí 。",
+        "exampleMeaning": "관광객이 부주의로 시냇물에 떨어졌지만 다행히 제때 구조되었다."
       },
       "expressions": [
         {
-          "chinese": "放假7天",
-          "pinyin": "fàng jià 7 tiān",
-          "meaning": "7일간 휴가가 주어지다",
-          "example": "今年国庆放假7天，很多人开始安排出行计划。",
-          "examplePinyin": "jīn nián guó qìng fàng jià 7 tiān ， hěn duō rén kāi shǐ ān pái chū xíng jì huà 。",
-          "exampleMeaning": "올해 국경절에는 7일간 휴가가 주어져 많은 사람들이 여행 계획을 세우기 시작했다."
+          "chinese": "跌入",
+          "pinyin": "diē rù",
+          "meaning": "떨어지다",
+          "example": "游客不慎跌入溪流，幸好获救及时。",
+          "examplePinyin": "yóu kè bù shèn diē rù xī liú ， xìng hǎo huò jiù jí shí 。",
+          "exampleMeaning": "관광객이 부주의로 시냇물에 떨어졌지만 다행히 제때 구조되었다."
         },
         {
-          "chinese": "准备买票",
-          "pinyin": "zhǔn bèi mǎi piào",
-          "meaning": "표를 살 준비를 하다(예매 준비)",
-          "example": "节日前夕，大家都在准备买票以确保出行。",
-          "examplePinyin": "jié rì qián xī ， dà jiā dōu zài zhǔn bèi mǎi piào yǐ què bǎo chū xíng 。",
-          "exampleMeaning": "명절을 앞두고 모두 출행을 위해 표를 예매할 준비를 하고 있다."
+          "chinese": "瀑布",
+          "pinyin": "pù bù",
+          "meaning": "폭포",
+          "example": "瀑布的景色壮观，吸引了大量游客前来观赏。",
+          "examplePinyin": "pù bù de jǐng sè zhuàng guān ， xī yǐn le dà liàng yóu kè qián lái guān shǎng 。",
+          "exampleMeaning": "폭포의 경관이 장관이라 많은 관광객이 관람하러 온다."
         }
       ],
       "words": [
         {
-          "chinese": "放假",
-          "pinyin": "fàng jià",
-          "meaning": "휴가를 내다, 휴일로 하다"
+          "chinese": "贵州",
+          "pinyin": "guì zhōu",
+          "meaning": "구이저우성(중국 성명)"
         },
         {
-          "chinese": "7天",
-          "pinyin": "7 tiān",
-          "meaning": "7일"
+          "chinese": "景区",
+          "pinyin": "jǐng qū",
+          "meaning": "관광지"
         },
         {
-          "chinese": "准备",
-          "pinyin": "zhǔn bèi",
-          "meaning": "준비하다"
+          "chinese": "游客",
+          "pinyin": "yóu kè",
+          "meaning": "관광객"
         },
         {
-          "chinese": "买票",
-          "pinyin": "mǎi piào",
-          "meaning": "표를 사다, 예매하다"
+          "chinese": "跌入",
+          "pinyin": "diē rù",
+          "meaning": "떨어지다"
+        },
+        {
+          "chinese": "68级瀑布",
+          "pinyin": "6 8 jí pù bù",
+          "meaning": "68단 폭포"
         }
       ]
     },
     {
       "rank": 8,
-      "chinese": "U17国足开门红 压哨绝杀阿森纳U17",
-      "pinyin": "U 1 7 guó zú kāi mén hóng   yā shào jué shā ā sēn nà U 1 7",
-      "translation": "U17 대표팀 첫 경기 승리, 종료 직전 극장골로 아스널 U17 제압",
-      "summary": "8월 3일 중국 U17 남자 축구팀이 상하이에서 열린 경기에서 아스널 U17과 맞붙었습니다. 경기에서 조송위안이 두 골을 만들었고, 정성한이 종료 직전 터뜨린 결승골로 경기를 뒤집었습니다. 최종스코어는 3대2로 중국 U17이 승리하며 첫 경기를 승리로 장식했습니다.",
-      "detailChinese": "8月3日，‌中国U17男足在上海参加明日之星冠军杯‌，当晚19点35分首轮对阵阿森纳U17。赵松源独造两球，程晟涵压哨绝杀，U17国足3比2战胜阿森... 查看更多",
-      "detailPinyin": "8 yuè 3 rì ， ‌ zhōng guó U 1 7 nán zú zài shàng hǎi cān jiā míng rì zhī xīng guàn jūn bēi ‌ ， dàng wǎn 1 9 diǎn 3 5 fēn shǒu lún duì zhèn ā sēn nà U 1 7 。 zhào sōng yuán dú zào liǎng qiú ， chéng chéng hán yā shào jué shā ， U 1 7 guó zú 3 bǐ 2 zhàn shèng ā sēn . . .   chá kàn gèng duō",
+      "chinese": "美股收盘：谷歌涨超4%总市值超过苹果",
+      "pinyin": "měi gǔ shōu pán ： gǔ gē zhǎng chāo 4 % zǒng shì zhí chāo guò píng guǒ",
+      "translation": "미국 증시 마감: 구글 4% 이상 상승, 시가총액 애플 추월",
+      "summary": "8월 4일 미국 증시는 고개로 출발해 강세로 마감했습니다. 나스닥은 2.13% 올랐고, S&P500 지수는 1.48%, 다우지수는 1.32% 상승했습니다. ‘미국 주식 7대 거인 지수’는 3.6% 올라 3월 31일 이후 최상의 하루를 기록했습니다.",
+      "detailChinese": "8月4日，美股高开高收，纳指涨2.13%，标普500指数涨1.48%，道指涨1.32%。美股七巨头指数上涨3.6%，创3月31日以来最佳单日表现。谷... 查看更多",
+      "detailPinyin": "8 yuè 4 rì ， měi gǔ gāo kāi gāo shōu ， nà zhǐ zhǎng 2 . 1 3 % ， biāo pǔ 5 0 0 zhǐ shù zhǎng 1 . 4 8 % ， dào zhǐ zhǎng 1 . 3 2 % 。 měi gǔ qī jù tóu zhǐ shù shàng zhǎng 3 . 6 % ， chuàng 3 yuè 3 1 rì yǐ lái zuì jiā dān rì biǎo xiàn 。 gǔ . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "중국 U17는 종료 직전 결승골로 아스널 U17을 3-2로 이겼다.",
+      "keyPoint": "8월 4일 미국 주요 지수와 7대 거인 지수가 큰 폭으로 상승했다.",
       "keyPoints": [
-        "중국 U17는 종료 직전 결승골로 아스널 U17을 3-2로 이겼다."
+        "8월 4일 미국 주요 지수와 7대 거인 지수가 큰 폭으로 상승했다."
       ],
-      "url": "https://www.baidu.com/s?wd=U17%E5%9B%BD%E8%B6%B3%E5%BC%80%E9%97%A8%E7%BA%A2+%E5%8E%8B%E5%93%A8%E7%BB%9D%E6%9D%80%E9%98%BF%E6%A3%AE%E7%BA%B3U17&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E8%82%A1%E6%94%B6%E7%9B%98%EF%BC%9A%E8%B0%B7%E6%AD%8C%E6%B6%A8%E8%B6%854%25%E6%80%BB%E5%B8%82%E5%80%BC%E8%B6%85%E8%BF%87%E8%8B%B9%E6%9E%9C&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "开门红",
-        "pinyin": "kāi mén hóng",
-        "meaning": "첫 경기에서 거둔 좋은 성과(시작이 좋다)",
-        "example": "球队在首轮比赛中拿到开门红，士气大增。",
-        "examplePinyin": "qiú duì zài shǒu lún bǐ sài zhōng ná dào kāi mén hóng ， shì qì dà zēng 。",
-        "exampleMeaning": "팀이 첫 경기에서 승리해 사기가 크게 올랐다."
+        "chinese": "涨超",
+        "pinyin": "zhǎng chāo",
+        "meaning": "~보다 많이 오르다(~을 초과하여 상승하다)",
+        "example": "消息发布后，相关股价一度涨超5%。",
+        "examplePinyin": "xiāo xī fā bù hòu ， xiāng guān gǔ jià yí dù zhǎng chāo 5 % 。",
+        "exampleMeaning": "소식 발표 후 관련 주가는 한때 5%를 초과하여 상승했다."
       },
       "expressions": [
         {
-          "chinese": "开门红",
-          "pinyin": "kāi mén hóng",
-          "meaning": "첫 경기에서 거둔 좋은 성과(시작이 좋다)",
-          "example": "球队在首轮比赛中拿到开门红，士气大增。",
-          "examplePinyin": "qiú duì zài shǒu lún bǐ sài zhōng ná dào kāi mén hóng ， shì qì dà zēng 。",
-          "exampleMeaning": "팀이 첫 경기에서 승리해 사기가 크게 올랐다."
+          "chinese": "涨超",
+          "pinyin": "zhǎng chāo",
+          "meaning": "~보다 많이 오르다(~을 초과하여 상승하다)",
+          "example": "消息发布后，相关股价一度涨超5%。",
+          "examplePinyin": "xiāo xī fā bù hòu ， xiāng guān gǔ jià yí dù zhǎng chāo 5 % 。",
+          "exampleMeaning": "소식 발표 후 관련 주가는 한때 5%를 초과하여 상승했다."
         },
         {
-          "chinese": "压哨绝杀",
-          "pinyin": "yā shào jué shā",
-          "meaning": "종료 직전에 터뜨린 결승골",
-          "example": "他在比赛的最后一刻攻入压哨绝杀，现场沸腾了。",
-          "examplePinyin": "tā zài bǐ sài de zuì hòu yí kè gōng rù yā shào jué shā ， xiàn chǎng fèi téng le 。",
-          "exampleMeaning": "그가 경기 마지막 순간에 결승골을 넣어 관중들이 열광했다."
+          "chinese": "总市值",
+          "pinyin": "zǒng shì zhí",
+          "meaning": "시가총액",
+          "example": "该公司总市值已突破万亿美元大关，成为市场焦点。",
+          "examplePinyin": "gāi gōng sī zǒng shì zhí yǐ tū pò wàn yì měi yuán dà guān ， chéng wéi shì chǎng jiāo diǎn 。",
+          "exampleMeaning": "그 회사의 시가총액이 이미 1조 달러를 돌파해 시장의 관심을 끌었다."
         }
       ],
       "words": [
         {
-          "chinese": "U17",
-          "pinyin": "U 1 7",
-          "meaning": "17세 이하 연령대"
+          "chinese": "美股",
+          "pinyin": "měi gǔ",
+          "meaning": "미국 주식시장"
         },
         {
-          "chinese": "国足",
-          "pinyin": "guó zú",
-          "meaning": "국가대표 축구팀"
+          "chinese": "收盘",
+          "pinyin": "shōu pán",
+          "meaning": "장 마감"
         },
         {
-          "chinese": "开门红",
-          "pinyin": "kāi mén hóng",
-          "meaning": "첫 경기 승리"
+          "chinese": "纳指",
+          "pinyin": "nà zhǐ",
+          "meaning": "나스닥 지수"
         },
         {
-          "chinese": "压哨",
-          "pinyin": "yā shào",
-          "meaning": "종료 직전"
+          "chinese": "标普500",
+          "pinyin": "biāo pǔ 5 0 0",
+          "meaning": "S&P500 지수"
         },
         {
-          "chinese": "绝杀",
-          "pinyin": "jué shā",
-          "meaning": "결승골"
+          "chinese": "道指",
+          "pinyin": "dào zhǐ",
+          "meaning": "다우지수"
         },
         {
-          "chinese": "阿森纳",
-          "pinyin": "ā sēn nà",
-          "meaning": "아스널(클럽명)"
+          "chinese": "七巨头",
+          "pinyin": "qī jù tóu",
+          "meaning": "시가총액 상위 7대 대형주(지칭)"
+        },
+        {
+          "chinese": "表现",
+          "pinyin": "biǎo xiàn",
+          "meaning": "등락·성적"
         }
       ]
     },
     {
       "rank": 9,
-      "chinese": "“地表最强男人”因雪崩遇难",
-      "pinyin": "“ dì biǎo zuì qiáng nán rén ” yīn xuě bēng yù nàn",
-      "translation": "'지표상 가장 강한 남자'가 눈사태로 사망",
-      "summary": "세계적으로 유명한 등산가 Nirmal Purja가 이끄는 10인 국제 등반대가 파키스탄의 한 봉우리에서 눈사태를 만났습니다. 보도에 따르면 등반대원들이 모두 사고를 당해 사망했다고 전해집니다. 해당 사고에 대한 보고는 8월 2일에 있었다고 전해집니다.",
-      "detailChinese": "世界著名登山家尼尔马尔·普尔贾（Nirmal Purja）率领的10人国际登山队在巴基斯坦布洛阿特峰遭遇雪崩，队员全部遇难。8月2日，巴基斯坦阿尔卑... 查看更多",
-      "detailPinyin": "shì jiè zhù míng dēng shān jiā ní ěr mǎ ěr · pǔ ěr jiǎ （ N i r m a l   P u r j a ） shuài lǐng de 1 0 rén guó jì dēng shān duì zài bā jī sī tǎn bù luò ā tè fēng zāo yù xuě bēng ， duì yuán quán bù yù nàn 。 8 yuè 2 rì ， bā jī sī tǎn ā ěr bēi . . .   chá kàn gèng duō",
+      "chinese": "煮火锅突然爆炸全屋溅满红油",
+      "pinyin": "zhǔ huǒ guō tū rán bào zhà quán wū jiàn mǎn hóng yóu",
+      "translation": "집에서火鍋 끓이던 중 갑자기 폭발해 집안이 붉은 기름으로 뒤덮였다",
+      "summary": "최근 장쑤성 렌윈강에서 한 여성이 아이와 함께 거실에서 훠궈를 끓이던 중 폭발이 발생했다고 보도되었습니다. 냄비 뚜껑이 날아가면서 집안 전체에 붉은 기름이 튀었다고 합니다. 당사자는 다행히 어른과 아이 모두 무사하며, 청소 비용으로 400위안을 썼다고 전했습니다.",
+      "detailChinese": "近日，江苏连云港一女子带孩子在客厅煮火锅时突发爆炸，锅盖被顶飞全屋溅满红油。当事人：万幸大人小孩都没事，花费400元请保洁。 查看更多",
+      "detailPinyin": "jìn rì ， jiāng sū lián yún gǎng yī nǚ zǐ dài hái zi zài kè tīng zhǔ huǒ guō shí tū fā bào zhà ， guō gài bèi dǐng fēi quán wū jiàn mǎn hóng yóu 。 dāng shì rén ： wàn xìng dà rén xiǎo hái dōu méi shì ， huā fèi 4 0 0 yuán qǐng bǎo jié 。   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "Nirmal Purja가 이끈 10인 등반대가 파키스탄에서 눈사태로 전원 사망했다.",
+      "keyPoint": "거실에서 끓이던 훠궈가 폭발해 집안이 기름으로 뒤덮였지만 인명 피해는 없었다.",
       "keyPoints": [
-        "Nirmal Purja가 이끈 10인 등반대가 파키스탄에서 눈사태로 전원 사망했다."
+        "거실에서 끓이던 훠궈가 폭발해 집안이 기름으로 뒤덮였지만 인명 피해는 없었다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%BA%E7%94%B7%E4%BA%BA%E2%80%9D%E5%9B%A0%E9%9B%AA%E5%B4%A9%E9%81%87%E9%9A%BE&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E7%85%AE%E7%81%AB%E9%94%85%E7%AA%81%E7%84%B6%E7%88%86%E7%82%B8%E5%85%A8%E5%B1%8B%E6%BA%85%E6%BB%A1%E7%BA%A2%E6%B2%B9&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "地表最强男人",
-        "pinyin": "dì biǎo zuì qiáng nán rén",
-        "meaning": "지상에서 가장 강한 남자(별칭)",
-        "example": "他被媒体称为地表最强男人，因为他完成了多次高难度登山挑战。",
-        "examplePinyin": "tā bèi méi tǐ chēng wéi dì biǎo zuì qiáng nán rén ， yīn wèi tā wán chéng le duō cì gāo nán dù dēng shān tiǎo zhàn 。",
-        "exampleMeaning": "그는 여러 고난도 등정 도전을 완수해 언론에서 '지상에서 가장 강한 남자'로 불렸다."
+        "chinese": "突然爆炸",
+        "pinyin": "tū rán bào zhà",
+        "meaning": "갑자기 폭발하다",
+        "example": "炉具操作不当可能导致突然爆炸，需提高安全意识。",
+        "examplePinyin": "lú jù cāo zuò bù dàng kě néng dǎo zhì tū rán bào zhà ， xū tí gāo ān quán yì shí 。",
+        "exampleMeaning": "난로나 조리기구를 잘못 다루면 갑자기 폭발할 수 있으므로 안전 의식을 높여야 한다."
       },
       "expressions": [
         {
-          "chinese": "地表最强男人",
-          "pinyin": "dì biǎo zuì qiáng nán rén",
-          "meaning": "지상에서 가장 강한 남자(별칭)",
-          "example": "他被媒体称为地表最强男人，因为他完成了多次高难度登山挑战。",
-          "examplePinyin": "tā bèi méi tǐ chēng wéi dì biǎo zuì qiáng nán rén ， yīn wèi tā wán chéng le duō cì gāo nán dù dēng shān tiǎo zhàn 。",
-          "exampleMeaning": "그는 여러 고난도 등정 도전을 완수해 언론에서 '지상에서 가장 강한 남자'로 불렸다."
+          "chinese": "突然爆炸",
+          "pinyin": "tū rán bào zhà",
+          "meaning": "갑자기 폭발하다",
+          "example": "炉具操作不当可能导致突然爆炸，需提高安全意识。",
+          "examplePinyin": "lú jù cāo zuò bù dàng kě néng dǎo zhì tū rán bào zhà ， xū tí gāo ān quán yì shí 。",
+          "exampleMeaning": "난로나 조리기구를 잘못 다루면 갑자기 폭발할 수 있으므로 안전 의식을 높여야 한다."
         },
         {
-          "chinese": "因雪崩遇难",
-          "pinyin": "yīn xuě bēng yù nàn",
-          "meaning": "눈사태로 인해 사망하다",
-          "example": "登山队因雪崩遇难，搜救工作随即展开。",
-          "examplePinyin": "dēng shān duì yīn xuě bēng yù nàn ， sōu jiù gōng zuò suí jí zhǎn kāi 。",
-          "exampleMeaning": "등반대가 눈사태로 사망해 수색 구조 작업이 곧 시작되었다."
+          "chinese": "溅满",
+          "pinyin": "jiàn mǎn",
+          "meaning": "가득 튀기다, 흩뿌려 가득 차다",
+          "example": "汤汁溅满桌面，需要立即清理以免造成滑倒。",
+          "examplePinyin": "tāng zhī jiàn mǎn zhuō miàn ， xū yào lì jí qīng lǐ yǐ miǎn zào chéng huá dào 。",
+          "exampleMeaning": "국물이 탁자에 가득 튀었으니 즉시 청소해야 미끄러짐을 방지할 수 있다."
         }
       ],
       "words": [
         {
-          "chinese": "地表",
-          "pinyin": "dì biǎo",
-          "meaning": "지표, 지면"
+          "chinese": "煮火锅",
+          "pinyin": "zhǔ huǒ guō",
+          "meaning": "훠궈를 끓이다"
         },
         {
-          "chinese": "最强",
-          "pinyin": "zuì qiáng",
-          "meaning": "가장 강한"
+          "chinese": "突然",
+          "pinyin": "tū rán",
+          "meaning": "갑자기"
         },
         {
-          "chinese": "男人",
-          "pinyin": "nán rén",
-          "meaning": "남자"
+          "chinese": "爆炸",
+          "pinyin": "bào zhà",
+          "meaning": "폭발"
         },
         {
-          "chinese": "雪崩",
-          "pinyin": "xuě bēng",
-          "meaning": "눈사태"
+          "chinese": "锅盖",
+          "pinyin": "guō gài",
+          "meaning": "냄비 뚜껑"
         },
         {
-          "chinese": "遇难",
-          "pinyin": "yù nàn",
-          "meaning": "사망하다, 사고를 당하다"
+          "chinese": "溅满",
+          "pinyin": "jiàn mǎn",
+          "meaning": "가득 튀기다"
+        },
+        {
+          "chinese": "红油",
+          "pinyin": "hóng yóu",
+          "meaning": "매운 기름(붉은 기름)"
+        },
+        {
+          "chinese": "保洁",
+          "pinyin": "bǎo jié",
+          "meaning": "청소(대행)"
         }
       ]
     },
     {
       "rank": 10,
-      "chinese": "985博士后出轨被退站已入职新高校",
-      "pinyin": "9 8 5 bó shì hòu chū guǐ bèi tuì zhàn yǐ rù zhí xīn gāo xiào",
-      "translation": "985 출신 박사후연구원, 불륜으로 퇴소당했으나 새 대학에 취직",
-      "summary": "985 대학 출신의 박사후 연구원 A씨가 아내의 임신 말기에 불륜 사실이 드러나 박사후 연구소에서 퇴소당했습니다. '소모'로 불렸던 여성은 인격권 침해를 이유로 A씨를 고소했고, 법원은 A씨에게 서면 사과와 1만 위안의 배상을 명령했습니다. 보도에 따르면 A씨는 현재 다른 대학에 이미 입직한 상태라고 전해집니다.",
-      "detailChinese": "985高校博士后聂某某在妻子孕晚期出轨被退站，“被小三”的小莫此前以侵犯人格权为由将聂某某起诉，法院判决聂某某书面道歉并赔偿1万元。据悉，聂某某目前... 查看更多",
-      "detailPinyin": "9 8 5 gāo xiào bó shì hòu niè mǒu mǒu zài qī zǐ yùn wǎn qī chū guǐ bèi tuì zhàn ， “ bèi xiǎo sān ” de xiǎo mò cǐ qián yǐ qīn fàn rén gé quán wèi yóu jiāng niè mǒu mǒu qǐ sù ， fǎ yuàn pàn jué niè mǒu mǒu shū miàn dào qiàn bìng péi cháng 1 wàn yuán 。 jù xī ， niè mǒu mǒu mù qián . . .   chá kàn gèng duō",
+      "chinese": "青岛火车站好多人拖着铁桶扎啤返乡",
+      "pinyin": "qīng dǎo huǒ chē zhàn hǎo duō rén tuō zhe tiě tǒng zhā pí fǎn xiāng",
+      "translation": "칭다오역에서 많은 사람이 철제 통에 담긴 생맥주를 끌고 귀향",
+      "summary": "최근 칭다오역에서 여행객들이 철제 통에 든 생맥주를 끌고 귀향하는 모습이 포착되었습니다. 이러한 현상은 네티즌 사이에서 '가장 하드코어한 기념품'으로 불리고 있습니다. 보도는 이 풍경이 눈길을 끌었다고 전했습니다.",
+      "detailChinese": "近日，青岛火车站出现旅客携带铁桶扎啤返乡的现象，被网友称为“最硬核伴手礼”。 查看更多",
+      "detailPinyin": "jìn rì ， qīng dǎo huǒ chē zhàn chū xiàn lǚ kè xié dài tiě tǒng zhā pí fǎn xiāng de xiàn xiàng ， bèi wǎng yǒu chēng wéi “ zuì yìng hé bàn shǒu lǐ ” 。   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "985 출신 박사후 연구원이 불륜으로 퇴소당했고 법원은 서면 사과와 배상을 판결했다.",
+      "keyPoint": "칭다오역에서 여행객들이 철제 통의 생맥주를 들고 귀향하는 모습이 화제를 모았다.",
       "keyPoints": [
-        "985 출신 박사후 연구원이 불륜으로 퇴소당했고 법원은 서면 사과와 배상을 판결했다."
+        "칭다오역에서 여행객들이 철제 통의 생맥주를 들고 귀향하는 모습이 화제를 모았다."
       ],
-      "url": "https://www.baidu.com/s?wd=985%E5%8D%9A%E5%A3%AB%E5%90%8E%E5%87%BA%E8%BD%A8%E8%A2%AB%E9%80%80%E7%AB%99%E5%B7%B2%E5%85%A5%E8%81%8C%E6%96%B0%E9%AB%98%E6%A0%A1&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E9%9D%92%E5%B2%9B%E7%81%AB%E8%BD%A6%E7%AB%99%E5%A5%BD%E5%A4%9A%E4%BA%BA%E6%8B%96%E7%9D%80%E9%93%81%E6%A1%B6%E6%89%8E%E5%95%A4%E8%BF%94%E4%B9%A1&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "出轨",
-        "pinyin": "chū guǐ",
-        "meaning": "불륜을 저지르다, 도리를 어기다",
-        "example": "当事人被指出轨后，家庭关系遭到严重影响。",
-        "examplePinyin": "dāng shì rén bèi zhǐ chū guǐ hòu ， jiā tíng guān xì zāo dào yán zhòng yǐng xiǎng 。",
-        "exampleMeaning": "당사자가 불륜으로 지목된 후 가정 관계에 심각한 영향이 생겼다."
+        "chinese": "扎啤",
+        "pinyin": "zhā pí",
+        "meaning": "생맥주",
+        "example": "节日期间，很多人喜欢买扎啤作为伴手礼带回家。",
+        "examplePinyin": "jié rì qī jiān ， hěn duō rén xǐ huān mǎi zhā pí zuò wéi bàn shǒu lǐ dài huí jiā 。",
+        "exampleMeaning": "명절 기간에는 많은 사람들이 생맥주를 기념품으로 사서 집으로 가져가길 좋아한다."
       },
       "expressions": [
         {
-          "chinese": "出轨",
-          "pinyin": "chū guǐ",
-          "meaning": "불륜을 저지르다, 도리를 어기다",
-          "example": "当事人被指出轨后，家庭关系遭到严重影响。",
-          "examplePinyin": "dāng shì rén bèi zhǐ chū guǐ hòu ， jiā tíng guān xì zāo dào yán zhòng yǐng xiǎng 。",
-          "exampleMeaning": "당사자가 불륜으로 지목된 후 가정 관계에 심각한 영향이 생겼다."
+          "chinese": "扎啤",
+          "pinyin": "zhā pí",
+          "meaning": "생맥주",
+          "example": "节日期间，很多人喜欢买扎啤作为伴手礼带回家。",
+          "examplePinyin": "jié rì qī jiān ， hěn duō rén xǐ huān mǎi zhā pí zuò wéi bàn shǒu lǐ dài huí jiā 。",
+          "exampleMeaning": "명절 기간에는 많은 사람들이 생맥주를 기념품으로 사서 집으로 가져가길 좋아한다."
         },
         {
-          "chinese": "退站",
-          "pinyin": "tuì zhàn",
-          "meaning": "박사후 연구소에서 퇴소당하다(연구 스테이션에서 나가다)",
-          "example": "由于违规行为，他被导师要求退站并停止相关项目。",
-          "examplePinyin": "yóu yú wéi guī xíng wéi ， tā bèi dǎo shī yāo qiú tuì zhàn bìng tíng zhǐ xiāng guān xiàng mù 。",
-          "exampleMeaning": "규정 위반으로 인해 그는 지도교수로부터 퇴소를 요구받고 관련 프로젝트를 중단했다."
+          "chinese": "拖着",
+          "pinyin": "tuō zhe",
+          "meaning": "끌고 가다",
+          "example": "他拖着一个大行李箱，匆忙赶上了最后一班车。",
+          "examplePinyin": "tā tuō zhe yí gè dà xíng lǐ xiāng ， cōng máng gǎn shàng le zuì hòu yī bān chē 。",
+          "exampleMeaning": "그는 큰 여행가방을 끌며 서둘러 막차를 탔다."
         }
       ],
       "words": [
         {
-          "chinese": "985",
-          "pinyin": "9 8 5",
-          "meaning": "중국의 일류 대학군(985 공정 관련)"
+          "chinese": "青岛",
+          "pinyin": "qīng dǎo",
+          "meaning": "칭다오(도시명)"
         },
         {
-          "chinese": "博士后",
-          "pinyin": "bó shì hòu",
-          "meaning": "박사후 연구원"
+          "chinese": "火车站",
+          "pinyin": "huǒ chē zhàn",
+          "meaning": "기차역"
         },
         {
-          "chinese": "出轨",
-          "pinyin": "chū guǐ",
-          "meaning": "불륜(정상적 관계를 벗어나다)"
+          "chinese": "好多人",
+          "pinyin": "hǎo duō rén",
+          "meaning": "많은 사람들"
         },
         {
-          "chinese": "退站",
-          "pinyin": "tuì zhàn",
-          "meaning": "퇴소, 연구 스테이션에서 쫓겨남"
+          "chinese": "拖着",
+          "pinyin": "tuō zhe",
+          "meaning": "끌고 다니다"
         },
         {
-          "chinese": "入职",
-          "pinyin": "rù zhí",
-          "meaning": "취직하다"
+          "chinese": "铁桶",
+          "pinyin": "tiě tǒng",
+          "meaning": "철제 통"
         },
         {
-          "chinese": "新高校",
-          "pinyin": "xīn gāo xiào",
-          "meaning": "새로운 대학"
+          "chinese": "扎啤",
+          "pinyin": "zhā pí",
+          "meaning": "생맥주"
+        },
+        {
+          "chinese": "返乡",
+          "pinyin": "fǎn xiāng",
+          "meaning": "귀향하다"
         }
       ]
     }
