@@ -219,6 +219,21 @@ def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
             chinese = clean_text(str(expression.get("chinese", "")))
             if chinese and not clean_text(str(expression.get("pinyin", ""))):
                 expression["pinyin"] = make_pinyin(chinese)
+            example = clean_text(str(expression.get("example", "")))
+            if example and not clean_text(str(expression.get("examplePinyin", ""))):
+                expression["examplePinyin"] = make_pinyin(example)
+
+        key_point = clean_text(str(item.get("keyPoint", "")))
+        if not key_point:
+            legacy_points = item.get("keyPoints", [])
+            if isinstance(legacy_points, list):
+                key_point = clean_text(" ".join(
+                    clean_text(str(point)) for point in legacy_points if clean_text(str(point))
+                ))
+        if len(key_point) > 120:
+            key_point = key_point[:117].rstrip() + "..."
+        item["keyPoint"] = key_point
+        item["keyPoints"] = [key_point] if key_point else []
 
         if expressions:
             item["expressions"] = expressions
@@ -340,9 +355,9 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 3. detailKorean은 sourceSummary만 사용해 자연스러운 한국어 3~5문장으로 번역·정리하세요.
    중국어 문장이나 중국어 한자를 그대로 섞지 마세요. 원문에 없는 사실을 추가하지 마세요.
    sourceSummary가 비어 있으면 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
-4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어 문장 3개로 작성하세요. 원문이 없으면 빈 배열입니다.
+4. keyPoint는 sourceSummary에서 확인되는 핵심을 중복 없이 한국어 1문장, 최대 80자로 작성하세요. 원문이 없으면 빈 문자열입니다.
 5. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
-6. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다.
+6. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다. 예문 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
 7. words는 제목의 핵심 단어 최대 8개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
 8. 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
 9. 반드시 설명 없이 유효한 JSON 객체 하나만 출력하세요.
@@ -355,7 +370,7 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
       "chinese": "입력 제목 그대로",
       "translation": "한국어 제목",
       "detailKorean": "한국어 상세 내용",
-      "keyPoints": ["핵심 1", "핵심 2", "핵심 3"],
+      "keyPoint": "핵심을 요약한 한국어 한 문장",
       "expressions": [
         {{"chinese": "표현", "meaning": "한국어 뜻", "example": "중국어 예문", "exampleMeaning": "한국어 예문 뜻"}}
       ],
@@ -392,7 +407,7 @@ def validate_and_merge_learning_data(
 
         translation = clean_text(str(generated.get("translation", "")))
         summary = clean_text(str(generated.get("detailKorean", generated.get("summary", ""))))
-        key_points_raw = generated.get("keyPoints", [])
+        key_point_raw = generated.get("keyPoint", generated.get("keyPoints", ""))
         expressions_raw = generated.get("expressions")
         # 이전 형식과도 호환합니다.
         if not isinstance(expressions_raw, list):
@@ -406,13 +421,16 @@ def validate_and_merge_learning_data(
         chinese_chars = len(re.findall(r"[\u4e00-\u9fff]", summary))
         if chinese_chars > 8 and korean_chars < chinese_chars:
             raise RuntimeError(f"GPT의 {rank}위 상세 한국어가 중국어로 반환되었습니다.")
-        if not isinstance(key_points_raw, list):
-            raise RuntimeError(f"GPT의 {rank}위 핵심 내용 형식이 잘못되었습니다.")
-        key_points = [
-            clean_text(str(point))
-            for point in key_points_raw
-            if clean_text(str(point))
-        ][:4]
+        if isinstance(key_point_raw, list):
+            key_point = clean_text(" ".join(
+                clean_text(str(point))
+                for point in key_point_raw
+                if clean_text(str(point))
+            ))
+        else:
+            key_point = clean_text(str(key_point_raw))
+        if len(key_point) > 120:
+            key_point = key_point[:117].rstrip() + "..."
 
         # 핵심 표현은 모델이 간혹 빈 배열로 반환할 수 있으므로 전체 실행을
         # 실패시키지 않습니다. 아래에서 단어 목록 또는 제목으로 안전하게 보완합니다.
@@ -429,6 +447,7 @@ def validate_and_merge_learning_data(
                 "pinyin": make_pinyin(expression_chinese),
                 "meaning": clean_text(str(expression_raw.get("meaning", ""))),
                 "example": clean_text(str(expression_raw.get("example", ""))),
+                "examplePinyin": make_pinyin(clean_text(str(expression_raw.get("example", "")))),
                 "exampleMeaning": clean_text(str(expression_raw.get("exampleMeaning", ""))),
             }
             if all(expression.values()):
@@ -468,6 +487,7 @@ def validate_and_merge_learning_data(
                     "pinyin": fallback["pinyin"],
                     "meaning": fallback_meaning,
                     "example": f"“{fallback_chinese}”是今天新闻中的重要表达。",
+                    "examplePinyin": make_pinyin(f"“{fallback_chinese}”是今天新闻中的重要表达。"),
                     "exampleMeaning": f"‘{fallback_chinese}’는 오늘 뉴스의 중요한 표현입니다.",
                 }
             ]
@@ -483,7 +503,8 @@ def validate_and_merge_learning_data(
                 "detailChinese": clean_text(str(raw.get("sourceSummary", ""))),
                 "detailPinyin": make_pinyin(clean_text(str(raw.get("sourceSummary", "")))),
                 "sourceExcerpt": "",
-                "keyPoints": key_points,
+                "keyPoint": key_point,
+                "keyPoints": [key_point] if key_point else [],
                 "url": raw["url"],
                 # 기존 화면과의 호환을 위해 첫 표현도 expression에 저장합니다.
                 "expression": expressions[0],
@@ -630,6 +651,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             <div style="margin-top:16px;padding:14px 15px;border-radius:12px;background:#ffffff;border:1px solid #f1e4b0;font-size:16px;line-height:1.8;">
                 <div style="font-weight:700;color:#b54708;">예문</div>
                 <div style="margin-top:4px;">{html.escape(str(today_expression.get('example', '')))}</div>
+                <div style="margin-top:3px;color:#315efb;font-weight:600;">{html.escape(str(today_expression.get('examplePinyin', '')))}</div>
                 <div style="margin-top:3px;color:#667085;">{html.escape(str(today_expression.get('exampleMeaning', '')))}</div>
             </div>
         </section>
@@ -644,7 +666,7 @@ def make_email_html(data: dict[str, Any]) -> str:
         summary = html.escape(str(item.get("summary", "")))
         detail_chinese = html.escape(str(item.get("detailChinese", "")))
         detail_pinyin = html.escape(str(item.get("detailPinyin", "")))
-        key_points = item.get("keyPoints", [])
+        key_point = clean_text(str(item.get("keyPoint", ""))) or clean_text(" ".join(str(x) for x in item.get("keyPoints", []) if x))
         expressions = item.get("expressions", [])
         if not isinstance(expressions, list) or not expressions:
             expression = item.get("expression", {})
@@ -652,16 +674,13 @@ def make_email_html(data: dict[str, Any]) -> str:
         words = item.get("words", [])
 
         key_points_html = ""
-        if key_points:
-            key_points_html = "".join(
-                f"""
-                <div style="display:flex;gap:10px;margin:9px 0;padding:11px 13px;border-radius:11px;background:#fff8e7;line-height:1.65;">
-                    <span style="color:#b54708;font-weight:900;">✓</span>
-                    <span>{html.escape(str(point))}</span>
-                </div>
-                """
-                for point in key_points
-            )
+        if key_point:
+            key_points_html = f"""
+            <div style="display:flex;gap:10px;margin:9px 0;padding:11px 13px;border-radius:11px;background:#fff8e7;line-height:1.65;">
+                <span style="color:#b54708;font-weight:900;">✓</span>
+                <span>{html.escape(key_point)}</span>
+            </div>
+            """
 
         expressions_html = ""
         for expression in expressions[:2]:
@@ -674,6 +693,7 @@ def make_email_html(data: dict[str, Any]) -> str:
                 <div style="margin-top:5px;color:#16794a;font-size:16px;font-weight:700;">{html.escape(str(expression.get('meaning', '')))}</div>
                 <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #ead58b;font-size:15px;line-height:1.7;">
                     {html.escape(str(expression.get('example', '')))}<br>
+                    <span style="color:#315efb;font-weight:600;">{html.escape(str(expression.get('examplePinyin', '')))}</span><br>
                     <span style="color:#667085;">{html.escape(str(expression.get('exampleMeaning', '')))}</span>
                 </div>
             </div>

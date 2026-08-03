@@ -5,7 +5,6 @@ const updatedAt = document.querySelector("#updatedAt");
 const refreshButton = document.querySelector("#refreshButton");
 
 let newsData = [];
-let dailyConversation = [];
 
 
 function escapeHtml(value) {
@@ -18,66 +17,6 @@ function escapeHtml(value) {
 }
 
 
-
-function speakChinese(text) {
-  const content = String(text ?? "").trim();
-
-  if (!content) {
-    return;
-  }
-
-  if (!("speechSynthesis" in window)) {
-    alert("이 브라우저는 음성 읽기를 지원하지 않습니다.");
-    return;
-  }
-
-  window.speechSynthesis.cancel();
-
-  const utterance = new SpeechSynthesisUtterance(content);
-  utterance.lang = "zh-CN";
-  utterance.rate = 0.86;
-  utterance.pitch = 1;
-
-  const voices = window.speechSynthesis.getVoices();
-  const preferredNames = ["xiaoxiao", "huihui", "yunxi", "google 普通话", "mandarin"];
-  const chineseVoices = voices.filter((voice) =>
-    voice.lang?.toLowerCase().startsWith("zh")
-  );
-  const chineseVoice = chineseVoices.find((voice) =>
-    preferredNames.some((name) => voice.name.toLowerCase().includes(name))
-  ) || chineseVoices[0];
-
-  if (chineseVoice) {
-    utterance.voice = chineseVoice;
-  } else if (voices.length > 0) {
-    alert("이 기기에 중국어 음성이 없습니다. Windows 언어 설정에서 중국어 음성을 설치해 주세요.");
-    return;
-  }
-
-  utterance.onerror = () => {
-    alert("음성을 재생하지 못했습니다. Chrome 또는 Edge에서 다시 시도해 주세요.");
-  };
-  window.speechSynthesis.speak(utterance);
-}
-
-
-function createTtsButton(text, label = "중국어 듣기") {
-  const encodedText = encodeURIComponent(String(text ?? ""));
-
-  return `
-    <button
-      type="button"
-      class="tts-button"
-      data-tts-text="${encodedText}"
-      aria-label="${escapeHtml(label)}"
-      title="${escapeHtml(label)}"
-    >
-      🔊 듣기
-    </button>
-  `;
-}
-
-
 function createWordItems(words = []) {
 
   return words
@@ -86,12 +25,9 @@ function createWordItems(words = []) {
       return `
         <div class="word-item">
 
-          <div class="word-title-row">
-            <span class="word-chinese">
-              ${escapeHtml(word.chinese)}
-            </span>
-            ${createTtsButton(word.chinese, `${word.chinese} 듣기`)}
-          </div>
+          <span class="word-chinese">
+            ${escapeHtml(word.chinese)}
+          </span>
 
           <span class="word-pinyin">
             ${escapeHtml(word.pinyin)}
@@ -130,11 +66,8 @@ function createExpression(news) {
 
       <div class="expression-box">
 
-        <div class="expression-title-row">
-          <div class="expression-chinese">
-            ${escapeHtml(expression.chinese)}
-          </div>
-          ${createTtsButton(expression.chinese, "핵심 표현 듣기")}
+        <div class="expression-chinese">
+          ${escapeHtml(expression.chinese)}
         </div>
 
 
@@ -160,6 +93,12 @@ function createExpression(news) {
 
           <br>
 
+          <span class="expression-example-pinyin">
+            ${escapeHtml(expression.examplePinyin || "")}
+          </span>
+
+          <br>
+
           ${escapeHtml(expression.exampleMeaning)}
 
         </div>
@@ -173,20 +112,36 @@ function createExpression(news) {
 
 
 
-function createKeyPoints(points = []) {
-  if (!Array.isArray(points) || points.length === 0) {
+function createKeyPoint(news) {
+  const legacyPoints = Array.isArray(news.keyPoints) ? news.keyPoints : [];
+  const point = String(news.keyPoint || legacyPoints.filter(Boolean).join(" ") || "").trim();
+
+  if (!point) {
     return "";
   }
 
   return `
     <div class="learning-block key-points-block">
       <h3>핵심 내용</h3>
-      <ul class="key-points-list">
-        ${points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
-      </ul>
+      <p class="key-point-text">${escapeHtml(point)}</p>
     </div>
   `;
 }
+
+
+function createSourceExcerpt(news) {
+  if (!news.sourceExcerpt) {
+    return "";
+  }
+
+  return `
+    <div class="learning-block source-excerpt-block">
+      <h3>중국어 원문 발췌</h3>
+      <p>${escapeHtml(news.sourceExcerpt)}</p>
+    </div>
+  `;
+}
+
 
 
 function createNewsCard(news) {
@@ -221,12 +176,9 @@ function createNewsCard(news) {
         <div class="title-group">
 
 
-          <div class="chinese-title-row">
-            <span class="chinese-title">
-              ${escapeHtml(news.chinese)}
-            </span>
-            ${createTtsButton(news.chinese, "뉴스 제목 듣기")}
-          </div>
+          <span class="chinese-title">
+            ${escapeHtml(news.chinese)}
+          </span>
 
 
           <span class="korean-title">
@@ -294,44 +246,29 @@ function createNewsCard(news) {
 
 
 
+        <!-- 중국어 원문 발췌 -->
+
+        ${createSourceExcerpt(news)}
+
+
         <!-- 자세한 내용 -->
 
-        <div class="learning-block summary-block detail-learning-block">
+        <div class="learning-block summary-block">
 
           <h3>
             자세한 내용
           </h3>
 
-          <div class="detail-language-row">
-            <div class="detail-label-row">
-              <span class="detail-label chinese-label">중국어</span>
-              ${createTtsButton(news.detailChinese || news.chinese, "자세한 중국어 내용 듣기")}
-            </div>
-            <p class="detail-chinese">
-              ${escapeHtml(news.detailChinese || "상세 중국어 내용이 없습니다.")}
-            </p>
-          </div>
-
-          <div class="detail-language-row">
-            <span class="detail-label pinyin-label">병음</span>
-            <p class="detail-pinyin">
-              ${escapeHtml(news.detailPinyin || "-")}
-            </p>
-          </div>
-
-          <div class="detail-language-row">
-            <span class="detail-label korean-label">한국어</span>
-            <p class="detail-korean">
-              ${escapeHtml(news.summary)}
-            </p>
-          </div>
+          <p>
+            ${escapeHtml(news.summary)}
+          </p>
 
         </div>
 
 
         <!-- 핵심 내용 -->
 
-        ${createKeyPoints(news.keyPoints)}
+        ${createKeyPoint(news)}
 
 
 
@@ -370,37 +307,6 @@ function createNewsCard(news) {
 
 
 
-
-
-function createConversationSection(items = []) {
-  if (!Array.isArray(items) || items.length === 0) {
-    return "";
-  }
-
-  return `
-    <section class="conversation-section">
-      <div class="conversation-heading">
-        <span>💬 매일 쓰는 중국어 회화</span>
-        <h2>오늘의 회화 3문장</h2>
-      </div>
-      <div class="conversation-list">
-        ${items.map((item, index) => `
-          <article class="conversation-item">
-            <div class="conversation-number">${index + 1}</div>
-            <div class="conversation-content">
-              <div class="conversation-chinese-row">
-                <strong class="conversation-chinese">${escapeHtml(item.chinese)}</strong>
-                ${createTtsButton(item.chinese, "회화 문장 듣기")}
-              </div>
-              <div class="conversation-pinyin">${escapeHtml(item.pinyin)}</div>
-              <div class="conversation-meaning">${escapeHtml(item.meaning)}</div>
-            </div>
-          </article>
-        `).join("")}
-      </div>
-    </section>
-  `;
-}
 
 
 function renderNews() {
@@ -489,8 +395,7 @@ function renderNews() {
   newsList.innerHTML =
     filteredNews
       .map(createNewsCard)
-      .join("") +
-    (keyword ? "" : createConversationSection(dailyConversation));
+      .join("");
 
 }
 
@@ -553,10 +458,6 @@ async function loadNews(){
 
     newsData =
       result.news;
-
-    dailyConversation = Array.isArray(result.dailyConversation)
-      ? result.dailyConversation
-      : [];
 
 
 
@@ -623,28 +524,6 @@ refreshButton.addEventListener(
   loadNews
 );
 
-
-
-
-newsList.addEventListener("click", (event) => {
-  const button = event.target.closest(".tts-button");
-
-  if (!button) {
-    return;
-  }
-
-  try {
-    speakChinese(decodeURIComponent(button.dataset.ttsText || ""));
-  } catch (error) {
-    console.error("TTS 실행 오류", error);
-  }
-});
-
-
-if ("speechSynthesis" in window) {
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
 
 
 loadNews();
