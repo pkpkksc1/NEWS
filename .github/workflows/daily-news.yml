@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
 
   schedule:
-  # 한국 시간 오전 6시 10분
-  - cron: "10 21 * * *"
+    # 한국 시간 오전 6시 10분
+    - cron: "10 21 * * *"
 
-  # 한국 시간 오후 12시 10분
-  - cron: "10 3 * * *"
+    # 한국 시간 오후 12시 10분
+    - cron: "10 3 * * *"
 
-  # 한국 시간 오후 4시 10분
-  - cron: "10 7 * * *"
+    # 한국 시간 오후 4시 10분
+    - cron: "10 7 * * *"
 
 permissions:
   contents: write
@@ -42,10 +42,11 @@ jobs:
 
       - name: 바이두 뉴스 갱신 및 이메일 발송
         env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5-mini
           EMAIL_USER: ${{ secrets.EMAIL_USER }}
           EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
-
         run: |
           python update_news.py
 
@@ -59,6 +60,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "변경된 데이터가 없습니다."
           else
-            git commit -m "바이두 TOP10 자동 업데이트"
+            git commit -m "바이두 TOP10 OpenAI API 자동 업데이트"
             git push
           fi
