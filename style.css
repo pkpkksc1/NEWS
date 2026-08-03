@@ -568,3 +568,17 @@ footer {
 .key-points-list li + li {
   margin-top: 7px;
 }
+
+
+/* 최적화 버전: 핵심 표현 2개 */
+.expression-list {
+  display: grid;
+  gap: 12px;
+}
+
+.expression-number {
+  margin-bottom: 7px;
+  color: #8a6500;
+  font-size: 13px;
+  font-weight: 800;
+}

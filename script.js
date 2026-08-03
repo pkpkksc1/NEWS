@@ -49,56 +49,32 @@ function createWordItems(words = []) {
 
 function createExpression(news) {
 
-  const expression = news.expression;
+  const expressions = Array.isArray(news.expressions) && news.expressions.length
+    ? news.expressions
+    : (news.expression ? [news.expression] : []);
 
-  if (!expression) {
+  if (expressions.length === 0) {
     return "";
   }
 
-
   return `
     <div class="learning-block expression-block">
-
-      <h3>
-        ⭐ 중국어 핵심 표현
-      </h3>
-
-
-      <div class="expression-box">
-
-        <div class="expression-chinese">
-          ${escapeHtml(expression.chinese)}
-        </div>
-
-
-        <div class="expression-pinyin">
-          ${escapeHtml(expression.pinyin)}
-        </div>
-
-
-        <div class="expression-meaning">
-          ${escapeHtml(expression.meaning)}
-        </div>
-
-
-        <div class="expression-example">
-
-          <strong>
-            예문
-          </strong>
-
-          <br>
-
-          ${escapeHtml(expression.example)}
-
-          <br>
-
-          ${escapeHtml(expression.exampleMeaning)}
-
-        </div>
-
+      <h3>⭐ 중국어 핵심 표현</h3>
+      <div class="expression-list">
+        ${expressions.map((expression, index) => `
+          <div class="expression-box">
+            <div class="expression-number">표현 ${index + 1}</div>
+            <div class="expression-chinese">${escapeHtml(expression.chinese)}</div>
+            <div class="expression-pinyin">${escapeHtml(expression.pinyin)}</div>
+            <div class="expression-meaning">${escapeHtml(expression.meaning)}</div>
+            <div class="expression-example">
+              <strong>예문</strong><br>
+              ${escapeHtml(expression.example)}<br>
+              ${escapeHtml(expression.exampleMeaning)}
+            </div>
+          </div>
+        `).join("")}
       </div>
-
     </div>
   `;
 }
@@ -327,9 +303,18 @@ function renderNews() {
         news.summary,
 
 
-        news.expression?.chinese,
+        news.sourceExcerpt,
 
-        news.expression?.meaning,
+        ...(news.keyPoints ?? []),
+
+        ...(news.expressions ?? (news.expression ? [news.expression] : []))
+          .flatMap((expression) => [
+            expression.chinese,
+            expression.pinyin,
+            expression.meaning,
+            expression.example,
+            expression.exampleMeaning
+          ]),
 
 
         ...(news.words ?? [])

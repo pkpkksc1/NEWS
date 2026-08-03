@@ -1,3 +1,4 @@
+import hashlib
 import html
 import json
 import os
@@ -105,7 +106,7 @@ def extract_summary_from_anchor(anchor: Any, title: str) -> str:
             unique_candidates.append(candidate)
             seen.add(candidate)
 
-    return " ".join(unique_candidates)[:1400]
+    return " ".join(unique_candidates)[:2400]
 
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
@@ -228,14 +229,15 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 3. summary는 sourceSummary가 있으면 그 내용만 이용해 자연스러운 한국어 4~6문장으로 자세히 설명하세요.
    중요한 배경, 사건, 반응, 의미가 있으면 빠뜨리지 마세요. 원문에 없는 사실은 절대 추가하지 마세요.
    sourceSummary가 비어 있으면 추측하지 말고 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
-4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어로 2~4개 작성하세요. 각 항목은 완전한 문장으로 쓰세요.
+4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어로 정확히 3개 작성하세요. 각 항목은 완전한 문장으로 쓰세요.
    sourceSummary가 비어 있으면 빈 배열로 출력하세요.
-5. expression은 제목에서 학습 가치가 높은 중국어 표현 1개를 고르세요.
-6. expression.example은 실제로 자연스러운 짧은 중국어 예문이어야 합니다.
-7. words는 제목을 의미 단위로 나눈 모든 핵심 단어입니다. 문장부호만 있는 항목은 제외하세요.
+5. expressions는 제목에서 학습 가치가 높은 중국어 표현 2개를 고르세요. 제목이 매우 짧아 2개가 어렵다면 1개만 출력해도 됩니다.
+6. 각 expression.example은 실제로 자연스러운 짧은 중국어 예문이어야 합니다.
+7. words는 제목을 의미 단위로 나눈 핵심 단어입니다. 조사·숫자만 있는 항목과 문장부호는 제외하고 최대 8개만 출력하세요.
 8. words.meaning은 해당 뉴스 제목 문맥에 맞는 한국어 뜻이어야 합니다.
 9. 병음은 출력하지 마세요. 프로그램이 별도로 생성합니다.
-10. 반드시 설명 없이 유효한 JSON 하나만 출력하세요.
+10. summary와 keyPoints에서 같은 문장을 반복하지 마세요.
+11. 반드시 설명 없이 유효한 JSON 하나만 출력하세요.
 
 출력 형식:
 {{
@@ -288,7 +290,11 @@ def validate_and_merge_learning_data(
         translation = clean_text(str(generated.get("translation", "")))
         summary = clean_text(str(generated.get("summary", "")))
         key_points_raw = generated.get("keyPoints", [])
-        expression_raw = generated.get("expression")
+        expressions_raw = generated.get("expressions")
+        # 이전 형식과도 호환합니다.
+        if not isinstance(expressions_raw, list):
+            legacy_expression = generated.get("expression")
+            expressions_raw = [legacy_expression] if isinstance(legacy_expression, dict) else []
         words_raw = generated.get("words")
 
         if not translation or not summary:
@@ -301,21 +307,27 @@ def validate_and_merge_learning_data(
             if clean_text(str(point))
         ][:4]
 
-        if not isinstance(expression_raw, dict):
-            raise RuntimeError(f"GPT의 {rank}위 핵심 표현 형식이 잘못되었습니다.")
+        if not expressions_raw:
+            raise RuntimeError(f"GPT의 {rank}위 핵심 표현이 비어 있습니다.")
         if not isinstance(words_raw, list) or not words_raw:
             raise RuntimeError(f"GPT의 {rank}위 단어 목록이 비어 있습니다.")
 
-        expression_chinese = clean_text(str(expression_raw.get("chinese", "")))
-        expression = {
-            "chinese": expression_chinese,
-            "pinyin": make_pinyin(expression_chinese),
-            "meaning": clean_text(str(expression_raw.get("meaning", ""))),
-            "example": clean_text(str(expression_raw.get("example", ""))),
-            "exampleMeaning": clean_text(str(expression_raw.get("exampleMeaning", ""))),
-        }
-        if not all(expression.values()):
-            raise RuntimeError(f"GPT의 {rank}위 핵심 표현에 빈 값이 있습니다.")
+        expressions: list[dict[str, str]] = []
+        for expression_raw in expressions_raw[:2]:
+            if not isinstance(expression_raw, dict):
+                continue
+            expression_chinese = clean_text(str(expression_raw.get("chinese", "")))
+            expression = {
+                "chinese": expression_chinese,
+                "pinyin": make_pinyin(expression_chinese),
+                "meaning": clean_text(str(expression_raw.get("meaning", ""))),
+                "example": clean_text(str(expression_raw.get("example", ""))),
+                "exampleMeaning": clean_text(str(expression_raw.get("exampleMeaning", ""))),
+            }
+            if all(expression.values()):
+                expressions.append(expression)
+        if not expressions:
+            raise RuntimeError(f"GPT의 {rank}위 핵심 표현에 유효한 값이 없습니다.")
 
         words: list[dict[str, str]] = []
         seen_words: set[str] = set()
@@ -350,7 +362,9 @@ def validate_and_merge_learning_data(
                 "sourceExcerpt": clean_text(str(raw.get("sourceSummary", ""))),
                 "keyPoints": key_points,
                 "url": raw["url"],
-                "expression": expression,
+                # 기존 화면과의 호환을 위해 첫 표현도 expression에 저장합니다.
+                "expression": expressions[0],
+                "expressions": expressions,
                 "words": words,
             }
         )
@@ -363,13 +377,13 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
     if not OPENAI_API_KEY:
         raise RuntimeError("OPENAI_API_KEY가 설정되지 않았습니다.")
 
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=120.0, max_retries=2)
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=180.0, max_retries=1)
     prompt = build_learning_prompt(raw_news)
     last_error: Exception | None = None
 
-    for attempt in range(3):
+    for attempt in range(2):
         try:
-            print(f"GPT API 호출 {attempt + 1}/3 · 모델: {OPENAI_MODEL}")
+            print(f"GPT API 호출 {attempt + 1}/2 · 모델: {OPENAI_MODEL}")
             response = client.responses.create(
                 model=OPENAI_MODEL,
                 instructions=(
@@ -381,17 +395,49 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
             if not response.output_text:
                 raise RuntimeError("GPT 응답이 비어 있습니다.")
             parsed = extract_json_object(response.output_text)
+            if getattr(response, "usage", None):
+                print(f"API 사용량: {response.usage}")
             return validate_and_merge_learning_data(raw_news, parsed)
         except Exception as error:
             last_error = error
             print(f"GPT 처리 실패 {attempt + 1}/3: {error}")
-            if attempt < 2:
-                time.sleep(3 * (attempt + 1))
+            if attempt < 1:
+                time.sleep(4)
 
     raise RuntimeError(f"GPT 학습자료 생성에 최종 실패했습니다: {last_error}")
 
 
-def save_products_json(news: list[dict[str, Any]]) -> dict[str, Any]:
+def make_source_fingerprint(raw_news: list[dict[str, Any]]) -> str:
+    """제목과 원문 설명이 이전 실행과 같은지 확인할 해시를 만듭니다."""
+    payload = [
+        {
+            "rank": item["rank"],
+            "chinese": clean_text(str(item.get("chinese", ""))),
+            "sourceSummary": clean_text(str(item.get("sourceSummary", ""))),
+        }
+        for item in raw_news
+    ]
+    encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def load_cached_news(fingerprint: str) -> list[dict[str, Any]] | None:
+    """동일한 뉴스라면 기존 GPT 결과를 재사용합니다."""
+    if not OUTPUT_FILE.exists():
+        return None
+    try:
+        existing = json.loads(OUTPUT_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if existing.get("sourceFingerprint") != fingerprint:
+        return None
+    cached_news = existing.get("news")
+    if not isinstance(cached_news, list) or len(cached_news) != 10:
+        return None
+    return cached_news
+
+
+def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: bool) -> dict[str, Any]:
     """홈페이지가 읽는 JSON 파일을 원자적으로 저장합니다."""
     now = datetime.now(ZoneInfo("Asia/Seoul"))
     data = {
@@ -399,6 +445,8 @@ def save_products_json(news: list[dict[str, Any]]) -> dict[str, Any]:
         "source": "Baidu Hot Search",
         "sourceUrl": BAIDU_URL,
         "translationMethod": f"OpenAI API ({OPENAI_MODEL})",
+        "sourceFingerprint": fingerprint,
+        "apiUsedThisRun": api_used,
         "news": news,
     }
 
@@ -525,25 +573,38 @@ def send_email(data: dict[str, Any]) -> None:
     message = EmailMessage()
     message["Subject"] = f"🇨🇳 오늘의 바이두 중국어 TOP10 | {date_part} {period}"
     message["From"] = EMAIL_USER
-    message["To"] = EMAIL_TO
+    recipients = [address.strip() for address in re.split(r"[,;]", EMAIL_TO) if address.strip()]
+    if not recipients:
+        print("유효한 이메일 수신자가 없어 발송을 건너뜁니다.")
+        return
+    message["To"] = ", ".join(recipients)
     message.set_content("HTML 이메일을 지원하는 메일 앱에서 확인해 주세요.")
     message.add_alternative(make_email_html(data), subtype="html")
 
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
         smtp.login(EMAIL_USER, EMAIL_APP_PASSWORD)
-        smtp.send_message(message)
-    print("Gmail 전송 완료")
+        smtp.send_message(message, to_addrs=recipients)
+    print(f"Gmail 전송 완료 · 수신자 {len(recipients)}명")
 
 
 def main() -> None:
     print("1. 바이두 TOP10 수집 시작")
     raw_news = fetch_baidu_top10()
 
-    print("2. OpenAI API 학습자료 생성 시작")
-    learning_news = create_learning_data(raw_news)
+    fingerprint = make_source_fingerprint(raw_news)
+    cached_news = load_cached_news(fingerprint)
+
+    if cached_news is not None:
+        print("2. 이전과 동일한 뉴스입니다. GPT API 호출 없이 기존 결과를 재사용합니다.")
+        learning_news = cached_news
+        api_used = False
+    else:
+        print("2. 새 뉴스 감지 · OpenAI API 학습자료 생성 시작")
+        learning_news = create_learning_data(raw_news)
+        api_used = True
 
     print("3. products.json 안전 저장")
-    data = save_products_json(learning_news)
+    data = save_products_json(learning_news, fingerprint, api_used)
 
     print("4. 이메일 발송")
     send_email(data)
