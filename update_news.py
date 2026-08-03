@@ -27,7 +27,6 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
 EMAIL_USER = os.getenv("EMAIL_USER", "").strip()
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
 EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
-MIN_NEW_NEWS = int(os.getenv("MIN_NEW_NEWS", "3"))
 
 
 CONVERSATION_FILE = Path("daily_conversations.json")
@@ -804,11 +803,7 @@ def main() -> None:
     existing_titles = load_existing_titles()
     raw_news = fetch_baidu_top10()
     new_news_count = count_new_news(raw_news, existing_titles)
-    print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 발송 기준: {MIN_NEW_NEWS}개")
-
-    if new_news_count < MIN_NEW_NEWS:
-        print("새 뉴스가 기준보다 적어 GPT API 호출, products.json 갱신, 이메일 발송을 모두 건너뜁니다.")
-        return
+    print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 최소 발송 기준 없이 계속 진행합니다.")
 
     fingerprint = make_source_fingerprint(raw_news)
     cached_news = load_cached_news(fingerprint)
