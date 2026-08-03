@@ -479,62 +479,112 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
 
 
 def make_email_html(data: dict[str, Any]) -> str:
-    """TOP10 전체를 이메일 HTML로 만듭니다."""
+    """TOP10 전체를 보기 좋은 이메일 HTML로 만듭니다."""
+    news_items = data.get("news", [])
+
+    # 오늘의 표현은 1위 뉴스의 첫 번째 표현을 사용합니다.
+    today_expression: dict[str, Any] = {}
+    if news_items:
+        first_item = news_items[0]
+        expressions = first_item.get("expressions", [])
+        if isinstance(expressions, list) and expressions:
+            today_expression = expressions[0] if isinstance(expressions[0], dict) else {}
+        elif isinstance(first_item.get("expression"), dict):
+            today_expression = first_item.get("expression", {})
+
+    today_expression_html = ""
+    if today_expression:
+        today_expression_html = f"""
+        <section style="margin:0 0 24px;padding:22px;border:1px solid #f4d06f;border-radius:18px;background:linear-gradient(135deg,#fffaf0 0%,#fff3c4 100%);box-shadow:0 8px 24px rgba(138,101,0,.08);">
+            <div style="margin-bottom:10px;color:#8a6500;font-size:13px;font-weight:800;letter-spacing:.08em;">✨ 오늘의 표현</div>
+            <div style="font-size:31px;font-weight:900;line-height:1.35;color:#18202f;">{html.escape(str(today_expression.get('chinese', '')))}</div>
+            <div style="margin-top:7px;color:#315efb;font-size:20px;font-weight:700;">{html.escape(str(today_expression.get('pinyin', '')))}</div>
+            <div style="margin-top:9px;color:#16794a;font-size:18px;font-weight:700;">{html.escape(str(today_expression.get('meaning', '')))}</div>
+            <div style="margin-top:16px;padding:14px 15px;border-radius:12px;background:#ffffff;border:1px solid #f1e4b0;font-size:16px;line-height:1.8;">
+                <div style="font-weight:700;color:#b54708;">예문</div>
+                <div style="margin-top:4px;">{html.escape(str(today_expression.get('example', '')))}</div>
+                <div style="margin-top:3px;color:#667085;">{html.escape(str(today_expression.get('exampleMeaning', '')))}</div>
+            </div>
+        </section>
+        """
+
     cards = []
-    for item in data["news"]:
+    for item in news_items:
         rank = int(item.get("rank", 0))
         chinese = html.escape(str(item.get("chinese", "")))
         pinyin = html.escape(str(item.get("pinyin", "")))
         translation = html.escape(str(item.get("translation", "")))
         summary = html.escape(str(item.get("summary", "")))
-        source_excerpt = html.escape(str(item.get("sourceExcerpt", "")))
         key_points = item.get("keyPoints", [])
-        expression = item.get("expression", {})
+        expressions = item.get("expressions", [])
+        if not isinstance(expressions, list) or not expressions:
+            expression = item.get("expression", {})
+            expressions = [expression] if isinstance(expression, dict) else []
         words = item.get("words", [])
+        url = html.escape(str(item.get("url", "")), quote=True)
 
         key_points_html = ""
         if key_points:
-            key_points_html = "<ul style=\"margin:0 0 20px;padding-left:22px;font-size:16px;line-height:1.8;\">" + "".join(
-                f"<li>{html.escape(str(point))}</li>" for point in key_points
-            ) + "</ul>"
+            key_points_html = "".join(
+                f"""
+                <div style="display:flex;gap:10px;margin:9px 0;padding:11px 13px;border-radius:11px;background:#fff8e7;line-height:1.65;">
+                    <span style="color:#b54708;font-weight:900;">✓</span>
+                    <span>{html.escape(str(point))}</span>
+                </div>
+                """
+                for point in key_points
+            )
 
-        source_excerpt_html = ""
-        if source_excerpt:
-            source_excerpt_html = f"""
-                <h3 style="margin:0 0 6px;color:#7c3aed;font-size:15px;">중국어 원문 발췌</h3>
-                <p style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f7f2ff;font-size:16px;line-height:1.9;">{source_excerpt}</p>
+        expressions_html = ""
+        for expression in expressions[:2]:
+            if not isinstance(expression, dict):
+                continue
+            expressions_html += f"""
+            <div style="margin:9px 0;padding:14px;border:1px solid #f2d675;border-radius:12px;background:#fffdf2;">
+                <div style="font-size:22px;font-weight:800;">{html.escape(str(expression.get('chinese', '')))}</div>
+                <div style="margin-top:4px;color:#315efb;font-size:17px;font-weight:700;">{html.escape(str(expression.get('pinyin', '')))}</div>
+                <div style="margin-top:5px;color:#16794a;font-size:16px;font-weight:700;">{html.escape(str(expression.get('meaning', '')))}</div>
+                <div style="margin-top:10px;padding-top:10px;border-top:1px dashed #ead58b;font-size:15px;line-height:1.7;">
+                    {html.escape(str(expression.get('example', '')))}<br>
+                    <span style="color:#667085;">{html.escape(str(expression.get('exampleMeaning', '')))}</span>
+                </div>
+            </div>
             """
 
-        expression_html = f"""
-            <div style="margin:0 0 18px;padding:14px;border-radius:12px;background:#fff8dc;">
-                <h3 style="margin:0 0 8px;color:#8a6500;font-size:15px;">핵심 표현</h3>
-                <div style="font-size:23px;font-weight:700;">{html.escape(str(expression.get('chinese', '')))}</div>
-                <div style="margin-top:4px;color:#315efb;font-size:17px;">{html.escape(str(expression.get('pinyin', '')))}</div>
-                <div style="margin-top:5px;color:#16794a;font-size:16px;">{html.escape(str(expression.get('meaning', '')))}</div>
-                <div style="margin-top:10px;font-size:15px;line-height:1.7;">{html.escape(str(expression.get('example', '')))}<br>{html.escape(str(expression.get('exampleMeaning', '')))}</div>
+        link_html = ""
+        if url:
+            link_html = f"""
+            <div style="margin-top:18px;text-align:right;">
+                <a href="{url}" style="display:inline-block;padding:10px 15px;border-radius:9px;background:#315efb;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700;">바이두에서 보기 →</a>
             </div>
-        """
+            """
 
         cards.append(
             f"""
-            <section style="border:1px solid #e5e7eb;border-radius:16px;margin:0 0 20px;overflow:hidden;background:#ffffff;">
-                <div style="padding:18px;background:#f7f9ff;">
-                    <div style="color:#e5484d;font-size:15px;font-weight:700;">{rank}위</div>
-                    <h2 style="margin:6px 0 0;color:#18202f;font-size:23px;line-height:1.5;">{chinese}</h2>
+            <section style="margin:0 0 22px;border:1px solid #e4e7ec;border-radius:18px;overflow:hidden;background:#ffffff;box-shadow:0 8px 28px rgba(16,24,40,.06);">
+                <div style="padding:19px 20px;background:linear-gradient(135deg,#f8faff 0%,#eef3ff 100%);border-bottom:1px solid #e4e7ec;">
+                    <div style="display:inline-block;padding:5px 9px;border-radius:999px;background:#e5484d;color:#ffffff;font-size:13px;font-weight:800;">TOP {rank}</div>
+                    <h2 style="margin:10px 0 5px;color:#18202f;font-size:23px;line-height:1.5;">{chinese}</h2>
+                    <div style="color:#315efb;font-size:17px;font-weight:700;line-height:1.65;">{pinyin}</div>
                 </div>
-                <div style="padding:18px;">
-                    <h3 style="margin:0 0 6px;color:#2149d8;font-size:15px;">병음</h3>
-                    <p style="margin:0 0 18px;color:#315efb;font-size:18px;font-weight:600;line-height:1.7;">{pinyin}</p>
-                    {expression_html}
-                    <h3 style="margin:0 0 6px;color:#16794a;font-size:15px;">한국어 해석</h3>
-                    <p style="margin:0 0 18px;font-size:17px;line-height:1.7;">{translation}</p>
-                    {source_excerpt_html}
-                    <h3 style="margin:0 0 6px;color:#8a6500;font-size:15px;">자세한 내용</h3>
-                    <p style="margin:0 0 18px;font-size:16px;line-height:1.85;">{summary}</p>
-                    <h3 style="margin:0 0 6px;color:#b54708;font-size:15px;">핵심 내용</h3>
-                    {key_points_html}
-                    <h3 style="margin:0 0 9px;font-size:18px;">전체 단어 {len(words)}개</h3>
+                <div style="padding:20px;">
+                    <div style="margin-bottom:18px;padding:15px;border-radius:12px;background:#edfff5;border-left:4px solid #16794a;">
+                        <div style="margin-bottom:5px;color:#16794a;font-size:13px;font-weight:800;">한국어 제목</div>
+                        <div style="font-size:17px;line-height:1.7;font-weight:700;">{translation}</div>
+                    </div>
+
+                    <h3 style="margin:0 0 8px;color:#8a6500;font-size:16px;">📰 자세한 내용</h3>
+                    <p style="margin:0 0 19px;color:#344054;font-size:16px;line-height:1.9;">{summary}</p>
+
+                    <h3 style="margin:0 0 8px;color:#b54708;font-size:16px;">📌 핵심 내용</h3>
+                    <div style="margin-bottom:19px;">{key_points_html}</div>
+
+                    <h3 style="margin:0 0 8px;color:#8a6500;font-size:16px;">💬 뉴스 표현</h3>
+                    <div style="margin-bottom:20px;">{expressions_html}</div>
+
+                    <h3 style="margin:0 0 10px;color:#18202f;font-size:17px;">📚 핵심 단어 {len(words)}개</h3>
                     {make_word_html(words)}
+                    {link_html}
                 </div>
             </section>
             """
@@ -545,20 +595,36 @@ def make_email_html(data: dict[str, Any]) -> str:
     return f"""
     <!DOCTYPE html>
     <html lang="ko">
-    <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,sans-serif;color:#18202f;">
-        <div style="max-width:760px;margin:0 auto;padding:24px 14px;">
-            <header style="padding:22px;margin-bottom:20px;border-radius:16px;background:#315efb;color:#ffffff;">
-                <div style="font-size:14px;font-weight:700;">百度热搜 TOP 10</div>
-                <h1 style="margin:6px 0 8px;font-size:29px;">바이두 실시간 중국어</h1>
-                <div style="font-size:14px;">업데이트: {updated_at}</div>
-                <div style="margin-top:6px;font-size:12px;opacity:0.85;">{method}</div>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+    <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#18202f;">
+        <div style="display:none;max-height:0;overflow:hidden;">바이두 실시간 TOP10으로 배우는 오늘의 중국어 표현과 뉴스</div>
+        <div style="max-width:760px;margin:0 auto;padding:24px 12px 36px;">
+            <header style="padding:25px 22px;margin-bottom:20px;border-radius:19px;background:linear-gradient(135deg,#244bdc 0%,#315efb 55%,#6d8dff 100%);color:#ffffff;box-shadow:0 10px 30px rgba(49,94,251,.2);">
+                <div style="font-size:13px;font-weight:800;letter-spacing:.08em;opacity:.92;">百度热搜 TOP 10</div>
+                <h1 style="margin:7px 0 8px;font-size:30px;line-height:1.3;">오늘의 바이두 중국어</h1>
+                <div style="font-size:14px;line-height:1.7;opacity:.94;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
+                <div style="margin-top:13px;display:inline-block;padding:7px 10px;border-radius:9px;background:rgba(255,255,255,.16);font-size:12px;">업데이트 {updated_at} · {method}</div>
             </header>
+
+            {today_expression_html}
+
+            <div style="margin:0 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
+                오늘의 바이두 실시간 인기 뉴스 10개를 중국어 학습용으로 정리했습니다.
+            </div>
+
             {''.join(cards)}
+
+            <footer style="padding:18px 8px;color:#98a2b3;font-size:12px;line-height:1.7;text-align:center;">
+                중국어 학습용 자동 뉴스 메일입니다.<br>
+                뉴스 상세 내용은 수집된 바이두 정보 범위 안에서 정리됩니다.
+            </footer>
         </div>
     </body>
     </html>
     """
-
 
 def send_email(data: dict[str, Any]) -> None:
     """Gmail을 통해 이메일을 전송합니다."""
