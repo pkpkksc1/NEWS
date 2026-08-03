@@ -39,16 +39,24 @@ function speakChinese(text) {
   utterance.pitch = 1;
 
   const voices = window.speechSynthesis.getVoices();
-  const chineseVoice = voices.find((voice) =>
-    voice.lang?.toLowerCase().startsWith("zh-cn")
-  ) || voices.find((voice) =>
+  const preferredNames = ["xiaoxiao", "huihui", "yunxi", "google 普通话", "mandarin"];
+  const chineseVoices = voices.filter((voice) =>
     voice.lang?.toLowerCase().startsWith("zh")
   );
+  const chineseVoice = chineseVoices.find((voice) =>
+    preferredNames.some((name) => voice.name.toLowerCase().includes(name))
+  ) || chineseVoices[0];
 
   if (chineseVoice) {
     utterance.voice = chineseVoice;
+  } else if (voices.length > 0) {
+    alert("이 기기에 중국어 음성이 없습니다. Windows 언어 설정에서 중국어 음성을 설치해 주세요.");
+    return;
   }
 
+  utterance.onerror = () => {
+    alert("음성을 재생하지 못했습니다. Chrome 또는 Edge에서 다시 시도해 주세요.");
+  };
   window.speechSynthesis.speak(utterance);
 }
 
@@ -633,7 +641,10 @@ newsList.addEventListener("click", (event) => {
 });
 
 
-window.speechSynthesis?.getVoices();
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
 
 
 loadNews();

@@ -20,6 +20,8 @@ from chinese_calendar import get_holiday_detail, is_holiday
 
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
 OUTPUT_FILE = Path("products.json")
+CONVERSATION_FILE = Path("daily_conversations.json")
+DATA_SCHEMA_VERSION = "v2.1-trilingual-365"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -156,58 +158,43 @@ def count_new_news(raw_news: list[dict[str, Any]], existing_titles: set[str]) ->
 
 
 def get_daily_conversations() -> list[dict[str, str]]:
-    """365개 세트 중 오늘 날짜에 해당하는 회화 3문장을 읽습니다."""
-    fallback = [
-        {"chinese": "你好，很高兴认识你。", "pinyin": make_pinyin("你好，很高兴认识你。"), "meaning": "안녕하세요, 만나서 반가워요."},
-        {"chinese": "请再说一遍。", "pinyin": make_pinyin("请再说一遍。"), "meaning": "다시 한 번 말해 주세요."},
-        {"chinese": "明天再联系。", "pinyin": make_pinyin("明天再联系。"), "meaning": "내일 다시 연락해요."},
-    ]
+    """365일 회화 파일에서 오늘의 3문장을 읽습니다."""
+    if not CONVERSATION_FILE.exists():
+        raise RuntimeError(f"회화 데이터 파일이 없습니다: {CONVERSATION_FILE}")
+
     try:
         payload = json.loads(CONVERSATION_FILE.read_text(encoding="utf-8"))
-        days = payload.get("days", [])
-        if not isinstance(days, list) or len(days) != 365:
-            raise ValueError("회화 데이터는 365개 세트여야 합니다.")
-        today = datetime.now(ZoneInfo("Asia/Seoul")).date()
-        # 고정 기준일부터 지난 날짜를 사용하므로 어떤 연속 365일 안에서도 중복되지 않습니다.
-        index = (today.toordinal() - 1) % 365
-        selected = days[index].get("sentences", [])
-        if not isinstance(selected, list) or len(selected) != 3:
-            raise ValueError("오늘의 회화는 3문장이어야 합니다.")
-        result = []
-        for item in selected:
-            chinese = clean_text(str(item.get("chinese", "")))
-            meaning = clean_text(str(item.get("meaning", "")))
-            pinyin = clean_text(str(item.get("pinyin", ""))) or make_pinyin(chinese)
-            if not chinese or not meaning:
-                raise ValueError("회화 문장 필드가 비어 있습니다.")
-            result.append({"chinese": chinese, "pinyin": pinyin, "meaning": meaning})
-        return result
-    except (OSError, json.JSONDecodeError, ValueError, TypeError) as error:
-        print(f"회화 데이터 읽기 실패 · 기본 3문장 사용: {error}")
-        return fallback
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError(f"회화 데이터 파일을 읽지 못했습니다: {error}") from error
 
+    days = payload.get("days", []) if isinstance(payload, dict) else []
+    if not isinstance(days, list) or len(days) != 365:
+        raise RuntimeError("daily_conversations.json에는 정확히 365일 데이터가 필요합니다.")
 
-def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
-    """핵심 표현의 병음이 빠진 기존 데이터도 로컬에서 자동 보완합니다."""
-    for item in news_items:
-        if not isinstance(item, dict):
+    today = datetime.now(ZoneInfo("Asia/Seoul")).date()
+    day_index = (today.timetuple().tm_yday - 1) % 365
+    selected_day = days[day_index]
+    sentences = selected_day.get("sentences", []) if isinstance(selected_day, dict) else []
+    if not isinstance(sentences, list) or len(sentences) != 3:
+        raise RuntimeError(f"회화 {day_index + 1}일차 데이터는 3문장이어야 합니다.")
+
+    result: list[dict[str, str]] = []
+    for sentence in sentences:
+        if not isinstance(sentence, dict):
             continue
-        expressions = item.get("expressions")
-        if not isinstance(expressions, list):
-            expressions = []
-        legacy = item.get("expression")
-        if isinstance(legacy, dict) and not expressions:
-            expressions = [legacy]
-        for expression in expressions:
-            if not isinstance(expression, dict):
-                continue
-            chinese = clean_text(str(expression.get("chinese", "")))
-            if chinese and not clean_text(str(expression.get("pinyin", ""))):
-                expression["pinyin"] = make_pinyin(chinese)
-        if expressions:
-            item["expressions"] = expressions
-            item["expression"] = expressions[0]
+        chinese = clean_text(str(sentence.get("chinese", "")))
+        meaning = clean_text(str(sentence.get("meaning", "")))
+        if not chinese or not meaning:
+            continue
+        result.append({
+            "chinese": chinese,
+            "pinyin": clean_text(str(sentence.get("pinyin", ""))) or make_pinyin(chinese),
+            "meaning": meaning,
+        })
 
+    if len(result) != 3:
+        raise RuntimeError(f"회화 {day_index + 1}일차의 유효 문장이 3개가 아닙니다.")
+    return result
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
     """바이두 실시간 검색어 TOP10을 가져옵니다."""
@@ -311,11 +298,7 @@ def extract_json_object(text: str) -> dict[str, Any]:
 def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
     """TOP10 전체를 한 번에 처리할 프롬프트를 만듭니다."""
     source_items = [
-        {
-            "rank": item["rank"],
-            "chinese": item["chinese"],
-            "sourceSummary": item.get("sourceSummary", ""),
-        }
+        {"rank": item["rank"], "chinese": item["chinese"], "sourceSummary": item.get("sourceSummary", "")}
         for item in raw_news
     ]
 
@@ -323,21 +306,18 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 당신은 중국어 뉴스 학습자료 편집자입니다.
 아래 바이두 실시간 검색어 10개를 한국인 학습자용으로 정확하고 자연스럽게 가공하세요.
 
-중요 규칙:
-1. 입력의 rank와 chinese는 절대 변경하지 마세요.
+규칙:
+1. rank와 chinese는 절대 변경하지 마세요.
 2. translation은 제목의 자연스러운 한국어 번역입니다.
-3. summary는 sourceSummary가 있으면 그 내용만 이용해 자연스러운 한국어 4~6문장으로 자세히 설명하세요.
-   중요한 배경, 사건, 반응, 의미가 있으면 빠뜨리지 마세요. 원문에 없는 사실은 절대 추가하지 마세요.
-   sourceSummary가 비어 있으면 추측하지 말고 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
-4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어로 정확히 3개 작성하세요. 각 항목은 완전한 문장으로 쓰세요.
-   sourceSummary가 비어 있으면 빈 배열로 출력하세요.
-5. expressions는 제목에서 학습 가치가 높은 중국어 표현 2개를 고르세요. 제목이 매우 짧아 2개가 어렵다면 1개만 출력해도 됩니다.
-6. 각 expression.example은 실제로 자연스러운 짧은 중국어 예문이어야 합니다.
-7. words는 제목을 의미 단위로 나눈 핵심 단어입니다. 조사·숫자만 있는 항목과 문장부호는 제외하고 최대 8개만 출력하세요.
-8. words.meaning은 해당 뉴스 제목 문맥에 맞는 한국어 뜻이어야 합니다.
-9. 병음은 출력하지 마세요. 프로그램이 별도로 생성합니다.
-10. summary와 keyPoints에서 같은 문장을 반복하지 마세요.
-11. 반드시 설명 없이 유효한 JSON 하나만 출력하세요.
+3. detailKorean은 sourceSummary만 사용해 자연스러운 한국어 3~5문장으로 번역·정리하세요.
+   중국어 문장이나 중국어 한자를 그대로 섞지 마세요. 원문에 없는 사실을 추가하지 마세요.
+   sourceSummary가 비어 있으면 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
+4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어 문장 3개로 작성하세요. 원문이 없으면 빈 배열입니다.
+5. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
+6. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다.
+7. words는 제목의 핵심 단어 최대 8개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
+8. 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
+9. 반드시 설명 없이 유효한 JSON 객체 하나만 출력하세요.
 
 출력 형식:
 {{
@@ -345,17 +325,13 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
     {{
       "rank": 1,
       "chinese": "입력 제목 그대로",
-      "translation": "자연스러운 한국어 제목",
-      "summary": "한국어 요약",
-      "expression": {{
-        "chinese": "핵심 표현",
-        "meaning": "문맥에 맞는 한국어 뜻",
-        "example": "자연스러운 중국어 예문",
-        "exampleMeaning": "예문의 자연스러운 한국어 뜻"
-      }},
-      "words": [
-        {{"chinese": "단어", "meaning": "문맥에 맞는 뜻"}}
-      ]
+      "translation": "한국어 제목",
+      "detailKorean": "한국어 상세 내용",
+      "keyPoints": ["핵심 1", "핵심 2", "핵심 3"],
+      "expressions": [
+        {{"chinese": "표현", "meaning": "한국어 뜻", "example": "중국어 예문", "exampleMeaning": "한국어 예문 뜻"}}
+      ],
+      "words": [{{"chinese": "단어", "meaning": "한국어 뜻"}}]
     }}
   ]
 }}
@@ -363,7 +339,6 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 입력 데이터:
 {json.dumps(source_items, ensure_ascii=False, indent=2)}
 """.strip()
-
 
 def validate_and_merge_learning_data(
     raw_news: list[dict[str, Any]],
@@ -388,7 +363,7 @@ def validate_and_merge_learning_data(
             raise RuntimeError(f"GPT가 {rank}위 중국어 제목을 변경했습니다.")
 
         translation = clean_text(str(generated.get("translation", "")))
-        summary = clean_text(str(generated.get("summary", "")))
+        summary = clean_text(str(generated.get("detailKorean", generated.get("summary", ""))))
         key_points_raw = generated.get("keyPoints", [])
         expressions_raw = generated.get("expressions")
         # 이전 형식과도 호환합니다.
@@ -398,7 +373,11 @@ def validate_and_merge_learning_data(
         words_raw = generated.get("words")
 
         if not translation or not summary:
-            raise RuntimeError(f"GPT의 {rank}위 번역 또는 요약이 비어 있습니다.")
+            raise RuntimeError(f"GPT의 {rank}위 번역 또는 상세 한국어가 비어 있습니다.")
+        korean_chars = len(re.findall(r"[가-힣]", summary))
+        chinese_chars = len(re.findall(r"[\u4e00-\u9fff]", summary))
+        if chinese_chars > 8 and korean_chars < chinese_chars:
+            raise RuntimeError(f"GPT의 {rank}위 상세 한국어가 중국어로 반환되었습니다.")
         if not isinstance(key_points_raw, list):
             raise RuntimeError(f"GPT의 {rank}위 핵심 내용 형식이 잘못되었습니다.")
         key_points = [
@@ -524,18 +503,20 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
 
 
 def make_source_fingerprint(raw_news: list[dict[str, Any]]) -> str:
-    """제목과 원문 설명이 이전 실행과 같은지 확인할 해시를 만듭니다."""
-    payload = [
-        {
-            "rank": item["rank"],
-            "chinese": clean_text(str(item.get("chinese", ""))),
-            "sourceSummary": clean_text(str(item.get("sourceSummary", ""))),
-        }
-        for item in raw_news
-    ]
+    """뉴스 원문과 데이터 구조 버전의 지문을 만듭니다."""
+    payload = {
+        "schemaVersion": DATA_SCHEMA_VERSION,
+        "items": [
+            {
+                "rank": item.get("rank"),
+                "chinese": clean_text(str(item.get("chinese", ""))),
+                "sourceSummary": clean_text(str(item.get("sourceSummary", ""))),
+            }
+            for item in raw_news
+        ],
+    }
     encoded = json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
-
 
 def load_cached_news(fingerprint: str) -> list[dict[str, Any]] | None:
     """동일한 뉴스라면 기존 GPT 결과를 재사용합니다."""
@@ -561,6 +542,7 @@ def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: b
         "source": "Baidu Hot Search",
         "sourceUrl": BAIDU_URL,
         "translationMethod": f"OpenAI API ({OPENAI_MODEL})",
+        "schemaVersion": DATA_SCHEMA_VERSION,
         "sourceFingerprint": fingerprint,
         "apiUsedThisRun": api_used,
         "dailyConversation": get_daily_conversations(),
@@ -759,7 +741,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
             <footer style="padding:18px 8px;color:#98a2b3;font-size:12px;line-height:1.7;text-align:center;">
                 중국어 학습용 자동 뉴스 메일입니다.<br>
-                뉴스 상세 내용은 수집된 바이두 정보 범위 안에서 정리됩니다.
+                뉴스 상세 내용은 수집된 바이두 정보 범위 안에서 정리됩니다.<br>🔊 음성 듣기는 웹페이지에서만 지원됩니다.
             </footer>
         </div>
     </body>
