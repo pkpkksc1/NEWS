@@ -1,248 +1,409 @@
 {
-  "updatedAt": "2026-08-03 19:53",
+  "updatedAt": "2026-08-03 21:21",
   "source": "Baidu Hot Search",
   "sourceUrl": "https://top.baidu.com/board?tab=realtime",
-  "translationMethod": "무료 자동 번역",
+  "translationMethod": "OpenAI API (gpt-5-mini)",
+  "sourceFingerprint": "cf94967ad14500165021c696f74174a405a5904a468ffb5e95bccdeb99274f70",
+  "apiUsedThisRun": true,
   "news": [
     {
       "rank": 1,
-      "chinese": "总书记的三句话蕴含深意",
-      "pinyin": "zǒng shū jì de sān jù huà yùn hán shēn yì",
-      "translation": "사무총장의 세 문장에는 심오한 의미가 담겨 있다",
-      "summary": "올해는 중국공산당 창당 105주년이자 '15차 5개년 계획'의 원년이 되는 해이다. 중국은 시진핑 총서기의 지도 하에 1년차에 '청사진을 끝까지 그리겠다'는 전략적 결심을 갖고 자국 운영에 전념하고 있다.",
-      "url": "https://www.baidu.com/s?wd=%E6%80%BB%E4%B9%A6%E8%AE%B0%E7%9A%84%E4%B8%89%E5%8F%A5%E8%AF%9D%E8%95%B4%E5%90%AB%E6%B7%B1%E6%84%8F&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "实业报国志 接力谱新篇",
+      "pinyin": "shí yè bào guó zhì   jiē lì pǔ xīn piān",
+      "translation": "산업으로 나라에 봉사하겠다는 뜻, 새로운 장을 이어가다",
+      "summary": "习近平总书记指出，实业兴则国家兴，强调优秀企业家应当怀有崇高使命感和强烈责任感。总书记要求把企业发展同国家繁荣、民族兴盛、人民幸福紧密结合在一起。报告强调企业家要以国家和民族利益为重，把个人与企业的发展融入国家大局。相关论述旨在引导企业承担更多社会责任，推动实业发展服务国家战略。",
+      "sourceExcerpt": "实业兴则国家兴。习近平总书记指出，优秀企业家必须对国家、对民族怀有崇高使命感和强烈责任感，把企业发展同国家繁荣、民族兴盛、人民幸福紧密结合在一起，主... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E5%AE%9E%E4%B8%9A%E6%8A%A5%E5%9B%BD%E5%BF%97+%E6%8E%A5%E5%8A%9B%E8%B0%B1%E6%96%B0%E7%AF%87&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "总书记",
-        "pinyin": "zǒng shū jì",
-        "meaning": "사무총장",
-        "example": "总书记是什么意思？",
-        "exampleMeaning": "总书记은 무슨 뜻인가요?"
+        "chinese": "实业报国",
+        "pinyin": "shí yè bào guó",
+        "meaning": "산업을 통해 나라에 봉사하다; 산업으로 국가 발전에 기여하다",
+        "example": "许多企业家以实业报国为己任，投身制造业创新与升级。",
+        "exampleMeaning": "많은 기업가들이 산업으로 나라에 봉사하는 것을 사명으로 삼아 제조업 혁신과 업그레이드에 힘쓰고 있다."
       },
+      "expressions": [
+        {
+          "chinese": "实业报国",
+          "pinyin": "shí yè bào guó",
+          "meaning": "산업을 통해 나라에 봉사하다; 산업으로 국가 발전에 기여하다",
+          "example": "许多企业家以实业报国为己任，投身制造业创新与升级。",
+          "exampleMeaning": "많은 기업가들이 산업으로 나라에 봉사하는 것을 사명으로 삼아 제조업 혁신과 업그레이드에 힘쓰고 있다."
+        }
+      ],
       "words": [
         {
-          "chinese": "总书记",
-          "pinyin": "zǒng shū jì",
-          "meaning": "사무총장"
+          "chinese": "实业",
+          "pinyin": "shí yè",
+          "meaning": "산업, 제조업이나 실물 경제"
         },
         {
-          "chinese": "的",
-          "pinyin": "de",
-          "meaning": "~의"
+          "chinese": "报国志",
+          "pinyin": "bào guó zhì",
+          "meaning": "국가에 보답하려는 뜻"
         },
         {
-          "chinese": "三句话",
-          "pinyin": "sān jù huà",
-          "meaning": "세 문장"
+          "chinese": "接力",
+          "pinyin": "jiē lì",
+          "meaning": "이어받아 계속해 나감"
         },
         {
-          "chinese": "蕴含",
-          "pinyin": "yùn hán",
-          "meaning": "포함"
+          "chinese": "谱新篇",
+          "pinyin": "pǔ xīn piān",
+          "meaning": "새로운 장을 펼치다"
         },
         {
-          "chinese": "深意",
-          "pinyin": "shēn yì",
-          "meaning": "심오한 의미"
+          "chinese": "企业家",
+          "pinyin": "qǐ yè jiā",
+          "meaning": "기업가"
+        },
+        {
+          "chinese": "国家",
+          "pinyin": "guó jiā",
+          "meaning": "국가"
+        },
+        {
+          "chinese": "民族",
+          "pinyin": "mín zú",
+          "meaning": "민족"
+        },
+        {
+          "chinese": "人民幸福",
+          "pinyin": "rén mín xìng fú",
+          "meaning": "국민의 복지와 행복"
         }
       ]
     },
     {
       "rank": 2,
-      "chinese": "查看更多>",
-      "pinyin": "chá kàn gèng duō >",
-      "translation": "더 보기>",
-      "summary": "올해는 중국공산당 창당 105주년이자 '15차 5개년 계획'의 원년이 되는 해이다. 중국은 시진핑 총서기의 지도 하에 1년차에 '청사진을 끝까지 그리겠다'는 전략적 결심을 갖고 자국 운영에 전념하고 있다.",
-      "url": "https://www.baidu.com/s?wd=%E6%80%BB%E4%B9%A6%E8%AE%B0%E7%9A%84%E4%B8%89%E5%8F%A5%E8%AF%9D%E8%95%B4%E5%90%AB%E6%B7%B1%E6%84%8F&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "“速成车”正在被叫停",
+      "pinyin": "“ sù chéng chē ” zhèng zài bèi jiào tíng",
+      "translation": "속성 개발 차량이 운행 중단되고 있다",
+      "summary": "2026년 국내 자동차 업계에서 일부 브랜드가 시장 점유를 위해 필요한 검사 절차를 삭제하거나 차량 개발 주기를 압축하는 '速成车' 문제가 빈번히 발생했다. 이러한 관행은 심각한 주행 안전 위험을 초래한다고 보도되었다. 针对这一乱象，全国汽车标准化技术委员会已就相关问题采取了回应措施，并正在研究新的标准或规定。监管层的介入旨在防范安全隐患，规范整车开发与测试流程。",
+      "sourceExcerpt": "2026年，国内汽车行业频繁出现品牌为抢占市场删减必要测试环节、压缩整车开发周期的“速成车”乱象，埋下严重行车安全隐患。全国汽车标准化技术委员会就新... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E9%80%9F%E6%88%90%E8%BD%A6%E2%80%9D%E6%AD%A3%E5%9C%A8%E8%A2%AB%E5%8F%AB%E5%81%9C&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "查看",
-        "pinyin": "chá kàn",
-        "meaning": "확인하다",
-        "example": "查看是什么意思？",
-        "exampleMeaning": "查看은 무슨 뜻인가요?"
+        "chinese": "速成车",
+        "pinyin": "sù chéng chē",
+        "meaning": "속성으로 급히 만든 차량(필수 테스트를 생략한 차를 비유적으로 일컫는 표현)",
+        "example": "为抢占市场，有些厂商缩短研发周期，导致出现‘速成车’隐患。",
+        "exampleMeaning": "시장을 차지하기 위해 일부 업체가 연구개발 주기를 단축해 '속성 차량'의 위험이 생겼다."
       },
+      "expressions": [
+        {
+          "chinese": "速成车",
+          "pinyin": "sù chéng chē",
+          "meaning": "속성으로 급히 만든 차량(필수 테스트를 생략한 차를 비유적으로 일컫는 표현)",
+          "example": "为抢占市场，有些厂商缩短研发周期，导致出现‘速成车’隐患。",
+          "exampleMeaning": "시장을 차지하기 위해 일부 업체가 연구개발 주기를 단축해 '속성 차량'의 위험이 생겼다."
+        }
+      ],
       "words": [
         {
-          "chinese": "查看",
-          "pinyin": "chá kàn",
-          "meaning": "확인하다"
+          "chinese": "速成车",
+          "pinyin": "sù chéng chē",
+          "meaning": "속성으로 급히 만든 차량"
         },
         {
-          "chinese": "更",
-          "pinyin": "gèng",
-          "meaning": "심지어"
+          "chinese": "品牌",
+          "pinyin": "pǐn pái",
+          "meaning": "브랜드"
         },
         {
-          "chinese": "多",
-          "pinyin": "duō",
-          "meaning": "많은"
+          "chinese": "删减必要测试",
+          "pinyin": "shān jiǎn bì yào cè shì",
+          "meaning": "필수 테스트를 삭제·축소함"
+        },
+        {
+          "chinese": "压缩整车开发周期",
+          "pinyin": "yā suō zhěng chē kāi fā zhōu qī",
+          "meaning": "완성차 개발 기간을 단축함"
+        },
+        {
+          "chinese": "行车安全隐患",
+          "pinyin": "xíng chē ān quán yǐn huàn",
+          "meaning": "주행 안전상의 위험 요소"
+        },
+        {
+          "chinese": "全国汽车标准化技术委员会",
+          "pinyin": "quán guó qì chē biāo zhǔn huà jì shù wěi yuán huì",
+          "meaning": "전국 자동차 표준화 기술 위원회"
         }
       ]
     },
     {
       "rank": 3,
-      "chinese": "“速成车”正在被叫停",
-      "pinyin": "“ sù chéng chē ” zhèng zài bèi jiào tíng",
-      "translation": "'급행열차'가 정차 중입니다.",
-      "summary": "2026년 국내 자동차 업계에서는 브랜드가 시장을 선점하기 위해 필요한 테스트 링크를 삭제하고 차량 개발 주기를 단축해 심각한 운전 안전 위험이 발생할 수 있는 기반을 마련하는 '충돌 자동차' 현상이 자주 나타날 것이다. 국가자동차표준화기술위원회는 신형... 자세히보기>",
-      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E9%80%9F%E6%88%90%E8%BD%A6%E2%80%9D%E6%AD%A3%E5%9C%A8%E8%A2%AB%E5%8F%AB%E5%81%9C&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "“地表最强男人”因雪崩遇难",
+      "pinyin": "“ dì biǎo zuì qiáng nán rén ” yīn xuě bēng yù nàn",
+      "translation": "‘지표상 가장 강한 남자’가 눈사태로 사망",
+      "summary": "世界著名登山家尼尔马尔·普尔贾率领的一支10人国际登山队在巴基斯坦布洛阿特峰遭遇雪崩。雪崩导致队员全部遇难的严重事故发生。事故信息显示这支队伍在攀登过程中遭遇极端雪崩危险并未幸免。相关报道披露了遇难人数与事故地点的基本情况，但未在此处提供更多细节。",
+      "sourceExcerpt": "世界著名登山家尼尔马尔·普尔贾（Nirmal Purja）率领的10人国际登山队在巴基斯坦布洛阿特峰遭遇雪崩，队员全部遇难。8月2日，巴基斯坦阿尔卑... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E5%9C%B0%E8%A1%A8%E6%9C%80%E5%BC%BA%E7%94%B7%E4%BA%BA%E2%80%9D%E5%9B%A0%E9%9B%AA%E5%B4%A9%E9%81%87%E9%9A%BE&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "速成",
-        "pinyin": "sù chéng",
-        "meaning": "빠른 수정",
-        "example": "速成是什么意思？",
-        "exampleMeaning": "速成은 무슨 뜻인가요?"
+        "chinese": "雪崩",
+        "pinyin": "xuě bēng",
+        "meaning": "눈사태",
+        "example": "高山地区的雪崩往往发生得非常突然，给登山队带来巨大风险。",
+        "exampleMeaning": "고산 지대에서 눈사태는 종종 매우 갑작스럽게 발생해 등반대에 큰 위험을 가져온다."
       },
+      "expressions": [
+        {
+          "chinese": "雪崩",
+          "pinyin": "xuě bēng",
+          "meaning": "눈사태",
+          "example": "高山地区的雪崩往往发生得非常突然，给登山队带来巨大风险。",
+          "exampleMeaning": "고산 지대에서 눈사태는 종종 매우 갑작스럽게 발생해 등반대에 큰 위험을 가져온다."
+        }
+      ],
       "words": [
         {
-          "chinese": "速成",
-          "pinyin": "sù chéng",
-          "meaning": "빠른 수정"
+          "chinese": "地表最强男人",
+          "pinyin": "dì biǎo zuì qiáng nán rén",
+          "meaning": "‘지표상 가장 강한 남자’(별명·칭호)"
         },
         {
-          "chinese": "车",
-          "pinyin": "chē",
-          "meaning": "자동차"
+          "chinese": "雪崩",
+          "pinyin": "xuě bēng",
+          "meaning": "눈사태"
         },
         {
-          "chinese": "正在",
-          "pinyin": "zhèng zài",
-          "meaning": "~이다"
+          "chinese": "遇难",
+          "pinyin": "yù nàn",
+          "meaning": "사망, 희생됨"
         },
         {
-          "chinese": "被",
-          "pinyin": "bèi",
-          "meaning": "이불"
+          "chinese": "登山家",
+          "pinyin": "dēng shān jiā",
+          "meaning": "등산가·산악인"
         },
         {
-          "chinese": "叫停",
-          "pinyin": "jiào tíng",
-          "meaning": "멈추다"
+          "chinese": "10人国际登山队",
+          "pinyin": "1 0 rén guó jì dēng shān duì",
+          "meaning": "10명으로 구성된 국제 등반대"
+        },
+        {
+          "chinese": "布洛阿特峰",
+          "pinyin": "bù luò ā tè fēng",
+          "meaning": "브로드피크(파키스탄의 산봉우리)"
         }
       ]
     },
     {
       "rank": 4,
-      "chinese": "美国制裁洽洽瓜子思念水饺 网友调侃",
-      "pinyin": "měi guó zhì cái qià qià guā zi sī niàn shuǐ jiǎo   wǎng yǒu tiáo kǎn",
-      "translation": "미국, Qiaqia 멜론 씨앗과 누락된 만두 제재, 네티즌 조롱",
-      "summary": "미국 국토안보부가 주도하는 관련 실무그룹은 미국 현지 시간으로 8월 3일부터 발효되는 중국 기업에 대한 수입 제한 목록을 업데이트했다. Qiaqia Food, Miss Food, Septwolves 등 많은 중국 기업이 제한 대상에 포함되었습니다... 자세히보기 >",
-      "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E5%9B%BD%E5%88%B6%E8%A3%81%E6%B4%BD%E6%B4%BD%E7%93%9C%E5%AD%90%E6%80%9D%E5%BF%B5%E6%B0%B4%E9%A5%BA+%E7%BD%91%E5%8F%8B%E8%B0%83%E4%BE%83&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "穿山跨海的“黄金大外环”要来了",
+      "pinyin": "chuān shān kuà hǎi de “ huáng jīn dà wài huán ” yào lái le",
+      "translation": "산을 넘고 바다를 잇는 '황금 대외환'이 온다",
+      "summary": "报道指出，一条外环路的长度可达到约2.7万公里。若将G219、G331和G228三条国道首尾相接，将形成一条贯通我国沿边沿海的“大外环”。这条线路将连接沿边与沿海地区，形成贯通的交通环线。相关方案旨在加强边海地区的联通性与运输能力，但此处未披露所有具体实施细节。",
+      "sourceExcerpt": "一条外环路，可以有多长？答案是约2.7万公里。倘若将G219、G331和G228三条国道首尾相接，将形成一条贯通我国沿边沿海的“大外环”，长度相当于... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E7%A9%BF%E5%B1%B1%E8%B7%A8%E6%B5%B7%E7%9A%84%E2%80%9C%E9%BB%84%E9%87%91%E5%A4%A7%E5%A4%96%E7%8E%AF%E2%80%9D%E8%A6%81%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "美国",
-        "pinyin": "měi guó",
-        "meaning": "미국",
-        "example": "美国是什么意思？",
-        "exampleMeaning": "美国은 무슨 뜻인가요?"
+        "chinese": "穿山跨海",
+        "pinyin": "chuān shān kuà hǎi",
+        "meaning": "산을 뚫고 바다를 건너다(광범위하게 연결한다는 의미)",
+        "example": "这条新规划的线路将实现穿山跨海的贯通，有助于区域联通。",
+        "exampleMeaning": "이 새로 계획된 노선은 산을 넘어 바다를 건너 연결을 실현해 지역 연계를 돕는다."
       },
+      "expressions": [
+        {
+          "chinese": "穿山跨海",
+          "pinyin": "chuān shān kuà hǎi",
+          "meaning": "산을 뚫고 바다를 건너다(광범위하게 연결한다는 의미)",
+          "example": "这条新规划的线路将实现穿山跨海的贯通，有助于区域联通。",
+          "exampleMeaning": "이 새로 계획된 노선은 산을 넘어 바다를 건너 연결을 실현해 지역 연계를 돕는다."
+        }
+      ],
       "words": [
         {
-          "chinese": "美国",
-          "pinyin": "měi guó",
-          "meaning": "미국"
+          "chinese": "穿山",
+          "pinyin": "chuān shān",
+          "meaning": "산을 통과함"
         },
         {
-          "chinese": "制裁",
-          "pinyin": "zhì cái",
-          "meaning": "제재"
+          "chinese": "跨海",
+          "pinyin": "kuà hǎi",
+          "meaning": "바다를 건넘"
         },
         {
-          "chinese": "洽洽",
-          "pinyin": "qià qià",
-          "meaning": "치아키아"
+          "chinese": "黄金大外环",
+          "pinyin": "huáng jīn dà wài huán",
+          "meaning": "중요한 대형 외곽 순환 노선"
         },
         {
-          "chinese": "瓜子",
-          "pinyin": "guā zi",
-          "meaning": "멜론 씨앗"
+          "chinese": "G219",
+          "pinyin": "G 2 1 9",
+          "meaning": "국도 G219"
         },
         {
-          "chinese": "思念",
-          "pinyin": "sī niàn",
-          "meaning": "놓치다"
+          "chinese": "G331",
+          "pinyin": "G 3 3 1",
+          "meaning": "국도 G331"
         },
         {
-          "chinese": "水饺",
-          "pinyin": "shuǐ jiǎo",
-          "meaning": "만두"
+          "chinese": "G228",
+          "pinyin": "G 2 2 8",
+          "meaning": "국도 G228"
         },
         {
-          "chinese": "网友",
-          "pinyin": "wǎng yǒu",
-          "meaning": "네티즌"
-        },
-        {
-          "chinese": "调侃",
-          "pinyin": "tiáo kǎn",
-          "meaning": "조소"
+          "chinese": "沿边沿海",
+          "pinyin": "yán biān yán hǎi",
+          "meaning": "국가의 국경과 해안 지역을 따라"
         }
       ]
     },
     {
       "rank": 5,
-      "chinese": "中国人为何执着于太空“种地”",
-      "pinyin": "zhōng guó rén wèi hé zhí zhuó yú tài kōng “ zhòng dì ”",
-      "translation": "중국인들은 왜 우주에서의 '농업'에 집착하는가?",
-      "summary": "우주 야채부터 우주 쌀까지, 중국인들이 우주 '농사'에 집착하는 이유는 무엇일까? 전문가들은 우주탐험의 필요성뿐만 아니라 우리 문명의 코드도 필요하다고 말한다. 더 보기>",
-      "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E4%BA%BA%E4%B8%BA%E4%BD%95%E6%89%A7%E7%9D%80%E4%BA%8E%E5%A4%AA%E7%A9%BA%E2%80%9C%E7%A7%8D%E5%9C%B0%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "“下班”不该那么难",
+      "pinyin": "“ xià bān ” bù gāi nà me nán",
+      "translation": "퇴근이 그렇게 어려워서는 안 된다",
+      "summary": "浙江近期发布的文章《“下班”不该那么难》在社会上引起广泛共鸣。文章提出，打工人可以通过划定工作与生活的边界、及时自我翻篇、搭建情绪出口来找回掌控感。文章还指出，用人单位与社会应当配合，为员工营造更健康的工作生活平衡环境。总体上，该文呼吁个体与组织共同努力缓解过度工作带来的压力。",
+      "sourceExcerpt": "近期，浙江宣传发文《“下班”不该那么难》，引发集体共鸣。文章指出，打工人可通过划定工作生活边界、及时自我翻篇、搭建情绪出口找回掌控感，用人单位与社会... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E4%B8%8B%E7%8F%AD%E2%80%9D%E4%B8%8D%E8%AF%A5%E9%82%A3%E4%B9%88%E9%9A%BE&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "中国",
-        "pinyin": "zhōng guó",
-        "meaning": "중국",
-        "example": "中国是什么意思？",
-        "exampleMeaning": "中国은 무슨 뜻인가요?"
+        "chinese": "划定工作生活边界",
+        "pinyin": "huà dìng gōng zuò shēng huó biān jiè",
+        "meaning": "일과 생활의 경계를 명확히 정하다",
+        "example": "为了减少加班，他开始划定工作生活边界，下班后尽量不处理公事。",
+        "exampleMeaning": "야근을 줄이기 위해 그는 일과 생활의 경계를 정하고 퇴근 후에는 가급적 업무를 하지 않으려 한다."
       },
+      "expressions": [
+        {
+          "chinese": "划定工作生活边界",
+          "pinyin": "huà dìng gōng zuò shēng huó biān jiè",
+          "meaning": "일과 생활의 경계를 명확히 정하다",
+          "example": "为了减少加班，他开始划定工作生活边界，下班后尽量不处理公事。",
+          "exampleMeaning": "야근을 줄이기 위해 그는 일과 생활의 경계를 정하고 퇴근 후에는 가급적 업무를 하지 않으려 한다."
+        }
+      ],
       "words": [
         {
-          "chinese": "中国",
-          "pinyin": "zhōng guó",
-          "meaning": "중국"
+          "chinese": "下班",
+          "pinyin": "xià bān",
+          "meaning": "퇴근"
         },
         {
-          "chinese": "人",
-          "pinyin": "rén",
-          "meaning": "사람들"
+          "chinese": "不该",
+          "pinyin": "bù gāi",
+          "meaning": "그래서는 안 된다"
         },
         {
-          "chinese": "为何",
-          "pinyin": "wèi hé",
-          "meaning": "왜"
+          "chinese": "划定工作生活边界",
+          "pinyin": "huà dìng gōng zuò shēng huó biān jiè",
+          "meaning": "일과 생활의 경계 설정"
         },
         {
-          "chinese": "执着",
-          "pinyin": "zhí zhuó",
-          "meaning": "인내"
+          "chinese": "自我翻篇",
+          "pinyin": "zì wǒ fān piān",
+          "meaning": "스스로 감정이나 일을 털어내고 넘어감"
         },
         {
-          "chinese": "于",
-          "pinyin": "yú",
-          "meaning": "~에"
+          "chinese": "情绪出口",
+          "pinyin": "qíng xù chū kǒu",
+          "meaning": "감정을 해소하는 통로"
         },
         {
-          "chinese": "太空",
-          "pinyin": "tài kōng",
-          "meaning": "공간"
+          "chinese": "掌控感",
+          "pinyin": "zhǎng kòng gǎn",
+          "meaning": "통제력·자기 관리 감각"
         },
         {
-          "chinese": "种地",
-          "pinyin": "zhòng dì",
-          "meaning": "농업"
+          "chinese": "用人单位",
+          "pinyin": "yòng rén dān wèi",
+          "meaning": "고용주, 회사"
         }
       ]
     },
     {
       "rank": 6,
+      "chinese": "四川10家银行获批解散",
+      "pinyin": "sì chuān 1 0 jiā yín háng huò pī jiě sàn",
+      "translation": "쓰촨성 10개 은행 해산 승인",
+      "summary": "8月3日，国家金融监督管理总局四川监管局批复同意四川10家农村商业银行解散。报道列举了部分被吸收合并的农商行，包括四川青神、洪雅、丹棱、仁寿4家由眉山农村商业银行吸收合并。其他银行名单在报道中亦有说明，但此处信息被截断。监管部门的批复意味着相关并购重组程序将按照监管要求推进。",
+      "sourceExcerpt": "8月3日，国家金融监督管理总局四川监管局批复同意四川10家农商行解散，包括四川青神、洪雅、丹棱、仁寿4家农商行由眉山农村商业银行吸收合并，四川盐亭、... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E5%9B%9B%E5%B7%9D10%E5%AE%B6%E9%93%B6%E8%A1%8C%E8%8E%B7%E6%89%B9%E8%A7%A3%E6%95%A3&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "吸收合并",
+        "pinyin": "xī shōu hé bìng",
+        "meaning": "한 금융기관이 다른 기관을 흡수하여 합병하다",
+        "example": "为优化资源，几家小型农商行被同业大行吸收合并。",
+        "exampleMeaning": "자원 최적화를 위해 몇몇 소형 농촌상업은행이 같은 업계의 큰 은행에 흡수·합병되었다."
+      },
+      "expressions": [
+        {
+          "chinese": "吸收合并",
+          "pinyin": "xī shōu hé bìng",
+          "meaning": "한 금융기관이 다른 기관을 흡수하여 합병하다",
+          "example": "为优化资源，几家小型农商行被同业大行吸收合并。",
+          "exampleMeaning": "자원 최적화를 위해 몇몇 소형 농촌상업은행이 같은 업계의 큰 은행에 흡수·합병되었다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "四川",
+          "pinyin": "sì chuān",
+          "meaning": "쓰촨성(중국 성명)"
+        },
+        {
+          "chinese": "10家银行",
+          "pinyin": "1 0 jiā yín háng",
+          "meaning": "10개 은행"
+        },
+        {
+          "chinese": "获批",
+          "pinyin": "huò pī",
+          "meaning": "승인 받음"
+        },
+        {
+          "chinese": "解散",
+          "pinyin": "jiě sàn",
+          "meaning": "해산"
+        },
+        {
+          "chinese": "农商行",
+          "pinyin": "nóng shāng háng",
+          "meaning": "농촌상업은행"
+        },
+        {
+          "chinese": "吸收合并",
+          "pinyin": "xī shōu hé bìng",
+          "meaning": "흡수·합병"
+        },
+        {
+          "chinese": "眉山农村商业银行",
+          "pinyin": "méi shān nóng cūn shāng yè yín háng",
+          "meaning": "메이산(眉山) 농촌상업은행"
+        }
+      ]
+    },
+    {
+      "rank": 7,
       "chinese": "空调24小时不关更省电？电力公司回应",
       "pinyin": "kōng tiáo 2 4 xiǎo shí bù guān gèng shěng diàn ？ diàn lì gōng sī huí yìng",
-      "translation": "에어컨을 24시간 켜두는 것이 에너지 효율이 더 좋나요? 전력회사가 답하다",
-      "summary": "최근에는 “에어컨을 24시간 틀면 에너지가 더 절약된다”는 말이 논란을 불러일으켰다. 전력회사는 해당 성명에 근거가 부족하며 시민들이 이를 맹목적으로 따르도록 권유한 것은 아니라고 밝혔다. 더 보기>",
+      "translation": "에어컨을 24시간 켜두면 오히려 전기 절약? 전력회사 답변",
+      "summary": "近日，‘空调24小时开着反而更省电’的说法在社会上引发热议。对此，电力公司表示这一说法缺乏依据，不能作为普遍的节能结论。电力公司不建议市民盲目效仿类似用电做法，并提醒应根据具体情况科学用电。官方或企业的回应旨在引导公众理性看待节能方法。",
+      "sourceExcerpt": "近日，“空调24小时开着反而更省电”的说法引发热议。电力公司称该说法缺乏依据，不建议市民盲目效仿。 查看更多",
+      "keyPoints": [],
       "url": "https://www.baidu.com/s?wd=%E7%A9%BA%E8%B0%8324%E5%B0%8F%E6%97%B6%E4%B8%8D%E5%85%B3%E6%9B%B4%E7%9C%81%E7%94%B5%EF%BC%9F%E7%94%B5%E5%8A%9B%E5%85%AC%E5%8F%B8%E5%9B%9E%E5%BA%94&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "空调",
-        "pinyin": "kōng tiáo",
-        "meaning": "에어컨",
-        "example": "空调是什么意思？",
-        "exampleMeaning": "空调은 무슨 뜻인가요?"
+        "chinese": "盲目效仿",
+        "pinyin": "máng mù xiào fǎng",
+        "meaning": "근거 없이 남의 방법을 무조건 따라 하다",
+        "example": "遇到网络流传的省电窍门，不要盲目效仿，应先求证其科学性。",
+        "exampleMeaning": "인터넷에서 유행하는 절전 요령을 접했을 때 무조건 따라하지 말고 먼저 과학적 근거를 확인해야 한다."
       },
+      "expressions": [
+        {
+          "chinese": "盲目效仿",
+          "pinyin": "máng mù xiào fǎng",
+          "meaning": "근거 없이 남의 방법을 무조건 따라 하다",
+          "example": "遇到网络流传的省电窍门，不要盲目效仿，应先求证其科学性。",
+          "exampleMeaning": "인터넷에서 유행하는 절전 요령을 접했을 때 무조건 따라하지 말고 먼저 과학적 근거를 확인해야 한다."
+        }
+      ],
       "words": [
         {
           "chinese": "空调",
@@ -250,257 +411,223 @@
           "meaning": "에어컨"
         },
         {
-          "chinese": "24",
-          "pinyin": "2 4",
-          "meaning": "스물넷"
-        },
-        {
-          "chinese": "小时",
-          "pinyin": "xiǎo shí",
-          "meaning": "시간"
+          "chinese": "24小时",
+          "pinyin": "2 4 xiǎo shí",
+          "meaning": "24시간"
         },
         {
           "chinese": "不关",
           "pinyin": "bù guān",
-          "meaning": "아니요"
+          "meaning": "끄지 않음"
         },
         {
-          "chinese": "更",
-          "pinyin": "gèng",
-          "meaning": "심지어"
-        },
-        {
-          "chinese": "省",
-          "pinyin": "shěng",
-          "meaning": "주"
-        },
-        {
-          "chinese": "电",
-          "pinyin": "diàn",
-          "meaning": "전기"
+          "chinese": "更省电",
+          "pinyin": "gèng shěng diàn",
+          "meaning": "더 전력을 절약함"
         },
         {
           "chinese": "电力公司",
           "pinyin": "diàn lì gōng sī",
-          "meaning": "전력 회사"
+          "meaning": "전력회사"
         },
         {
           "chinese": "回应",
           "pinyin": "huí yìng",
-          "meaning": "대답하다"
-        }
-      ]
-    },
-    {
-      "rank": 7,
-      "chinese": "又一批“大师”退场",
-      "pinyin": "yòu yī pī “ dà shī ” tuì chǎng",
-      "translation": "또 다른 \"마스터\" 배치가 종료됩니다.",
-      "summary": "7월 28일, 중국차유통협회 공식 홈페이지는 중국공산당 중앙위원회 조직부, 중공중앙 사회부, 민정부의 관련 요구에 따라 조사 결과 중국차유통협회의 '국가다인물 및 차명인' 및 기타 관련 명칭을 폐지하기로 결정했다고 발표했다. 에... 더 보기>",
-      "url": "https://www.baidu.com/s?wd=%E5%8F%88%E4%B8%80%E6%89%B9%E2%80%9C%E5%A4%A7%E5%B8%88%E2%80%9D%E9%80%80%E5%9C%BA&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "又",
-        "pinyin": "yòu",
-        "meaning": "다시",
-        "example": "又是什么意思？",
-        "exampleMeaning": "又은 무슨 뜻인가요?"
-      },
-      "words": [
-        {
-          "chinese": "又",
-          "pinyin": "yòu",
-          "meaning": "다시"
-        },
-        {
-          "chinese": "一批",
-          "pinyin": "yī pī",
-          "meaning": "배치"
-        },
-        {
-          "chinese": "大师",
-          "pinyin": "dà shī",
-          "meaning": "주인"
-        },
-        {
-          "chinese": "退场",
-          "pinyin": "tuì chǎng",
-          "meaning": "출구"
+          "meaning": "대응·답변"
         }
       ]
     },
     {
       "rank": 8,
-      "chinese": "为什么理发店洗头能蓬松好几天",
-      "pinyin": "wèi shén me lǐ fà diàn xǐ tóu néng péng sōng hǎo jǐ tiān",
-      "translation": "이발소에서 머리를 감은 후에도 며칠 동안 털이 뽀송뽀송한 이유는 무엇입니까?",
-      "summary": "많은 사람들이 이발소에서 머리를 감고 나면 며칠 동안 뽀송뽀송한 머리카락이 유지될 수 있다고 생각하고, 샴푸가 더 좋다고 착각합니다. 가장 큰 차이점은 이발소에서는 두피 청소에 중점을 두는 반면, 일반 사람들은 머리를 더 많이 문지르는 경향이 있다는 점입니다. 오일은 두피에서 나오며, 두피의 더러움은 모근이 엉키지 않도록 깨끗하게 세정됩니다... 더보기 >",
-      "url": "https://www.baidu.com/s?wd=%E4%B8%BA%E4%BB%80%E4%B9%88%E7%90%86%E5%8F%91%E5%BA%97%E6%B4%97%E5%A4%B4%E8%83%BD%E8%93%AC%E6%9D%BE%E5%A5%BD%E5%87%A0%E5%A4%A9&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "灵活就业人员可自愿缴纳公积金",
+      "pinyin": "líng huó jiù yè rén yuán kě zì yuàn jiǎo nà gōng jī jīn",
+      "translation": "유연고용 근로자도 자발적으로 공적기금 납부 가능",
+      "summary": "7月31日，国务院常务会议审议通过了住房公积金管理条例修改草案。新规有三大亮点，其中之一是扩大缴存覆盖面，允许个体经营者和灵活就业人员自愿参加缴纳公积金。草案还提出要拓宽公积金的提取和使用渠道以适应更多群体的需求。总体而言，修改旨在提高公积金制度的包容性和灵活性。",
+      "sourceExcerpt": "7月31日，国务院常务会议审议通过住房公积金管理条例修改草案。新规有三大亮点：扩大缴存覆盖面，个体经营者、灵活就业人员可自愿参与；拓宽公积金提取使用... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A%E4%BA%BA%E5%91%98%E5%8F%AF%E8%87%AA%E6%84%BF%E7%BC%B4%E7%BA%B3%E5%85%AC%E7%A7%AF%E9%87%91&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "为什么",
-        "pinyin": "wèi shén me",
-        "meaning": "왜",
-        "example": "为什么是什么意思？",
-        "exampleMeaning": "为什么은 무슨 뜻인가요?"
+        "chinese": "自愿缴纳",
+        "pinyin": "zì yuàn jiǎo nà",
+        "meaning": "자발적으로 납부하다",
+        "example": "灵活就业人员可以根据自身情况选择是否自愿缴纳公积金。",
+        "exampleMeaning": "유연 고용 근로자는 자신의 상황에 따라 공적기금을 자발적으로 납부할지 선택할 수 있다."
       },
+      "expressions": [
+        {
+          "chinese": "自愿缴纳",
+          "pinyin": "zì yuàn jiǎo nà",
+          "meaning": "자발적으로 납부하다",
+          "example": "灵活就业人员可以根据自身情况选择是否自愿缴纳公积金。",
+          "exampleMeaning": "유연 고용 근로자는 자신의 상황에 따라 공적기금을 자발적으로 납부할지 선택할 수 있다."
+        }
+      ],
       "words": [
         {
-          "chinese": "为什么",
-          "pinyin": "wèi shén me",
-          "meaning": "왜"
+          "chinese": "灵活就业人员",
+          "pinyin": "líng huó jiù yè rén yuán",
+          "meaning": "프리랜서·임시 근로자 등 유연한 고용 형태의 근로자"
         },
         {
-          "chinese": "理发店",
-          "pinyin": "lǐ fà diàn",
-          "meaning": "이발소"
+          "chinese": "可自愿",
+          "pinyin": "kě zì yuàn",
+          "meaning": "자발적으로 가능함"
         },
         {
-          "chinese": "洗头",
-          "pinyin": "xǐ tóu",
-          "meaning": "샴푸"
+          "chinese": "缴纳",
+          "pinyin": "jiǎo nà",
+          "meaning": "납부하다"
         },
         {
-          "chinese": "能",
-          "pinyin": "néng",
-          "meaning": "할 수 있는"
+          "chinese": "公积金",
+          "pinyin": "gōng jī jīn",
+          "meaning": "주택공적기금(주택부담 경감을 위한 저축·기금)"
         },
         {
-          "chinese": "蓬松",
-          "pinyin": "péng sōng",
-          "meaning": "솜털 같은"
+          "chinese": "国务院常务会议",
+          "pinyin": "guó wù yuàn cháng wù huì yì",
+          "meaning": "국무원 상무회의"
         },
         {
-          "chinese": "好",
-          "pinyin": "hǎo",
-          "meaning": "좋은"
+          "chinese": "修改草案",
+          "pinyin": "xiū gǎi cǎo àn",
+          "meaning": "개정 초안"
         },
         {
-          "chinese": "几天",
-          "pinyin": "jǐ tiān",
-          "meaning": "며칠"
+          "chinese": "扩大缴存覆盖面",
+          "pinyin": "kuò dà jiǎo cún fù gài miàn",
+          "meaning": "납부 대상 확대"
         }
       ]
     },
     {
       "rank": 9,
-      "chinese": "车主投诉5万旧车换电池需9万",
-      "pinyin": "chē zhǔ tóu sù 5 wàn jiù chē huàn diàn chí xū 9 wàn",
-      "translation": "자동차 소유자들은 RMB 50,000의 비용이 드는 오래된 자동차의 배터리를 교체하는 데 RMB 90,000의 비용이 든다고 불평합니다.",
-      "summary": "한 자동차 소유자는 차량을 구입한 지 3년이 채 되지 않아 배터리 팩에 문제가 생겨 시동이 걸리지 않는다고 불만을 토로했다. 4S 매장에서는 차량의 보증 기간이 초과되었다는 이유로 자체 비용으로 배터리 팩을 교체하도록 요구했습니다. 수리비는 7~9만원 정도 들었고, 차량 잔존가치는...더보기 >",
-      "url": "https://www.baidu.com/s?wd=%E8%BD%A6%E4%B8%BB%E6%8A%95%E8%AF%895%E4%B8%87%E6%97%A7%E8%BD%A6%E6%8D%A2%E7%94%B5%E6%B1%A0%E9%9C%809%E4%B8%87&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "又一批“大师”退场",
+      "pinyin": "yòu yī pī “ dà shī ” tuì chǎng",
+      "translation": "또 한 무리의 '대가'들이 퇴장",
+      "summary": "7月28日，中国茶叶流通协会发布公告，决定撤销‘国茶人物·制茶大师’等相关称号。该决定是根据中组部、中社部、民政部等有关要求，经研究作出的。公告表示将按照有关要求清理并撤销相关荣誉称号。此举意味着这些曾被授予的头衔将不再继续使用。",
+      "sourceExcerpt": "7月28日，中国茶叶流通协会官网发布公告称，根据中组部、中社部、民政部有关要求，经研究决定：撤销中国茶叶流通协会“国茶人物·制茶大师”等相关称号。中... 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E5%8F%88%E4%B8%80%E6%89%B9%E2%80%9C%E5%A4%A7%E5%B8%88%E2%80%9D%E9%80%80%E5%9C%BA&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "车主",
-        "pinyin": "chē zhǔ",
-        "meaning": "자동차 소유자",
-        "example": "车主是什么意思？",
-        "exampleMeaning": "车主은 무슨 뜻인가요?"
+        "chinese": "撤销",
+        "pinyin": "chè xiāo",
+        "meaning": "취소하거나 없애다",
+        "example": "协会决定撤销不符合规范的荣誉称号，以维护行业秩序。",
+        "exampleMeaning": "협회는 규범에 맞지 않는 명예 칭호를 취소하기로 결정해 업계 질서를 유지하려 한다."
       },
+      "expressions": [
+        {
+          "chinese": "撤销",
+          "pinyin": "chè xiāo",
+          "meaning": "취소하거나 없애다",
+          "example": "协会决定撤销不符合规范的荣誉称号，以维护行业秩序。",
+          "exampleMeaning": "협회는 규범에 맞지 않는 명예 칭호를 취소하기로 결정해 업계 질서를 유지하려 한다."
+        }
+      ],
       "words": [
         {
-          "chinese": "车主",
-          "pinyin": "chē zhǔ",
-          "meaning": "자동차 소유자"
+          "chinese": "又一批",
+          "pinyin": "yòu yī pī",
+          "meaning": "또 한 무리"
         },
         {
-          "chinese": "投诉",
-          "pinyin": "tóu sù",
-          "meaning": "불평"
+          "chinese": "大师",
+          "pinyin": "dà shī",
+          "meaning": "대가, 명인"
         },
         {
-          "chinese": "5",
-          "pinyin": "5",
-          "meaning": "5"
+          "chinese": "退场",
+          "pinyin": "tuì chǎng",
+          "meaning": "퇴장, 더 이상 활동하지 않음"
         },
         {
-          "chinese": "万",
-          "pinyin": "wàn",
-          "meaning": "만"
+          "chinese": "中国茶叶流通协会",
+          "pinyin": "zhōng guó chá yè liú tōng xié huì",
+          "meaning": "중국 차류 유통 협회"
         },
         {
-          "chinese": "旧车",
-          "pinyin": "jiù chē",
-          "meaning": "오래된 차"
+          "chinese": "撤销",
+          "pinyin": "chè xiāo",
+          "meaning": "취소·철회"
         },
         {
-          "chinese": "换",
-          "pinyin": "huàn",
-          "meaning": "변화"
+          "chinese": "国茶人物",
+          "pinyin": "guó chá rén wù",
+          "meaning": "국가 차 인물(칭호)"
         },
         {
-          "chinese": "电池",
-          "pinyin": "diàn chí",
-          "meaning": "배터리"
-        },
-        {
-          "chinese": "需",
-          "pinyin": "xū",
-          "meaning": "필요"
-        },
-        {
-          "chinese": "9",
-          "pinyin": "9",
-          "meaning": "9"
-        },
-        {
-          "chinese": "万",
-          "pinyin": "wàn",
-          "meaning": "만"
+          "chinese": "制茶大师",
+          "pinyin": "zhì chá dà shī",
+          "meaning": "제다 대가(차 제조 명인)"
         }
       ]
     },
     {
       "rank": 10,
-      "chinese": "女童无人照顾夜宿路边 多部门介入",
-      "pinyin": "nǚ tóng wú rén zhào gù yè sù lù biān   duō bù mén jiè rù",
-      "translation": "길가에서 무심코 잠든 소녀, 여러 부서 개입",
-      "summary": "최근 광둥성 마오밍시 가오저우시 신동진의 한 밤 길가에 4세 소녀가 방치돼 네티즌들의 관심을 불러일으키고 많은 지역 부서의 개입으로 이어졌다. 3일 오전, 지방자치단체는 “현재 할아버지와 아버지의 보살핌을 받고 있으며, 할아버지는 일을 할 수 없게 됐다”고 답변했다.",
-      "url": "https://www.baidu.com/s?wd=%E5%A5%B3%E7%AB%A5%E6%97%A0%E4%BA%BA%E7%85%A7%E9%A1%BE%E5%A4%9C%E5%AE%BF%E8%B7%AF%E8%BE%B9+%E5%A4%9A%E9%83%A8%E9%97%A8%E4%BB%8B%E5%85%A5&sa=fyb_news&rsv_dl=fyb_news",
+      "chinese": "含糖碳酸饮料大势已去",
+      "pinyin": "hán táng tàn suān yǐn liào dà shì yǐ qù",
+      "translation": "설탕 함유 탄산음료의 전성기는 지났다",
+      "summary": "报道指出，2026年是国内饮料行业格局重塑的关键一年。无糖饮料继续抢占商超和便利店冷柜的核心陈列位置。今夏，曾长期占据主流的含糖碳酸饮料的市场风光已明显减弱。行业格局的变化反映出消费者偏好向更健康的选择转变。",
+      "sourceExcerpt": "2026年是国内饮料行业格局重塑的关键一年，无糖饮料继续抢占商超、便利店冷柜核心陈列位置，今夏，曾长期占据市场主流的含糖碳酸饮料风光不再。 查看更多",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E5%90%AB%E7%B3%96%E7%A2%B3%E9%85%B8%E9%A5%AE%E6%96%99%E5%A4%A7%E5%8A%BF%E5%B7%B2%E5%8E%BB&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "女童",
-        "pinyin": "nǚ tóng",
-        "meaning": "소녀",
-        "example": "女童是什么意思？",
-        "exampleMeaning": "女童은 무슨 뜻인가요?"
+        "chinese": "大势已去",
+        "pinyin": "dà shì yǐ qù",
+        "meaning": "주류의 흐름이 사라지다; 세력이나 인기 등 시대적 흐름이 쇠퇴했다",
+        "example": "随着消费者偏好改变，某些产品的大势已去，市场需要新的创新。",
+        "exampleMeaning": "소비자 선호가 바뀌면서 일부 제품의 전성기는 지났고 시장은 새로운 혁신을 필요로 한다."
       },
+      "expressions": [
+        {
+          "chinese": "大势已去",
+          "pinyin": "dà shì yǐ qù",
+          "meaning": "주류의 흐름이 사라지다; 세력이나 인기 등 시대적 흐름이 쇠퇴했다",
+          "example": "随着消费者偏好改变，某些产品的大势已去，市场需要新的创新。",
+          "exampleMeaning": "소비자 선호가 바뀌면서 일부 제품의 전성기는 지났고 시장은 새로운 혁신을 필요로 한다."
+        }
+      ],
       "words": [
         {
-          "chinese": "女童",
-          "pinyin": "nǚ tóng",
-          "meaning": "소녀"
+          "chinese": "含糖",
+          "pinyin": "hán táng",
+          "meaning": "설탕을 포함한"
         },
         {
-          "chinese": "无人",
-          "pinyin": "wú rén",
-          "meaning": "무인"
+          "chinese": "碳酸饮料",
+          "pinyin": "tàn suān yǐn liào",
+          "meaning": "탄산음료"
         },
         {
-          "chinese": "照顾",
-          "pinyin": "zhào gù",
-          "meaning": "돌보다"
+          "chinese": "大势已去",
+          "pinyin": "dà shì yǐ qù",
+          "meaning": "전성기가 지났다"
         },
         {
-          "chinese": "夜宿",
-          "pinyin": "yè sù",
-          "meaning": "밤새"
+          "chinese": "无糖饮料",
+          "pinyin": "wú táng yǐn liào",
+          "meaning": "무설탕 음료"
         },
         {
-          "chinese": "路边",
-          "pinyin": "lù biān",
-          "meaning": "길가"
+          "chinese": "商超",
+          "pinyin": "shāng chāo",
+          "meaning": "슈퍼마켓·대형 상점"
         },
         {
-          "chinese": "多",
-          "pinyin": "duō",
-          "meaning": "많은"
+          "chinese": "便利店",
+          "pinyin": "biàn lì diàn",
+          "meaning": "편의점"
         },
         {
-          "chinese": "部门",
-          "pinyin": "bù mén",
-          "meaning": "부서"
+          "chinese": "冷柜",
+          "pinyin": "lěng guì",
+          "meaning": "냉장 진열대"
         },
         {
-          "chinese": "介入",
-          "pinyin": "jiè rù",
-          "meaning": "간섭"
+          "chinese": "市场主流",
+          "pinyin": "shì chǎng zhǔ liú",
+          "meaning": "시장 주류"
         }
       ]
     }
