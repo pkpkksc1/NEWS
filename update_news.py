@@ -16,7 +16,7 @@ from openai import OpenAI
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 from playwright.sync_api import sync_playwright
 from pypinyin import Style, lazy_pinyin
-from chinese_calendar import get_holiday_detail, is_holiday
+from holiday import get_china_holiday_name
 
 
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
@@ -124,12 +124,9 @@ def should_skip_for_calendar() -> tuple[bool, str]:
     if today.weekday() >= 5:
         return True, "주말"
 
-    try:
-        holiday, holiday_name = get_holiday_detail(today)
-        if holiday and is_holiday(today):
-            return True, f"중국 공휴일({holiday_name or '공휴일'})"
-    except NotImplementedError:
-        print(f"주의: {today.year}년 중국 공휴일 데이터가 없어 평일 기준으로 계속합니다.")
+    holiday_name = get_china_holiday_name(today)
+    if holiday_name:
+        return True, f"중국 공휴일({holiday_name})"
 
     return False, ""
 
