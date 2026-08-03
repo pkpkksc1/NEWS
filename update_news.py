@@ -94,7 +94,18 @@ def extract_summary_from_anchor(anchor: Any, title: str) -> str:
             continue
         candidates.append(normalized)
 
-    return max(candidates, key=len)[:500] if candidates else ""
+    if not candidates:
+        return ""
+
+    # 제목 주변에 표시되는 여러 설명 문장을 순서대로 합쳐 더 많은 원문을 확보합니다.
+    unique_candidates: list[str] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        if candidate not in seen:
+            unique_candidates.append(candidate)
+            seen.add(candidate)
+
+    return " ".join(unique_candidates)[:1400]
 
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
@@ -214,14 +225,17 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 중요 규칙:
 1. 입력의 rank와 chinese는 절대 변경하지 마세요.
 2. translation은 제목의 자연스러운 한국어 번역입니다.
-3. summary는 sourceSummary가 있으면 그 내용만 한국어 2~3문장으로 요약하세요.
+3. summary는 sourceSummary가 있으면 그 내용만 이용해 자연스러운 한국어 4~6문장으로 자세히 설명하세요.
+   중요한 배경, 사건, 반응, 의미가 있으면 빠뜨리지 마세요. 원문에 없는 사실은 절대 추가하지 마세요.
    sourceSummary가 비어 있으면 추측하지 말고 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
-4. expression은 제목에서 학습 가치가 높은 중국어 표현 1개를 고르세요.
-5. expression.example은 실제로 자연스러운 짧은 중국어 예문이어야 합니다.
-6. words는 제목을 의미 단위로 나눈 모든 핵심 단어입니다. 문장부호만 있는 항목은 제외하세요.
-7. words.meaning은 해당 뉴스 제목 문맥에 맞는 한국어 뜻이어야 합니다.
-8. 병음은 출력하지 마세요. 프로그램이 별도로 생성합니다.
-9. 반드시 설명 없이 유효한 JSON 하나만 출력하세요.
+4. keyPoints는 sourceSummary에서 확인되는 핵심 내용을 한국어로 2~4개 작성하세요. 각 항목은 완전한 문장으로 쓰세요.
+   sourceSummary가 비어 있으면 빈 배열로 출력하세요.
+5. expression은 제목에서 학습 가치가 높은 중국어 표현 1개를 고르세요.
+6. expression.example은 실제로 자연스러운 짧은 중국어 예문이어야 합니다.
+7. words는 제목을 의미 단위로 나눈 모든 핵심 단어입니다. 문장부호만 있는 항목은 제외하세요.
+8. words.meaning은 해당 뉴스 제목 문맥에 맞는 한국어 뜻이어야 합니다.
+9. 병음은 출력하지 마세요. 프로그램이 별도로 생성합니다.
+10. 반드시 설명 없이 유효한 JSON 하나만 출력하세요.
 
 출력 형식:
 {{
@@ -273,11 +287,20 @@ def validate_and_merge_learning_data(
 
         translation = clean_text(str(generated.get("translation", "")))
         summary = clean_text(str(generated.get("summary", "")))
+        key_points_raw = generated.get("keyPoints", [])
         expression_raw = generated.get("expression")
         words_raw = generated.get("words")
 
         if not translation or not summary:
             raise RuntimeError(f"GPT의 {rank}위 번역 또는 요약이 비어 있습니다.")
+        if not isinstance(key_points_raw, list):
+            raise RuntimeError(f"GPT의 {rank}위 핵심 내용 형식이 잘못되었습니다.")
+        key_points = [
+            clean_text(str(point))
+            for point in key_points_raw
+            if clean_text(str(point))
+        ][:4]
+
         if not isinstance(expression_raw, dict):
             raise RuntimeError(f"GPT의 {rank}위 핵심 표현 형식이 잘못되었습니다.")
         if not isinstance(words_raw, list) or not words_raw:
@@ -324,6 +347,8 @@ def validate_and_merge_learning_data(
                 "pinyin": make_pinyin(title),
                 "translation": translation,
                 "summary": summary,
+                "sourceExcerpt": clean_text(str(raw.get("sourceSummary", ""))),
+                "keyPoints": key_points,
                 "url": raw["url"],
                 "expression": expression,
                 "words": words,
@@ -414,8 +439,23 @@ def make_email_html(data: dict[str, Any]) -> str:
         pinyin = html.escape(str(item.get("pinyin", "")))
         translation = html.escape(str(item.get("translation", "")))
         summary = html.escape(str(item.get("summary", "")))
+        source_excerpt = html.escape(str(item.get("sourceExcerpt", "")))
+        key_points = item.get("keyPoints", [])
         expression = item.get("expression", {})
         words = item.get("words", [])
+
+        key_points_html = ""
+        if key_points:
+            key_points_html = "<ul style=\"margin:0 0 20px;padding-left:22px;font-size:16px;line-height:1.8;\">" + "".join(
+                f"<li>{html.escape(str(point))}</li>" for point in key_points
+            ) + "</ul>"
+
+        source_excerpt_html = ""
+        if source_excerpt:
+            source_excerpt_html = f"""
+                <h3 style="margin:0 0 6px;color:#7c3aed;font-size:15px;">중국어 원문 발췌</h3>
+                <p style="margin:0 0 18px;padding:14px;border-radius:10px;background:#f7f2ff;font-size:16px;line-height:1.9;">{source_excerpt}</p>
+            """
 
         expression_html = f"""
             <div style="margin:0 0 18px;padding:14px;border-radius:12px;background:#fff8dc;">
@@ -440,8 +480,11 @@ def make_email_html(data: dict[str, Any]) -> str:
                     {expression_html}
                     <h3 style="margin:0 0 6px;color:#16794a;font-size:15px;">한국어 해석</h3>
                     <p style="margin:0 0 18px;font-size:17px;line-height:1.7;">{translation}</p>
-                    <h3 style="margin:0 0 6px;color:#8a6500;font-size:15px;">내용</h3>
-                    <p style="margin:0 0 20px;font-size:16px;line-height:1.7;">{summary}</p>
+                    {source_excerpt_html}
+                    <h3 style="margin:0 0 6px;color:#8a6500;font-size:15px;">자세한 내용</h3>
+                    <p style="margin:0 0 18px;font-size:16px;line-height:1.85;">{summary}</p>
+                    <h3 style="margin:0 0 6px;color:#b54708;font-size:15px;">핵심 내용</h3>
+                    {key_points_html}
                     <h3 style="margin:0 0 9px;font-size:18px;">전체 단어 {len(words)}개</h3>
                     {make_word_html(words)}
                 </div>
