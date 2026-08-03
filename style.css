@@ -528,3 +528,43 @@ footer {
   color: #e5484d;
   font-size: 15px;
 }
+
+/* ==========================
+   상세 기사 내용
+========================== */
+
+.source-excerpt-block {
+  background: #f7f2ff;
+  border: 1px solid #e4d7ff;
+}
+
+.source-excerpt-block h3 {
+  color: #6941c6;
+}
+
+.source-excerpt-block p {
+  font-size: 17px;
+  line-height: 1.95;
+  white-space: pre-line;
+}
+
+.key-points-block {
+  background: #fff4e8;
+  border: 1px solid #fed7aa;
+}
+
+.key-points-block h3 {
+  color: #b54708;
+}
+
+.key-points-list {
+  margin: 0;
+  padding-left: 22px;
+  color: #344054;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.key-points-list li + li {
+  margin-top: 7px;
+}
