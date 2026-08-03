@@ -106,6 +106,36 @@ function createExpression(news) {
 
 
 
+function createKeyPoints(points = []) {
+  if (!Array.isArray(points) || points.length === 0) {
+    return "";
+  }
+
+  return `
+    <div class="learning-block key-points-block">
+      <h3>핵심 내용</h3>
+      <ul class="key-points-list">
+        ${points.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}
+      </ul>
+    </div>
+  `;
+}
+
+
+function createSourceExcerpt(news) {
+  if (!news.sourceExcerpt) {
+    return "";
+  }
+
+  return `
+    <div class="learning-block source-excerpt-block">
+      <h3>중국어 원문 발췌</h3>
+      <p>${escapeHtml(news.sourceExcerpt)}</p>
+    </div>
+  `;
+}
+
+
 
 function createNewsCard(news) {
 
@@ -209,22 +239,29 @@ function createNewsCard(news) {
 
 
 
-        <!-- 내용 요약 -->
+        <!-- 중국어 원문 발췌 -->
+
+        ${createSourceExcerpt(news)}
+
+
+        <!-- 자세한 내용 -->
 
         <div class="learning-block summary-block">
 
-
           <h3>
-            내용 요약
+            자세한 내용
           </h3>
-
 
           <p>
             ${escapeHtml(news.summary)}
           </p>
 
-
         </div>
+
+
+        <!-- 핵심 내용 -->
+
+        ${createKeyPoints(news.keyPoints)}
 
 
 
