@@ -5,6 +5,7 @@ import os
 import re
 import smtplib
 import time
+import traceback
 from datetime import datetime
 from email.message import EmailMessage
 from pathlib import Path
@@ -29,6 +30,7 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
 EMAIL_USER = os.getenv("EMAIL_USER", "").strip()
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
 EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "").strip()
 
 
 CONVERSATION_FILE = Path("daily_conversations.json")
@@ -195,6 +197,32 @@ def get_daily_conversations() -> list[dict[str, str]]:
     if len(result) != 3:
         raise RuntimeError(f"회화 {day_index + 1}일차의 유효 문장이 3개가 아닙니다.")
     return result
+
+
+def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
+    """핵심 표현의 병음이 빠진 데이터도 로컬에서 자동 보완합니다."""
+    for item in news_items:
+        if not isinstance(item, dict):
+            continue
+
+        expressions = item.get("expressions")
+        if not isinstance(expressions, list):
+            expressions = []
+
+        legacy = item.get("expression")
+        if isinstance(legacy, dict) and not expressions:
+            expressions = [legacy]
+
+        for expression in expressions:
+            if not isinstance(expression, dict):
+                continue
+            chinese = clean_text(str(expression.get("chinese", "")))
+            if chinese and not clean_text(str(expression.get("pinyin", ""))):
+                expression["pinyin"] = make_pinyin(chinese)
+
+        if expressions:
+            item["expressions"] = expressions
+            item["expression"] = expressions[0]
 
 def fetch_baidu_top10() -> list[dict[str, Any]]:
     """바이두 실시간 검색어 TOP10을 가져옵니다."""
@@ -775,38 +803,144 @@ def send_email(data: dict[str, Any]) -> None:
     print(f"Gmail 전송 완료 · 수신자 {len(recipients)}명")
 
 
-def main() -> None:
-    skip, reason = should_skip_for_calendar()
-    if skip:
-        print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
+
+def get_github_actions_url() -> str:
+    """현재 GitHub Actions 실행 주소를 만듭니다."""
+    server = os.getenv("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
+    repository = os.getenv("GITHUB_REPOSITORY", "").strip()
+    run_id = os.getenv("GITHUB_RUN_ID", "").strip()
+    if repository and run_id:
+        return f"{server}/{repository}/actions/runs/{run_id}"
+    return ""
+
+
+def send_failure_email(stage: str, error: BaseException) -> None:
+    """자동화 실패 내용을 관리자 메일로 보냅니다.
+
+    이 함수 자체가 실패해도 원래 오류를 가리지 않도록 예외를 내부에서 처리합니다.
+    """
+    if not EMAIL_USER or not EMAIL_APP_PASSWORD:
+        print("실패 알림 생략: EMAIL_USER 또는 EMAIL_APP_PASSWORD가 없습니다.")
         return
 
-    print("1. 바이두 TOP10 수집 시작")
-    existing_titles = load_existing_titles()
-    raw_news = fetch_baidu_top10()
-    new_news_count = count_new_news(raw_news, existing_titles)
-    print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 최소 발송 기준 없이 계속 진행합니다.")
+    recipients = [
+        address.strip()
+        for address in re.split(r"[,;]", ADMIN_EMAIL)
+        if address.strip()
+    ]
+    if not recipients:
+        print("실패 알림 생략: ADMIN_EMAIL이 설정되지 않았습니다.")
+        return
 
-    fingerprint = make_source_fingerprint(raw_news)
-    cached_news = load_cached_news(fingerprint)
+    now = datetime.now(ZoneInfo("Asia/Seoul"))
+    actions_url = get_github_actions_url()
+    traceback_text = "".join(
+        traceback.format_exception(type(error), error, error.__traceback__)
+    )[-8000:]
 
-    if cached_news is not None:
-        print("3. 이전과 동일한 뉴스입니다. GPT API 호출 없이 기존 결과를 재사용합니다.")
-        learning_news = cached_news
-        api_used = False
-    else:
-        print("3. 발송 조건 충족 · OpenAI API 학습자료 생성 시작")
-        learning_news = create_learning_data(raw_news)
-        api_used = True
+    safe_stage = html.escape(stage)
+    safe_error = html.escape(f"{type(error).__name__}: {error}")
+    safe_traceback = html.escape(traceback_text)
+    safe_actions_url = html.escape(actions_url)
 
-    ensure_expression_pinyin(learning_news)
+    actions_html = (
+        f'<p style="margin:14px 0 0;"><a href="{safe_actions_url}" '
+        'style="display:inline-block;padding:11px 16px;border-radius:10px;'
+        'background:#315efb;color:#fff;text-decoration:none;font-weight:700;">'
+        'GitHub Actions 실행 로그 열기</a></p>'
+        if actions_url else ""
+    )
 
-    print("4. products.json 안전 저장")
-    data = save_products_json(learning_news, fingerprint, api_used)
+    body_html = f"""
+    <!DOCTYPE html>
+    <html lang="ko">
+    <body style="margin:0;padding:24px;background:#f4f6fa;font-family:Arial,'Noto Sans KR',sans-serif;color:#18202f;">
+      <div style="max-width:720px;margin:0 auto;background:#fff;border:1px solid #e4e7ec;border-radius:18px;overflow:hidden;box-shadow:0 8px 28px rgba(16,24,40,.08);">
+        <div style="padding:22px;background:#fff1f1;border-bottom:1px solid #f6c7c7;">
+          <div style="font-size:13px;font-weight:800;color:#b42318;letter-spacing:.06em;">🚨 자동화 실패 알림</div>
+          <h1 style="margin:8px 0 0;font-size:24px;line-height:1.4;">바이두 뉴스 자동화가 실패했습니다</h1>
+        </div>
+        <div style="padding:22px;">
+          <table style="width:100%;border-collapse:collapse;font-size:15px;">
+            <tr><td style="padding:9px 0;color:#667085;width:120px;">실행 시간</td><td style="padding:9px 0;font-weight:700;">{now.strftime('%Y-%m-%d %H:%M:%S')} KST</td></tr>
+            <tr><td style="padding:9px 0;color:#667085;">실패 단계</td><td style="padding:9px 0;font-weight:700;">{safe_stage}</td></tr>
+            <tr><td style="padding:9px 0;color:#667085;">오류</td><td style="padding:9px 0;color:#b42318;font-weight:700;">{safe_error}</td></tr>
+          </table>
+          {actions_html}
+          <h2 style="margin:24px 0 10px;font-size:16px;">오류 상세</h2>
+          <pre style="margin:0;padding:14px;border-radius:12px;background:#101828;color:#f2f4f7;white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.6;">{safe_traceback}</pre>
+        </div>
+      </div>
+    </body>
+    </html>
+    """
 
-    print("5. 이메일 발송")
-    send_email(data)
-    print("완료")
+    message = EmailMessage()
+    message["Subject"] = f"🚨 [오류] 바이두 뉴스 자동화 실패 | {now.strftime('%Y-%m-%d %H:%M')}"
+    message["From"] = EMAIL_USER
+    message["To"] = ", ".join(recipients)
+    message.set_content(
+        f"바이두 뉴스 자동화 실패\n실패 단계: {stage}\n"
+        f"오류: {type(error).__name__}: {error}\n"
+        f"GitHub Actions: {actions_url or '확인 불가'}"
+    )
+    message.add_alternative(body_html, subtype="html")
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
+            smtp.login(EMAIL_USER, EMAIL_APP_PASSWORD)
+            smtp.send_message(message, to_addrs=recipients)
+        print(f"실패 알림 메일 전송 완료 · 관리자 {len(recipients)}명")
+    except Exception as mail_error:
+        print(f"실패 알림 메일 전송 실패: {mail_error}")
+
+
+def main() -> None:
+    stage = "초기화"
+    try:
+        stage = "달력 확인"
+        skip, reason = should_skip_for_calendar()
+        if skip:
+            print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
+            return
+
+        stage = "바이두 TOP10 수집"
+        print("1. 바이두 TOP10 수집 시작")
+        existing_titles = load_existing_titles()
+        raw_news = fetch_baidu_top10()
+        new_news_count = count_new_news(raw_news, existing_titles)
+        print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 최소 발송 기준 없이 계속 진행합니다.")
+
+        stage = "기존 데이터 비교"
+        fingerprint = make_source_fingerprint(raw_news)
+        cached_news = load_cached_news(fingerprint)
+
+        if cached_news is not None:
+            print("3. 이전과 동일한 뉴스입니다. GPT API 호출 없이 기존 결과를 재사용합니다.")
+            learning_news = cached_news
+            api_used = False
+        else:
+            stage = "OpenAI 학습자료 생성"
+            print("3. 새 데이터 감지 · OpenAI API 학습자료 생성 시작")
+            learning_news = create_learning_data(raw_news)
+            api_used = True
+
+        stage = "핵심 표현 병음 보완"
+        ensure_expression_pinyin(learning_news)
+
+        stage = "products.json 저장"
+        print("4. products.json 안전 저장")
+        data = save_products_json(learning_news, fingerprint, api_used)
+
+        stage = "뉴스 이메일 발송"
+        print("5. 이메일 발송")
+        send_email(data)
+        print("완료")
+
+    except Exception as error:
+        print(f"자동화 실패 · 단계: {stage} · 오류: {error}")
+        send_failure_email(stage, error)
+        raise
 
 
 if __name__ == "__main__":
