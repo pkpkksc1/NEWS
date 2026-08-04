@@ -857,12 +857,20 @@ def make_email_html(data: dict[str, Any]) -> str:
     <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#18202f;">
         <div style="display:none;max-height:0;overflow:hidden;">바이두 실시간 TOP10으로 배우는 오늘의 중국어 표현과 뉴스</div>
         <div style="max-width:760px;margin:0 auto;padding:24px 12px 36px;">
-            <header style="padding:25px 22px;margin-bottom:20px;border-radius:19px;background:linear-gradient(135deg,#244bdc 0%,#315efb 55%,#6d8dff 100%);color:#ffffff;box-shadow:0 10px 30px rgba(49,94,251,.2);">
-                <div style="font-size:13px;font-weight:800;letter-spacing:.08em;opacity:.92;">百度热搜 TOP 10</div>
-                <h1 style="margin:7px 0 8px;font-size:30px;line-height:1.3;">오늘의 바이두 중국어</h1>
-                <div style="font-size:14px;line-height:1.7;opacity:.94;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
-                <div style="margin-top:13px;display:inline-block;padding:7px 10px;border-radius:9px;background:rgba(255,255,255,.16);font-size:12px;">업데이트 {updated_at} · {method}</div>
-            </header>
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;margin:0 0 20px;border-collapse:separate;background-color:#315efb;border-radius:19px;overflow:hidden;box-shadow:0 10px 30px rgba(49,94,251,.20);" bgcolor="#315efb">
+                <tr>
+                    <td style="padding:25px 22px;background-color:#315efb;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;" bgcolor="#315efb">
+                        <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 TOP 10</div>
+                        <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">오늘의 바이두 중국어</div>
+                        <div style="font-size:14px;line-height:1.7;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:13px;border-collapse:separate;">
+                            <tr>
+                                <td style="padding:7px 10px;border:1px solid #8ea6ff;border-radius:9px;background-color:#4d73ff;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;font-size:12px;line-height:1.4;opacity:1;" bgcolor="#4d73ff">업데이트 {updated_at} · {method}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
 
             {today_expression_html}
             {today_word_html}
