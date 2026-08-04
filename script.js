@@ -20,29 +20,6 @@ function escapeHtml(value) {
 
 
 
-function speakChinese(text, rate = 0.85) {
-  const value = String(text || "").trim();
-  if (!value || !("speechSynthesis" in window)) {
-    alert("이 브라우저에서는 음성 재생을 지원하지 않습니다.");
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(value);
-  utterance.lang = "zh-CN";
-  utterance.rate = rate;
-  const voices = window.speechSynthesis.getVoices();
-  const chineseVoice = voices.find((voice) =>
-    /zh[-_](CN|Hans)/i.test(voice.lang) || /Xiaoxiao|Huihui|Mandarin|普通话/i.test(voice.name)
-  );
-  if (chineseVoice) utterance.voice = chineseVoice;
-  window.speechSynthesis.speak(utterance);
-}
-
-function audioButton(text, label = "듣기") {
-  if (!text) return "";
-  return `<button type="button" class="tts-button" data-speak="${escapeHtml(text)}" aria-label="${escapeHtml(label)}">🔊 ${escapeHtml(label)}</button>`;
-}
-
 function expressionCard(title, icon, item, className) {
   if (!item || !item.chinese) {
     return `
@@ -66,7 +43,6 @@ function expressionCard(title, icon, item, className) {
           <div>${escapeHtml(item.exampleMeaning || "")}</div>
         </div>
       ` : ""}
-      <div class="daily-card-actions">${audioButton(item.chinese, `${title} 듣기`)}</div>
       ${item.date ? `<div class="review-date">${escapeHtml(item.date)} 학습 표현</div>` : ""}
     </article>
   `;
@@ -81,7 +57,6 @@ function conversationCard(items = []) {
         <div class="daily-card-pinyin">${escapeHtml(item.pinyin || "")}</div>
         <div class="conversation-meaning">${escapeHtml(item.meaning || "")}</div>
       </div>
-      ${audioButton(item.chinese, "듣기")}
     </div>
   `).join("");
   return `
@@ -604,11 +579,7 @@ async function loadNews(){
 
 
 
-document.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-speak]");
-  if (!button) return;
-  speakChinese(button.dataset.speak || "");
-});
+
 
 searchInput.addEventListener(
   "input",

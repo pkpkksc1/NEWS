@@ -663,18 +663,8 @@ footer {
 .daily-card-actions { margin-top: 15px; }
 .review-date { margin-top: 12px; color: #667085; font-size: .78rem; }
 
-.tts-button {
-  border: 1px solid #b2ccff;
-  border-radius: 999px;
-  padding: 7px 11px;
-  background: #fff;
-  color: #2149d8;
-  font: inherit;
-  font-size: .82rem;
-  font-weight: 800;
-  cursor: pointer;
-}
-.tts-button:hover { background: #eef3ff; }
+
+
 
 .conversation-list { display: grid; gap: 10px; }
 .conversation-row {
@@ -705,5 +695,4 @@ footer {
   .daily-grid { grid-template-columns: 1fr; }
   .conversation-card, .review-daily-card { grid-column: auto; }
   .conversation-row { grid-template-columns: 28px minmax(0, 1fr); }
-  .conversation-row .tts-button { grid-column: 2; justify-self: start; }
 }

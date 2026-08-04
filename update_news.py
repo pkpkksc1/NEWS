@@ -855,13 +855,13 @@ def make_email_html(data: dict[str, Any]) -> str:
         <meta charset="UTF-8">
     </head>
     <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#18202f;">
-        <div style="display:none;max-height:0;overflow:hidden;">바이두 실시간 TOP10으로 배우는 오늘의 중국어 표현과 뉴스</div>
+        <div style="display:none;max-height:0;overflow:hidden;">오늘의 중국어 학습과 바이두 뉴스 TOP10</div>
         <div style="max-width:760px;margin:0 auto;padding:24px 12px 36px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;margin:0 0 20px;border-collapse:separate;background-color:#315efb;border-radius:19px;overflow:hidden;box-shadow:0 10px 30px rgba(49,94,251,.20);" bgcolor="#315efb">
                 <tr>
                     <td style="padding:25px 22px;background-color:#315efb;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;" bgcolor="#315efb">
                         <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 TOP 10</div>
-                        <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">오늘의 바이두 중국어</div>
+                        <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">🇨🇳 오늘의 중국어 + 바이두 뉴스</div>
                         <div style="font-size:14px;line-height:1.7;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:13px;border-collapse:separate;">
                             <tr>
@@ -885,7 +885,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
             <footer style="padding:18px 8px;color:#98a2b3;font-size:12px;line-height:1.7;text-align:center;">
                 중국어 학습용 자동 뉴스 메일입니다.<br>
-                뉴스 상세 내용은 수집된 바이두 정보 범위 안에서 정리됩니다.<br>🔊 음성 듣기는 웹페이지에서만 지원됩니다.
+                뉴스 상세 내용은 수집된 바이두 정보 범위 안에서 정리됩니다.<br>
             </footer>
         </div>
     </body>
@@ -903,7 +903,7 @@ def send_email(data: dict[str, Any]) -> None:
     period = "아침 뉴스" if hour < 10 else "점심 뉴스" if hour < 15 else "오후 뉴스"
 
     message = EmailMessage()
-    message["Subject"] = f"🇨🇳 오늘의 바이두 중국어 TOP10 | {date_part} {period}"
+    message["Subject"] = f"🇨🇳 🇨🇳 오늘의 중국어 + 바이두 뉴스 TOP10 | {date_part} {period}"
     message["From"] = EMAIL_USER
     recipients = [address.strip() for address in re.split(r"[,;]", EMAIL_TO) if address.strip()]
     if not recipients:
