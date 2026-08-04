@@ -903,7 +903,7 @@ def send_email(data: dict[str, Any]) -> None:
     period = "아침 뉴스" if hour < 10 else "점심 뉴스" if hour < 15 else "오후 뉴스"
 
     message = EmailMessage()
-    message["Subject"] = f"🇨🇳 🇨🇳 오늘의 중국어 + 바이두 뉴스 TOP10 | {date_part} {period}"
+    message["Subject"] = f"오늘의 중국어 + 바이두 뉴스 TOP10 | {date_part} {period}"
     message["From"] = EMAIL_USER
     recipients = [address.strip() for address in re.split(r"[,;]", EMAIL_TO) if address.strip()]
     if not recipients:
