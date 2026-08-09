@@ -1,32 +1,32 @@
 {
-  "updatedAt": "2026-08-07 14:49",
+  "updatedAt": "2026-08-10 07:43",
   "source": "Baidu Hot Search",
   "sourceUrl": "https://top.baidu.com/board?tab=realtime",
   "translationMethod": "OpenAI API (gpt-5-mini)",
   "schemaVersion": "v2.2-daily-dashboard",
-  "sourceFingerprint": "2e0aee8608b84b6b5861710f7b473d9f2775da05892307e51bf266b7a858b183",
+  "sourceFingerprint": "2256a51b93acf3d2694fd24dbaf7dde44667eb07bccc252544c8c42d136f7ae1",
   "apiUsedThisRun": true,
   "todayExpression": {
+    "chinese": "非遗",
+    "pinyin": "fēi yí",
+    "meaning": "무형문화유산",
+    "example": "保护非遗需要政府和社会共同努力。",
+    "examplePinyin": "bǎo hù fēi yí xū yào zhèng fǔ hé shè huì gòng tóng nǔ lì 。",
+    "exampleMeaning": "무형문화유산 보호에는 정부와 사회의 공동 노력이 필요하다."
+  },
+  "todayWord": {
+    "chinese": "总书记",
+    "pinyin": "zǒng shū jì",
+    "meaning": "총서기"
+  },
+  "reviewExpression": {
     "chinese": "大道行天下",
     "pinyin": "dà dào xíng tiān xià",
     "meaning": "큰 도리나 진리가 세상에 통한다",
     "example": "大道行天下，诚信与公正终会得到认可。",
     "examplePinyin": "dà dào xíng tiān xià ， chéng xìn yǔ gōng zhèng zhōng huì dé dào rèn kě 。",
-    "exampleMeaning": "큰 도리는 세상에 통한다. 성실과 공정은 결국 인정받게 된다."
-  },
-  "todayWord": {
-    "chinese": "大道",
-    "pinyin": "dà dào",
-    "meaning": "큰 도리, 보편적 진리"
-  },
-  "reviewExpression": {
-    "chinese": "浩荡",
-    "pinyin": "hào dàng",
-    "meaning": "거세게 퍼져 강력한 기세를 이룸",
-    "example": "改革的东风浩荡席卷全国，带来新的机遇。",
-    "examplePinyin": "gǎi gé de dōng fēng hào dàng xí juǎn quán guó ， dài lái xīn de jī yù 。",
-    "exampleMeaning": "개혁의 순풍이 전국을 휩쓸며 새로운 기회를 가져왔다.",
-    "date": "2026-08-04"
+    "exampleMeaning": "큰 도리는 세상에 통한다. 성실과 공정은 결국 인정받게 된다.",
+    "date": "2026-08-07"
   },
   "expressionHistory": [
     {
@@ -73,509 +73,154 @@
       "examplePinyin": "dà dào xíng tiān xià ， chéng xìn yǔ gōng zhèng zhōng huì dé dào rèn kě 。",
       "exampleMeaning": "큰 도리는 세상에 통한다. 성실과 공정은 결국 인정받게 된다.",
       "date": "2026-08-07"
+    },
+    {
+      "chinese": "非遗",
+      "pinyin": "fēi yí",
+      "meaning": "무형문화유산",
+      "example": "保护非遗需要政府和社会共同努力。",
+      "examplePinyin": "bǎo hù fēi yí xū yào zhèng fǔ hé shè huì gòng tóng nǔ lì 。",
+      "exampleMeaning": "무형문화유산 보호에는 정부와 사회의 공동 노력이 필요하다.",
+      "date": "2026-08-10"
     }
   ],
   "dailyConversation": [
     {
-      "chinese": "后天下午我们一起去图书馆吧。",
-      "pinyin": "hòu tiān xià wǔ wǒ men yì qǐ qù tú shū guǎn ba 。",
-      "meaning": "모레 오후에 우리 같이 도서관에 가요."
+      "chinese": "下周早上我们一起散步吧。",
+      "pinyin": "xià zhōu zǎo shàng wǒ men yì qǐ sàn bù ba 。",
+      "meaning": "다음 주 아침에 우리 같이 산책해요."
     },
     {
-      "chinese": "请告诉我火车时刻，谢谢。",
-      "pinyin": "qǐng gào sù wǒ huǒ chē shí kè ， xiè xiè 。",
-      "meaning": "기차 시간: 알려 주세요, 감사합니다."
+      "chinese": "麻烦你帮我看看出发时间，谢谢。",
+      "pinyin": "má fán nǐ bāng wǒ kàn kàn chū fā shí jiān ， xiè xiè 。",
+      "meaning": "출발 시간: 좀 봐주세요, 감사합니다."
     },
     {
-      "chinese": "如果价格合适，我就明天再联系你，别担心。",
-      "pinyin": "rú guǒ jià gé hé shì ， wǒ jiù míng tiān zài lián xì nǐ ， bié dān xīn 。",
-      "meaning": "가격이 적당하면 내일 다시 연락할게요, 걱정하지 마세요."
+      "chinese": "如果有时间，我就提前预约，别担心。",
+      "pinyin": "rú guǒ yǒu shí jiān ， wǒ jiù tí qián yù yuē ， bié dān xīn 。",
+      "meaning": "시간이 있으면 미리 예약할게요, 걱정하지 마세요."
     }
   ],
   "news": [
     {
       "rank": 1,
-      "chinese": "大道行天下",
-      "pinyin": "dà dào xíng tiān xià",
-      "translation": "대도는 천하에 통한다",
-      "summary": "기사에서는 '국가 간의 교류는 국민 간의 친밀함에 달려 있고, 국민 간의 친밀함은 마음의 소통에 달려 있다'는 말을 인용합니다. 또한 교류가 많아지면 감정이 깊어지고 사람들 사이의 거리가 가까워진다고 전합니다. 국제 무대에서 시진핑 주석은 광범위하게 친구를 사귀고 성실하게 대한다고 설명합니다. 이러한 활동은 바쁜 외사 일정 속에서 이어지고 있다는 내용이 담겨 있습니다.",
-      "detailChinese": "“国之交在于民相亲，民相亲在于心相通。”“交往多了，感情深了，心与心才能贴得更近。”国际舞台上，习近平主席广交朋友、以诚相待，总是从繁忙的外事活动中... 查看更多",
-      "detailPinyin": "“ guó zhī jiāo zài yú mín xiāng qīn ， mín xiāng qīn zài yú xīn xiāng tōng 。 ” “ jiāo wǎng duō le ， gǎn qíng shēn le ， xīn yǔ xīn cái néng tiē dé gèng jìn 。 ” guó jì wǔ tái shàng ， xí jìn píng zhǔ xí guǎng jiāo péng yǒu 、 yǐ chéng xiāng dài ， zǒng shì cóng fán máng de wài shì huó dòng zhōng . . .   chá kàn gèng duō",
+      "chinese": "总书记点赞的非遗苗绣焕发新生机",
+      "pinyin": "zǒng shū jì diǎn zàn de fēi yí miáo xiù huàn fā xīn shēng jī",
+      "translation": "총서기가 칭찬한 무형유산 묘족 자수에 새 생기가",
+      "summary": "2021년 2월 3일, 시진핑 총서기가 귀저우성 비제시 화우촌을 방문해 특색 묘족 자수 산업의 발전과 민족 전통문화 전승 상황을 살펴봤습니다. 그는 '민족적인 것이 곧 세계적인 것이다'라고 강조했습니다. 보도는 특색 묘족 자수가 문화이자 산업이라는 점을 언급하며 관련 현황을 소개하고 있습니다.",
+      "detailChinese": "2021年2月3日，习近平总书记来到贵州毕节市化屋村，了解发展特色苗绣产业、传承民族传统文化等情况。他指出，民族的就是世界的。特色苗绣既是文化又是产... 查看更多",
+      "detailPinyin": "2 0 2 1 nián 2 yuè 3 rì ， xí jìn píng zǒng shū jì lái dào guì zhōu bì jié shì huà wū cūn ， liǎo jiě fā zhǎn tè sè miáo xiù chǎn yè 、 chuán chéng mín zú chuán tǒng wén huà děng qíng kuàng 。 tā zhǐ chū ， mín zú de jiù shì shì jiè de 。 tè sè miáo xiù jì shì wén huà yòu shì chǎn . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "시진핑 주석은 사람과의 소통을 통해 국가 간 우호를 강조하고 있다.",
+      "keyPoint": "시진핑은 묘족 자수가 문화이자 산업이며 민족문화가 세계적 가치가 있다고 강조했다",
       "keyPoints": [
-        "시진핑 주석은 사람과의 소통을 통해 국가 간 우호를 강조하고 있다."
+        "시진핑은 묘족 자수가 문화이자 산업이며 민족문화가 세계적 가치가 있다고 강조했다"
       ],
-      "url": "https://www.baidu.com/s?wd=%E5%A4%A7%E9%81%93%E8%A1%8C%E5%A4%A9%E4%B8%8B&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E6%80%BB%E4%B9%A6%E8%AE%B0%E7%82%B9%E8%B5%9E%E7%9A%84%E9%9D%9E%E9%81%97%E8%8B%97%E7%BB%A3%E7%84%95%E5%8F%91%E6%96%B0%E7%94%9F%E6%9C%BA&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "大道行天下",
-        "pinyin": "dà dào xíng tiān xià",
-        "meaning": "큰 도리나 진리가 세상에 통한다",
-        "example": "大道行天下，诚信与公正终会得到认可。",
-        "examplePinyin": "dà dào xíng tiān xià ， chéng xìn yǔ gōng zhèng zhōng huì dé dào rèn kě 。",
-        "exampleMeaning": "큰 도리는 세상에 통한다. 성실과 공정은 결국 인정받게 된다."
+        "chinese": "非遗",
+        "pinyin": "fēi yí",
+        "meaning": "무형문화유산",
+        "example": "保护非遗需要政府和社会共同努力。",
+        "examplePinyin": "bǎo hù fēi yí xū yào zhèng fǔ hé shè huì gòng tóng nǔ lì 。",
+        "exampleMeaning": "무형문화유산 보호에는 정부와 사회의 공동 노력이 필요하다."
       },
       "expressions": [
         {
-          "chinese": "大道行天下",
-          "pinyin": "dà dào xíng tiān xià",
-          "meaning": "큰 도리나 진리가 세상에 통한다",
-          "example": "大道行天下，诚信与公正终会得到认可。",
-          "examplePinyin": "dà dào xíng tiān xià ， chéng xìn yǔ gōng zhèng zhōng huì dé dào rèn kě 。",
-          "exampleMeaning": "큰 도리는 세상에 통한다. 성실과 공정은 결국 인정받게 된다."
+          "chinese": "非遗",
+          "pinyin": "fēi yí",
+          "meaning": "무형문화유산",
+          "example": "保护非遗需要政府和社会共同努力。",
+          "examplePinyin": "bǎo hù fēi yí xū yào zhèng fǔ hé shè huì gòng tóng nǔ lì 。",
+          "exampleMeaning": "무형문화유산 보호에는 정부와 사회의 공동 노력이 필요하다."
+        },
+        {
+          "chinese": "焕发新生机",
+          "pinyin": "huàn fā xīn shēng jī",
+          "meaning": "새로운 활력을 불어넣다",
+          "example": "传统工艺通过创新可以焕发新生机。",
+          "examplePinyin": "chuán tǒng gōng yì tōng guò chuàng xīn kě yǐ huàn fā xīn shēng jī 。",
+          "exampleMeaning": "전통 공예는 혁신을 통해 새로운 활력을 얻을 수 있다."
         }
       ],
       "words": [
         {
-          "chinese": "大道",
-          "pinyin": "dà dào",
-          "meaning": "큰 도리, 보편적 진리"
+          "chinese": "总书记",
+          "pinyin": "zǒng shū jì",
+          "meaning": "총서기"
         },
         {
-          "chinese": "行天下",
-          "pinyin": "xíng tiān xià",
-          "meaning": "세상에 통하다, 널리 퍼지다"
+          "chinese": "非遗",
+          "pinyin": "fēi yí",
+          "meaning": "무형문화유산"
         },
         {
-          "chinese": "天下",
-          "pinyin": "tiān xià",
-          "meaning": "천하, 세상"
+          "chinese": "苗绣",
+          "pinyin": "miáo xiù",
+          "meaning": "묘족 자수"
+        },
+        {
+          "chinese": "焕发",
+          "pinyin": "huàn fā",
+          "meaning": "불어넣다/되살아나다"
+        },
+        {
+          "chinese": "新生机",
+          "pinyin": "xīn shēng jī",
+          "meaning": "새로운 활력"
+        },
+        {
+          "chinese": "贵州",
+          "pinyin": "guì zhōu",
+          "meaning": "귀저우성"
+        },
+        {
+          "chinese": "传承",
+          "pinyin": "chuán chéng",
+          "meaning": "전승하다"
+        },
+        {
+          "chinese": "文化",
+          "pinyin": "wén huà",
+          "meaning": "문화"
         }
       ]
     },
     {
       "rank": 2,
-      "chinese": "公司“上四休三”但要降薪1000元",
-      "pinyin": "gōng sī “ shàng sì xiū sān ” dàn yào jiàng xīn 1 0 0 0 yuán",
-      "translation": "회사 '주 4일 근무·휴 3일' 도입하지만 월급 1000위안 삭감",
-      "summary": "최근 한 네티즌이 도움을 요청하는 글을 올렸습니다. 그는 회사가 7월부터 '상사휴삼(주 4일 근무, 휴 3일)'을 시행하지만 기본급을 공제한다고 전했습니다. 공제액은 하루 약 200위안 수준이라고 밝히며, 이전 실수령액은 약 5800위안이었다고 합니다. 현재는 실수령액이 크게 줄어들 것으로 추정된다고 덧붙였습니다.",
-      "detailChinese": "近日，一名网友发帖求助： “公司从7月开始实行‘上四休三’，但扣基本工资，一天大概200元” 。该网友表示，自己之前到手5800元左右，现在估计只剩... 查看更多",
-      "detailPinyin": "jìn rì ， yī míng wǎng yǒu fā tiē qiú zhù ：   “ gōng sī cóng 7 yuè kāi shǐ shí xíng ‘ shàng sì xiū sān ’ ， dàn kòu jī běn gōng zī ， yī tiān dà gài 2 0 0 yuán ”   。 gāi wǎng yǒu biǎo shì ， zì jǐ zhī qián dào shǒu 5 8 0 0 yuán zuǒ yòu ， xiàn zài gū jì zhǐ shèng . . .   chá kàn gèng duō",
+      "chinese": "台风白海豚在浙江玉环沿海登陆",
+      "pinyin": "tái fēng bái hǎi tún zài zhè jiāng yù huán yán hǎi dēng lù",
+      "translation": "태풍 '백돌고래'가 저장 옥환 해안에 상륙",
+      "summary": "바이두에 상세 설명이 표시되지 않았습니다.",
+      "detailChinese": "",
+      "detailPinyin": "",
       "sourceExcerpt": "",
-      "keyPoint": "근무제 변경으로 인해 실수령액이 크게 줄어들었다는 불만이 제기됐다.",
-      "keyPoints": [
-        "근무제 변경으로 인해 실수령액이 크게 줄어들었다는 불만이 제기됐다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E5%85%AC%E5%8F%B8%E2%80%9C%E4%B8%8A%E5%9B%9B%E4%BC%91%E4%B8%89%E2%80%9D%E4%BD%86%E8%A6%81%E9%99%8D%E8%96%AA1000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
+      "keyPoint": "",
+      "keyPoints": [],
+      "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E9%A3%8E%E7%99%BD%E6%B5%B7%E8%B1%9A%E5%9C%A8%E6%B5%99%E6%B1%9F%E7%8E%89%E7%8E%AF%E6%B2%BF%E6%B5%B7%E7%99%BB%E9%99%86&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "上四休三",
-        "pinyin": "shàng sì xiū sān",
-        "meaning": "주 4일 근무, 주 3일 휴무를 뜻하는 근무제",
-        "example": "公司决定从下个月开始实行上四休三的制度。",
-        "examplePinyin": "gōng sī jué dìng cóng xià gè yuè kāi shǐ shí xíng shàng sì xiū sān de zhì dù 。",
-        "exampleMeaning": "회사는 다음 달부터 주 4일 근무제를 시행하기로 결정했다."
+        "chinese": "台风",
+        "pinyin": "tái fēng",
+        "meaning": "태풍",
+        "example": "台风来临时应提前做好防护准备。",
+        "examplePinyin": "tái fēng lái lín shí yīng tí qián zuò hǎo fáng hù zhǔn bèi 。",
+        "exampleMeaning": "태풍이 올 때는 미리 대비를 해야 한다."
       },
       "expressions": [
         {
-          "chinese": "上四休三",
-          "pinyin": "shàng sì xiū sān",
-          "meaning": "주 4일 근무, 주 3일 휴무를 뜻하는 근무제",
-          "example": "公司决定从下个月开始实行上四休三的制度。",
-          "examplePinyin": "gōng sī jué dìng cóng xià gè yuè kāi shǐ shí xíng shàng sì xiū sān de zhì dù 。",
-          "exampleMeaning": "회사는 다음 달부터 주 4일 근무제를 시행하기로 결정했다."
+          "chinese": "台风",
+          "pinyin": "tái fēng",
+          "meaning": "태풍",
+          "example": "台风来临时应提前做好防护准备。",
+          "examplePinyin": "tái fēng lái lín shí yīng tí qián zuò hǎo fáng hù zhǔn bèi 。",
+          "exampleMeaning": "태풍이 올 때는 미리 대비를 해야 한다."
         },
         {
-          "chinese": "降薪",
-          "pinyin": "jiàng xīn",
-          "meaning": "임금 삭감",
-          "example": "员工担心实行新制度会导致降薪问题。",
-          "examplePinyin": "yuán gōng dān xīn shí xíng xīn zhì dù huì dǎo zhì jiàng xīn wèn tí 。",
-          "exampleMeaning": "직원들은 새 제도 시행이 임금 삭감으로 이어질 것을 우려한다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "公司",
-          "pinyin": "gōng sī",
-          "meaning": "회사"
-        },
-        {
-          "chinese": "上四休三",
-          "pinyin": "shàng sì xiū sān",
-          "meaning": "주 4일 근무·주 3일 휴무"
-        },
-        {
-          "chinese": "降薪",
-          "pinyin": "jiàng xīn",
-          "meaning": "월급 삭감"
-        },
-        {
-          "chinese": "基本工资",
-          "pinyin": "jī běn gōng zī",
-          "meaning": "기본급"
-        }
-      ]
-    },
-    {
-      "rank": 3,
-      "chinese": "今年是“闭眼秋”",
-      "pinyin": "jīn nián shì “ bì yǎn qiū ”",
-      "translation": "올해는 '닫은 눈의 가을'(闭眼秋)이다",
-      "summary": "8월 7일 19시 42분에 24절기 중 하나인 입추가 공식적으로 들어왔습니다. 올해의 입추 시각이 저녁에 들어간 점을 두고 민간에서는 이를 '늦은 입추' 또는 '닫은 눈의 가을'이라고 부른다고 전합니다. 옛말에는 '닫은 눈의 가을, 더위가 멈추지 않는다'는 속담이 전해집니다. 기사에는 입추 이후에도 더위가 계속될 수 있다는 취지가 소개되어 있습니다.",
-      "detailChinese": "8月7日19时42分，二十四节气中的立秋正式到来。今年的立秋交节在傍晚，民间称为“晚立秋”或“闭眼秋”。老话讲“闭眼秋，热不休”；再加上立秋使还没出... 查看更多",
-      "detailPinyin": "8 yuè 7 rì 1 9 shí 4 2 fēn ， èr shí sì jié qì zhōng de lì qiū zhèng shì dào lái 。 jīn nián de lì qiū jiāo jié zài bàng wǎn ， mín jiān chēng wéi “ wǎn lì qiū ” huò “ bì yǎn qiū ” 。 lǎo huà jiǎng “ bì yǎn qiū ， rè bù xiū ” ； zài jiā shàng lì qiū shǐ hái méi chū . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "올해 입추가 저녁에 들어 '늦은 입추' 또는 '닫은 눈의 가을'로 불리며 더위가 이어질 수 있다는 속담이 있다.",
-      "keyPoints": [
-        "올해 입추가 저녁에 들어 '늦은 입추' 또는 '닫은 눈의 가을'로 불리며 더위가 이어질 수 있다는 속담이 있다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E4%BB%8A%E5%B9%B4%E6%98%AF%E2%80%9C%E9%97%AD%E7%9C%BC%E7%A7%8B%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "闭眼秋",
-        "pinyin": "bì yǎn qiū",
-        "meaning": "입추가 늦게 들어 더위가 계속된다는 속칭",
-        "example": "民间说法认为今年是闭眼秋，仍需注意防暑降温。",
-        "examplePinyin": "mín jiān shuō fǎ rèn wéi jīn nián shì bì yǎn qiū ， réng xū zhù yì fáng shǔ jiàng wēn 。",
-        "exampleMeaning": "민간에서는 올해를 '닫은 눈의 가을'이라고 하여 여전히 더위 대비가 필요하다고 본다."
-      },
-      "expressions": [
-        {
-          "chinese": "闭眼秋",
-          "pinyin": "bì yǎn qiū",
-          "meaning": "입추가 늦게 들어 더위가 계속된다는 속칭",
-          "example": "民间说法认为今年是闭眼秋，仍需注意防暑降温。",
-          "examplePinyin": "mín jiān shuō fǎ rèn wéi jīn nián shì bì yǎn qiū ， réng xū zhù yì fáng shǔ jiàng wēn 。",
-          "exampleMeaning": "민간에서는 올해를 '닫은 눈의 가을'이라고 하여 여전히 더위 대비가 필요하다고 본다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "今年",
-          "pinyin": "jīn nián",
-          "meaning": "올해"
-        },
-        {
-          "chinese": "闭眼秋",
-          "pinyin": "bì yǎn qiū",
-          "meaning": "늦은 입추, 더위가 쉽게 가시지 않는 입추"
-        },
-        {
-          "chinese": "立秋",
-          "pinyin": "lì qiū",
-          "meaning": "입추(24절기의 하나)"
-        }
-      ]
-    },
-    {
-      "rank": 4,
-      "chinese": "打破国外垄断！中国重磅科技集中上新",
-      "pinyin": "dǎ pò guó wài lǒng duàn ！ zhōng guó zhòng bàng kē jì jí zhōng shàng xīn",
-      "translation": "해외 독점 타파! 중국의 중대 기술 대거 공개",
-      "summary": "최근 중국에서 여러 중대 기술이 한꺼번에 공개되었습니다. 소개된 기술에는 A4 용지보다 더 얇은 고급 강재, 'AI쌍성'의 우주 발사, 전파망원경 FAST의 핵심 업그레이드 등이 포함됩니다. 각 기술은 기존의 기술 장벽을 허무는 성과로 설명됩니다. 기사에는 이러한 혁신을 이해하기 쉬운 이미지 자료도 함께 제공된다고 전합니다.",
-      "detailChinese": "近几天，我国重磅科技集中上新。比A4纸更薄的高端钢材亮相、“AI双星”上太空、FAST硬核升级……每一项都打破技术壁垒，一组动图带你看懂中国科技创新... 查看更多",
-      "detailPinyin": "jìn jǐ tiān ， wǒ guó zhòng bàng kē jì jí zhōng shàng xīn 。 bǐ A 4 zhǐ gèng báo de gāo duān gāng cái liàng xiàng 、 “ A I shuāng xīng ” shàng tài kōng 、 F A S T yìng hé shēng jí … … měi yī xiàng dōu dǎ pò jì shù bì lěi ， yī zǔ dòng tú dài nǐ kàn dǒng zhōng guó kē jì chuàng xīn . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "중국이 여러 첨단 기술을 연달아 공개하며 외국의 기술 장벽을 깨고 있다.",
-      "keyPoints": [
-        "중국이 여러 첨단 기술을 연달아 공개하며 외국의 기술 장벽을 깨고 있다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E6%89%93%E7%A0%B4%E5%9B%BD%E5%A4%96%E5%9E%84%E6%96%AD%EF%BC%81%E4%B8%AD%E5%9B%BD%E9%87%8D%E7%A3%85%E7%A7%91%E6%8A%80%E9%9B%86%E4%B8%AD%E4%B8%8A%E6%96%B0&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "打破国外垄断",
-        "pinyin": "dǎ pò guó wài lǒng duàn",
-        "meaning": "해외의 기술·시장 독점을 깨다",
-        "example": "新技术的突破有望打破国外垄断，提高国产化率。",
-        "examplePinyin": "xīn jì shù de tū pò yǒu wàng dǎ pò guó wài lǒng duàn ， tí gāo guó chǎn huà lǜ 。",
-        "exampleMeaning": "신기술의 돌파구는 해외의 독점을 깨고 국산화 비율을 높일 것으로 기대된다."
-      },
-      "expressions": [
-        {
-          "chinese": "打破国外垄断",
-          "pinyin": "dǎ pò guó wài lǒng duàn",
-          "meaning": "해외의 기술·시장 독점을 깨다",
-          "example": "新技术的突破有望打破国外垄断，提高国产化率。",
-          "examplePinyin": "xīn jì shù de tū pò yǒu wàng dǎ pò guó wài lǒng duàn ， tí gāo guó chǎn huà lǜ 。",
-          "exampleMeaning": "신기술의 돌파구는 해외의 독점을 깨고 국산화 비율을 높일 것으로 기대된다."
-        },
-        {
-          "chinese": "重磅",
-          "pinyin": "zhòng bàng",
-          "meaning": "중대한(주로 뉴스·제품 등 강조 표현)",
-          "example": "公司发布了多项重磅科技成果，引发行业关注。",
-          "examplePinyin": "gōng sī fā bù le duō xiàng zhòng bàng kē jì chéng guǒ ， yǐn fā háng yè guān zhù 。",
-          "exampleMeaning": "회사는 여러 중대 기술 성과를 발표해 업계의 관심을 불러일으켰다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "打破",
-          "pinyin": "dǎ pò",
-          "meaning": "깨다, 허물다"
-        },
-        {
-          "chinese": "国外",
-          "pinyin": "guó wài",
-          "meaning": "해외"
-        },
-        {
-          "chinese": "垄断",
-          "pinyin": "lǒng duàn",
-          "meaning": "독점"
-        },
-        {
-          "chinese": "重磅",
-          "pinyin": "zhòng bàng",
-          "meaning": "중대한, 큰 이슈의"
-        },
-        {
-          "chinese": "科技",
-          "pinyin": "kē jì",
-          "meaning": "과학기술"
-        },
-        {
-          "chinese": "上新",
-          "pinyin": "shàng xīn",
-          "meaning": "신제품이나 신기술을 공개하다"
-        }
-      ]
-    },
-    {
-      "rank": 5,
-      "chinese": "越来越多高分考生放弃985选警校",
-      "pinyin": "yuè lái yuè duō gāo fēn kǎo shēng fàng qì 9 8 5 xuǎn jǐng xiào",
-      "translation": "점점 더 많은 고득점 수험생들이 985 대학을 포기하고 경찰대 선택",
-      "summary": "올해 수능(가오카오) 진학 희망서 작성에서 경찰대학이 고득점 수험생들 사이에서 새로운 선택지가 되고 있습니다. 기사에서는 하이난의 수험생 루왕이 올해 가오카오에서 656점을 얻어 도내 약 4600위에 올랐다고 전합니다. 그는 최종적으로 하이난 경찰학원 조기전형을 선택했다고 보도됩니다. 이 사례는 고득점자들이 전통적 명문대 대신 직업적 선택을 택하는 경향을 보여줍니다.",
-      "detailChinese": "今年高考志愿填报中，警校正在成为越来越多高分考生的新选择。海南考生卢望今年高考取得656分，位列全省约4600名。最终他选择填报海南警察学院提前批网... 查看更多",
-      "detailPinyin": "jīn nián gāo kǎo zhì yuàn tián bào zhōng ， jǐng jiào zhèng zài chéng wéi yuè lái yuè duō gāo fēn kǎo shēng de xīn xuǎn zé 。 hǎi nán kǎo shēng lú wàng jīn nián gāo kǎo qǔ dé 6 5 6 fēn ， wèi liè quán shěng yuē 4 6 0 0 míng 。 zuì zhōng tā xuǎn zé tián bào hǎi nán jǐng chá xué yuàn tí qián pī wǎng . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "고득점 수험생들이 경찰대를 선택하는 사례가 늘고 있다.",
-      "keyPoints": [
-        "고득점 수험생들이 경찰대를 선택하는 사례가 늘고 있다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%9A%E9%AB%98%E5%88%86%E8%80%83%E7%94%9F%E6%94%BE%E5%BC%83985%E9%80%89%E8%AD%A6%E6%A0%A1&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "放弃",
-        "pinyin": "fàng qì",
-        "meaning": "포기하다",
-        "example": "很多高分考生选择放弃985高校，转而报考职业类院校。",
-        "examplePinyin": "hěn duō gāo fēn kǎo shēng xuǎn zé fàng qì 9 8 5 gāo xiào ， zhuǎn ér bào kǎo zhí yè lèi yuàn xiào 。",
-        "exampleMeaning": "많은 고득점 수험생들이 985 대학을 포기하고 직업 계열 학교에 지원하기로 선택했다."
-      },
-      "expressions": [
-        {
-          "chinese": "放弃",
-          "pinyin": "fàng qì",
-          "meaning": "포기하다",
-          "example": "很多高分考生选择放弃985高校，转而报考职业类院校。",
-          "examplePinyin": "hěn duō gāo fēn kǎo shēng xuǎn zé fàng qì 9 8 5 gāo xiào ， zhuǎn ér bào kǎo zhí yè lèi yuàn xiào 。",
-          "exampleMeaning": "많은 고득점 수험생들이 985 대학을 포기하고 직업 계열 학교에 지원하기로 선택했다."
-        },
-        {
-          "chinese": "985",
-          "pinyin": "9 8 5",
-          "meaning": "중국의 이공계·종합 명문 대학 그룹을 가리키는 용어",
-          "example": "家长原本希望孩子能上985院校，但学生有不同考虑。",
-          "examplePinyin": "jiā zhǎng yuán běn xī wàng hái zi néng shàng 9 8 5 yuàn xiào ， dàn xué shēng yǒu bù tóng kǎo lǜ 。",
-          "exampleMeaning": "부모는 원래 자녀가 985 대학에 진학하길 바랐지만 학생은 다른 고려를 하고 있다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "越来越多",
-          "pinyin": "yuè lái yuè duō",
-          "meaning": "점점 더 많아지다"
-        },
-        {
-          "chinese": "高分考生",
-          "pinyin": "gāo fēn kǎo shēng",
-          "meaning": "고득점 수험생"
-        },
-        {
-          "chinese": "放弃",
-          "pinyin": "fàng qì",
-          "meaning": "포기하다"
-        },
-        {
-          "chinese": "985",
-          "pinyin": "9 8 5",
-          "meaning": "중국의 명문대 그룹 명칭"
-        },
-        {
-          "chinese": "警校",
-          "pinyin": "jǐng xiào",
-          "meaning": "경찰대학 또는 경찰학교"
-        }
-      ]
-    },
-    {
-      "rank": 6,
-      "chinese": "四川宜宾市高县发生4.9级地震",
-      "pinyin": "sì chuān yí bīn shì gāo xiàn fā shēng 4 . 9 jí dì zhèn",
-      "translation": "쓰촨성 이빈시 가오현에서 규모 4.9 지진 발생",
-      "summary": "중국 지진대망은 8월 7일 13시 8분에 쓰촨성 이빈시 가오현에서 규모 4.9의 지진이 발생했다고 공식 확정했습니다. 진앙 깊이는 6킬로미터였으며, 진앙의 위도와 경도도 함께 공개되었습니다. 보도는 해당 지진의 공식 측정 수치를 전하고 있습니다. 추가 피해 상황 등은 별도 보도를 통해 확인할 필요가 있습니다.",
-      "detailChinese": "据中国地震台网正式测定，8月7日13时8分在四川宜宾市高县发生4.9级地震，震源深度6公里，震中位于北纬28.51度，东经104.67度。 查看更多",
-      "detailPinyin": "jù zhōng guó dì zhèn tái wǎng zhèng shì cè dìng ， 8 yuè 7 rì 1 3 shí 8 fēn zài sì chuān yí bīn shì gāo xiàn fā shēng 4 . 9 jí dì zhèn ， zhèn yuán shēn dù 6 gōng lǐ ， zhèn zhōng wèi yú běi wěi 2 8 . 5 1 dù ， dōng jīng 1 0 4 . 6 7 dù 。   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "8월 7일 쓰촨 이빈 가오현에서 규모 4.9의 지진이 발생했다.",
-      "keyPoints": [
-        "8월 7일 쓰촨 이빈 가오현에서 규모 4.9의 지진이 발생했다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E5%9B%9B%E5%B7%9D%E5%AE%9C%E5%AE%BE%E5%B8%82%E9%AB%98%E5%8E%BF%E5%8F%91%E7%94%9F4.9%E7%BA%A7%E5%9C%B0%E9%9C%87&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "发生",
-        "pinyin": "fā shēng",
-        "meaning": "발생하다",
-        "example": "当地发生了地震，相关部门正在核实情况。",
-        "examplePinyin": "dāng dì fā shēng le dì zhèn ， xiāng guān bù mén zhèng zài hé shí qíng kuàng 。",
-        "exampleMeaning": "현지에서 지진이 발생해 관련 부서가 상황을 확인 중이다."
-      },
-      "expressions": [
-        {
-          "chinese": "发生",
-          "pinyin": "fā shēng",
-          "meaning": "발생하다",
-          "example": "当地发生了地震，相关部门正在核实情况。",
-          "examplePinyin": "dāng dì fā shēng le dì zhèn ， xiāng guān bù mén zhèng zài hé shí qíng kuàng 。",
-          "exampleMeaning": "현지에서 지진이 발생해 관련 부서가 상황을 확인 중이다."
-        },
-        {
-          "chinese": "4.9级地震",
-          "pinyin": "4 . 9 jí dì zhèn",
-          "meaning": "규모 4.9의 지진",
-          "example": "今天傍晚附近地区记录到了一次4.9级地震。",
-          "examplePinyin": "jīn tiān bàng wǎn fù jìn dì qū jì lù dào le yī cì 4 . 9 jí dì zhèn 。",
-          "exampleMeaning": "오늘 저녁 인근 지역에서 규모 4.9의 지진이 기록되었다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "四川",
-          "pinyin": "sì chuān",
-          "meaning": "쓰촨성(지명)"
-        },
-        {
-          "chinese": "宜宾市",
-          "pinyin": "yí bīn shì",
-          "meaning": "이빈시(지명)"
-        },
-        {
-          "chinese": "高县",
-          "pinyin": "gāo xiàn",
-          "meaning": "가오현(행정구역)"
-        },
-        {
-          "chinese": "发生",
-          "pinyin": "fā shēng",
-          "meaning": "발생하다"
-        },
-        {
-          "chinese": "4.9级地震",
-          "pinyin": "4 . 9 jí dì zhèn",
-          "meaning": "규모 4.9의 지진"
-        }
-      ]
-    },
-    {
-      "rank": 7,
-      "chinese": "为何年轻人不愿学医了",
-      "pinyin": "wèi hé nián qīng rén bù yuàn xué yī le",
-      "translation": "왜 젊은이들은 의학을 배우려 하지 않을까",
-      "summary": "기사는 젊은층이 의학을 기피하는 이유를 여러 측면에서 설명합니다. 임상 의학은 교육 및 수련에 총 11년이 필요해 35세 이전의 수입이 낮은 반면, 수의학 등은 4~5년 만에 독립 개업이 가능하고 수입이 더 높을 수 있다고 지적합니다. 또한 직업적 위험과 심리적 부담이 커지고 복잡한 의사-환자 관계가 문제로 언급됩니다. 이러한 요인들이 젊은이들의 진로 선택에 영향을 미치고 있다는 내용입니다.",
-      "detailChinese": "为何年轻人不愿学医了？临床医学培养共11年，35岁前收入微薄，而动物医学等仅需4-5年即可独立执业且收入更高；职业风险与心理压力剧增，复杂医患关系、... 查看更多",
-      "detailPinyin": "wèi hé nián qīng rén bù yuàn xué yī le ？ lín chuáng yī xué péi yǎng gòng 1 1 nián ， 3 5 suì qián shōu rù wēi bó ， ér dòng wù yī xué děng jǐn xū 4 - 5 nián jí kě dú lì zhí yè qiě shōu rù gèng gāo ； zhí yè fēng xiǎn yǔ xīn lǐ yā lì jù zēng ， fù zá yī huàn guān xì 、 . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "긴 교육 기간과 낮은 초기 수입, 높은 직업적 위험 등이 의학 기피의 주요 원인이다.",
-      "keyPoints": [
-        "긴 교육 기간과 낮은 초기 수입, 높은 직업적 위험 등이 의학 기피의 주요 원인이다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E4%B8%BA%E4%BD%95%E5%B9%B4%E8%BD%BB%E4%BA%BA%E4%B8%8D%E6%84%BF%E5%AD%A6%E5%8C%BB%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "不愿",
-        "pinyin": "bù yuàn",
-        "meaning": "원하지 않다, 꺼리다",
-        "example": "越来越多的年轻人表示不愿从事高强度的医疗工作。",
-        "examplePinyin": "yuè lái yuè duō de nián qīng rén biǎo shì bù yuàn cóng shì gāo qiáng dù de yī liáo gōng zuò 。",
-        "exampleMeaning": "점점 더 많은 젊은이들이 고강도 의료 업무를 원하지 않는다고 말한다."
-      },
-      "expressions": [
-        {
-          "chinese": "不愿",
-          "pinyin": "bù yuàn",
-          "meaning": "원하지 않다, 꺼리다",
-          "example": "越来越多的年轻人表示不愿从事高强度的医疗工作。",
-          "examplePinyin": "yuè lái yuè duō de nián qīng rén biǎo shì bù yuàn cóng shì gāo qiáng dù de yī liáo gōng zuò 。",
-          "exampleMeaning": "점점 더 많은 젊은이들이 고강도 의료 업무를 원하지 않는다고 말한다."
-        },
-        {
-          "chinese": "学医",
-          "pinyin": "xué yī",
-          "meaning": "의학을 공부하다",
-          "example": "因工作压力大，他开始犹豫是否还要继续学医。",
-          "examplePinyin": "yīn gōng zuò yā lì dà ， tā kāi shǐ yóu yù shì fǒu hái yào jì xù xué yī 。",
-          "exampleMeaning": "업무 스트레스가 커져 그는 계속 의학을 공부할지 망설이기 시작했다."
-        }
-      ],
-      "words": [
-        {
-          "chinese": "为何",
-          "pinyin": "wèi hé",
-          "meaning": "왜"
-        },
-        {
-          "chinese": "年轻人",
-          "pinyin": "nián qīng rén",
-          "meaning": "젊은이들"
-        },
-        {
-          "chinese": "不愿",
-          "pinyin": "bù yuàn",
-          "meaning": "원하지 않다"
-        },
-        {
-          "chinese": "学医",
-          "pinyin": "xué yī",
-          "meaning": "의학을 배우다"
-        },
-        {
-          "chinese": "临床医学",
-          "pinyin": "lín chuáng yī xué",
-          "meaning": "임상의학"
-        },
-        {
-          "chinese": "收入",
-          "pinyin": "shōu rù",
-          "meaning": "수입"
-        }
-      ]
-    },
-    {
-      "rank": 8,
-      "chinese": "台风白海豚体型变大近似13个浙江面积",
-      "pinyin": "tái fēng bái hǎi tún tǐ xíng biàn dà jìn sì 1 3 gè zhè jiāng miàn jī",
-      "translation": "태풍 '백해룡'의 규모가 커져 저장성 13배에 근접",
-      "summary": "기상 분석가는 8월 7일 아침 구름 위성 사진을 통해 '백해룡'의 구조가 비교적 완전하며 눈(eye) 지역이 비교적 선명하다고 설명했습니다. 건조하고 찬 공기가 유입되면서 서쪽의 순환이 약해졌고, 눈 지역 주변에 큰 공허 구역이 나타났다고 전합니다. 이러한 기상 변화가 태풍의 구조에 영향을 주고 있다는 내용이 포함되어 있습니다. 기사에는 사진과 함께 상세한 기상 분석이 제공된다고 합니다.",
-      "detailChinese": "中国天气网气象分析师沈雨旸介绍，8月7日早晨，从云图上看，“白海豚”结构完整，眼区仍比较清晰，由于有干冷空气卷入，西侧环流减弱，眼区附近出现大片空心... 查看更多",
-      "detailPinyin": "zhōng guó tiān qì wǎng qì xiàng fēn xī shī shěn yǔ yáng jiè shào ， 8 yuè 7 rì zǎo chén ， cóng yún tú shàng kàn ， “ bái hǎi tún ” jié gòu wán zhěng ， yǎn qū réng bǐ jiào qīng xī ， yóu yú yǒu gān lěng kōng qì juǎn rù ， xī cè huán liú jiǎn ruò ， yǎn qū fù jìn chū xiàn dà piàn kōng xīn . . .   chá kàn gèng duō",
-      "sourceExcerpt": "",
-      "keyPoint": "태풍의 구조가 비교적 완전하고 눈 지역이 선명하나 서쪽 순환이 약해졌다.",
-      "keyPoints": [
-        "태풍의 구조가 비교적 완전하고 눈 지역이 선명하나 서쪽 순환이 약해졌다."
-      ],
-      "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E9%A3%8E%E7%99%BD%E6%B5%B7%E8%B1%9A%E4%BD%93%E5%9E%8B%E5%8F%98%E5%A4%A7%E8%BF%91%E4%BC%BC13%E4%B8%AA%E6%B5%99%E6%B1%9F%E9%9D%A2%E7%A7%AF&sa=fyb_news&rsv_dl=fyb_news",
-      "expression": {
-        "chinese": "白海豚",
-        "pinyin": "bái hǎi tún",
-        "meaning": "태풍 이름(백해룡 등 태풍 고유명사)",
-        "example": "台风白海豚目前正在海面上增强，相关部门密切监视其动向。",
-        "examplePinyin": "tái fēng bái hǎi tún mù qián zhèng zài hǎi miàn shàng zēng qiáng ， xiāng guān bù mén mì qiè jiān shì qí dòng xiàng 。",
-        "exampleMeaning": "태풍 '백해룡'이 현재 해상에서 세력을 키우고 있어 관련 부처가 그 움직임을 면밀히 주시하고 있다."
-      },
-      "expressions": [
-        {
-          "chinese": "白海豚",
-          "pinyin": "bái hǎi tún",
-          "meaning": "태풍 이름(백해룡 등 태풍 고유명사)",
-          "example": "台风白海豚目前正在海面上增强，相关部门密切监视其动向。",
-          "examplePinyin": "tái fēng bái hǎi tún mù qián zhèng zài hǎi miàn shàng zēng qiáng ， xiāng guān bù mén mì qiè jiān shì qí dòng xiàng 。",
-          "exampleMeaning": "태풍 '백해룡'이 현재 해상에서 세력을 키우고 있어 관련 부처가 그 움직임을 면밀히 주시하고 있다."
-        },
-        {
-          "chinese": "体型变大",
-          "pinyin": "tǐ xíng biàn dà",
-          "meaning": "규모가 커지다",
-          "example": "随着海温升高，台风体型变大，影响范围也随之扩大。",
-          "examplePinyin": "suí zhe hǎi wēn shēng gāo ， tái fēng tǐ xíng biàn dà ， yǐng xiǎng fàn wéi yě suí zhī kuò dà 。",
-          "exampleMeaning": "해수면 온도가 오르면서 태풍의 규모가 커지고 영향 범위도 함께 확대되었다."
+          "chinese": "登陆",
+          "pinyin": "dēng lù",
+          "meaning": "상륙하다",
+          "example": "强台风将在今晚在沿海地区登陆。",
+          "examplePinyin": "qiáng tái fēng jiāng zài jīn wǎn zài yán hǎi dì qū dēng lù 。",
+          "exampleMeaning": "강한 태풍이 오늘 밤 연안 지역에 상륙할 것이다."
         }
       ],
       "words": [
@@ -587,168 +232,701 @@
         {
           "chinese": "白海豚",
           "pinyin": "bái hǎi tún",
-          "meaning": "태풍 이름(기사 맥락의 고유명사)"
+          "meaning": "백돌고래(태풍 이름)"
         },
         {
-          "chinese": "体型",
-          "pinyin": "tǐ xíng",
-          "meaning": "체격, 규모"
+          "chinese": "浙江",
+          "pinyin": "zhè jiāng",
+          "meaning": "저장성"
         },
         {
-          "chinese": "变大",
-          "pinyin": "biàn dà",
-          "meaning": "커지다"
+          "chinese": "玉环",
+          "pinyin": "yù huán",
+          "meaning": "옥환(지명)"
         },
         {
-          "chinese": "眼区",
-          "pinyin": "yǎn qū",
-          "meaning": "태풍의 눈 지역"
+          "chinese": "沿海",
+          "pinyin": "yán hǎi",
+          "meaning": "연안"
+        },
+        {
+          "chinese": "登陆",
+          "pinyin": "dēng lù",
+          "meaning": "상륙"
+        },
+        {
+          "chinese": "风力",
+          "pinyin": "fēng lì",
+          "meaning": "풍력/바람의 세기"
+        },
+        {
+          "chinese": "降雨",
+          "pinyin": "jiàng yǔ",
+          "meaning": "강수"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "chinese": "上海迪士尼因台风变水上乐园",
+      "pinyin": "shàng hǎi dí shì ní yīn tái fēng biàn shuǐ shàng lè yuán",
+      "translation": "상하이 디즈니랜드, 태풍으로 물놀이 공원으로 변해",
+      "summary": "제13호 태풍 '백해표'의 외곽 순환이 상하이에 강풍과 폭우를 몰고 왔습니다. 상하이 디즈니랜드 내부에 큰 비가 내리면서 이용객들이 촬영한 장면이 사회관계망에 퍼졌습니다. 일부 네티즌은 동화성(성)을 순식간에 '물놀이 공원'으로 비유하며 웃음을 자아냈습니다.",
+      "detailChinese": "今年第13号台风“白海豚”外围环流给上海带来大风强降雨天气，上海迪士尼乐园园内大雨滂沱，网友戏称童话城堡秒变“水上乐园”，相关现场画面在社交平台传播... 查看更多",
+      "detailPinyin": "jīn nián dì 1 3 hào tái fēng “ bái hǎi tún ” wài wéi huán liú gěi shàng hǎi dài lái dà fēng qiáng jiàng yǔ tiān qì ， shàng hǎi dí shì ní lè yuán yuán nèi dà yǔ pāng tuó ， wǎng yǒu xì chēng tóng huà chéng bǎo miǎo biàn “ shuǐ shàng lè yuán ” ， xiāng guān xiàn chǎng huà miàn zài shè jiāo píng tái chuán bō . . .   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "태풍의 영향으로 상하이 디즈니랜드에 폭우가 내려 현장이 '물놀이 공원'으로 불렸다",
+      "keyPoints": [
+        "태풍의 영향으로 상하이 디즈니랜드에 폭우가 내려 현장이 '물놀이 공원'으로 불렸다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E4%B8%8A%E6%B5%B7%E8%BF%AA%E5%A3%AB%E5%B0%BC%E5%9B%A0%E5%8F%B0%E9%A3%8E%E5%8F%98%E6%B0%B4%E4%B8%8A%E4%B9%90%E5%9B%AD&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "水上乐园",
+        "pinyin": "shuǐ shàng lè yuán",
+        "meaning": "워터파크",
+        "example": "大雨让公园一时间变成了水上乐园。",
+        "examplePinyin": "dà yǔ ràng gōng yuán yī shí jiān biàn chéng le shuǐ shàng lè yuán 。",
+        "exampleMeaning": "폭우로 공원이 한순간 워터파크가 되었다."
+      },
+      "expressions": [
+        {
+          "chinese": "水上乐园",
+          "pinyin": "shuǐ shàng lè yuán",
+          "meaning": "워터파크",
+          "example": "大雨让公园一时间变成了水上乐园。",
+          "examplePinyin": "dà yǔ ràng gōng yuán yī shí jiān biàn chéng le shuǐ shàng lè yuán 。",
+          "exampleMeaning": "폭우로 공원이 한순간 워터파크가 되었다."
+        },
+        {
+          "chinese": "网友戏称",
+          "pinyin": "wǎng yǒu xì chēng",
+          "meaning": "네티즌들이 농담 삼아 부르다",
+          "example": "网友戏称这个桥像一幅画。",
+          "examplePinyin": "wǎng yǒu xì chēng zhè ge qiáo xiàng yī fú huà 。",
+          "exampleMeaning": "네티즌들은 이 다리를 그림 같다고 농담 삼아 말했다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "上海迪士尼",
+          "pinyin": "shàng hǎi dí shì ní",
+          "meaning": "상하이 디즈니랜드"
+        },
+        {
+          "chinese": "台风",
+          "pinyin": "tái fēng",
+          "meaning": "태풍"
+        },
+        {
+          "chinese": "外围环流",
+          "pinyin": "wài wéi huán liú",
+          "meaning": "외곽 순환"
+        },
+        {
+          "chinese": "大风强降雨",
+          "pinyin": "dà fēng qiáng jiàng yǔ",
+          "meaning": "강풍과 강한 강수"
+        },
+        {
+          "chinese": "童话城堡",
+          "pinyin": "tóng huà chéng bǎo",
+          "meaning": "동화 속 성"
+        },
+        {
+          "chinese": "水上乐园",
+          "pinyin": "shuǐ shàng lè yuán",
+          "meaning": "워터파크"
+        },
+        {
+          "chinese": "社交平台",
+          "pinyin": "shè jiāo píng tái",
+          "meaning": "소셜 플랫폼"
+        },
+        {
+          "chinese": "传播",
+          "pinyin": "chuán bō",
+          "meaning": "전파되다/퍼지다"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "chinese": "如何看待当前物价运行态势",
+      "pinyin": "rú hé kàn dài dāng qián wù jià yùn xíng tài shì",
+      "translation": "현재 물가 흐름을 어떻게 봐야 하나",
+      "summary": "국가통계국은 9일 최신 물가 데이터를 발표했습니다. 전문가들은 중국 경제의 회복력이 강하고 민생 관련 상품의 공급이 충분하다고 평가했습니다. 또한 기존 정책과 추가 정책의 효과를 충분히 발휘하고 역(逆)주기적 조치를 강화할 필요가 있다고 제언했습니다.",
+      "detailChinese": "国家统计局9日发布最新物价数据，如何看待当前物价运行态势？专家表示：我国经济韧性强，民生商品供给充足，在充分发挥各项存量和增量政策效能、加大逆周期调... 查看更多",
+      "detailPinyin": "guó jiā tǒng jì jú 9 rì fā bù zuì xīn wù jià shù jù ， rú hé kàn dài dāng qián wù jià yùn xíng tài shì ？ zhuān jiā biǎo shì ： wǒ guó jīng jì rèn xìng qiáng ， mín shēng shāng pǐn gōng jǐ chōng zú ， zài chōng fèn fā huī gè xiàng cún liàng hé zēng liàng zhèng cè xiào néng 、 jiā dà nì zhōu qī diào . . .   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "전문가들은 경제 회복력이 강하고 민생물자 공급이 충분하다고 평가하며 정책 효과를 강조했다",
+      "keyPoints": [
+        "전문가들은 경제 회복력이 강하고 민생물자 공급이 충분하다고 평가하며 정책 효과를 강조했다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E5%A6%82%E4%BD%95%E7%9C%8B%E5%BE%85%E5%BD%93%E5%89%8D%E7%89%A9%E4%BB%B7%E8%BF%90%E8%A1%8C%E6%80%81%E5%8A%BF&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "物价运行态势",
+        "pinyin": "wù jià yùn xíng tài shì",
+        "meaning": "물가 흐름/운행 태세",
+        "example": "我们需要密切关注未来几个月的物价运行态势。",
+        "examplePinyin": "wǒ men xū yào mì qiè guān zhù wèi lái jǐ gè yuè de wù jià yùn xíng tài shì 。",
+        "exampleMeaning": "우리는 향후 몇 개월간의 물가 흐름을 면밀히 주시할 필요가 있다."
+      },
+      "expressions": [
+        {
+          "chinese": "物价运行态势",
+          "pinyin": "wù jià yùn xíng tài shì",
+          "meaning": "물가 흐름/운행 태세",
+          "example": "我们需要密切关注未来几个月的物价运行态势。",
+          "examplePinyin": "wǒ men xū yào mì qiè guān zhù wèi lái jǐ gè yuè de wù jià yùn xíng tài shì 。",
+          "exampleMeaning": "우리는 향후 몇 개월간의 물가 흐름을 면밀히 주시할 필요가 있다."
+        },
+        {
+          "chinese": "逆周期",
+          "pinyin": "nì zhōu qī",
+          "meaning": "역주기적(경기 순환에 반대되는)",
+          "example": "在经济下行时应加大逆周期调节力度。",
+          "examplePinyin": "zài jīng jì xià xíng shí yīng jiā dà nì zhōu qī tiáo jié lì dù 。",
+          "exampleMeaning": "경기 하강 시에는 역주기적 조정의 강도를 높여야 한다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "国家统计局",
+          "pinyin": "guó jiā tǒng jì jú",
+          "meaning": "국가통계국"
+        },
+        {
+          "chinese": "物价",
+          "pinyin": "wù jià",
+          "meaning": "물가"
+        },
+        {
+          "chinese": "经济韧性",
+          "pinyin": "jīng jì rèn xìng",
+          "meaning": "경제 회복력"
+        },
+        {
+          "chinese": "民生商品",
+          "pinyin": "mín shēng shāng pǐn",
+          "meaning": "민생 관련 상품"
+        },
+        {
+          "chinese": "供给",
+          "pinyin": "gōng jǐ",
+          "meaning": "공급"
+        },
+        {
+          "chinese": "政策",
+          "pinyin": "zhèng cè",
+          "meaning": "정책"
+        },
+        {
+          "chinese": "存量",
+          "pinyin": "cún liàng",
+          "meaning": "기존 재원/저장량"
+        },
+        {
+          "chinese": "增量",
+          "pinyin": "zēng liàng",
+          "meaning": "증가분/증가량"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "chinese": "“开学三件套”全线暴涨",
+      "pinyin": "“ kāi xué sān jiàn tào ” quán xiàn bào zhǎng",
+      "translation": "새학기 '세 가지 필수품' 가격 전반 급등",
+      "summary": "글로벌 반도체와 저장 요소 공급이 계속해서 긴축되면서 이번 여름 노트북, 휴대폰, 태블릿 등 '예비 대학생' 필수 디지털 제품의 가격이 전반적으로 상승했습니다. 일부 업계 관계자는 한 대의 컴퓨터 가격 상승분이 한 대의 휴대폰 값에 맞먹는다고 언급했습니다. 이는 공급 문제와 연결된 가격 변동을 반영합니다.",
+      "detailChinese": "受全球芯片及存储元件供应持续偏紧影响，今年暑期笔记本电脑、手机、平板等“准大学生”标配数码产品价格普遍上涨。有老板称一台电脑涨出一部手机的钱。 查看更多",
+      "detailPinyin": "shòu quán qiú xīn piàn jí cún chǔ yuán jiàn gōng yìng chí xù piān jǐn yǐng xiǎng ， jīn nián shǔ qī bǐ jì běn diàn nǎo 、 shǒu jī 、 píng bǎn děng “ zhǔn dà xué shēng ” biāo pèi shù mǎ chǎn pǐn jià gé pǔ biàn shàng zhǎng 。 yǒu lǎo bǎn chēng yī tái diàn nǎo zhàng chū yī bù shǒu jī de qián 。   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "칩과 저장 부품 공급 부족으로 새학기 전자기기 가격이 전반적으로 급등했다",
+      "keyPoints": [
+        "칩과 저장 부품 공급 부족으로 새학기 전자기기 가격이 전반적으로 급등했다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E5%BC%80%E5%AD%A6%E4%B8%89%E4%BB%B6%E5%A5%97%E2%80%9D%E5%85%A8%E7%BA%BF%E6%9A%B4%E6%B6%A8&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "开学三件套",
+        "pinyin": "kāi xué sān jiàn tào",
+        "meaning": "새학기 필수 세 가지(전자기기 등)",
+        "example": "很多家长为孩子准备开学三件套。",
+        "examplePinyin": "hěn duō jiā zhǎng wèi hái zi zhǔn bèi kāi xué sān jiàn tào 。",
+        "exampleMeaning": "많은 학부모가 자녀를 위해 새학기 필수품 세 가지를 준비한다."
+      },
+      "expressions": [
+        {
+          "chinese": "开学三件套",
+          "pinyin": "kāi xué sān jiàn tào",
+          "meaning": "새학기 필수 세 가지(전자기기 등)",
+          "example": "很多家长为孩子准备开学三件套。",
+          "examplePinyin": "hěn duō jiā zhǎng wèi hái zi zhǔn bèi kāi xué sān jiàn tào 。",
+          "exampleMeaning": "많은 학부모가 자녀를 위해 새학기 필수품 세 가지를 준비한다."
+        },
+        {
+          "chinese": "全线暴涨",
+          "pinyin": "quán xiàn bào zhǎng",
+          "meaning": "전반적으로 급등하다",
+          "example": "受供给影响，这些商品在假期期间全线暴涨。",
+          "examplePinyin": "shòu gōng jǐ yǐng xiǎng ， zhè xiē shāng pǐn zài jià qī qī jiān quán xiàn bào zhǎng 。",
+          "exampleMeaning": "공급 영향으로 이들 상품은 휴가 기간 동안 전반적으로 급등했다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "芯片",
+          "pinyin": "xīn piàn",
+          "meaning": "칩(반도체)"
+        },
+        {
+          "chinese": "存储元件",
+          "pinyin": "cún chǔ yuán jiàn",
+          "meaning": "저장 부품"
+        },
+        {
+          "chinese": "电脑",
+          "pinyin": "diàn nǎo",
+          "meaning": "컴퓨터"
+        },
+        {
+          "chinese": "手机",
+          "pinyin": "shǒu jī",
+          "meaning": "휴대폰"
+        },
+        {
+          "chinese": "平板",
+          "pinyin": "píng bǎn",
+          "meaning": "태블릿"
+        },
+        {
+          "chinese": "暑期",
+          "pinyin": "shǔ qī",
+          "meaning": "여름철"
+        },
+        {
+          "chinese": "标配",
+          "pinyin": "biāo pèi",
+          "meaning": "기본 사양/표준 장비"
+        },
+        {
+          "chinese": "价格上涨",
+          "pinyin": "jià gé shàng zhǎng",
+          "meaning": "가격 상승"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "chinese": "独闯南太行的失联女生最后轨迹已确认",
+      "pinyin": "dú chuǎng nán tài xíng de shī lián nǚ shēng zuì hòu guǐ jì yǐ què rèn",
+      "translation": "남타이항에 홀로 들어갔던 실종 여성의 마지막 궤적 확인",
+      "summary": "22세의 여성인 정(성은 보도에 일부만 표기됨)이 남타이항 지역에서 홀로 움직이다가 13일째 연락이 끊긴 상태였습니다. 현재 관련 부서는 '두 걸음'이라는 이동 궤적 기록 앱에서 그녀의 마지막 위치 기록을 확보했습니다. 확보된 기록은 그녀가 남타이항 지역에 있었음을 확인해 줍니다.",
+      "detailChinese": "独行南太行的22岁女生程某圆在南太行已失联13天，目前相关部门已经获取程某圆在“两步路”（一款能记录行动轨迹的户外助手APP）内的最后轨迹，确认在南... 查看更多",
+      "detailPinyin": "dú xíng nán tài xíng de 2 2 suì nǚ shēng chéng mǒu yuán zài nán tài xíng yǐ shī lián 1 3 tiān ， mù qián xiāng guān bù mén yǐ jīng huò qǔ chéng mǒu yuán zài “ liǎng bù lù ” （ yī kuǎn néng jì lù xíng dòng guǐ jì de hù wài zhù shǒu A P P ） nèi de zuì hòu guǐ jì ， què rèn zài nán . . .   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "관계 당국이 이동 기록 앱에서 해당 실종 여성의 마지막 궤적을 확인했다",
+      "keyPoints": [
+        "관계 당국이 이동 기록 앱에서 해당 실종 여성의 마지막 궤적을 확인했다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E7%8B%AC%E9%97%AF%E5%8D%97%E5%A4%AA%E8%A1%8C%E7%9A%84%E5%A4%B1%E8%81%94%E5%A5%B3%E7%94%9F%E6%9C%80%E5%90%8E%E8%BD%A8%E8%BF%B9%E5%B7%B2%E7%A1%AE%E8%AE%A4&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "失联",
+        "pinyin": "shī lián",
+        "meaning": "연락이 끊기다/실종되다",
+        "example": "那几天他突然失联，大家都很着急。",
+        "examplePinyin": "nà jǐ tiān tā tū rán shī lián ， dà jiā dōu hěn zháo jí 。",
+        "exampleMeaning": "그 며칠 동안 그가 갑자기 연락이 끊겨서 모두가 매우 초조했다."
+      },
+      "expressions": [
+        {
+          "chinese": "失联",
+          "pinyin": "shī lián",
+          "meaning": "연락이 끊기다/실종되다",
+          "example": "那几天他突然失联，大家都很着急。",
+          "examplePinyin": "nà jǐ tiān tā tū rán shī lián ， dà jiā dōu hěn zháo jí 。",
+          "exampleMeaning": "그 며칠 동안 그가 갑자기 연락이 끊겨서 모두가 매우 초조했다."
+        },
+        {
+          "chinese": "最后轨迹",
+          "pinyin": "zuì hòu guǐ jì",
+          "meaning": "마지막 궤적/마지막 위치 기록",
+          "example": "警方正在确认失踪者的最后轨迹以便搜救。",
+          "examplePinyin": "jǐng fāng zhèng zài què rèn shī zōng zhě de zuì hòu guǐ jì yǐ biàn sōu jiù 。",
+          "exampleMeaning": "경찰은 수색을 위해 실종자의 마지막 궤적을 확인하고 있다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "独闯",
+          "pinyin": "dú chuǎng",
+          "meaning": "혼자 들어가다"
+        },
+        {
+          "chinese": "南太行",
+          "pinyin": "nán tài xíng",
+          "meaning": "남타이항(지명)"
+        },
+        {
+          "chinese": "失联",
+          "pinyin": "shī lián",
+          "meaning": "연락 두절/실종"
+        },
+        {
+          "chinese": "女生",
+          "pinyin": "nǚ shēng",
+          "meaning": "여성"
+        },
+        {
+          "chinese": "两步路",
+          "pinyin": "liǎng bù lù",
+          "meaning": "두 걸음(앱 이름)"
+        },
+        {
+          "chinese": "轨迹",
+          "pinyin": "guǐ jì",
+          "meaning": "궤적/이동 경로"
+        },
+        {
+          "chinese": "相关部门",
+          "pinyin": "xiāng guān bù mén",
+          "meaning": "관련 부서"
+        },
+        {
+          "chinese": "确认",
+          "pinyin": "què rèn",
+          "meaning": "확인하다"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "chinese": "伊朗最高领袖与总统会谈",
+      "pinyin": "yī lǎng zuì gāo lǐng xiù yǔ zǒng tǒng huì tán",
+      "translation": "이란 최고지도자와 대통령 회담",
+      "summary": "타스님 통신은 8월 9일 보도에서 이란 대통령과 최고지도자 겸 군 통수권자가 회담을 가졌다고 전했습니다. 양측은 이란의 현재 경제 상황과 군사 문제 등에 대해 의견을 교환했습니다. 회담은 관련 현안에 대한 양측의 입장을 조율하는 자리였습니다.",
+      "detailChinese": "据伊朗塔斯尼姆通讯社8月9日报道，伊朗总统佩泽希齐扬与伊朗最高领袖、武装力量最高统帅穆杰塔巴·哈梅内伊举行会谈。双方就伊朗当前经济和军事等问题交换意... 查看更多",
+      "detailPinyin": "jù yī lǎng tǎ sī ní mǔ tōng xùn shè 8 yuè 9 rì bào dào ， yī lǎng zǒng tǒng pèi zé xī qí yáng yǔ yī lǎng zuì gāo lǐng xiù 、 wǔ zhuāng lì liàng zuì gāo tǒng shuài mù jié tǎ bā · hā méi nèi yī jǔ xíng huì tán 。 shuāng fāng jiù yī lǎng dāng qián jīng jì hé jūn shì děng wèn tí jiāo huàn yì . . .   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "이란의 최고지도자와 대통령이 경제 및 군사 문제를 놓고 회담을 가졌다",
+      "keyPoints": [
+        "이란의 최고지도자와 대통령이 경제 및 군사 문제를 놓고 회담을 가졌다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E4%BC%8A%E6%9C%97%E6%9C%80%E9%AB%98%E9%A2%86%E8%A2%96%E4%B8%8E%E6%80%BB%E7%BB%9F%E4%BC%9A%E8%B0%88&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "最高领袖",
+        "pinyin": "zuì gāo lǐng xiù",
+        "meaning": "최고지도자",
+        "example": "最高领袖发表了重要讲话。",
+        "examplePinyin": "zuì gāo lǐng xiù fā biǎo le zhòng yào jiǎng huà 。",
+        "exampleMeaning": "최고지도자가 중요한 연설을 했다."
+      },
+      "expressions": [
+        {
+          "chinese": "最高领袖",
+          "pinyin": "zuì gāo lǐng xiù",
+          "meaning": "최고지도자",
+          "example": "最高领袖发表了重要讲话。",
+          "examplePinyin": "zuì gāo lǐng xiù fā biǎo le zhòng yào jiǎng huà 。",
+          "exampleMeaning": "최고지도자가 중요한 연설을 했다."
+        },
+        {
+          "chinese": "会谈",
+          "pinyin": "huì tán",
+          "meaning": "회담/대화",
+          "example": "双方举行了为期几小时的会谈来讨论合作问题。",
+          "examplePinyin": "shuāng fāng jǔ xíng le wéi qī jǐ xiǎo shí de huì tán lái tǎo lùn hé zuò wèn tí 。",
+          "exampleMeaning": "양측은 협력 문제를 논의하기 위해 몇 시간 동안 회담을 열었다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "伊朗",
+          "pinyin": "yī lǎng",
+          "meaning": "이란"
+        },
+        {
+          "chinese": "最高领袖",
+          "pinyin": "zuì gāo lǐng xiù",
+          "meaning": "최고지도자"
+        },
+        {
+          "chinese": "总统",
+          "pinyin": "zǒng tǒng",
+          "meaning": "대통령"
+        },
+        {
+          "chinese": "会谈",
+          "pinyin": "huì tán",
+          "meaning": "회담"
+        },
+        {
+          "chinese": "经济",
+          "pinyin": "jīng jì",
+          "meaning": "경제"
+        },
+        {
+          "chinese": "军事",
+          "pinyin": "jūn shì",
+          "meaning": "군사"
+        },
+        {
+          "chinese": "塔斯尼姆通讯社",
+          "pinyin": "tǎ sī ní mǔ tōng xùn shè",
+          "meaning": "타스님 통신사"
+        },
+        {
+          "chinese": "交换意见",
+          "pinyin": "jiāo huàn yì jiàn",
+          "meaning": "의견을 교환하다"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "chinese": "白海豚已减弱为强热带风暴",
+      "pinyin": "bái hǎi tún yǐ jiǎn ruò wèi qiáng rè dài fēng bào",
+      "translation": "백돌고래(태풍)가 강한 열대폭풍으로 약화",
+      "summary": "중앙기상대는 '백해표(白海豚)'가 강한 열대폭풍으로 약화되었다고 발표했습니다. 8월 9일 22시 기준으로 태풍의 중심은 저장성 원저우시 문성현 부근에 위치해 있습니다. 보도는 또한 최대 풍력이 11급임을 전하고 있습니다.",
+      "detailChinese": "据中央气象台消息，“白海豚”已减弱为强热带风暴。8月9日22时，其中心位于浙江省温州市文成县境内（北纬27.6度、东经120.1度），最大风力11级... 查看更多",
+      "detailPinyin": "jù zhōng yāng qì xiàng tái xiāo xī ， “ bái hǎi tún ” yǐ jiǎn ruò wèi qiáng rè dài fēng bào 。 8 yuè 9 rì 2 2 shí ， qí zhōng xīn wèi yú zhè jiāng shěng wēn zhōu shì wén chéng xiàn jìng nèi （ běi wěi 2 7 . 6 dù 、 dōng jīng 1 2 0 . 1 dù ） ， zuì dà fēng lì 1 1 jí . . .   chá kàn gèng duō",
+      "sourceExcerpt": "",
+      "keyPoint": "백해표 태풍이 약화되어 강한 열대폭풍으로 관측되었고 중심 위치와 풍력이 보고됐다",
+      "keyPoints": [
+        "백해표 태풍이 약화되어 강한 열대폭풍으로 관측되었고 중심 위치와 풍력이 보고됐다"
+      ],
+      "url": "https://www.baidu.com/s?wd=%E7%99%BD%E6%B5%B7%E8%B1%9A%E5%B7%B2%E5%87%8F%E5%BC%B1%E4%B8%BA%E5%BC%BA%E7%83%AD%E5%B8%A6%E9%A3%8E%E6%9A%B4&sa=fyb_news&rsv_dl=fyb_news",
+      "expression": {
+        "chinese": "已减弱为",
+        "pinyin": "yǐ jiǎn ruò wèi",
+        "meaning": "이미 ~로 약화되었다",
+        "example": "台风已减弱为热带低压，不再像之前那么强烈。",
+        "examplePinyin": "tái fēng yǐ jiǎn ruò wèi rè dài dī yā ， bù zài xiàng zhī qián nà me qiáng liè 。",
+        "exampleMeaning": "태풍은 이미 열대저기압으로 약화되어 이전만큼 강하지 않다."
+      },
+      "expressions": [
+        {
+          "chinese": "已减弱为",
+          "pinyin": "yǐ jiǎn ruò wèi",
+          "meaning": "이미 ~로 약화되었다",
+          "example": "台风已减弱为热带低压，不再像之前那么强烈。",
+          "examplePinyin": "tái fēng yǐ jiǎn ruò wèi rè dài dī yā ， bù zài xiàng zhī qián nà me qiáng liè 。",
+          "exampleMeaning": "태풍은 이미 열대저기압으로 약화되어 이전만큼 강하지 않다."
+        },
+        {
+          "chinese": "强热带风暴",
+          "pinyin": "qiáng rè dài fēng bào",
+          "meaning": "강한 열대폭풍",
+          "example": "气象部门发布了强热带风暴的预警信息。",
+          "examplePinyin": "qì xiàng bù mén fā bù le qiáng rè dài fēng bào de yù jǐng xìn xī 。",
+          "exampleMeaning": "기상 당국은 강한 열대폭풍 경보를 발령했다."
+        }
+      ],
+      "words": [
+        {
+          "chinese": "白海豚",
+          "pinyin": "bái hǎi tún",
+          "meaning": "백돌고래(태풍 이름)"
+        },
+        {
+          "chinese": "已减弱",
+          "pinyin": "yǐ jiǎn ruò",
+          "meaning": "약화되었다"
+        },
+        {
+          "chinese": "强热带风暴",
+          "pinyin": "qiáng rè dài fēng bào",
+          "meaning": "강한 열대폭풍"
+        },
+        {
+          "chinese": "中心位于",
+          "pinyin": "zhōng xīn wèi yú",
+          "meaning": "중심이 위치하다"
+        },
+        {
+          "chinese": "温州市",
+          "pinyin": "wēn zhōu shì",
+          "meaning": "원저우시"
+        },
+        {
+          "chinese": "文成县",
+          "pinyin": "wén chéng xiàn",
+          "meaning": "문성현"
+        },
+        {
+          "chinese": "最大风力",
+          "pinyin": "zuì dà fēng lì",
+          "meaning": "최대 풍력"
+        },
+        {
+          "chinese": "中央气象台",
+          "pinyin": "zhōng yāng qì xiàng tái",
+          "meaning": "중앙기상대"
         }
       ]
     },
     {
       "rank": 9,
-      "chinese": "27岁女子成组织卖淫集团主犯被通缉",
-      "pinyin": "2 7 suì nǚ zǐ chéng zǔ zhī mài yín jí tuán zhǔ fàn bèi tōng jī",
-      "translation": "27세 여성, 조직적 성매매단 주모로 지명수배",
-      "summary": "8월 5일 후난성 이장현 공안국은 조직적 성매매 단체의 주범인 여성을 지명수배하며 현상금을 걸었습니다. 용의자 유징홍(여, 27세)을 검거하면 8만 위안의 보상을 준다고 공고했습니다. 그녀는 관리·통제 수단으로 여러 명을 조직해 매매를 했다는 혐의를 받고 있습니다. 당국은 관련 유효한 제보를 요청하고 있습니다.",
-      "detailChinese": "8月5日，湖南省宜章县公安局对组织卖淫集团主犯余井红（女，27岁）发布悬赏通告，提供有效线索抓获者可获8万元奖励。其涉嫌以管理控制手段组织多人卖淫，... 查看更多",
-      "detailPinyin": "8 yuè 5 rì ， hú nán shěng yí zhāng xiàn gōng ān jú duì zǔ zhī mài yín jí tuán zhǔ fàn yú jǐng hóng （ nǚ ， 2 7 suì ） fā bù xuán shǎng tōng gào ， tí gōng yǒu xiào xiàn suǒ zhuā huò zhě kě huò 8 wàn yuán jiǎng lì 。 qí shè xián yǐ guǎn lǐ kòng zhì shǒu duàn zǔ zhī duō rén mài yín ， . . .   chá kàn gèng duō",
+      "chinese": "穿8850元MiuMiu鞋脚被染黑 官方回应",
+      "pinyin": "chuān 8 8 5 0 yuán M i u M i u xié jiǎo bèi rǎn hēi   guān fāng huí yìng",
+      "translation": "8850위안 MiuMiu 신발 신으니 발이 검게 물들어, 공식 답변",
+      "summary": "8월 9일 한 네티즌이 8850위안 상당의 MiuMiu 검정 양가죽 발레리나 플랫 슈즈를 신은 뒤 발이 검게 물들었다는 영상을 올렸습니다. 특히 발바닥 부위의 착색이 뚜렷했습니다. MiuMiu 측은 해당 신발이 식물성 염료를 사용한 제품이라고 공식적으로 답변했습니다.",
+      "detailChinese": "8月9日，有网友发视频称穿着8850元MiuMiu黑色羊皮革芭蕾平底鞋后双脚被染黑，脚掌部位染色尤为明显。MiuMiu官方回应称，该鞋款采用植物染色... 查看更多",
+      "detailPinyin": "8 yuè 9 rì ， yǒu wǎng yǒu fā shì pín chēng chuān zhe 8 8 5 0 yuán M i u M i u hēi sè yáng pí gé bā lěi píng dǐ xié hòu shuāng jiǎo bèi rǎn hēi ， jiǎo zhǎng bù wèi rǎn sè yóu wèi míng xiǎn 。 M i u M i u guān fāng huí yìng chēng ， gāi xié kuǎn cǎi yòng zhí wù rǎn sè . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "27세 여성이 조직적 성매매 단체의 주범으로 지명수배됐다.",
+      "keyPoint": "구매한 MiuMiu 신발의 염색으로 발이 검게 물들자 브랜드는 식물성 염료 사용을 밝혔다",
       "keyPoints": [
-        "27세 여성이 조직적 성매매 단체의 주범으로 지명수배됐다."
+        "구매한 MiuMiu 신발의 염색으로 발이 검게 물들자 브랜드는 식물성 염료 사용을 밝혔다"
       ],
-      "url": "https://www.baidu.com/s?wd=27%E5%B2%81%E5%A5%B3%E5%AD%90%E6%88%90%E7%BB%84%E7%BB%87%E5%8D%96%E6%B7%AB%E9%9B%86%E5%9B%A2%E4%B8%BB%E7%8A%AF%E8%A2%AB%E9%80%9A%E7%BC%89&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E7%A9%BF8850%E5%85%83MiuMiu%E9%9E%8B%E8%84%9A%E8%A2%AB%E6%9F%93%E9%BB%91+%E5%AE%98%E6%96%B9%E5%9B%9E%E5%BA%94&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "主犯",
-        "pinyin": "zhǔ fàn",
-        "meaning": "주범, 범죄의 주요 책임자",
-        "example": "警方确认这起案件的主犯已经在逃，正在通缉中。",
-        "examplePinyin": "jǐng fāng què rèn zhè qǐ àn jiàn de zhǔ fàn yǐ jīng zài táo ， zhèng zài tōng jī zhōng 。",
-        "exampleMeaning": "경찰은 이 사건의 주범이 도주 중이며 지명수배 중이라고 확인했다."
+        "chinese": "染黑",
+        "pinyin": "rǎn hēi",
+        "meaning": "검게 물들다/염색되어 검게 되다",
+        "example": "新买的裤子第一次洗就染黑了其他衣服。",
+        "examplePinyin": "xīn mǎi de kù zi dì yī cì xǐ jiù rǎn hēi le qí tā yī fú 。",
+        "exampleMeaning": "새로 산 바지가 첫 세탁에서 다른 옷들을 검게 물들였다."
       },
       "expressions": [
         {
-          "chinese": "主犯",
-          "pinyin": "zhǔ fàn",
-          "meaning": "주범, 범죄의 주요 책임자",
-          "example": "警方确认这起案件的主犯已经在逃，正在通缉中。",
-          "examplePinyin": "jǐng fāng què rèn zhè qǐ àn jiàn de zhǔ fàn yǐ jīng zài táo ， zhèng zài tōng jī zhōng 。",
-          "exampleMeaning": "경찰은 이 사건의 주범이 도주 중이며 지명수배 중이라고 확인했다."
+          "chinese": "染黑",
+          "pinyin": "rǎn hēi",
+          "meaning": "검게 물들다/염색되어 검게 되다",
+          "example": "新买的裤子第一次洗就染黑了其他衣服。",
+          "examplePinyin": "xīn mǎi de kù zi dì yī cì xǐ jiù rǎn hēi le qí tā yī fú 。",
+          "exampleMeaning": "새로 산 바지가 첫 세탁에서 다른 옷들을 검게 물들였다."
         },
         {
-          "chinese": "被通缉",
-          "pinyin": "bèi tōng jī",
-          "meaning": "지명수배되다",
-          "example": "嫌疑人因涉嫌重大犯罪被通缉，全国范围内通报追捕。",
-          "examplePinyin": "xián yí rén yīn shè xián zhòng dà fàn zuì bèi tōng jī ， quán guó fàn wéi nèi tōng bào zhuī bǔ 。",
-          "exampleMeaning": "용의자는 중대한 범죄 혐의로 지명수배되어 전국적으로 추적 중이다."
+          "chinese": "官方回应",
+          "pinyin": "guān fāng huí yìng",
+          "meaning": "공식 입장/공식 답변",
+          "example": "对于产品质量问题，厂商已作出官方回应。",
+          "examplePinyin": "duì yú chǎn pǐn zhì liàng wèn tí ， chǎng shāng yǐ zuò chū guān fāng huí yìng 。",
+          "exampleMeaning": "제품 품질 문제에 대해 제조업체가 공식 입장을 밝혔다."
         }
       ],
       "words": [
         {
-          "chinese": "27岁",
-          "pinyin": "2 7 suì",
-          "meaning": "27세"
+          "chinese": "穿",
+          "pinyin": "chuān",
+          "meaning": "신다/입다"
         },
         {
-          "chinese": "女子",
-          "pinyin": "nǚ zǐ",
-          "meaning": "여성"
+          "chinese": "8850元",
+          "pinyin": "8 8 5 0 yuán",
+          "meaning": "8850위안(가격)"
         },
         {
-          "chinese": "组织",
-          "pinyin": "zǔ zhī",
-          "meaning": "조직하다; 조직"
+          "chinese": "MiuMiu",
+          "pinyin": "M i u M i u",
+          "meaning": "미우미우(브랜드)"
         },
         {
-          "chinese": "卖淫集团",
-          "pinyin": "mài yín jí tuán",
-          "meaning": "성매매 조직"
+          "chinese": "羊皮革",
+          "pinyin": "yáng pí gé",
+          "meaning": "양가죽"
         },
         {
-          "chinese": "主犯",
-          "pinyin": "zhǔ fàn",
-          "meaning": "주범"
+          "chinese": "芭蕾平底鞋",
+          "pinyin": "bā lěi píng dǐ xié",
+          "meaning": "발레리나 플랫 슈즈"
         },
         {
-          "chinese": "通缉",
-          "pinyin": "tōng jī",
-          "meaning": "지명수배"
+          "chinese": "双脚",
+          "pinyin": "shuāng jiǎo",
+          "meaning": "양발"
         },
         {
-          "chinese": "悬赏",
-          "pinyin": "xuán shǎng",
-          "meaning": "현상금"
+          "chinese": "染黑",
+          "pinyin": "rǎn hēi",
+          "meaning": "검게 물들다"
+        },
+        {
+          "chinese": "植物染色",
+          "pinyin": "zhí wù rǎn sè",
+          "meaning": "식물성 염료"
         }
       ]
     },
     {
       "rank": 10,
-      "chinese": "泰国校园枪击案死亡人数升至7人",
-      "pinyin": "tài guó xiào yuán qiāng jī àn sǐ wáng rén shù shēng zhì 7 rén",
-      "translation": "태국 교내 총격 사건 사망자 수 7명으로 증가",
-      "summary": "태국의 한 지역에서 오전에 학교 총격 사건이 발생했다고 보도되었습니다. 현지 재난감소 관련 기관의 발표를 인용해, 현재까지 총격범을 포함해 7명이 사망하고 15명이 부상했다고 전합니다. 이 중 2명은 중상이라는 보도도 있습니다. 보도에서는 사망자에 학생들이 일부 포함된 것으로 전해진다고 덧붙였습니다.",
-      "detailChinese": "泰国暖武里府7日上午发生校园枪击案，泰媒援引暖武里府防灾减灾办公室消息说，目前已造成包括枪手在内的7人死亡、15人受伤，其中2人重伤。死者还包括3名... 查看更多",
-      "detailPinyin": "tài guó nuǎn wǔ lǐ fǔ 7 rì shàng wǔ fā shēng xiào yuán qiāng jī àn ， tài méi yuán yǐn nuǎn wǔ lǐ fǔ fáng zāi jiǎn zāi bàn gōng shì xiāo xī shuō ， mù qián yǐ zào chéng bāo kuò qiāng shǒu zài nèi de 7 rén sǐ wáng 、 1 5 rén shòu shāng ， qí zhōng 2 rén zhòng shāng 。 sǐ zhě hái bāo kuò 3 míng . . .   chá kàn gèng duō",
+      "chinese": "今年第16号台风琵鹭生成",
+      "pinyin": "jīn nián dì 1 6 hào tái fēng pí lù shēng chéng",
+      "translation": "올해 16호 태풍 '피루' 발생",
+      "summary": "중앙기상대에 따르면 올해 16호 태풍 '피루'가 8월 9일 서북 태평양 해상에서 생성되었습니다. 14시 기준으로 태풍 중심은 괌 세이판 북서쪽에 위치해 있었습니다. 기상 당국은 해당 태풍의 발생 사실과 위치를 발표했습니다.",
+      "detailChinese": "据中央气象台消息，今年第16号台风“琵鹭”（热带风暴级；英文名称：PEILOU）已于8月9日在西北太平洋洋面上生成，14时其中心位于关岛塞班北偏西方... 查看更多",
+      "detailPinyin": "jù zhōng yāng qì xiàng tái xiāo xī ， jīn nián dì 1 6 hào tái fēng “ pí lù ” （ rè dài fēng bào jí ； yīng wén míng chēng ： P E I L O U ） yǐ yú 8 yuè 9 rì zài xī běi tài píng yáng yáng miàn shàng shēng chéng ， 1 4 shí qí zhōng xīn wèi yú guān dǎo sāi bān běi piān xī fāng . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "태국의 학교 총격으로 사망자 7명, 부상자 15명이 발생했다.",
+      "keyPoint": "제16호 태풍 '琵鹭'이 서북 태평양에서 생성되어 위치가 발표됐다",
       "keyPoints": [
-        "태국의 학교 총격으로 사망자 7명, 부상자 15명이 발생했다."
+        "제16호 태풍 '琵鹭'이 서북 태평양에서 생성되어 위치가 발표됐다"
       ],
-      "url": "https://www.baidu.com/s?wd=%E6%B3%B0%E5%9B%BD%E6%A0%A1%E5%9B%AD%E6%9E%AA%E5%87%BB%E6%A1%88%E6%AD%BB%E4%BA%A1%E4%BA%BA%E6%95%B0%E5%8D%87%E8%87%B37%E4%BA%BA&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E4%BB%8A%E5%B9%B4%E7%AC%AC16%E5%8F%B7%E5%8F%B0%E9%A3%8E%E7%90%B5%E9%B9%AD%E7%94%9F%E6%88%90&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "校园枪击案",
-        "pinyin": "xiào yuán qiāng jī àn",
-        "meaning": "학교 내 총격 사건",
-        "example": "发生校园枪击案后，当地学校立即进入应急状态。",
-        "examplePinyin": "fā shēng xiào yuán qiāng jī àn hòu ， dāng dì xué xiào lì jí jìn rù yìng jí zhuàng tài 。",
-        "exampleMeaning": "학교 총격 사건이 발생한 후 현지 학교들은 즉시 비상 체제로 전환했다."
+        "chinese": "第16号台风",
+        "pinyin": "dì 1 6 hào tái fēng",
+        "meaning": "16번째 태풍",
+        "example": "今年第16号台风可能影响沿海地区的天气。",
+        "examplePinyin": "jīn nián dì 1 6 hào tái fēng kě néng yǐng xiǎng yán hǎi dì qū de tiān qì 。",
+        "exampleMeaning": "올해 16호 태풍이 연안 지역의 날씨에 영향을 미칠 수 있다."
       },
       "expressions": [
         {
-          "chinese": "校园枪击案",
-          "pinyin": "xiào yuán qiāng jī àn",
-          "meaning": "학교 내 총격 사건",
-          "example": "发生校园枪击案后，当地学校立即进入应急状态。",
-          "examplePinyin": "fā shēng xiào yuán qiāng jī àn hòu ， dāng dì xué xiào lì jí jìn rù yìng jí zhuàng tài 。",
-          "exampleMeaning": "학교 총격 사건이 발생한 후 현지 학교들은 즉시 비상 체제로 전환했다."
+          "chinese": "第16号台风",
+          "pinyin": "dì 1 6 hào tái fēng",
+          "meaning": "16번째 태풍",
+          "example": "今年第16号台风可能影响沿海地区的天气。",
+          "examplePinyin": "jīn nián dì 1 6 hào tái fēng kě néng yǐng xiǎng yán hǎi dì qū de tiān qì 。",
+          "exampleMeaning": "올해 16호 태풍이 연안 지역의 날씨에 영향을 미칠 수 있다."
         },
         {
-          "chinese": "死亡人数升至",
-          "pinyin": "sǐ wáng rén shù shēng zhì",
-          "meaning": "사망자 수가 ~로 증가하다",
-          "example": "事故后死亡人数升至五人，救援仍在进行中。",
-          "examplePinyin": "shì gù hòu sǐ wáng rén shù shēng zhì wǔ rén ， jiù yuán réng zài jìn xíng zhōng 。",
-          "exampleMeaning": "사고 후 사망자 수가 5명으로 증가했으며 구조 작업은 계속되고 있다."
+          "chinese": "生成",
+          "pinyin": "shēng chéng",
+          "meaning": "형성되다/생성되다",
+          "example": "新的天气系统正在海上生成，需要密切关注。",
+          "examplePinyin": "xīn de tiān qì xì tǒng zhèng zài hǎi shàng shēng chéng ， xū yào mì qiè guān zhù 。",
+          "exampleMeaning": "새로운 기상 시스템이 해상에서 생성되고 있어 면밀한 주시가 필요하다."
         }
       ],
       "words": [
         {
-          "chinese": "泰国",
-          "pinyin": "tài guó",
-          "meaning": "태국"
+          "chinese": "今年第16号",
+          "pinyin": "jīn nián dì 1 6 hào",
+          "meaning": "올해 16호"
         },
         {
-          "chinese": "校园",
-          "pinyin": "xiào yuán",
-          "meaning": "학교, 캠퍼스"
+          "chinese": "台风",
+          "pinyin": "tái fēng",
+          "meaning": "태풍"
         },
         {
-          "chinese": "枪击案",
-          "pinyin": "qiāng jī àn",
-          "meaning": "총격 사건"
+          "chinese": "琵鹭",
+          "pinyin": "pí lù",
+          "meaning": "피루(태풍 이름)"
         },
         {
-          "chinese": "死亡人数",
-          "pinyin": "sǐ wáng rén shù",
-          "meaning": "사망자 수"
+          "chinese": "生成",
+          "pinyin": "shēng chéng",
+          "meaning": "생성되다"
         },
         {
-          "chinese": "受伤",
-          "pinyin": "shòu shāng",
-          "meaning": "부상"
+          "chinese": "西北太平洋",
+          "pinyin": "xī běi tài píng yáng",
+          "meaning": "서북 태평양"
+        },
+        {
+          "chinese": "关岛塞班",
+          "pinyin": "guān dǎo sāi bān",
+          "meaning": "괌 세이판"
+        },
+        {
+          "chinese": "中心位于",
+          "pinyin": "zhōng xīn wèi yú",
+          "meaning": "중심 위치"
+        },
+        {
+          "chinese": "14时",
+          "pinyin": "1 4 shí",
+          "meaning": "14시(시간)"
         }
       ]
     }
