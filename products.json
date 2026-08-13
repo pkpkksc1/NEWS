@@ -1,32 +1,32 @@
 {
-  "updatedAt": "2026-08-13 14:48",
+  "updatedAt": "2026-08-14 07:54",
   "source": "Baidu Hot Search",
   "sourceUrl": "https://top.baidu.com/board?tab=realtime",
   "translationMethod": "OpenAI API (gpt-5-mini)",
   "schemaVersion": "v2.2-daily-dashboard",
-  "sourceFingerprint": "5f430a78327afede6d123c18bc933a5cdf18dee9fc7f92f33e727ae382f0c50b",
+  "sourceFingerprint": "8aa9c314347cc51dbd537ef40cb1e51daa167336535d1ae379c3ffd35a047e38",
   "apiUsedThisRun": true,
   "todayExpression": {
-    "chinese": "一个都不能少",
-    "pinyin": "yí gè dōu bù néng shǎo",
-    "meaning": "한 사람도 빠짐없이",
-    "example": "扶贫工作中要做到一个都不能少，确保没有一户一人掉队。",
-    "examplePinyin": "fú pín gōng zuò zhōng yào zuò dào yí gè dōu bù néng shǎo ， què bǎo méi yǒu yī hù yī rén diào duì 。",
-    "exampleMeaning": "빈곤 퇴치 업무에서는 한 사람도 빠짐없이 하여 한 가구 한 사람도 소외되지 않도록 해야 한다."
+    "chinese": "不仅要...更要...",
+    "pinyin": "bù jǐn yào . . . gèng yào . . .",
+    "meaning": "단지 ...해야 하는 것이 아니라 더욱 ...해야 한다",
+    "example": "政府不仅要关注经济发展，更要关注民生保障。",
+    "examplePinyin": "zhèng fǔ bù jǐn yào guān zhù jīng jì fā zhǎn ， gèng yào guān zhù mín shēng bǎo zhàng 。",
+    "exampleMeaning": "정부는 단지 경제 발전에만 관심을 가질 것이 아니라 민생 보장에도 더 많은 관심을 가져야 한다."
   },
   "todayWord": {
-    "chinese": "最重要",
-    "pinyin": "zuì zhòng yào",
-    "meaning": "가장 중요한"
+    "chinese": "城市",
+    "pinyin": "chéng shì",
+    "meaning": "도시"
   },
   "reviewExpression": {
-    "chinese": "科技创新",
-    "pinyin": "kē jì chuàng xīn",
-    "meaning": "과학기술 혁신",
-    "example": "科技创新是推动经济高质量发展的重要动力。",
-    "examplePinyin": "kē jì chuàng xīn shì tuī dòng jīng jì gāo zhì liàng fā zhǎn de zhòng yào dòng lì 。",
-    "exampleMeaning": "과학기술 혁신은 경제의 고품질 발전을 촉진하는 중요한 동력이다.",
-    "date": "2026-08-10"
+    "chinese": "只有",
+    "pinyin": "zhǐ yǒu",
+    "meaning": "오직 ...만",
+    "example": "只有坚持不懈，才能取得进步。",
+    "examplePinyin": "zhǐ yǒu jiān chí bù xiè ， cái néng qǔ dé jìn bù 。",
+    "exampleMeaning": "오직 끊임없이 노력해야 진전을 이룰 수 있다.",
+    "date": "2026-08-11"
   },
   "expressionHistory": [
     {
@@ -109,665 +109,782 @@
       "examplePinyin": "fú pín gōng zuò zhōng yào zuò dào yí gè dōu bù néng shǎo ， què bǎo méi yǒu yī hù yī rén diào duì 。",
       "exampleMeaning": "빈곤 퇴치 업무에서는 한 사람도 빠짐없이 하여 한 가구 한 사람도 소외되지 않도록 해야 한다.",
       "date": "2026-08-13"
+    },
+    {
+      "chinese": "不仅要...更要...",
+      "pinyin": "bù jǐn yào . . . gèng yào . . .",
+      "meaning": "단지 ...해야 하는 것이 아니라 더욱 ...해야 한다",
+      "example": "政府不仅要关注经济发展，更要关注民生保障。",
+      "examplePinyin": "zhèng fǔ bù jǐn yào guān zhù jīng jì fā zhǎn ， gèng yào guān zhù mín shēng bǎo zhàng 。",
+      "exampleMeaning": "정부는 단지 경제 발전에만 관심을 가질 것이 아니라 민생 보장에도 더 많은 관심을 가져야 한다.",
+      "date": "2026-08-14"
     }
   ],
   "dailyConversation": [
     {
-      "chinese": "今天下午我们一起吃晚饭吧。",
-      "pinyin": "jīn tiān xià wǔ wǒ men yì qǐ chī wǎn fàn ba 。",
-      "meaning": "오늘 오후에 우리 같이 저녁을 먹어요."
+      "chinese": "明天早上我们一起吃饭吧。",
+      "pinyin": "míng tiān zǎo shàng wǒ men yì qǐ chī fàn ba 。",
+      "meaning": "내일 아침에 우리 같이 밥을 먹어요."
     },
     {
-      "chinese": "请帮我确认一下文件内容，谢谢。",
-      "pinyin": "qǐng bāng wǒ què rèn yī xià wén jiàn nèi róng ， xiè xiè 。",
-      "meaning": "문서 내용: 확인해 주세요, 감사합니다."
+      "chinese": "请告诉我明天的天气。",
+      "pinyin": "qǐng gào sù wǒ míng tiān de tiān qì 。",
+      "meaning": "내일 날씨: 알려 주세요."
     },
     {
-      "chinese": "如果工作结束得早，我就先去看看，别担心。",
-      "pinyin": "rú guǒ gōng zuò jié shù dé zǎo ， wǒ jiù xiān qù kàn kàn ， bié dān xīn 。",
-      "meaning": "일이 일찍 끝나면 먼저 가서 볼게요, 걱정하지 마세요."
+      "chinese": "如果大家都同意，我就发消息告诉你，好吗？",
+      "pinyin": "rú guǒ dà jiā dōu tóng yì ， wǒ jiù fā xiāo xī gào sù nǐ ， hǎo ma ？",
+      "meaning": "모두 동의하면 메시지로 알려드릴게요, 괜찮죠?"
     }
   ],
   "news": [
     {
       "rank": 1,
-      "chinese": "“最重要的就是一个都不能少”",
-      "pinyin": "“ zuì zhòng yào de jiù shì yí gè dōu bù néng shǎo ”",
-      "translation": "가장 중요한 것은 한 사람도 빠짐없이",
-      "summary": "당의 18차 전국대표대회 이후 시진핑 총서기는 전국 14개 집중 연속 빈곤 지역을 방문해 마을과 가정을 직접 찾으며 빈곤 상황을 살폈습니다. 총서기는 발로 직접 중국 땅을 하나하나 측량하듯 현장을 다녔고, 진솔하고 소박한 말로 현장을 지도했습니다. 보고는 해당 방문과 그의 현장 지도가 강조되었음을 전합니다.",
-      "detailChinese": "党的十八大以来，习近平总书记走遍全国14个集中连片特困地区，进村入户，访贫问苦，悉心指导。总书记用自己的双脚，一步一步丈量着中国大地；用真切朴实的话... 查看更多",
-      "detailPinyin": "dǎng de shí bā dà yǐ lái ， xí jìn píng zǒng shū jì zǒu biàn quán guó 1 4 gè jí zhōng lián piàn tè kùn dì qū ， jìn cūn rù hù ， fǎng pín wèn kǔ ， xī xīn zhǐ dǎo 。 zǒng shū jì yòng zì jǐ de shuāng jiǎo ， yí bù yí bù zhàng liáng zhe zhōng guó dà dì ； yòng zhēn qiè pǔ shí de huà . . .   chá kàn gèng duō",
+      "chinese": "城市不仅要有高度 更要有温度",
+      "pinyin": "chéng shì bù jǐn yào yǒu gāo dù   gèng yào yǒu wēn dù",
+      "translation": "도시는 높이뿐 아니라 따뜻함도 있어야 한다",
+      "summary": "“도시는 높이뿐만 아니라 온기도 있어야 한다.”라는 말과 함께 총서기가 깊은 뜻을 전했습니다. 사람 중심의 도시 관념을 실천해야 한다고 강조했습니다. 주택에 대해 주민들의 다양하고 다원적인 수요를 지속적으로 충족해야 한다고 밝혔습니다. 또한 외래 인구가 들어오고 머물며 안전하게 거주할 수 있도록 보장해야 한다고 언급했습니다.",
+      "detailChinese": "“城市不仅要有高度，更要有温度。”总书记深情地说，要践行人民城市理念，不断满足人民群众对住房的多样化、多元化需求，确保外来人口进得来、留得下、住得安... 查看更多",
+      "detailPinyin": "“ chéng shì bù jǐn yào yǒu gāo dù ， gèng yào yǒu wēn dù 。 ” zǒng shū jì shēn qíng dì shuō ， yào jiàn xíng rén mín chéng shì lǐ niàn ， bù duàn mǎn zú rén mín qún zhòng duì zhù fáng de duō yàng huà 、 duō yuán huà xū qiú ， què bǎo wài lái rén kǒu jìn dé lái 、 liú dé xià 、 zhù dé ān . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "시진핑 총서기는 빈곤 지역을 방문해 한 사람도 빠짐없이 돕는 것을 강조했다.",
+      "keyPoint": "사람 중심의 도시 관념을 실천해 주거의 다양화 수요를 충족하고 외래 인구의 안정적 거주를 보장해야 한다.",
       "keyPoints": [
-        "시진핑 총서기는 빈곤 지역을 방문해 한 사람도 빠짐없이 돕는 것을 강조했다."
+        "사람 중심의 도시 관념을 실천해 주거의 다양화 수요를 충족하고 외래 인구의 안정적 거주를 보장해야 한다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%B0%B1%E6%98%AF%E4%B8%80%E4%B8%AA%E9%83%BD%E4%B8%8D%E8%83%BD%E5%B0%91%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E5%9F%8E%E5%B8%82%E4%B8%8D%E4%BB%85%E8%A6%81%E6%9C%89%E9%AB%98%E5%BA%A6+%E6%9B%B4%E8%A6%81%E6%9C%89%E6%B8%A9%E5%BA%A6&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "一个都不能少",
-        "pinyin": "yí gè dōu bù néng shǎo",
-        "meaning": "한 사람도 빠짐없이",
-        "example": "扶贫工作中要做到一个都不能少，确保没有一户一人掉队。",
-        "examplePinyin": "fú pín gōng zuò zhōng yào zuò dào yí gè dōu bù néng shǎo ， què bǎo méi yǒu yī hù yī rén diào duì 。",
-        "exampleMeaning": "빈곤 퇴치 업무에서는 한 사람도 빠짐없이 하여 한 가구 한 사람도 소외되지 않도록 해야 한다."
+        "chinese": "不仅要...更要...",
+        "pinyin": "bù jǐn yào . . . gèng yào . . .",
+        "meaning": "단지 ...해야 하는 것이 아니라 더욱 ...해야 한다",
+        "example": "政府不仅要关注经济发展，更要关注民生保障。",
+        "examplePinyin": "zhèng fǔ bù jǐn yào guān zhù jīng jì fā zhǎn ， gèng yào guān zhù mín shēng bǎo zhàng 。",
+        "exampleMeaning": "정부는 단지 경제 발전에만 관심을 가질 것이 아니라 민생 보장에도 더 많은 관심을 가져야 한다."
       },
       "expressions": [
         {
-          "chinese": "一个都不能少",
-          "pinyin": "yí gè dōu bù néng shǎo",
-          "meaning": "한 사람도 빠짐없이",
-          "example": "扶贫工作中要做到一个都不能少，确保没有一户一人掉队。",
-          "examplePinyin": "fú pín gōng zuò zhōng yào zuò dào yí gè dōu bù néng shǎo ， què bǎo méi yǒu yī hù yī rén diào duì 。",
-          "exampleMeaning": "빈곤 퇴치 업무에서는 한 사람도 빠짐없이 하여 한 가구 한 사람도 소외되지 않도록 해야 한다."
+          "chinese": "不仅要...更要...",
+          "pinyin": "bù jǐn yào . . . gèng yào . . .",
+          "meaning": "단지 ...해야 하는 것이 아니라 더욱 ...해야 한다",
+          "example": "政府不仅要关注经济发展，更要关注民生保障。",
+          "examplePinyin": "zhèng fǔ bù jǐn yào guān zhù jīng jì fā zhǎn ， gèng yào guān zhù mín shēng bǎo zhàng 。",
+          "exampleMeaning": "정부는 단지 경제 발전에만 관심을 가질 것이 아니라 민생 보장에도 더 많은 관심을 가져야 한다."
         }
       ],
       "words": [
         {
-          "chinese": "最重要",
-          "pinyin": "zuì zhòng yào",
-          "meaning": "가장 중요한"
+          "chinese": "城市",
+          "pinyin": "chéng shì",
+          "meaning": "도시"
         },
         {
-          "chinese": "一个",
-          "pinyin": "yí gè",
-          "meaning": "한 사람(한 개)"
+          "chinese": "高度",
+          "pinyin": "gāo dù",
+          "meaning": "높이, 높은 수준"
         },
         {
-          "chinese": "都",
-          "pinyin": "dōu",
-          "meaning": "모두"
+          "chinese": "温度",
+          "pinyin": "wēn dù",
+          "meaning": "따뜻함, 인간적인 배려"
         },
         {
-          "chinese": "不能少",
-          "pinyin": "bù néng shǎo",
-          "meaning": "빠뜨릴 수 없다"
+          "chinese": "人民城市理念",
+          "pinyin": "rén mín chéng shì lǐ niàn",
+          "meaning": "사람 중심의 도시 개념"
+        },
+        {
+          "chinese": "住房",
+          "pinyin": "zhù fáng",
+          "meaning": "주택"
+        },
+        {
+          "chinese": "多样化",
+          "pinyin": "duō yàng huà",
+          "meaning": "다양화"
+        },
+        {
+          "chinese": "外来人口",
+          "pinyin": "wài lái rén kǒu",
+          "meaning": "외래 인구"
+        },
+        {
+          "chinese": "确保",
+          "pinyin": "què bǎo",
+          "meaning": "보장하다"
         }
       ]
     },
     {
       "rank": 2,
-      "chinese": "朱镕基同志逝世",
-      "pinyin": "zhū róng jī tóng zhì shì shì",
-      "translation": "저룽지(주용기) 동지 별세",
-      "summary": "중국 공산당 중앙위원회, 전국인민대표대회 상임위원회, 국무원, 전국정치협상회의가 침통한 심정으로 발표했습니다. 발표는 저룽지 동지가 중국 공산당의 우수한 당원임을 기렸습니다. 관련 기관들이 그를 추모하고 있음을 전하고 있습니다.",
-      "detailChinese": "中国共产党中央委员会、中华人民共和国全国人民代表大会常务委员会、中华人民共和国国务院、中国人民政治协商会议全国委员会沉痛宣告：中国共产党的优秀党员，... 查看更多",
-      "detailPinyin": "zhōng guó gòng chǎn dǎng zhōng yāng wěi yuán huì 、 zhōng huá rén mín gòng hé guó quán guó rén mín dài biǎo dà huì cháng wù wěi yuán huì 、 zhōng huá rén mín gòng hé guó guó wù yuàn 、 zhōng guó rén mín zhèng zhì xié shāng huì yì quán guó wěi yuán huì chén tòng xuān gào ： zhōng guó gòng chǎn dǎng de yōu xiù dǎng yuán ， . . .   chá kàn gèng duō",
+      "chinese": "油价将迎来年内第五次下调",
+      "pinyin": "yóu jià jiāng yíng lái nián nèi dì wǔ cì xià tiáo",
+      "translation": "유가, 연내 다섯 번째 인하 예정",
+      "summary": "8월 13일 취재 결과에 따르면 8월 14일 24시를 기해 정제유 소매 가격 조정 창구가 다시 열립니다. 이번 조정으로 올해 들어 다섯 번째 유류 가격 인하가 예상된다고 보도되었습니다. 관련 기관의 측정 결과에 따라 실제 인하 폭이 산출될 예정입니다.",
+      "detailChinese": "8月13日，记者从多家大宗商品市场机构获悉，8月14日24时，成品油零售限价调价窗口再度开启，油价将迎来年内第五次下调。据测算，调价窗口开启时，对应... 查看更多",
+      "detailPinyin": "8 yuè 1 3 rì ， jì zhě cóng duō jiā dà zōng shāng pǐn shì chǎng jī gòu huò xī ， 8 yuè 1 4 rì 2 4 shí ， chéng pǐn yóu líng shòu xiàn jià tiáo jià chuāng kǒu zài dù kāi qǐ ， yóu jià jiāng yíng lái nián nèi dì wǔ cì xià tiáo 。 jù cè suàn ， tiáo jià chuāng kǒu kāi qǐ shí ， duì yìng . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "저룽지 동지가 별세했고 당·국가 기관이 공식적으로 애도를 표했다.",
+      "keyPoint": "8월 14일 가격 조정 창구 개시에 따라 연내 다섯 번째 유류 가격 인하가 예상된다.",
       "keyPoints": [
-        "저룽지 동지가 별세했고 당·국가 기관이 공식적으로 애도를 표했다."
+        "8월 14일 가격 조정 창구 개시에 따라 연내 다섯 번째 유류 가격 인하가 예상된다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E6%9C%B1%E9%95%95%E5%9F%BA%E5%90%8C%E5%BF%97%E9%80%9D%E4%B8%96&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E6%B2%B9%E4%BB%B7%E5%B0%86%E8%BF%8E%E6%9D%A5%E5%B9%B4%E5%86%85%E7%AC%AC%E4%BA%94%E6%AC%A1%E4%B8%8B%E8%B0%83&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "逝世",
-        "pinyin": "shì shì",
-        "meaning": "별세하다, 사망하다",
-        "example": "著名科学家昨日逝世，社会各界表示深切哀悼。",
-        "examplePinyin": "zhù míng kē xué jiā zuó rì shì shì ， shè huì gè jiè biǎo shì shēn qiè āi dào 。",
-        "exampleMeaning": "저명한 과학자가 어제 별세하여 사회 각계가 깊은 애도를 표했다."
+        "chinese": "下调",
+        "pinyin": "xià tiáo",
+        "meaning": "가격이나 수치를 낮추다",
+        "example": "公司决定下调产品价格以应对市场竞争。",
+        "examplePinyin": "gōng sī jué dìng xià tiáo chǎn pǐn jià gé yǐ yìng duì shì chǎng jìng zhēng 。",
+        "exampleMeaning": "회사는 시장 경쟁에 대응하기 위해 제품 가격을 인하하기로 결정했다."
       },
       "expressions": [
         {
-          "chinese": "逝世",
-          "pinyin": "shì shì",
-          "meaning": "별세하다, 사망하다",
-          "example": "著名科学家昨日逝世，社会各界表示深切哀悼。",
-          "examplePinyin": "zhù míng kē xué jiā zuó rì shì shì ， shè huì gè jiè biǎo shì shēn qiè āi dào 。",
-          "exampleMeaning": "저명한 과학자가 어제 별세하여 사회 각계가 깊은 애도를 표했다."
-        },
-        {
-          "chinese": "同志",
-          "pinyin": "tóng zhì",
-          "meaning": "동지(정치적 호칭)",
-          "example": "大家称呼他为张同志，表示尊敬与亲切。",
-          "examplePinyin": "dà jiā chēng hū tā wèi zhāng tóng zhì ， biǎo shì zūn jìng yǔ qīn qiè 。",
-          "exampleMeaning": "사람들은 그를 장 동지라고 불러 존경과 친근함을 표현했다."
+          "chinese": "下调",
+          "pinyin": "xià tiáo",
+          "meaning": "가격이나 수치를 낮추다",
+          "example": "公司决定下调产品价格以应对市场竞争。",
+          "examplePinyin": "gōng sī jué dìng xià tiáo chǎn pǐn jià gé yǐ yìng duì shì chǎng jìng zhēng 。",
+          "exampleMeaning": "회사는 시장 경쟁에 대응하기 위해 제품 가격을 인하하기로 결정했다."
         }
       ],
       "words": [
         {
-          "chinese": "朱镕基",
-          "pinyin": "zhū róng jī",
-          "meaning": "저룽지(인명)"
+          "chinese": "油价",
+          "pinyin": "yóu jià",
+          "meaning": "유가, 휘발유·경유 등의 가격"
         },
         {
-          "chinese": "同志",
-          "pinyin": "tóng zhì",
-          "meaning": "동지"
+          "chinese": "年内",
+          "pinyin": "nián nèi",
+          "meaning": "연내"
         },
         {
-          "chinese": "逝世",
-          "pinyin": "shì shì",
-          "meaning": "별세하다"
+          "chinese": "下调",
+          "pinyin": "xià tiáo",
+          "meaning": "인하하다"
+        },
+        {
+          "chinese": "成品油",
+          "pinyin": "chéng pǐn yóu",
+          "meaning": "정제유"
+        },
+        {
+          "chinese": "零售限价",
+          "pinyin": "líng shòu xiàn jià",
+          "meaning": "소매 가격 상한"
+        },
+        {
+          "chinese": "调价窗口",
+          "pinyin": "tiáo jià chuāng kǒu",
+          "meaning": "가격 조정 창구"
+        },
+        {
+          "chinese": "调价",
+          "pinyin": "tiáo jià",
+          "meaning": "가격 조정"
+        },
+        {
+          "chinese": "测算",
+          "pinyin": "cè suàn",
+          "meaning": "측정·산정하다"
         }
       ]
     },
     {
       "rank": 3,
-      "chinese": "新规来了：禁止在居民楼开油烟餐饮",
-      "pinyin": "xīn guī lái le ： jìn zhǐ zài jū mín lóu kāi yóu yān cān yǐn",
-      "translation": "새 규정 도입: 주거 건물에서 유해 연기 발생 음식점 금지",
-      "summary": "8월 15일부터 시행된 '중화인민공화국 생태환경법전'은 주민 주택 건물 내에서 기름·연기가 많이 발생하는 음식점을 금지한다고 명확히 규정했습니다. 규정은 전용 배기통이 설치되지 않은 상주 복합 건물과 거주 층과 인접한 상업 층에서도 운영을 금지합니다. 주민 생활 환경 보호를 목적으로 한 조치임을 알리고 있습니다.",
-      "detailChinese": "8月15日，正式施行的《中华人民共和国生态环境法典》明确规定：禁止在居民住宅楼、未配套设立专用烟道的商住综合楼以及商住综合楼内与居住层相邻的商业楼层... 查看更多",
-      "detailPinyin": "8 yuè 1 5 rì ， zhèng shì shī xíng de 《 zhōng huá rén mín gòng hé guó shēng tài huán jìng fǎ diǎn 》 míng què guī dìng ： jìn zhǐ zài jū mín zhù zhái lóu 、 wèi pèi tào shè lì zhuān yòng yān dào de shāng zhù zōng hé lóu yǐ jí shāng zhù zōng hé lóu nèi yǔ jū zhù céng xiāng lín de shāng yè lóu céng . . .   chá kàn gèng duō",
+      "chinese": "看似很香的低价房产藏重重陷阱",
+      "pinyin": "kàn shì hěn xiāng de dī jià fáng chǎn cáng chóng chóng xiàn jǐng",
+      "translation": "언뜻 매력적인 저가 주택에 함정이 숨어 있다",
+      "summary": "최근 섬서 보계에서 한 여성이 3만 위안에 40평의 저가 오래된 주택을 구입한 사례가 화제가 됐습니다. 이런 이른바 '싸다'고 여겨지는 주택은 여러 지역에서 발견되고 있습니다. 대개 인구 유출 도시나 건물 연식이 오래된 곳에 위치해 있고, 유동성이 낮고 수리 비용이 많이 들며 권리(소유권)상 문제가 숨겨진 경우가 많습니다.",
+      "detailChinese": "近日，陕西宝鸡女子花3万元买下40平低价老房引发热议。这类多地出现的“白菜价”房产，多地处人口外流城市、房龄老旧，暗藏流动性差、维修成本高、产权隐患... 查看更多",
+      "detailPinyin": "jìn rì ， shǎn xī bǎo jī nǚ zǐ huā 3 wàn yuán mǎi xià 4 0 píng dī jià lǎo fáng yǐn fā rè yì 。 zhè lèi duō dì chū xiàn de “ bái cài jià ” fáng chǎn ， duō dì chǔ rén kǒu wài liú chéng shì 、 fáng líng lǎo jiù ， àn cáng liú dòng xìng chà 、 wéi xiū chéng běn gāo 、 chǎn quán yǐn huàn . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "새 환경법전이 거주 건물 내 기름기·연기 많은 음식점 운영을 금지했다.",
+      "keyPoint": "저가로 보이는 부동산은 유동성 부족, 높은 수리비, 소유권 위험 등 여러 숨은 문제가 있다.",
       "keyPoints": [
-        "새 환경법전이 거주 건물 내 기름기·연기 많은 음식점 운영을 금지했다."
+        "저가로 보이는 부동산은 유동성 부족, 높은 수리비, 소유권 위험 등 여러 숨은 문제가 있다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E6%96%B0%E8%A7%84%E6%9D%A5%E4%BA%86%EF%BC%9A%E7%A6%81%E6%AD%A2%E5%9C%A8%E5%B1%85%E6%B0%91%E6%A5%BC%E5%BC%80%E6%B2%B9%E7%83%9F%E9%A4%90%E9%A5%AE&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E7%9C%8B%E4%BC%BC%E5%BE%88%E9%A6%99%E7%9A%84%E4%BD%8E%E4%BB%B7%E6%88%BF%E4%BA%A7%E8%97%8F%E9%87%8D%E9%87%8D%E9%99%B7%E9%98%B1&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "禁止",
-        "pinyin": "jìn zhǐ",
-        "meaning": "금지하다",
-        "example": "公园内禁止吸烟，请大家自觉遵守规定。",
-        "examplePinyin": "gōng yuán nèi jìn zhǐ xī yān ， qǐng dà jiā zì jué zūn shǒu guī dìng 。",
-        "exampleMeaning": "공원 내에서는 흡연을 금지하니 모두 자발적으로 규정을 준수해 주세요."
+        "chinese": "白菜价",
+        "pinyin": "bái cài jià",
+        "meaning": "매우 싸다는 의미의 속어(직역하면 배추값)",
+        "example": "这个手机只要一百块，简直是白菜价。",
+        "examplePinyin": "zhè ge shǒu jī zhǐ yào yì bǎi kuài ， jiǎn zhí shì bái cài jià 。",
+        "exampleMeaning": "이 휴대폰은 겨우 100위안이라 거의 공짜 수준이다."
       },
       "expressions": [
         {
-          "chinese": "禁止",
-          "pinyin": "jìn zhǐ",
-          "meaning": "금지하다",
-          "example": "公园内禁止吸烟，请大家自觉遵守规定。",
-          "examplePinyin": "gōng yuán nèi jìn zhǐ xī yān ， qǐng dà jiā zì jué zūn shǒu guī dìng 。",
-          "exampleMeaning": "공원 내에서는 흡연을 금지하니 모두 자발적으로 규정을 준수해 주세요."
-        },
-        {
-          "chinese": "居民楼",
-          "pinyin": "jū mín lóu",
-          "meaning": "주민 주택 건물, 아파트",
-          "example": "居民楼的居民反映楼下商铺的油烟影响了他们的生活。",
-          "examplePinyin": "jū mín lóu de jū mín fǎn yìng lóu xià shāng pù de yóu yān yǐng xiǎng le tā men de shēng huó 。",
-          "exampleMeaning": "아파트 주민들은 아래층 상점의 기름 연기가 생활에 영향을 준다고 호소했다."
+          "chinese": "白菜价",
+          "pinyin": "bái cài jià",
+          "meaning": "매우 싸다는 의미의 속어(직역하면 배추값)",
+          "example": "这个手机只要一百块，简直是白菜价。",
+          "examplePinyin": "zhè ge shǒu jī zhǐ yào yì bǎi kuài ， jiǎn zhí shì bái cài jià 。",
+          "exampleMeaning": "이 휴대폰은 겨우 100위안이라 거의 공짜 수준이다."
         }
       ],
       "words": [
         {
-          "chinese": "新规",
-          "pinyin": "xīn guī",
-          "meaning": "새로운 규정"
+          "chinese": "低价房产",
+          "pinyin": "dī jià fáng chǎn",
+          "meaning": "저가 주택"
         },
         {
-          "chinese": "禁止",
-          "pinyin": "jìn zhǐ",
-          "meaning": "금지"
+          "chinese": "白菜价",
+          "pinyin": "bái cài jià",
+          "meaning": "아주 싼 가격"
         },
         {
-          "chinese": "居民楼",
-          "pinyin": "jū mín lóu",
-          "meaning": "주거용 건물"
+          "chinese": "房龄老旧",
+          "pinyin": "fáng líng lǎo jiù",
+          "meaning": "건물 연식이 오래되다"
         },
         {
-          "chinese": "油烟",
-          "pinyin": "yóu yān",
-          "meaning": "기름 연기"
+          "chinese": "流动性差",
+          "pinyin": "liú dòng xìng chà",
+          "meaning": "유동성이 낮다"
         },
         {
-          "chinese": "餐饮",
-          "pinyin": "cān yǐn",
-          "meaning": "음식점 영업, 음식업"
+          "chinese": "维修成本",
+          "pinyin": "wéi xiū chéng běn",
+          "meaning": "수리 비용"
+        },
+        {
+          "chinese": "产权隐患",
+          "pinyin": "chǎn quán yǐn huàn",
+          "meaning": "소유권(권리) 관련 위험"
+        },
+        {
+          "chinese": "人口外流",
+          "pinyin": "rén kǒu wài liú",
+          "meaning": "인구 유출"
+        },
+        {
+          "chinese": "宝鸡",
+          "pinyin": "bǎo jī",
+          "meaning": "섬서성 보계(지명)"
         }
       ]
     },
     {
       "rank": 4,
-      "chinese": "5年10万亿元消费增量目标怎样实现",
-      "pinyin": "5 nián 1 0 wàn yì yuán xiāo fèi zēng liàng mù biāo zěn yàng shí xiàn",
-      "translation": "5년간 10조 위안 소비 증가 목표는 어떻게 달성하나",
-      "summary": "2025년 우리나라의 사회 소비품 소매 총액은 50.12조 위안에 달해 수년간 세계에서 두 번째로 큰 상품 소비 시장이자 세계 최대의 온라인 소매 시장을 유지했습니다. 보도는 향후 5년간 사회 소비품 소매 총액을 기준으로 설정된 10조 위안 규모의 소비 증대 목표 달성 방안을 논의하고자 함을 전합니다. 구체적인 실현 방법은 관련 계획과 정책에 따라 추진될 것으로 보입니다.",
-      "detailChinese": "2025年，我国社会消费品零售总额达50.12万亿元，连续多年稳居全球第二大商品消费市场和第一大网络零售市场。按照目标，未来5年，社会消费品零售总额... 查看更多",
-      "detailPinyin": "2 0 2 5 nián ， wǒ guó shè huì xiāo fèi pǐn líng shòu zǒng é dá 5 0 . 1 2 wàn yì yuán ， lián xù duō nián wěn jū quán qiú dì èr dà shāng pǐn xiāo fèi shì chǎng hé dì yī dà wǎng luò líng shòu shì chǎng 。 àn zhào mù biāo ， wèi lái 5 nián ， shè huì xiāo fèi pǐn líng shòu zǒng é . . .   chá kàn gèng duō",
+      "chinese": "中国持续刷新生态“成绩单”",
+      "pinyin": "zhōng guó chí xù shuā xīn shēng tài “ chéng jì dān ”",
+      "translation": "중국, 생태 '성적표' 지속 개선",
+      "summary": "8월 13일 국무원 신문판공실이 '개시 출발(15기 5년 계획 시작)' 시리즈 보도회를 열어 아름다운 중국 건설 추진 상황을 소개했습니다. 발표된 여러 수치가 지속적으로 개선되는 모습을 보였습니다. 이러한 데이터는 아름다운 중국 건설의 성과를 그려내고 있다고 보도되었습니다.",
+      "detailChinese": "8月13日，国务院新闻办公室举行“开局起步‘十五五’”系列主题新闻发布会，介绍全面推进美丽中国建设有关情况。一系列持续向好的数据，勾勒出美丽中国建设... 查看更多",
+      "detailPinyin": "8 yuè 1 3 rì ， guó wù yuàn xīn wén bàn gōng shì jǔ xíng “ kāi jú qǐ bù ‘ shí wǔ wǔ ’ ” xì liè zhǔ tí xīn wén fā bù huì ， jiè shào quán miàn tuī jìn měi lì zhōng guó jiàn shè yǒu guān qíng kuàng 。 yī xì liè chí xù xiàng hǎo de shù jù ， gōu lè chū měi lì zhōng guó jiàn shè . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "2025년 소매 총액이 50.12조 위안을 기록했으며 향후 5년 소비 증대가 과제로 남았다.",
+      "keyPoint": "여러 지표의 지속적 개선으로 중국의 생태 건설 성과가 가시적으로 드러나고 있다.",
       "keyPoints": [
-        "2025년 소매 총액이 50.12조 위안을 기록했으며 향후 5년 소비 증대가 과제로 남았다."
+        "여러 지표의 지속적 개선으로 중국의 생태 건설 성과가 가시적으로 드러나고 있다."
       ],
-      "url": "https://www.baidu.com/s?wd=5%E5%B9%B410%E4%B8%87%E4%BA%BF%E5%85%83%E6%B6%88%E8%B4%B9%E5%A2%9E%E9%87%8F%E7%9B%AE%E6%A0%87%E6%80%8E%E6%A0%B7%E5%AE%9E%E7%8E%B0&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E6%8C%81%E7%BB%AD%E5%88%B7%E6%96%B0%E7%94%9F%E6%80%81%E2%80%9C%E6%88%90%E7%BB%A9%E5%8D%95%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "消费增量",
-        "pinyin": "xiāo fèi zēng liàng",
-        "meaning": "소비 증가분",
-        "example": "政府提出的政策旨在刺激消费增量，推动经济恢复。",
-        "examplePinyin": "zhèng fǔ tí chū de zhèng cè zhǐ zài cì jī xiāo fèi zēng liàng ， tuī dòng jīng jì huī fù 。",
-        "exampleMeaning": "정부가 제시한 정책은 소비 증가분을 자극해 경제 회복을 촉진하는 것을 목표로 한다."
+        "chinese": "成绩单",
+        "pinyin": "chéng jì dān",
+        "meaning": "성과나 결과를 보여주는 보고서·성적표",
+        "example": "这次项目的成绩单显示了明显的进步。",
+        "examplePinyin": "zhè cì xiàng mù dì chéng jì dān xiǎn shì le míng xiǎn de jìn bù 。",
+        "exampleMeaning": "이번 프로젝트의 성적표는 눈에 띄는 진전을 보여주었다."
       },
       "expressions": [
         {
-          "chinese": "消费增量",
-          "pinyin": "xiāo fèi zēng liàng",
-          "meaning": "소비 증가분",
-          "example": "政府提出的政策旨在刺激消费增量，推动经济恢复。",
-          "examplePinyin": "zhèng fǔ tí chū de zhèng cè zhǐ zài cì jī xiāo fèi zēng liàng ， tuī dòng jīng jì huī fù 。",
-          "exampleMeaning": "정부가 제시한 정책은 소비 증가분을 자극해 경제 회복을 촉진하는 것을 목표로 한다."
-        },
-        {
-          "chinese": "目标",
-          "pinyin": "mù biāo",
-          "meaning": "목표",
-          "example": "公司设定了年度增长目标，要求全体员工努力实现。",
-          "examplePinyin": "gōng sī shè dìng le nián dù zēng zhǎng mù biāo ， yāo qiú quán tǐ yuán gōng nǔ lì shí xiàn 。",
-          "exampleMeaning": "회사는 연간 성장 목표를 설정하여 모든 직원이 달성하도록 요구했다."
+          "chinese": "成绩单",
+          "pinyin": "chéng jì dān",
+          "meaning": "성과나 결과를 보여주는 보고서·성적표",
+          "example": "这次项目的成绩单显示了明显的进步。",
+          "examplePinyin": "zhè cì xiàng mù dì chéng jì dān xiǎn shì le míng xiǎn de jìn bù 。",
+          "exampleMeaning": "이번 프로젝트의 성적표는 눈에 띄는 진전을 보여주었다."
         }
       ],
       "words": [
         {
-          "chinese": "5年",
-          "pinyin": "5 nián",
-          "meaning": "5년"
+          "chinese": "中国",
+          "pinyin": "zhōng guó",
+          "meaning": "중국"
         },
         {
-          "chinese": "10万亿元",
-          "pinyin": "1 0 wàn yì yuán",
-          "meaning": "10조 위안"
+          "chinese": "持续",
+          "pinyin": "chí xù",
+          "meaning": "지속하다"
         },
         {
-          "chinese": "消费",
-          "pinyin": "xiāo fèi",
-          "meaning": "소비"
+          "chinese": "生态",
+          "pinyin": "shēng tài",
+          "meaning": "생태"
         },
         {
-          "chinese": "增量",
-          "pinyin": "zēng liàng",
-          "meaning": "증가분"
+          "chinese": "成绩单",
+          "pinyin": "chéng jì dān",
+          "meaning": "성적표, 성과 보고"
         },
         {
-          "chinese": "目标",
-          "pinyin": "mù biāo",
-          "meaning": "목표"
+          "chinese": "国务院新闻办公室",
+          "pinyin": "guó wù yuàn xīn wén bàn gōng shì",
+          "meaning": "국무원 신문판공실"
+        },
+        {
+          "chinese": "美丽中国建设",
+          "pinyin": "měi lì zhōng guó jiàn shè",
+          "meaning": "아름다운 중국 건설"
+        },
+        {
+          "chinese": "数据",
+          "pinyin": "shù jù",
+          "meaning": "데이터"
+        },
+        {
+          "chinese": "发布会",
+          "pinyin": "fā bù huì",
+          "meaning": "기자회견·발표회"
         }
       ]
     },
     {
       "rank": 5,
-      "chinese": "白海豚走了 梭子蟹来了",
-      "pinyin": "bái hǎi tún zǒu le   suō zi xiè lái le",
-      "translation": "태풍 '백돌고래' 지나가고 꽃게가 돌아왔다",
-      "summary": "8월 11일 14시부터 동해 일부 해역에서 개어가 시작되었습니다. 태풍 '백해표'(백해豚)가 떠난 뒤 저우산의 어선들이 차례로 출어해 솔다자(梭子蟹)를 포획하기 시작했습니다. 빠르면 8월 12일 새벽에 항구로 귀항해 시민들이 신선한 솔다자(꽃게)를 접할 수 있을 것으로 전해졌습니다.",
-      "detailChinese": "8月11日14时起，东海部分海域开渔。台风“白海豚”离开后，舟山渔船陆续出海捕捞梭子蟹，最快8月12日凌晨就能回港，市民有望吃到新鲜梭子蟹。 查看更多",
-      "detailPinyin": "8 yuè 1 1 rì 1 4 shí qǐ ， dōng hǎi bù fèn hǎi yù kāi yú 。 tái fēng “ bái hǎi tún ” lí kāi hòu ， zhōu shān yú chuán lù xù chū hǎi bǔ lāo suō zi xiè ， zuì kuài 8 yuè 1 2 rì líng chén jiù néng huí gǎng ， shì mín yǒu wàng chī dào xīn xiān suō zi xiè 。   chá kàn gèng duō",
+      "chinese": "舍不得买可直接休学退学？校方通报",
+      "pinyin": "shě bù dé mǎi kě zhí jiē xiū xué tuì xué ？ xiào fāng tōng bào",
+      "translation": "사서 아까우면 바로 휴학·퇴학? 학교 측 해명",
+      "summary": "최근 서남의학대학교의 한 학생회 보좌교사가 단체 대화방에서 '교재 사기 아깝다면 휴학이나 퇴학을 해라'라는 부적절한 발언을 해 논란이 일었습니다. 이에 학교는 해당 보좌교사의 발언이 부적절했다고 통보했습니다. 학교는 그를 비판 교육하고 공개 사죄하라고 명령했다고 밝혔습니다.",
+      "detailChinese": "近日，西南医科大学一名辅导员在群内发表不当言论，称不舍得买教材可休学退学，引发网络热议。校方通报，该辅导员言语失当，已被批评教育并责令公开致歉。学校... 查看更多",
+      "detailPinyin": "jìn rì ， xī nán yī kē dà xué yī míng fǔ dǎo yuán zài qún nèi fā biǎo bù dàng yán lùn ， chēng bù shě dé mǎi jiào cái kě xiū xué tuì xué ， yǐn fā wǎng luò rè yì 。 xiào fāng tōng bào ， gāi fǔ dǎo yuán yán yǔ shī dàng ， yǐ bèi pī píng jiào yù bìng zé lìng gōng kāi zhì qiàn 。 xué xiào . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "태풍이 물러난 뒤 동해 일부 해역에서 어업이 재개돼 신선한 솔다자(꽃게) 포획이 시작됐다.",
+      "keyPoint": "교내 보좌교사의 부적절한 발언으로 학교가 비판 교육과 공개 사과를 조치했다.",
       "keyPoints": [
-        "태풍이 물러난 뒤 동해 일부 해역에서 어업이 재개돼 신선한 솔다자(꽃게) 포획이 시작됐다."
+        "교내 보좌교사의 부적절한 발언으로 학교가 비판 교육과 공개 사과를 조치했다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E7%99%BD%E6%B5%B7%E8%B1%9A%E8%B5%B0%E4%BA%86+%E6%A2%AD%E5%AD%90%E8%9F%B9%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E8%88%8D%E4%B8%8D%E5%BE%97%E4%B9%B0%E5%8F%AF%E7%9B%B4%E6%8E%A5%E4%BC%91%E5%AD%A6%E9%80%80%E5%AD%A6%EF%BC%9F%E6%A0%A1%E6%96%B9%E9%80%9A%E6%8A%A5&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "走了",
-        "pinyin": "zǒu le",
-        "meaning": "떠나다, 지나가다",
-        "example": "台风终于走了，大家可以开始整理被吹乱的东西。",
-        "examplePinyin": "tái fēng zhōng yú zǒu le ， dà jiā kě yǐ kāi shǐ zhěng lǐ bèi chuī luàn de dōng xī 。",
-        "exampleMeaning": "태풍이 마침내 지나가서 사람들은 바람에 흩어진 물건들을 정리할 수 있다."
+        "chinese": "通报",
+        "pinyin": "tōng bào",
+        "meaning": "사안에 대해 공식적으로 알리다, 통지하다",
+        "example": "学校已就此事向全校师生通报情况。",
+        "examplePinyin": "xué xiào yǐ jiù cǐ shì xiàng quán xiào shī shēng tōng bào qíng kuàng 。",
+        "exampleMeaning": "학교는 이 사안에 대해 전교 교직원과 학생들에게 상황을 통보했다."
       },
       "expressions": [
         {
-          "chinese": "走了",
-          "pinyin": "zǒu le",
-          "meaning": "떠나다, 지나가다",
-          "example": "台风终于走了，大家可以开始整理被吹乱的东西。",
-          "examplePinyin": "tái fēng zhōng yú zǒu le ， dà jiā kě yǐ kāi shǐ zhěng lǐ bèi chuī luàn de dōng xī 。",
-          "exampleMeaning": "태풍이 마침내 지나가서 사람들은 바람에 흩어진 물건들을 정리할 수 있다."
-        },
-        {
-          "chinese": "来了",
-          "pinyin": "lái le",
-          "meaning": "왔(다), 도착했(다)",
-          "example": "新鲜的海产品来了，市场上很快就售完了。",
-          "examplePinyin": "xīn xiān de hǎi chǎn pǐn lái le ， shì chǎng shàng hěn kuài jiù shòu wán le 。",
-          "exampleMeaning": "신선한 해산물이 도착해 시장에서 곧 매진되었다."
+          "chinese": "通报",
+          "pinyin": "tōng bào",
+          "meaning": "사안에 대해 공식적으로 알리다, 통지하다",
+          "example": "学校已就此事向全校师生通报情况。",
+          "examplePinyin": "xué xiào yǐ jiù cǐ shì xiàng quán xiào shī shēng tōng bào qíng kuàng 。",
+          "exampleMeaning": "학교는 이 사안에 대해 전교 교직원과 학생들에게 상황을 통보했다."
         }
       ],
       "words": [
         {
-          "chinese": "白海豚",
-          "pinyin": "bái hǎi tún",
-          "meaning": "태풍 이름 '백해표'(백해豚)"
+          "chinese": "舍不得",
+          "pinyin": "shě bù dé",
+          "meaning": "아까워하다"
         },
         {
-          "chinese": "走了",
-          "pinyin": "zǒu le",
-          "meaning": "떠났다"
+          "chinese": "休学",
+          "pinyin": "xiū xué",
+          "meaning": "휴학"
         },
         {
-          "chinese": "梭子蟹",
-          "pinyin": "suō zi xiè",
-          "meaning": "솔다자(꽃게)"
+          "chinese": "退学",
+          "pinyin": "tuì xué",
+          "meaning": "퇴학"
         },
         {
-          "chinese": "来了",
-          "pinyin": "lái le",
-          "meaning": "도착했다/왔다"
+          "chinese": "校方通报",
+          "pinyin": "xiào fāng tōng bào",
+          "meaning": "학교 측의 통보"
+        },
+        {
+          "chinese": "辅导员",
+          "pinyin": "fǔ dǎo yuán",
+          "meaning": "보좌교사(학생지도 담당)"
+        },
+        {
+          "chinese": "教材",
+          "pinyin": "jiào cái",
+          "meaning": "교재"
+        },
+        {
+          "chinese": "不当言论",
+          "pinyin": "bù dàng yán lùn",
+          "meaning": "부적절한 발언"
+        },
+        {
+          "chinese": "公开致歉",
+          "pinyin": "gōng kāi zhì qiàn",
+          "meaning": "공개 사과"
         }
       ]
     },
     {
       "rank": 6,
-      "chinese": "普京首次登上俄日争议岛屿",
-      "pinyin": "pǔ jīng shǒu cì dēng shàng é rì zhēng yì dǎo yǔ",
-      "translation": "푸틴, 러·일 분쟁 섬에 첫 발자국",
-      "summary": "8월 13일 러시아 대통령 푸틴이 남쿠릴 열도(일본명 '북방영토') 지역에 도착해 시찰을 진행했습니다. 그의 첫 일정은 이투룹 섬(伊图鲁普岛)에 있는 수산물 가공 공장 시찰이었습니다. 이는 푸틴이 남쿠릴 열도에 처음으로 직접 올라간 사례라고 보도됩니다.",
-      "detailChinese": "8月13日，俄罗斯总统普京抵达南千岛群岛（日本称“北方四岛”）地区视察工作。普京行程的第一站是视察伊图鲁普岛上一家水产品加工厂。这是普京首次登上南千... 查看更多",
-      "detailPinyin": "8 yuè 1 3 rì ， é luó sī zǒng tǒng pǔ jīng dǐ dá nán qiān dǎo qún dǎo （ rì běn chēng “ běi fāng sì dǎo ” ） dì qū shì chá gōng zuò 。 pǔ jīng xíng chéng de dì yī zhàn shì shì chá yī tú lǔ pǔ dǎo shàng yī jiā shuǐ chǎn pǐn jiā gōng chǎng 。 zhè shì pǔ jīng shǒu cì dēng shàng nán qiān . . .   chá kàn gèng duō",
+      "chinese": "马斯克一句“中国太棒了”刷屏海外",
+      "pinyin": "mǎ sī kè yī jù “ zhōng guó tài bàng le ” shuā píng hǎi wài",
+      "translation": "머스크의 '중국 최고' 발언이 해외에서 화제",
+      "summary": "최근 머스크가 소셜미디어에 '중국이 정말 대단하다. 꼭 보러 가보라'고 칭찬하는 글을 올렸습니다. 그의 어머니 메이어도 이에 동의하며 '안전함을 느껴 중국 방문을 즐긴다'고 응답했습니다. 이 같은 추천 발언이 SNS상에서 큰 반향을 불러일으켰습니다.",
+      "detailChinese": "近日，马斯克在社媒发文称赞“中国太棒了。我强烈推荐大家去看看”，其母亲梅耶·马斯克也回应表示同意，她说“我感到安全，所以很享受去中国”。此波“安利”... 查看更多",
+      "detailPinyin": "jìn rì ， mǎ sī kè zài shè méi fā wén chēng zàn “ zhōng guó tài bàng le 。 wǒ qiáng liè tuī jiàn dà jiā qù kàn kàn ” ， qí mǔ qīn méi yé · mǎ sī kè yě huí yìng biǎo shì tóng yì ， tā shuō “ wǒ gǎn dào ān quán ， suǒ yǐ hěn xiǎng shòu qù zhōng guó ” 。 cǐ bō “ ān lì ” . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "푸틴이 남쿠릴(일본명 북방영토)을 처음 방문해 현장 시찰을 했다.",
+      "keyPoint": "머스크의 중국 찬사 발언이 SNS에서 크게 확산되며 화제를 모았다.",
       "keyPoints": [
-        "푸틴이 남쿠릴(일본명 북방영토)을 처음 방문해 현장 시찰을 했다."
+        "머스크의 중국 찬사 발언이 SNS에서 크게 확산되며 화제를 모았다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E6%99%AE%E4%BA%AC%E9%A6%96%E6%AC%A1%E7%99%BB%E4%B8%8A%E4%BF%84%E6%97%A5%E4%BA%89%E8%AE%AE%E5%B2%9B%E5%B1%BF&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E9%A9%AC%E6%96%AF%E5%85%8B%E4%B8%80%E5%8F%A5%E2%80%9C%E4%B8%AD%E5%9B%BD%E5%A4%AA%E6%A3%92%E4%BA%86%E2%80%9D%E5%88%B7%E5%B1%8F%E6%B5%B7%E5%A4%96&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "首次",
-        "pinyin": "shǒu cì",
-        "meaning": "최초로, 처음으로",
-        "example": "这是他首次参加国际峰会，备受关注。",
-        "examplePinyin": "zhè shì tā shǒu cì cān jiā guó jì fēng huì ， bèi shòu guān zhù 。",
-        "exampleMeaning": "그가 국제 정상회의에 처음 참석하는 것으로 많은 주목을 받고 있다."
+        "chinese": "刷屏",
+        "pinyin": "shuā píng",
+        "meaning": "화제가 되어 화면을 도배하듯 많이 보이다",
+        "example": "这条新闻一出，瞬间在社交媒体上刷屏。",
+        "examplePinyin": "zhè tiáo xīn wén yī chū ， shùn jiān zài shè jiāo méi tǐ shàng shuā píng 。",
+        "exampleMeaning": "이 뉴스가 나오자마자 순식간에 소셜미디어를 도배했다."
       },
       "expressions": [
         {
-          "chinese": "首次",
-          "pinyin": "shǒu cì",
-          "meaning": "최초로, 처음으로",
-          "example": "这是他首次参加国际峰会，备受关注。",
-          "examplePinyin": "zhè shì tā shǒu cì cān jiā guó jì fēng huì ， bèi shòu guān zhù 。",
-          "exampleMeaning": "그가 국제 정상회의에 처음 참석하는 것으로 많은 주목을 받고 있다."
-        },
-        {
-          "chinese": "登上",
-          "pinyin": "dēng shàng",
-          "meaning": "오르다, 올라가다",
-          "example": "他登上了火山口，俯瞰周围的景色。",
-          "examplePinyin": "tā dēng shàng le huǒ shān kǒu ， fǔ kàn zhōu wéi de jǐng sè 。",
-          "exampleMeaning": "그는 화산 분화구에 올라 주변 경치를 내려다보았다."
+          "chinese": "刷屏",
+          "pinyin": "shuā píng",
+          "meaning": "화제가 되어 화면을 도배하듯 많이 보이다",
+          "example": "这条新闻一出，瞬间在社交媒体上刷屏。",
+          "examplePinyin": "zhè tiáo xīn wén yī chū ， shùn jiān zài shè jiāo méi tǐ shàng shuā píng 。",
+          "exampleMeaning": "이 뉴스가 나오자마자 순식간에 소셜미디어를 도배했다."
         }
       ],
       "words": [
         {
-          "chinese": "普京",
-          "pinyin": "pǔ jīng",
-          "meaning": "푸틴(인명)"
+          "chinese": "马斯克",
+          "pinyin": "mǎ sī kè",
+          "meaning": "머스크(인명)"
         },
         {
-          "chinese": "首次",
-          "pinyin": "shǒu cì",
-          "meaning": "처음"
+          "chinese": "中国太棒了",
+          "pinyin": "zhōng guó tài bàng le",
+          "meaning": "중국이 정말 대단하다"
         },
         {
-          "chinese": "登上",
-          "pinyin": "dēng shàng",
-          "meaning": "올라가다"
+          "chinese": "刷屏",
+          "pinyin": "shuā píng",
+          "meaning": "화면을 도배하듯 확산되다"
         },
         {
-          "chinese": "争议岛屿",
-          "pinyin": "zhēng yì dǎo yǔ",
-          "meaning": "영유권 분쟁 중인 섬"
+          "chinese": "海外",
+          "pinyin": "hǎi wài",
+          "meaning": "해외"
+        },
+        {
+          "chinese": "社媒",
+          "pinyin": "shè méi",
+          "meaning": "소셜미디어"
+        },
+        {
+          "chinese": "推荐",
+          "pinyin": "tuī jiàn",
+          "meaning": "추천하다"
+        },
+        {
+          "chinese": "母亲",
+          "pinyin": "mǔ qīn",
+          "meaning": "어머니"
+        },
+        {
+          "chinese": "安全",
+          "pinyin": "ān quán",
+          "meaning": "안전하다"
         }
       ]
     },
     {
       "rank": 7,
-      "chinese": "学生兼职送外卖一个月倒欠公司200多",
-      "pinyin": "xué shēng jiān zhí sòng wài mài yí gè yuè dào qiàn gōng sī 2 0 0 duō",
-      "translation": "학생이 배달 아르바이트로 한 달에 회사에 200여 위안 빚졌다",
-      "summary": "지난해 8월 초, 충칭의 한 대학에 재학 중이던 소팽은 한 배달 대리점과 단기 근로 계약을 체결했고 계약 기간은 같은 달 말까지로 정해졌습니다. 초반 보름 동안 배달비는 주문당 6위안으로 정상 정산되었다고 전해집니다. 이후 정산 방식에 변화가 있었던 것으로 보도는 이어집니다.",
-      "detailChinese": "去年8月初，曾在重庆某高校读书的小彭与某外卖配送站签订了短期用工协议，明确约定工作至同年8月底。在跑单的前半个月，配送费按照每单6元正常结算，但到了... 查看更多",
-      "detailPinyin": "qù nián 8 yuè chū ， céng zài chóng qìng mǒu gāo xiào dú shū de xiǎo péng yǔ mǒu wài mài pèi sòng zhàn qiān dìng le duǎn qī yòng gōng xié yì ， míng què yuē dìng gōng zuò zhì tóng nián 8 yuè dǐ 。 zài pǎo dān de qián bàn gè yuè ， pèi sòng fèi àn zhào měi dān 6 yuán zhèng cháng jié suàn ， dàn dào le . . .   chá kàn gèng duō",
+      "chinese": "俩孩子将超市内几十种杂粮混掺",
+      "pinyin": "liǎ hái zi jiāng chāo shì nèi jǐ shí zhǒng zá liáng hùn càn",
+      "translation": "두 아이가 슈퍼에서 수십 종 잡곡을 섞어버려",
+      "summary": "최근 하남 주구의 한 슈퍼에서 두 어린이가 잡곡 코너에서 놀다가 수십 종의 잡곡을 섞어 상품을 분류할 수 없게 만들었습니다. 슈퍼 담당자 진 씨는 입자 크기가 비슷해 걸러내기 어렵다고 말했습니다. 그 결과 잡곡 코너의 상품을 전부 내려놓는 조치가 취해졌습니다.",
+      "detailChinese": "近日，河南周口两名儿童在超市杂粮区玩耍时，将几十种杂粮混合掺拌，导致商品无法分拣。超市负责人秦先生表示，因颗粒大小相近无法筛选，杂粮区商品全部下架，... 查看更多",
+      "detailPinyin": "jìn rì ， hé nán zhōu kǒu liǎng míng ér tóng zài chāo shì zá liáng qū wán shuǎ shí ， jiāng jǐ shí zhǒng zá liáng hùn hé càn bàn ， dǎo zhì shāng pǐn wú fǎ fēn jiǎn 。 chāo shì fù zé rén qín xiān shēng biǎo shì ， yīn kē lì dà xiǎo xiāng jìn wú fǎ shāi xuǎn ， zá liáng qū shāng pǐn quán bù xià jià ， . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "학생이 배달 아르바이트를 하다 한 달에 회사에 200여 위안 빚을 지게 됐다.",
+      "keyPoint": "아이들이 잡곡을 섞어 분류가 불가능해지자 해당 상품을 전부 하차 조치했다.",
       "keyPoints": [
-        "학생이 배달 아르바이트를 하다 한 달에 회사에 200여 위안 빚을 지게 됐다."
+        "아이들이 잡곡을 섞어 분류가 불가능해지자 해당 상품을 전부 하차 조치했다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E5%AD%A6%E7%94%9F%E5%85%BC%E8%81%8C%E9%80%81%E5%A4%96%E5%8D%96%E4%B8%80%E4%B8%AA%E6%9C%88%E5%80%92%E6%AC%A0%E5%85%AC%E5%8F%B8200%E5%A4%9A&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E4%BF%A9%E5%AD%A9%E5%AD%90%E5%B0%86%E8%B6%85%E5%B8%82%E5%86%85%E5%87%A0%E5%8D%81%E7%A7%8D%E6%9D%82%E7%B2%AE%E6%B7%B7%E6%8E%BA&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "兼职",
-        "pinyin": "jiān zhí",
-        "meaning": "아르바이트, 파트타임",
-        "example": "许多学生在课余时间做兼职以补贴生活费。",
-        "examplePinyin": "xǔ duō xué shēng zài kè yú shí jiān zuò jiān zhí yǐ bǔ tiē shēng huó fèi 。",
-        "exampleMeaning": "많은 학생들이 여가 시간에 아르바이트를 하여 생활비를 보충한다."
+        "chinese": "混掺",
+        "pinyin": "hùn càn",
+        "meaning": "서로 섞다, 혼합하여 뒤섞다",
+        "example": "工人不小心把两种材料混掺了。",
+        "examplePinyin": "gōng rén bù xiǎo xīn bǎ liǎng zhǒng cái liào hùn càn le 。",
+        "exampleMeaning": "일꾼이 실수로 두 가지 재료를 섞어버렸다."
       },
       "expressions": [
         {
-          "chinese": "兼职",
-          "pinyin": "jiān zhí",
-          "meaning": "아르바이트, 파트타임",
-          "example": "许多学生在课余时间做兼职以补贴生活费。",
-          "examplePinyin": "xǔ duō xué shēng zài kè yú shí jiān zuò jiān zhí yǐ bǔ tiē shēng huó fèi 。",
-          "exampleMeaning": "많은 학생들이 여가 시간에 아르바이트를 하여 생활비를 보충한다."
-        },
-        {
-          "chinese": "倒欠",
-          "pinyin": "dào qiàn",
-          "meaning": "오히려 빚을 지다",
-          "example": "由于扣款问题，他这个月倒欠公司一笔费用。",
-          "examplePinyin": "yóu yú kòu kuǎn wèn tí ， tā zhè ge yuè dào qiàn gōng sī yī bǐ fèi yòng 。",
-          "exampleMeaning": "공제 문제로 인해 그는 이번 달에 오히려 회사에 비용을 빚졌다."
+          "chinese": "混掺",
+          "pinyin": "hùn càn",
+          "meaning": "서로 섞다, 혼합하여 뒤섞다",
+          "example": "工人不小心把两种材料混掺了。",
+          "examplePinyin": "gōng rén bù xiǎo xīn bǎ liǎng zhǒng cái liào hùn càn le 。",
+          "exampleMeaning": "일꾼이 실수로 두 가지 재료를 섞어버렸다."
         }
       ],
       "words": [
         {
-          "chinese": "学生",
-          "pinyin": "xué shēng",
-          "meaning": "학생"
+          "chinese": "俩孩子",
+          "pinyin": "liǎ hái zi",
+          "meaning": "두 어린이"
         },
         {
-          "chinese": "兼职",
-          "pinyin": "jiān zhí",
-          "meaning": "아르바이트"
+          "chinese": "超市",
+          "pinyin": "chāo shì",
+          "meaning": "슈퍼마켓"
         },
         {
-          "chinese": "送外卖",
-          "pinyin": "sòng wài mài",
-          "meaning": "음식 배달을 하다"
+          "chinese": "杂粮",
+          "pinyin": "zá liáng",
+          "meaning": "잡곡"
         },
         {
-          "chinese": "倒欠",
-          "pinyin": "dào qiàn",
-          "meaning": "빚을 지다(뒤집혀 빚이 남다)"
+          "chinese": "混掺",
+          "pinyin": "hùn càn",
+          "meaning": "섞다"
         },
         {
-          "chinese": "公司",
-          "pinyin": "gōng sī",
-          "meaning": "회사"
+          "chinese": "无法分拣",
+          "pinyin": "wú fǎ fēn jiǎn",
+          "meaning": "분류할 수 없다"
         },
         {
-          "chinese": "200多",
-          "pinyin": "2 0 0 duō",
-          "meaning": "200여(단위는 원문 기준)"
+          "chinese": "下架",
+          "pinyin": "xià jià",
+          "meaning": "진열에서 내리다"
+        },
+        {
+          "chinese": "负责人",
+          "pinyin": "fù zé rén",
+          "meaning": "담당자"
+        },
+        {
+          "chinese": "颗粒大小",
+          "pinyin": "kē lì dà xiǎo",
+          "meaning": "알갱이 크기"
         }
       ]
     },
     {
       "rank": 8,
-      "chinese": "“两弹一星”元勋王希季逝世",
-      "pinyin": "“ liǎng dàn yī xīng ” yuán xūn wáng xī jì shì shì",
-      "translation": "'두 폭탄·한 위성' 공로자 왕시지 별세",
-      "summary": "보도는 왕희계를 중국 공산당의 우수 당원, 자국 항천(우주) 사업의 개척자 중 한 명, 저명한 우주 기술 전문가 및 중국과학원 원사로 소개합니다. 그는 국가 '두 폭탄·한 위성 공훈 메달' 수상자이기도 합니다. 또한 중국항천과학기술그룹의 과학기술위원회 등에서 활동한 경력이 언급됩니다.",
-      "detailChinese": "中国共产党优秀党员，我国航天事业开拓者之一，著名空间技术专家，中国科学院院士，国家“两弹一星功勋奖章”获得者，中国航天科技集团有限公司科学技术委员会... 查看更多",
-      "detailPinyin": "zhōng guó gòng chǎn dǎng yōu xiù dǎng yuán ， wǒ guó háng tiān shì yè kāi tuò zhě zhī yī ， zhù míng kōng jiān jì shù zhuān jiā ， zhōng guó kē xué yuàn yuàn shì ， guó jiā “ liǎng dàn yī xīng gōng xūn jiǎng zhāng ” huò dé zhě ， zhōng guó háng tiān kē jì jí tuán yǒu xiàn gōng sī kē xué jì shù wěi yuán huì . . .   chá kàn gèng duō",
+      "chinese": "39度高温管家喊话全楼关空调",
+      "pinyin": "3 9 dù gāo wēn guǎn jiā hǎn huà quán lóu guān kōng tiáo",
+      "translation": "39도 폭염에 관리인이 전 세대에 에어컨 끄라 요청",
+      "summary": "광저우의 한 네티즌 게시물이 주목을 받았습니다. 폭염으로 기온이 39도까지 오르자 관리인이 건물 전체에 에어컨을 끄라고 알렸다는 내용입니다. 당사자 양 씨는 자신이 거주하는 회수 주택이 임시 전력으로 연결돼 있어 7~8월에 많은 가구가 에어컨을 켤 때 전기 회로가 과부하된다고 전했습니다.",
+      "detailChinese": "近日，广州网友发布的一则帖子引发关注：39度高温管家喊话全楼关空调,。当事人梁女士告诉记者，她居住的回迁房为临时用电，七八月份很多住户开空调时电路超... 查看更多",
+      "detailPinyin": "jìn rì ， guǎng zhōu wǎng yǒu fā bù de yī zé tiě zi yǐn fā guān zhù ： 3 9 dù gāo wēn guǎn jiā hǎn huà quán lóu guān kōng tiáo , 。 dāng shì rén liáng nǚ shì gào sù jì zhě ， tā jū zhù de huí qiān fáng wèi lín shí yòng diàn ， qī bā yuè fèn hěn duō zhù hù kāi kōng tiáo shí diàn lù chāo . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "왕시지는 중국 항천 분야의 개척자이자 '두 폭탄·한 위성' 공훈 수상자로 별세했다.",
+      "keyPoint": "임시 전력 설비로 에어컨 사용 시 전기 과부하 우려가 있어 관리자가 전 세대의 에어컨 사용 자제를 요청했다.",
       "keyPoints": [
-        "왕시지는 중국 항천 분야의 개척자이자 '두 폭탄·한 위성' 공훈 수상자로 별세했다."
+        "임시 전력 설비로 에어컨 사용 시 전기 과부하 우려가 있어 관리자가 전 세대의 에어컨 사용 자제를 요청했다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E2%80%9C%E4%B8%A4%E5%BC%B9%E4%B8%80%E6%98%9F%E2%80%9D%E5%85%83%E5%8B%8B%E7%8E%8B%E5%B8%8C%E5%AD%A3%E9%80%9D%E4%B8%96&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=39%E5%BA%A6%E9%AB%98%E6%B8%A9%E7%AE%A1%E5%AE%B6%E5%96%8A%E8%AF%9D%E5%85%A8%E6%A5%BC%E5%85%B3%E7%A9%BA%E8%B0%83&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "两弹一星",
-        "pinyin": "liǎng dàn yī xīng",
-        "meaning": "두 폭탄(원자·수소)과 한 위성(중국 초기 국산 위성) 사업을 가리키는 표현",
-        "example": "许多科学家因在两弹一星工程中的贡献被授予国家荣誉。",
-        "examplePinyin": "xǔ duō kē xué jiā yīn zài liǎng dàn yī xīng gōng chéng zhōng de gòng xiàn bèi shòu yǔ guó jiā róng yù 。",
-        "exampleMeaning": "많은 과학자들이 두 폭탄·한 위성 사업에 대한 공헌으로 국가적 영예를 받았다."
+        "chinese": "喊话",
+        "pinyin": "hǎn huà",
+        "meaning": "직접 메시지를 보내 촉구하다",
+        "example": "社区管理者直接给居民喊话，提醒注意用电安全。",
+        "examplePinyin": "shè qū guǎn lǐ zhě zhí jiē gěi jū mín hǎn huà ， tí xǐng zhù yì yòng diàn ān quán 。",
+        "exampleMeaning": "지역 관리자가 주민들에게 직접 메시지로 전력을 주의하라고 촉구했다."
       },
       "expressions": [
         {
-          "chinese": "两弹一星",
-          "pinyin": "liǎng dàn yī xīng",
-          "meaning": "두 폭탄(원자·수소)과 한 위성(중국 초기 국산 위성) 사업을 가리키는 표현",
-          "example": "许多科学家因在两弹一星工程中的贡献被授予国家荣誉。",
-          "examplePinyin": "xǔ duō kē xué jiā yīn zài liǎng dàn yī xīng gōng chéng zhōng de gòng xiàn bèi shòu yǔ guó jiā róng yù 。",
-          "exampleMeaning": "많은 과학자들이 두 폭탄·한 위성 사업에 대한 공헌으로 국가적 영예를 받았다."
-        },
-        {
-          "chinese": "元勋",
-          "pinyin": "yuán xūn",
-          "meaning": "공로자, 공적이 큰 인물",
-          "example": "他被誉为民族工业的元勋，为国家发展作出重要贡献。",
-          "examplePinyin": "tā bèi yù wéi mín zú gōng yè de yuán xūn ， wèi guó jiā fā zhǎn zuò chū zhòng yào gòng xiàn 。",
-          "exampleMeaning": "그는 민족 산업의 공로자로 불리며 국가 발전에 중요한 공헌을 했다."
+          "chinese": "喊话",
+          "pinyin": "hǎn huà",
+          "meaning": "직접 메시지를 보내 촉구하다",
+          "example": "社区管理者直接给居民喊话，提醒注意用电安全。",
+          "examplePinyin": "shè qū guǎn lǐ zhě zhí jiē gěi jū mín hǎn huà ， tí xǐng zhù yì yòng diàn ān quán 。",
+          "exampleMeaning": "지역 관리자가 주민들에게 직접 메시지로 전력을 주의하라고 촉구했다."
         }
       ],
       "words": [
         {
-          "chinese": "两弹一星",
-          "pinyin": "liǎng dàn yī xīng",
-          "meaning": "두 폭탄·한 위성(국가적 핵심 과학사업)"
+          "chinese": "39度",
+          "pinyin": "3 9 dù",
+          "meaning": "섭씨 39도"
         },
         {
-          "chinese": "元勋",
-          "pinyin": "yuán xūn",
-          "meaning": "공로자"
+          "chinese": "高温",
+          "pinyin": "gāo wēn",
+          "meaning": "고온, 폭염"
         },
         {
-          "chinese": "王希季",
-          "pinyin": "wáng xī jì",
-          "meaning": "왕시지(인명)"
+          "chinese": "管家",
+          "pinyin": "guǎn jiā",
+          "meaning": "관리인"
         },
         {
-          "chinese": "逝世",
-          "pinyin": "shì shì",
-          "meaning": "별세"
+          "chinese": "关空调",
+          "pinyin": "guān kōng tiáo",
+          "meaning": "에어컨을 끄다"
+        },
+        {
+          "chinese": "回迁房",
+          "pinyin": "huí qiān fáng",
+          "meaning": "이주·재정착 주택"
+        },
+        {
+          "chinese": "临时用电",
+          "pinyin": "lín shí yòng diàn",
+          "meaning": "임시 전력"
+        },
+        {
+          "chinese": "电路超载",
+          "pinyin": "diàn lù chāo zài",
+          "meaning": "전기 회로 과부하"
+        },
+        {
+          "chinese": "住户",
+          "pinyin": "zhù hù",
+          "meaning": "세대, 거주자"
         }
       ]
     },
     {
       "rank": 9,
-      "chinese": "日本“草莓仙人”挑衅中国人",
-      "pinyin": "rì běn “ cǎo méi xiān rén ” tiǎo xìn zhōng guó rén",
-      "translation": "일본 '딸기 신선'이 중국인 도발 발언",
-      "summary": "보도에 따르면 고베 시의원인 상하타 히로히로는 8월 8일 이후 소셜 플랫폼에 연이어 중국 관광객을 배제하는 발언을 올렸습니다. 그는 고베에 중국인이 오지 않기를 주장했고, 작년에 중국인이 딸기 꼭지를 먹지 않는 행위를 국가 안보와 연결지어 언급했던 내용을 다시 꺼냈습니다. 이러한 연속적인 발언이 중국인에 대한 도발로 보도되고 있습니다.",
-      "detailChinese": "日本神户市议员上畠宽弘8月8日起在社交平台连续发表排斥中国游客的言论，宣称反对中国人赴神户旅游，并重提其去年将中国人不吃草莓蒂的行为与日本国家安全挂... 查看更多",
-      "detailPinyin": "rì běn shén hù shì yì yuán shàng tián kuān hóng 8 yuè 8 rì qǐ zài shè jiāo píng tái lián xù fā biǎo pái chì zhōng guó yóu kè de yán lùn ， xuān chēng fǎn duì zhōng guó rén fù shén hù lǚ yóu ， bìng zhòng tí qí qù nián jiāng zhōng guó rén bù chī cǎo méi dì de xíng wéi yǔ rì běn guó jiā ān quán guà . . .   chá kàn gèng duō",
+      "chinese": "万宁海边挤满上“体校”的人",
+      "pinyin": "wàn níng hǎi biān jǐ mǎn shàng “ tǐ xiào ” de rén",
+      "translation": "완닝 해변에 체육학교(운동하는) 사람들이 가득하다",
+      "summary": "과거 젊은이들이 섬에서 휴가를 보낼 때는 바다를 보고 사진 찍고 관광지를 다니는 것이 일반적이었습니다. 그러나 완닝에서는 바다가 배경이 아니라 실제 운동장 역할을 하고 있습니다. 해변에서 운동을 즐기는 것이 관광을 대신하는 모습이 젊은 층 사이에서 확산되고 있습니다.",
+      "detailChinese": "过去，年轻人去海岛度假，通常有一套标准动作——看海、拍照、逛景点、住酒店。但万宁不太一样，这里的海不是背景版，是真正的运动场。运动替代景点，成为年轻... 查看更多",
+      "detailPinyin": "guò qù ， nián qīng rén qù hǎi dǎo dù jià ， tōng cháng yǒu yī tào biāo zhǔn dòng zuò — — kàn hǎi 、 pāi zhào 、 guàng jǐng diǎn 、 zhù jiǔ diàn 。 dàn wàn níng bù tài yī yàng ， zhè lǐ de hǎi bú shì bèi jǐng bǎn ， shì zhēn zhèng de yùn dòng chǎng 。 yùn dòng tì dài jǐng diǎn ， chéng wéi nián qīng . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "고베 시의원이 중국인 관광객을 배제하는 발언을 이어가며 도발했다.",
+      "keyPoint": "완닝의 해변은 배경이 아니라 실제 운동 공간으로 젊은 층의 운동 활동 중심지가 되고 있다.",
       "keyPoints": [
-        "고베 시의원이 중국인 관광객을 배제하는 발언을 이어가며 도발했다."
+        "완닝의 해변은 배경이 아니라 실제 운동 공간으로 젊은 층의 운동 활동 중심지가 되고 있다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E2%80%9C%E8%8D%89%E8%8E%93%E4%BB%99%E4%BA%BA%E2%80%9D%E6%8C%91%E8%A1%85%E4%B8%AD%E5%9B%BD%E4%BA%BA&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E4%B8%87%E5%AE%81%E6%B5%B7%E8%BE%B9%E6%8C%A4%E6%BB%A1%E4%B8%8A%E2%80%9C%E4%BD%93%E6%A0%A1%E2%80%9D%E7%9A%84%E4%BA%BA&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "挑衅",
-        "pinyin": "tiǎo xìn",
-        "meaning": "도발하다",
-        "example": "他的言论被认为是对另一方的挑衅，导致局势紧张。",
-        "examplePinyin": "tā de yán lùn bèi rèn wéi shì duì lìng yī fāng de tiǎo xìn ， dǎo zhì jú shì jǐn zhāng 。",
-        "exampleMeaning": "그의 발언은 상대에 대한 도발로 여겨져 상황을 긴장시켰다."
+        "chinese": "挤满",
+        "pinyin": "jǐ mǎn",
+        "meaning": "가득 차다",
+        "example": "节假日海滩上挤满了游客。",
+        "examplePinyin": "jié jià rì hǎi tān shàng jǐ mǎn le yóu kè 。",
+        "exampleMeaning": "휴일에는 해변에 관광객이 가득 찼다."
       },
       "expressions": [
         {
-          "chinese": "挑衅",
-          "pinyin": "tiǎo xìn",
-          "meaning": "도발하다",
-          "example": "他的言论被认为是对另一方的挑衅，导致局势紧张。",
-          "examplePinyin": "tā de yán lùn bèi rèn wéi shì duì lìng yī fāng de tiǎo xìn ， dǎo zhì jú shì jǐn zhāng 。",
-          "exampleMeaning": "그의 발언은 상대에 대한 도발로 여겨져 상황을 긴장시켰다."
-        },
-        {
-          "chinese": "排斥",
-          "pinyin": "pái chì",
-          "meaning": "배제하다, 배척하다",
-          "example": "该社区有人对外来游客表示排斥，引发争议。",
-          "examplePinyin": "gāi shè qū yǒu rén duì wài lái yóu kè biǎo shì pái chì ， yǐn fā zhēng yì 。",
-          "exampleMeaning": "그 지역사회에는 외래 관광객을 배제하려는 사람이 있어 논란이 되었다."
+          "chinese": "挤满",
+          "pinyin": "jǐ mǎn",
+          "meaning": "가득 차다",
+          "example": "节假日海滩上挤满了游客。",
+          "examplePinyin": "jié jià rì hǎi tān shàng jǐ mǎn le yóu kè 。",
+          "exampleMeaning": "휴일에는 해변에 관광객이 가득 찼다."
         }
       ],
       "words": [
         {
-          "chinese": "日本",
-          "pinyin": "rì běn",
-          "meaning": "일본"
+          "chinese": "万宁",
+          "pinyin": "wàn níng",
+          "meaning": "완닝(지명)"
         },
         {
-          "chinese": "草莓仙人",
-          "pinyin": "cǎo méi xiān rén",
-          "meaning": "딸기 신선(별명)"
+          "chinese": "海边",
+          "pinyin": "hǎi biān",
+          "meaning": "해변"
         },
         {
-          "chinese": "挑衅",
-          "pinyin": "tiǎo xìn",
-          "meaning": "도발"
+          "chinese": "体校",
+          "pinyin": "tǐ xiào",
+          "meaning": "체육 학교; 여기서는 운동하는 사람들"
         },
         {
-          "chinese": "中国人",
-          "pinyin": "zhōng guó rén",
-          "meaning": "중국인"
+          "chinese": "年轻人",
+          "pinyin": "nián qīng rén",
+          "meaning": "젊은이"
+        },
+        {
+          "chinese": "运动",
+          "pinyin": "yùn dòng",
+          "meaning": "운동"
+        },
+        {
+          "chinese": "景点",
+          "pinyin": "jǐng diǎn",
+          "meaning": "관광지"
+        },
+        {
+          "chinese": "度假",
+          "pinyin": "dù jià",
+          "meaning": "휴가를 보내다"
+        },
+        {
+          "chinese": "拍照",
+          "pinyin": "pāi zhào",
+          "meaning": "사진 찍다"
         }
       ]
     },
     {
       "rank": 10,
-      "chinese": "谁在给可乐“判死刑”",
-      "pinyin": "shuí zài gěi kě lè “ pàn sǐ xíng ”",
-      "translation": "누가 콜라에 '사형선고'를 내리나",
-      "summary": "지난 조사에서 지난날 칭난의 한 슈퍼마켓에서는 환불 대신 무료로 판타를 제공하자 손님들이 생수를 선택해 떠났고, 난징의 일부 상인은 팔리지 않는 음료를 내놓아도 찾는 이가 없었습니다. 이러한 현장 취재는 탄산음료 카테고리가 소멸 위기에 처한 모습을 그려냈습니다. 최근 몇 년간 음료 업계는 어려움을 겪고 있고 무설탕·건강 지향 소비가 확산되고 있습니다.",
-      "detailChinese": "济南超市里免费送芬达客人转头选矿泉水、南京商户送都没人要的走访见闻共同勾勒出一个碳酸品类濒临死亡的模样。这几年，饮品行业水深火热，无糖健康蔚然成风，... 查看更多",
-      "detailPinyin": "jǐ nán chāo shì lǐ miǎn fèi sòng fēn dá kè rén zhuǎn tóu xuǎn kuàng quán shuǐ 、 nán jīng shāng hù sòng dōu méi rén yào de zǒu fǎng jiàn wén gòng tóng gōu lè chū yí gè tàn suān pǐn lèi bīn lín sǐ wáng de mú yàng 。 zhè jǐ nián ， yǐn pǐn xíng yè shuǐ shēn huǒ rè ， wú táng jiàn kāng wèi rán chéng fēng ， . . .   chá kàn gèng duō",
+      "chinese": "邹市明辟谣",
+      "pinyin": "zōu shì míng pì yáo",
+      "translation": "조우스밍, 루머에 대해 반박하다",
+      "summary": "8월 13일 밤, 두 차례 올림픽 금메달리스트 조우스밍이 글을 올려 일부 루머를 부인했습니다. 그는 어떤 인물이 '패배하면 남편을 바꿔 보험이 있다'고 말했다는 주장 등을 부인했습니다. 아내 측의 가족 이익 수수 의혹 등도 모두 날조라고 밝히며 악의적 허위 계정과 내용에 대해 증거를 수집하겠다고 했습니다.",
+      "detailChinese": "8月13日晚，两届奥运冠军邹市明发文辟谣：否认冉莹颖说过“输了换老公有保险”，妻子家利益输送等均为造谣，将对恶意造谣账号和内容取证。8月13日，有媒... 查看更多",
+      "detailPinyin": "8 yuè 1 3 rì wǎn ， liǎng jiè ào yùn guàn jūn zōu shì míng fā wén pì yáo ： fǒu rèn rǎn yíng yǐng shuō guò “ shū le huàn lǎo gōng yǒu bǎo xiǎn ” ， qī zǐ jiā lì yì shū sòng děng jūn wèi zào yáo ， jiāng duì è yì zào yáo zhàng hào hé nèi róng qǔ zhèng 。 8 yuè 1 3 rì ， yǒu méi . . .   chá kàn gèng duō",
       "sourceExcerpt": "",
-      "keyPoint": "탄산음료에 대한 수요가 줄어들며 업계에서 콜라의 위기가 가시화하고 있다.",
+      "keyPoint": "조우스밍이 관련 루머를 전면 부인하고 악의적 유포자에 대해 증거를 확보하겠다고 밝혔다.",
       "keyPoints": [
-        "탄산음료에 대한 수요가 줄어들며 업계에서 콜라의 위기가 가시화하고 있다."
+        "조우스밍이 관련 루머를 전면 부인하고 악의적 유포자에 대해 증거를 확보하겠다고 밝혔다."
       ],
-      "url": "https://www.baidu.com/s?wd=%E8%B0%81%E5%9C%A8%E7%BB%99%E5%8F%AF%E4%B9%90%E2%80%9C%E5%88%A4%E6%AD%BB%E5%88%91%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+      "url": "https://www.baidu.com/s?wd=%E9%82%B9%E5%B8%82%E6%98%8E%E8%BE%9F%E8%B0%A3&sa=fyb_news&rsv_dl=fyb_news",
       "expression": {
-        "chinese": "判死刑",
-        "pinyin": "pàn sǐ xíng",
-        "meaning": "사형을 선고하다(비유적으로 '종말을 선언하다')",
-        "example": "市场上对这款产品的冷淡等于给它判死刑，企业需尽快调整策略。",
-        "examplePinyin": "shì chǎng shàng duì zhè kuǎn chǎn pǐn de lěng dàn děng yú gěi tā pàn sǐ xíng ， qǐ yè xū jǐn kuài tiáo zhěng cè lüè 。",
-        "exampleMeaning": "시장에서 이 제품에 대한 냉담한 반응은 사실상 종말을 선고한 것이므로 기업은 신속히 전략을 조정해야 한다."
+        "chinese": "辟谣",
+        "pinyin": "pì yáo",
+        "meaning": "루머를 해명·부인하다",
+        "example": "公司就网络上的谣言发布了辟谣声明。",
+        "examplePinyin": "gōng sī jiù wǎng luò shàng de yáo yán fā bù le pì yáo shēng míng 。",
+        "exampleMeaning": "회사는 온라인상의 루머에 대해 해명 성명을 발표했다."
       },
       "expressions": [
         {
-          "chinese": "判死刑",
-          "pinyin": "pàn sǐ xíng",
-          "meaning": "사형을 선고하다(비유적으로 '종말을 선언하다')",
-          "example": "市场上对这款产品的冷淡等于给它判死刑，企业需尽快调整策略。",
-          "examplePinyin": "shì chǎng shàng duì zhè kuǎn chǎn pǐn de lěng dàn děng yú gěi tā pàn sǐ xíng ， qǐ yè xū jǐn kuài tiáo zhěng cè lüè 。",
-          "exampleMeaning": "시장에서 이 제품에 대한 냉담한 반응은 사실상 종말을 선고한 것이므로 기업은 신속히 전략을 조정해야 한다."
-        },
-        {
-          "chinese": "可乐",
-          "pinyin": "kě lè",
-          "meaning": "콜라",
-          "example": "年轻消费者越来越倾向于选择无糖饮品，而不是传统的可乐。",
-          "examplePinyin": "nián qīng xiāo fèi zhě yuè lái yuè qīng xiàng yú xuǎn zé wú táng yǐn pǐn ， ér bú shì chuán tǒng de kě lè 。",
-          "exampleMeaning": "젊은 소비자들은 전통적인 콜라보다 무설탕 음료를 선택하는 경향이 커지고 있다."
+          "chinese": "辟谣",
+          "pinyin": "pì yáo",
+          "meaning": "루머를 해명·부인하다",
+          "example": "公司就网络上的谣言发布了辟谣声明。",
+          "examplePinyin": "gōng sī jiù wǎng luò shàng de yáo yán fā bù le pì yáo shēng míng 。",
+          "exampleMeaning": "회사는 온라인상의 루머에 대해 해명 성명을 발표했다."
         }
       ],
       "words": [
         {
-          "chinese": "谁",
-          "pinyin": "shuí",
-          "meaning": "누구"
+          "chinese": "邹市明",
+          "pinyin": "zōu shì míng",
+          "meaning": "조우스밍(인명)"
         },
         {
-          "chinese": "可乐",
-          "pinyin": "kě lè",
-          "meaning": "콜라"
+          "chinese": "辟谣",
+          "pinyin": "pì yáo",
+          "meaning": "루머를 부인하다"
         },
         {
-          "chinese": "判死刑",
-          "pinyin": "pàn sǐ xíng",
-          "meaning": "사형 선고(비유적 표현)"
+          "chinese": "奥运冠军",
+          "pinyin": "ào yùn guàn jūn",
+          "meaning": "올림픽 챔피언"
         },
         {
-          "chinese": "碳酸品类",
-          "pinyin": "tàn suān pǐn lèi",
-          "meaning": "탄산음료류"
+          "chinese": "造谣",
+          "pinyin": "zào yáo",
+          "meaning": "거짓 소문을 퍼뜨리다"
         },
         {
-          "chinese": "无糖",
-          "pinyin": "wú táng",
-          "meaning": "무설탕"
+          "chinese": "证据",
+          "pinyin": "zhèng jù",
+          "meaning": "증거"
+        },
+        {
+          "chinese": "账号",
+          "pinyin": "zhàng hào",
+          "meaning": "계정"
+        },
+        {
+          "chinese": "家利益输送",
+          "pinyin": "jiā lì yì shū sòng",
+          "meaning": "가족 이익 수수(의혹)"
+        },
+        {
+          "chinese": "妻子",
+          "pinyin": "qī zǐ",
+          "meaning": "아내"
         }
       ]
     }
