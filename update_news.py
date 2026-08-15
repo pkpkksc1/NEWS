@@ -30,7 +30,7 @@ SEARCH_SUMMARY_MAX_CHARS = 500
 MAX_WORDS_PER_NEWS = 12
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.5-no-review-no-keypoint"
+DATA_SCHEMA_VERSION = "v2.6-sentence-study"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -467,9 +467,12 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 규칙:
 1. rank, category, categoryRank, chinese는 절대 변경하지 마세요.
 2. translation은 제목의 자연스러운 한국어 번역입니다.
-3. detailKorean은 sourceSummary만 사용해 자연스러운 한국어 3~5문장으로 번역·정리하세요.
-   중국어 문장이나 중국어 한자를 그대로 섞지 마세요. 원문에 없는 사실을 추가하지 마세요.
-   sourceSummary가 비어 있으면 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
+3. sourceSummary를 문장 단위로 나누어 detailPairs 배열을 만드세요.
+   각 항목은 chinese와 korean 두 필드만 포함합니다.
+   chinese는 sourceSummary에 실제로 있는 중국어 문장을 의미가 자연스럽게 끊기는 단위로 사용하고,
+   korean은 해당 chinese 문장만 정확하고 자연스럽게 한국어로 번역하세요.
+   문장을 합치거나 순서를 바꾸지 말고 원문에 없는 사실을 추가하지 마세요.
+   sourceSummary가 비어 있으면 detailPairs는 빈 배열입니다.
 4. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
 5. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다. 예문 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
 6. words는 제목과 상세 내용에서 학습 가치가 높은 핵심 단어 최대 12개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
@@ -485,7 +488,10 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
       "categoryRank": 1,
       "chinese": "입력 제목 그대로",
       "translation": "한국어 제목",
-      "detailKorean": "한국어 상세 내용",
+      "detailPairs": [
+        {"chinese": "중국어 문장 1", "korean": "해당 문장의 한국어 번역"},
+        {"chinese": "중국어 문장 2", "korean": "해당 문장의 한국어 번역"}
+      ],
       "expressions": [
         {{"chinese": "표현", "meaning": "한국어 뜻", "example": "중국어 예문", "exampleMeaning": "한국어 예문 뜻"}}
       ],
@@ -521,7 +527,26 @@ def validate_and_merge_learning_data(
             raise RuntimeError(f"GPT가 {rank}위 중국어 제목을 변경했습니다.")
 
         translation = clean_text(str(generated.get("translation", "")))
-        summary = clean_text(str(generated.get("detailKorean", generated.get("summary", ""))))
+        detail_pairs_raw = generated.get("detailPairs", [])
+        detail_pairs: list[dict[str, str]] = []
+        if isinstance(detail_pairs_raw, list):
+            for pair_raw in detail_pairs_raw:
+                if not isinstance(pair_raw, dict):
+                    continue
+                pair_chinese = clean_text(str(pair_raw.get("chinese", "")))
+                pair_korean = clean_text(str(pair_raw.get("korean", "")))
+                if not pair_chinese or not pair_korean:
+                    continue
+                detail_pairs.append({
+                    "chinese": pair_chinese,
+                    "pinyin": make_pinyin(pair_chinese),
+                    "korean": pair_korean,
+                })
+
+        source_summary = clean_text(str(raw.get("sourceSummary", "")))
+        if source_summary and not detail_pairs:
+            raise RuntimeError(f"GPT의 {rank}위 문장별 상세 번역이 비어 있습니다.")
+        summary = " ".join(pair["korean"] for pair in detail_pairs)
         key_point_raw = generated.get("keyPoint", generated.get("keyPoints", ""))
         expressions_raw = generated.get("expressions")
         # 이전 형식과도 호환합니다.
@@ -530,8 +555,8 @@ def validate_and_merge_learning_data(
             expressions_raw = [legacy_expression] if isinstance(legacy_expression, dict) else []
         words_raw = generated.get("words")
 
-        if not translation or not summary:
-            raise RuntimeError(f"GPT의 {rank}위 번역 또는 상세 한국어가 비어 있습니다.")
+        if not translation:
+            raise RuntimeError(f"GPT의 {rank}위 한국어 제목이 비어 있습니다.")
         korean_chars = len(re.findall(r"[가-힣]", summary))
         chinese_chars = len(re.findall(r"[\u4e00-\u9fff]", summary))
         if chinese_chars > 8 and korean_chars < chinese_chars:
@@ -617,8 +642,9 @@ def validate_and_merge_learning_data(
                 "pinyin": make_pinyin(title),
                 "translation": translation,
                 "summary": summary,
-                "detailChinese": clean_text(str(raw.get("sourceSummary", ""))),
-                "detailPinyin": make_pinyin(clean_text(str(raw.get("sourceSummary", "")))),
+                "detailPairs": detail_pairs,
+                "detailChinese": source_summary,
+                "detailPinyin": make_pinyin(source_summary),
                 "sourceExcerpt": "",
                 "keyPoint": key_point,
                 "keyPoints": [key_point] if key_point else [],
@@ -859,6 +885,9 @@ def make_email_html(data: dict[str, Any]) -> str:
         summary = html.escape(str(item.get("summary", "")))
         detail_chinese = html.escape(str(item.get("detailChinese", "")))
         detail_pinyin = html.escape(str(item.get("detailPinyin", "")))
+        detail_pairs = item.get("detailPairs", [])
+        if not isinstance(detail_pairs, list):
+            detail_pairs = []
         key_point = clean_text(str(item.get("keyPoint", ""))) or clean_text(" ".join(str(x) for x in item.get("keyPoints", []) if x))
         expressions = item.get("expressions", [])
         if not isinstance(expressions, list) or not expressions:
@@ -872,6 +901,35 @@ def make_email_html(data: dict[str, Any]) -> str:
             <div style="display:flex;gap:10px;margin:9px 0;padding:11px 13px;border-radius:11px;background:#fff8e7;line-height:1.65;">
                 <span style="color:#b54708;font-weight:900;">✓</span>
                 <span>{html.escape(key_point)}</span>
+            </div>
+            """
+
+        detail_pairs_html = ""
+        if detail_pairs:
+            sentence_cards = []
+            for sentence_index, pair in enumerate(detail_pairs, start=1):
+                if not isinstance(pair, dict):
+                    continue
+                sentence_chinese = html.escape(str(pair.get("chinese", "")))
+                sentence_pinyin = html.escape(str(pair.get("pinyin", "")))
+                sentence_korean = html.escape(str(pair.get("korean", "")))
+                if not sentence_chinese or not sentence_korean:
+                    continue
+                sentence_cards.append(
+                    f"""
+                    <div style="margin:0 0 12px;padding:15px 16px;border:1px solid #f2d675;border-radius:13px;background:#fffdf4;">
+                        <div style="margin-bottom:7px;color:#b54708;font-size:12px;font-weight:800;">문장 {sentence_index}</div>
+                        <div style="font-size:18px;line-height:1.8;font-weight:800;color:#18202f;">{sentence_chinese}</div>
+                        <div style="margin-top:7px;font-size:15px;line-height:1.8;color:#315efb;font-weight:700;">{sentence_pinyin}</div>
+                        <div style="margin-top:8px;padding-top:8px;border-top:1px dashed #ead58b;font-size:16px;line-height:1.8;color:#344054;">{sentence_korean}</div>
+                    </div>
+                    """
+                )
+            detail_pairs_html = "".join(sentence_cards)
+        else:
+            detail_pairs_html = """
+            <div style="padding:15px 16px;border:1px solid #f2d675;border-radius:13px;background:#fffdf4;color:#667085;font-size:15px;line-height:1.7;">
+                관련 상세 내용을 확인하지 못했습니다.
             </div>
             """
 
@@ -906,14 +964,9 @@ def make_email_html(data: dict[str, Any]) -> str:
                         <div style="font-size:17px;line-height:1.7;font-weight:700;">{translation}</div>
                     </div>
 
-                    <h3 style="margin:0 0 10px;color:#8a6500;font-size:16px;">📰 자세한 내용</h3>
-                    <div style="margin-bottom:19px;padding:16px;border-radius:13px;background:#fff8dc;border:1px solid #f2d675;">
-                        <div style="margin-bottom:5px;color:#8a6500;font-size:12px;font-weight:800;">중국어</div>
-                        <div style="font-size:17px;line-height:1.85;font-weight:700;color:#18202f;">{detail_chinese or '바이두에 상세 설명이 표시되지 않았습니다.'}</div>
-                        <div style="margin-top:14px;margin-bottom:5px;color:#315efb;font-size:12px;font-weight:800;">병음</div>
-                        <div style="font-size:16px;line-height:1.85;color:#315efb;font-weight:700;">{detail_pinyin or '-'}</div>
-                        <div style="margin-top:14px;margin-bottom:5px;color:#16794a;font-size:12px;font-weight:800;">한국어</div>
-                        <div style="font-size:16px;line-height:1.9;color:#344054;">{summary}</div>
+                    <h3 style="margin:0 0 10px;color:#8a6500;font-size:16px;">📰 자세한 내용 · 문장별 학습</h3>
+                    <div style="margin-bottom:19px;">
+                        {detail_pairs_html}
                     </div>
 
                     <h3 style="margin:0 0 8px;color:#8a6500;font-size:16px;">💬 뉴스 표현</h3>
