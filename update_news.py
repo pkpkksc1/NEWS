@@ -697,39 +697,7 @@ def make_email_html(data: dict[str, Any]) -> str:
     """TOP10 전체를 보기 좋은 이메일 HTML로 만듭니다."""
     news_items = data.get("news", [])
 
-    # 저장 단계에서 선정한 오늘의 표현을 사용합니다.
-    today_expression = data.get("todayExpression", {})
-    if not isinstance(today_expression, dict):
-        today_expression = {}
-
-    today_expression_html = ""
-    if today_expression:
-        today_expression_html = f"""
-        <section style="margin:0 0 24px;padding:22px;border:1px solid #f4d06f;border-radius:18px;background:linear-gradient(135deg,#fffaf0 0%,#fff3c4 100%);box-shadow:0 8px 24px rgba(138,101,0,.08);">
-            <div style="margin-bottom:10px;color:#8a6500;font-size:13px;font-weight:800;letter-spacing:.08em;">✨ 오늘의 표현</div>
-            <div style="font-size:31px;font-weight:900;line-height:1.35;color:#18202f;">{html.escape(str(today_expression.get('chinese', '')))}</div>
-            <div style="margin-top:7px;color:#315efb;font-size:20px;font-weight:700;">{html.escape(str(today_expression.get('pinyin', '')))}</div>
-            <div style="margin-top:9px;color:#16794a;font-size:18px;font-weight:700;">{html.escape(str(today_expression.get('meaning', '')))}</div>
-            <div style="margin-top:16px;padding:14px 15px;border-radius:12px;background:#ffffff;border:1px solid #f1e4b0;font-size:16px;line-height:1.8;">
-                <div style="font-weight:700;color:#b54708;">예문</div>
-                <div style="margin-top:4px;">{html.escape(str(today_expression.get('example', '')))}</div>
-                <div style="margin-top:3px;color:#315efb;font-weight:600;">{html.escape(str(today_expression.get('examplePinyin', '')))}</div>
-                <div style="margin-top:3px;color:#667085;">{html.escape(str(today_expression.get('exampleMeaning', '')))}</div>
-            </div>
-        </section>
-        """
-
-    today_word = data.get("todayWord", {})
-    today_word_html = ""
-    if isinstance(today_word, dict) and today_word.get("chinese"):
-        today_word_html = f"""
-        <section style="margin:0 0 24px;padding:22px;border:1px solid #b7e4c7;border-radius:18px;background:linear-gradient(135deg,#f3fff7 0%,#e7f9ee 100%);">
-            <div style="margin-bottom:10px;color:#16794a;font-size:13px;font-weight:800;letter-spacing:.08em;">⭐ 오늘의 단어</div>
-            <div style="font-size:29px;font-weight:900;color:#18202f;">{html.escape(str(today_word.get('chinese', '')))}</div>
-            <div style="margin-top:7px;color:#315efb;font-size:19px;font-weight:700;">{html.escape(str(today_word.get('pinyin', '')))}</div>
-            <div style="margin-top:8px;color:#16794a;font-size:18px;font-weight:700;">{html.escape(str(today_word.get('meaning', '')))}</div>
-        </section>
-        """
+    # 오늘의 표현/오늘의 단어 상단 카드는 표시하지 않습니다.
 
     review_expression = data.get("reviewExpression", {})
     review_html = ""
@@ -872,8 +840,6 @@ def make_email_html(data: dict[str, Any]) -> str:
                 </tr>
             </table>
 
-            {today_expression_html}
-            {today_word_html}
             {conversation_html}
             {review_html}
 
