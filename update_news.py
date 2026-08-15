@@ -30,7 +30,7 @@ SEARCH_SUMMARY_MAX_CHARS = 300
 MAX_WORDS_PER_NEWS = 8
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.8-cost-optimized"
+DATA_SCHEMA_VERSION = "v2.9-20items-low"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -415,7 +415,7 @@ def fetch_baidu_board(page: Any, url: str, category: str, limit: int, rank_offse
 
 
 def fetch_baidu_top15() -> list[dict[str, Any]]:
-    """热搜榜 5개 + 民生榜 10개, 총 15개를 가져옵니다."""
+    """热搜榜 5개 + 民生榜 15개, 총 20개를 가져옵니다."""
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(
             headless=True,
@@ -483,7 +483,7 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 
     return f"""
 당신은 중국어 뉴스 학습자료 편집자입니다.
-아래 바이두 콘텐츠 15개(热搜榜 5개 + 民生榜 10개)를 한국인 학습자용으로 정확하고 자연스럽게 가공하세요.
+아래 바이두 콘텐츠 20개(热搜榜 5개 + 民生榜 15개)를 한국인 학습자용으로 정확하고 자연스럽게 가공하세요.
 
 규칙:
 1. rank, category, categoryRank, chinese는 절대 변경하지 마세요.
@@ -1034,12 +1034,12 @@ def make_email_html(data: dict[str, Any]) -> str:
         <meta charset="UTF-8">
     </head>
     <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#18202f;">
-        <div style="display:none;max-height:0;overflow:hidden;">오늘의 중국어 학습과 바이두 热搜榜 5 · 民生榜 10</div>
+        <div style="display:none;max-height:0;overflow:hidden;">오늘의 중국어 학습과 바이두 热搜榜 5 · 民生榜 15</div>
         <div style="max-width:760px;margin:0 auto;padding:24px 12px 36px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;margin:0 0 20px;border-collapse:separate;background-color:#315efb;border-radius:19px;overflow:hidden;box-shadow:0 10px 30px rgba(49,94,251,.20);" bgcolor="#315efb">
                 <tr>
                     <td style="padding:25px 22px;background-color:#315efb;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;" bgcolor="#315efb">
-                        <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 5 · 民生 10</div>
+                        <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 5 · 民生 15</div>
                         <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">🇨🇳 오늘의 중국어 + 바이두 핫이슈</div>
                         <div style="font-size:14px;line-height:1.7;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:13px;border-collapse:separate;">
@@ -1054,7 +1054,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             {conversation_html}
 
             <div style="margin:24px 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
-                바이두 热搜榜 TOP 5와 民生榜 TOP 10, 총 15개를 중국어 학습용으로 정리했습니다.
+                바이두 热搜榜 TOP 5와 民生榜 TOP 15, 총 20개를 중국어 학습용으로 정리했습니다.
             </div>
 
             {''.join(cards)}
@@ -1200,7 +1200,7 @@ def main() -> None:
                 return
 
         stage = "바이두 热搜榜·民生榜 수집"
-        print("1. 바이두 热搜榜 5개 + 民生榜 10개 수집 시작")
+        print("1. 바이두 热搜榜 5개 + 民生榜 15개 수집 시작")
         existing_titles = load_existing_titles()
         raw_news = fetch_baidu_top15()
         new_news_count = count_new_news(raw_news, existing_titles)
