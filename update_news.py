@@ -26,11 +26,11 @@ BAIDU_LIVELIHOOD_URL = "https://top.baidu.com/board?tab=livelihood"
 HOT_COUNT = 5
 LIVELIHOOD_COUNT = 10
 TOTAL_NEWS_COUNT = HOT_COUNT + LIVELIHOOD_COUNT
-SEARCH_SUMMARY_MAX_CHARS = 500
-MAX_WORDS_PER_NEWS = 12
+SEARCH_SUMMARY_MAX_CHARS = 300
+MAX_WORDS_PER_NEWS = 8
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.7-conversation5-clean"
+DATA_SCHEMA_VERSION = "v2.8-cost-optimized"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -494,9 +494,9 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
    korean은 해당 chinese 문장만 정확하고 자연스럽게 한국어로 번역하세요.
    문장을 합치거나 순서를 바꾸지 말고 원문에 없는 사실을 추가하지 마세요.
    sourceSummary가 비어 있으면 detailPairs는 빈 배열입니다.
-4. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
+4. expressions는 제목과 상세 내용에서 학습 가치가 높은 중국어 표현 정확히 1개입니다.
 5. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다. 예문 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
-6. words는 제목과 상세 내용에서 학습 가치가 높은 핵심 단어 최대 12개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
+6. words는 제목과 상세 내용에서 학습 가치가 높은 핵심 단어 최대 8개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
 7. 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
 8. 반드시 설명 없이 유효한 JSON 객체 하나만 출력하세요.
 
@@ -955,7 +955,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             """
 
         expressions_html = ""
-        for expression in expressions[:2]:
+        for expression in expressions[:1]:
             if not isinstance(expression, dict):
                 continue
             expressions_html += f"""
@@ -1038,7 +1038,7 @@ def make_email_html(data: dict[str, Any]) -> str:
                 <tr>
                     <td style="padding:25px 22px;background-color:#315efb;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;" bgcolor="#315efb">
                         <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 5 · 民生 10</div>
-                        <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">🇨🇳 오늘의 중국어 + 바이두 뉴스</div>
+                        <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">🇨🇳 오늘의 중국어 + 바이두 핫이슈</div>
                         <div style="font-size:14px;line-height:1.7;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:13px;border-collapse:separate;">
                             <tr>
@@ -1077,7 +1077,7 @@ def send_email(data: dict[str, Any]) -> None:
     period = "아침 뉴스" if hour < 10 else "점심 뉴스" if hour < 15 else "오후 뉴스"
 
     message = EmailMessage()
-    message["Subject"] = f"오늘의 중국어 + 바이두 뉴스 TOP10 | {date_part} {period}"
+    message["Subject"] = f"오늘의 중국어 + 바이두 핫이슈 | {date_part} {period}"
     message["From"] = EMAIL_USER
     recipients = [address.strip() for address in re.split(r"[,;]", EMAIL_TO) if address.strip()]
     if not recipients:
