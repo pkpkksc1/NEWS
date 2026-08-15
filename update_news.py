@@ -699,6 +699,8 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
                     "사실을 추측하지 않고, 요청된 JSON 형식만 반환합니다."
                 ),
                 input=prompt,
+                reasoning={"effort": "low"},
+                text={"verbosity": "low"},
             )
             if not response.output_text:
                 raise RuntimeError("GPT 응답이 비어 있습니다.")
