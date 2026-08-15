@@ -30,7 +30,7 @@ SEARCH_SUMMARY_MAX_CHARS = 500
 MAX_WORDS_PER_NEWS = 12
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.6-sentence-study"
+DATA_SCHEMA_VERSION = "v2.7-conversation5-clean"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -165,8 +165,22 @@ def count_new_news(raw_news: list[dict[str, Any]], existing_titles: set[str]) ->
     return sum(1 for item in raw_news if clean_text(str(item.get("chinese", ""))) not in existing_titles)
 
 
+def clean_conversation_punctuation(value: str, *, korean: bool = False) -> str:
+    """회화 문장의 불필요한 문장부호와 병음 앞 공백을 정리합니다."""
+    value = clean_text(value)
+    value = re.sub(r"\s+([，。！？；,.!?;])", r"\1", value)
+    value = re.sub(r"([，。！？；,.!?;])(?=\S)", r"\1 ", value)
+    value = re.sub(r"\s{2,}", " ", value).strip()
+
+    if korean:
+        # 번역 중간에 GPT/원본 데이터가 잘못 넣은 콜론을 자연스러운 공백으로 정리합니다.
+        value = re.sub(r"\s*[:：]\s*", " ", value)
+        value = re.sub(r"\s{2,}", " ", value).strip()
+    return value
+
+
 def get_daily_conversations() -> list[dict[str, str]]:
-    """365일 회화 파일에서 오늘의 3문장을 읽습니다."""
+    """기존 365일 회화 풀에서 오늘의 5문장을 순환해 읽습니다."""
     if not CONVERSATION_FILE.exists():
         raise RuntimeError(f"회화 데이터 파일이 없습니다: {CONVERSATION_FILE}")
 
@@ -179,30 +193,37 @@ def get_daily_conversations() -> list[dict[str, str]]:
     if not isinstance(days, list) or len(days) != 365:
         raise RuntimeError("daily_conversations.json에는 정확히 365일 데이터가 필요합니다.")
 
+    # 기존 365일 × 3문장 데이터를 하나의 회화 풀로 사용합니다.
+    pool: list[dict[str, str]] = []
+    for day in days:
+        sentences = day.get("sentences", []) if isinstance(day, dict) else []
+        if not isinstance(sentences, list):
+            continue
+        for sentence in sentences:
+            if not isinstance(sentence, dict):
+                continue
+            chinese = clean_conversation_punctuation(str(sentence.get("chinese", "")))
+            meaning = clean_conversation_punctuation(str(sentence.get("meaning", "")), korean=True)
+            if not chinese or not meaning:
+                continue
+
+            pinyin_raw = clean_text(str(sentence.get("pinyin", ""))) or make_pinyin(chinese)
+            pinyin = clean_conversation_punctuation(pinyin_raw)
+            pool.append({
+                "chinese": chinese,
+                "pinyin": pinyin,
+                "meaning": meaning,
+            })
+
+    if len(pool) < 5:
+        raise RuntimeError("회화 데이터에 유효한 문장이 5개 미만입니다.")
+
     today = datetime.now(ZoneInfo("Asia/Seoul")).date()
     day_index = (today.timetuple().tm_yday - 1) % 365
-    selected_day = days[day_index]
-    sentences = selected_day.get("sentences", []) if isinstance(selected_day, dict) else []
-    if not isinstance(sentences, list) or len(sentences) != 3:
-        raise RuntimeError(f"회화 {day_index + 1}일차 데이터는 3문장이어야 합니다.")
 
-    result: list[dict[str, str]] = []
-    for sentence in sentences:
-        if not isinstance(sentence, dict):
-            continue
-        chinese = clean_text(str(sentence.get("chinese", "")))
-        meaning = clean_text(str(sentence.get("meaning", "")))
-        if not chinese or not meaning:
-            continue
-        result.append({
-            "chinese": chinese,
-            "pinyin": clean_text(str(sentence.get("pinyin", ""))) or make_pinyin(chinese),
-            "meaning": meaning,
-        })
-
-    if len(result) != 3:
-        raise RuntimeError(f"회화 {day_index + 1}일차의 유효 문장이 3개가 아닙니다.")
-    return result
+    # 하루 5문장씩 이어서 선택합니다. 데이터 끝에 도달하면 처음부터 순환합니다.
+    start_index = (day_index * 5) % len(pool)
+    return [pool[(start_index + offset) % len(pool)] for offset in range(5)]
 
 
 def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
@@ -996,7 +1017,7 @@ def make_email_html(data: dict[str, Any]) -> str:
         conversation_html = f"""
         <section style="margin:26px 0 18px;padding:20px;border:1px solid #b2ccff;border-radius:18px;background:linear-gradient(135deg,#f5f8ff 0%,#eaf1ff 100%);">
             <div style="margin-bottom:6px;color:#2149d8;font-size:13px;font-weight:800;letter-spacing:.06em;">💬 매일 쓰는 중국어 회화</div>
-            <h2 style="margin:0 0 13px;font-size:22px;color:#18202f;">오늘의 회화 3문장</h2>
+            <h2 style="margin:0 0 13px;font-size:22px;color:#18202f;">오늘의 회화 5문장</h2>
             {rows}
         </section>
         """
