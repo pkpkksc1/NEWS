@@ -685,7 +685,7 @@ def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]
     if not OPENAI_API_KEY:
         raise RuntimeError("OPENAI_API_KEY가 설정되지 않았습니다.")
 
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=180.0, max_retries=1)
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=600.0, max_retries=1)
     prompt = build_learning_prompt(raw_news)
     last_error: Exception | None = None
 
