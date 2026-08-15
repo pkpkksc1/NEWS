@@ -20,9 +20,14 @@ from holiday import get_china_holiday_name
 
 
 BAIDU_URL = "https://top.baidu.com/board?tab=realtime"
+BAIDU_HOT_URL = "https://top.baidu.com/board?tab=realtime"
+BAIDU_LIVELIHOOD_URL = "https://top.baidu.com/board?tab=livelihood"
+HOT_COUNT = 5
+LIVELIHOOD_COUNT = 10
+TOTAL_NEWS_COUNT = HOT_COUNT + LIVELIHOOD_COUNT
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.2-daily-dashboard"
+DATA_SCHEMA_VERSION = "v2.3-hot5-livelihood10"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -236,11 +241,53 @@ def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
             item["expressions"] = expressions
             item["expression"] = expressions[0]
 
-def fetch_baidu_top10() -> list[dict[str, Any]]:
-    """바이두 실시간 검색어 TOP10을 가져옵니다."""
+def fetch_baidu_board(page: Any, url: str, category: str, limit: int, rank_offset: int = 0) -> list[dict[str, Any]]:
+    """바이두의 지정 랭킹에서 필요한 개수만 수집합니다."""
     results: list[dict[str, Any]] = []
     used_titles: set[str] = set()
 
+    page.goto(url, wait_until="domcontentloaded", timeout=60000)
+    try:
+        page.wait_for_load_state("networkidle", timeout=20000)
+    except PlaywrightTimeoutError:
+        pass
+    page.wait_for_timeout(3500)
+
+    for anchor in page.locator("a").all():
+        try:
+            title = clean_text(anchor.inner_text(timeout=2000))
+            href = anchor.get_attribute("href") or ""
+        except Exception:
+            continue
+
+        if not is_possible_news_title(title, href):
+            continue
+
+        title = re.sub(r"\s+(热|新|爆|沸)$", "", title).strip()
+        title = re.sub(r"[>＞]+$", "", title).strip()
+        if title in used_titles:
+            continue
+
+        results.append({
+            "rank": rank_offset + len(results) + 1,
+            "categoryRank": len(results) + 1,
+            "category": category,
+            "chinese": title,
+            "sourceSummary": extract_summary_from_anchor(anchor, title),
+            "url": href,
+        })
+        used_titles.add(title)
+
+        if len(results) >= limit:
+            break
+
+    if len(results) < limit:
+        raise RuntimeError(f"바이두 {category}에서 {limit}개를 가져오지 못했습니다. 가져온 항목: {len(results)}개")
+    return results
+
+
+def fetch_baidu_top15() -> list[dict[str, Any]]:
+    """热搜榜 5개 + 民生榜 10개, 총 15개를 가져옵니다."""
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(
             headless=True,
@@ -257,51 +304,15 @@ def fetch_baidu_top10() -> list[dict[str, Any]]:
             ),
         )
         page = context.new_page()
-
         try:
-            page.goto(BAIDU_URL, wait_until="domcontentloaded", timeout=60000)
-            try:
-                page.wait_for_load_state("networkidle", timeout=20000)
-            except PlaywrightTimeoutError:
-                pass
-            page.wait_for_timeout(4000)
-
-            for anchor in page.locator("a").all():
-                try:
-                    title = clean_text(anchor.inner_text(timeout=2000))
-                    href = anchor.get_attribute("href") or ""
-                except Exception:
-                    continue
-
-                if not is_possible_news_title(title, href):
-                    continue
-
-                title = re.sub(r"\s+(热|新|爆|沸)$", "", title).strip()
-                title = re.sub(r"[>＞]+$", "", title).strip()
-
-                if title in used_titles:
-                    continue
-
-                results.append(
-                    {
-                        "rank": len(results) + 1,
-                        "chinese": title,
-                        "sourceSummary": extract_summary_from_anchor(anchor, title),
-                        "url": href,
-                    }
-                )
-                used_titles.add(title)
-
-                if len(results) >= 10:
-                    break
+            hot = fetch_baidu_board(page, BAIDU_HOT_URL, "热搜榜", HOT_COUNT, 0)
+            livelihood = fetch_baidu_board(
+                page, BAIDU_LIVELIHOOD_URL, "民生榜", LIVELIHOOD_COUNT, HOT_COUNT
+            )
+            return hot + livelihood
         finally:
             context.close()
             browser.close()
-
-    if len(results) < 10:
-        raise RuntimeError(f"바이두 TOP10을 충분히 가져오지 못했습니다. 가져온 항목: {len(results)}개")
-
-    return results
 
 
 def make_pinyin(text: str) -> str:
@@ -336,18 +347,18 @@ def extract_json_object(text: str) -> dict[str, Any]:
 
 
 def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
-    """TOP10 전체를 한 번에 처리할 프롬프트를 만듭니다."""
+    """15개 콘텐츠 전체를 한 번에 처리할 프롬프트를 만듭니다."""
     source_items = [
-        {"rank": item["rank"], "chinese": item["chinese"], "sourceSummary": item.get("sourceSummary", "")}
+        {"rank": item["rank"], "category": item.get("category", ""), "categoryRank": item.get("categoryRank", item["rank"]), "chinese": item["chinese"], "sourceSummary": item.get("sourceSummary", "")}
         for item in raw_news
     ]
 
     return f"""
 당신은 중국어 뉴스 학습자료 편집자입니다.
-아래 바이두 실시간 검색어 10개를 한국인 학습자용으로 정확하고 자연스럽게 가공하세요.
+아래 바이두 콘텐츠 15개(热搜榜 5개 + 民生榜 10개)를 한국인 학습자용으로 정확하고 자연스럽게 가공하세요.
 
 규칙:
-1. rank와 chinese는 절대 변경하지 마세요.
+1. rank, category, categoryRank, chinese는 절대 변경하지 마세요.
 2. translation은 제목의 자연스러운 한국어 번역입니다.
 3. detailKorean은 sourceSummary만 사용해 자연스러운 한국어 3~5문장으로 번역·정리하세요.
    중국어 문장이나 중국어 한자를 그대로 섞지 마세요. 원문에 없는 사실을 추가하지 마세요.
@@ -364,6 +375,8 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
   "news": [
     {{
       "rank": 1,
+      "category": "热搜榜",
+      "categoryRank": 1,
       "chinese": "입력 제목 그대로",
       "translation": "한국어 제목",
       "detailKorean": "한국어 상세 내용",
@@ -387,7 +400,7 @@ def validate_and_merge_learning_data(
     """GPT 결과를 검사하고 URL·병음을 결합합니다."""
     model_news = model_data.get("news")
     if not isinstance(model_news, list) or len(model_news) != len(raw_news):
-        raise RuntimeError("GPT가 반환한 뉴스 개수가 10개가 아닙니다.")
+        raise RuntimeError(f"GPT가 반환한 뉴스 개수가 {len(raw_news)}개가 아닙니다.")
 
     by_rank = {item.get("rank"): item for item in model_news if isinstance(item, dict)}
     result: list[dict[str, Any]] = []
@@ -493,6 +506,8 @@ def validate_and_merge_learning_data(
         result.append(
             {
                 "rank": rank,
+                "category": raw.get("category", ""),
+                "categoryRank": raw.get("categoryRank", rank),
                 "chinese": title,
                 "pinyin": make_pinyin(title),
                 "translation": translation,
@@ -514,7 +529,7 @@ def validate_and_merge_learning_data(
 
 
 def create_learning_data(raw_news: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """OpenAI API로 TOP10 학습자료를 한 번에 생성합니다."""
+    """OpenAI API로 15개 학습자료를 한 번에 생성합니다."""
     if not OPENAI_API_KEY:
         raise RuntimeError("OPENAI_API_KEY가 설정되지 않았습니다.")
 
@@ -555,6 +570,8 @@ def make_source_fingerprint(raw_news: list[dict[str, Any]]) -> str:
         "items": [
             {
                 "rank": item.get("rank"),
+                "category": item.get("category", ""),
+                "categoryRank": item.get("categoryRank"),
                 "chinese": clean_text(str(item.get("chinese", ""))),
                 "sourceSummary": clean_text(str(item.get("sourceSummary", ""))),
             }
@@ -575,7 +592,7 @@ def load_cached_news(fingerprint: str) -> list[dict[str, Any]] | None:
     if existing.get("sourceFingerprint") != fingerprint:
         return None
     cached_news = existing.get("news")
-    if not isinstance(cached_news, list) or len(cached_news) != 10:
+    if not isinstance(cached_news, list) or len(cached_news) != TOTAL_NEWS_COUNT:
         return None
     return cached_news
 
@@ -694,7 +711,7 @@ def make_word_html(words: list[dict[str, Any]]) -> str:
 
 
 def make_email_html(data: dict[str, Any]) -> str:
-    """TOP10 전체를 보기 좋은 이메일 HTML로 만듭니다."""
+    """15개 콘텐츠 전체를 보기 좋은 이메일 HTML로 만듭니다."""
     news_items = data.get("news", [])
 
     # 오늘의 표현/오늘의 단어 상단 카드는 표시하지 않습니다.
@@ -715,6 +732,9 @@ def make_email_html(data: dict[str, Any]) -> str:
     cards = []
     for item in news_items:
         rank = int(item.get("rank", 0))
+        category = str(item.get("category", "热搜榜"))
+        category_rank = int(item.get("categoryRank", rank))
+        category_label = "🔥 热搜榜" if category == "热搜榜" else "🏠 民生榜"
         chinese = html.escape(str(item.get("chinese", "")))
         pinyin = html.escape(str(item.get("pinyin", "")))
         translation = html.escape(str(item.get("translation", "")))
@@ -758,7 +778,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             f"""
             <section style="margin:0 0 22px;border:1px solid #e4e7ec;border-radius:18px;overflow:hidden;background:#ffffff;box-shadow:0 8px 28px rgba(16,24,40,.06);">
                 <div style="padding:19px 20px;background:linear-gradient(135deg,#f8faff 0%,#eef3ff 100%);border-bottom:1px solid #e4e7ec;">
-                    <div style="display:inline-block;padding:5px 9px;border-radius:999px;background:#e5484d;color:#ffffff;font-size:13px;font-weight:800;">TOP {rank}</div>
+                    <div style="display:inline-block;padding:5px 9px;border-radius:999px;background:#e5484d;color:#ffffff;font-size:13px;font-weight:800;">{category_label} TOP {category_rank}</div>
                     <h2 style="margin:10px 0 5px;color:#18202f;font-size:23px;line-height:1.5;">{chinese}</h2>
                     <div style="color:#315efb;font-size:17px;font-weight:700;line-height:1.65;">{pinyin}</div>
                 </div>
@@ -823,12 +843,12 @@ def make_email_html(data: dict[str, Any]) -> str:
         <meta charset="UTF-8">
     </head>
     <body style="margin:0;padding:0;background:#f4f6fa;font-family:Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;color:#18202f;">
-        <div style="display:none;max-height:0;overflow:hidden;">오늘의 중국어 학습과 바이두 뉴스 TOP10</div>
+        <div style="display:none;max-height:0;overflow:hidden;">오늘의 중국어 학습과 바이두 热搜榜 5 · 民生榜 10</div>
         <div style="max-width:760px;margin:0 auto;padding:24px 12px 36px;">
             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;margin:0 0 20px;border-collapse:separate;background-color:#315efb;border-radius:19px;overflow:hidden;box-shadow:0 10px 30px rgba(49,94,251,.20);" bgcolor="#315efb">
                 <tr>
                     <td style="padding:25px 22px;background-color:#315efb;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;" bgcolor="#315efb">
-                        <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 TOP 10</div>
+                        <div style="font-size:13px;line-height:1.4;font-weight:800;letter-spacing:.08em;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">百度热搜 5 · 民生 10</div>
                         <div style="margin:7px 0 8px;font-size:30px;line-height:1.3;font-weight:800;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">🇨🇳 오늘의 중국어 + 바이두 뉴스</div>
                         <div style="font-size:14px;line-height:1.7;color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;opacity:1;">실시간 인기 뉴스로 배우는 중국어 표현 · 해석 · 핵심 단어</div>
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-top:13px;border-collapse:separate;">
@@ -844,7 +864,7 @@ def make_email_html(data: dict[str, Any]) -> str:
             {review_html}
 
             <div style="margin:24px 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
-                오늘의 바이두 실시간 인기 뉴스 10개를 중국어 학습용으로 정리했습니다.
+                바이두 热搜榜 TOP 5와 民生榜 TOP 10, 총 15개를 중국어 학습용으로 정리했습니다.
             </div>
 
             {''.join(cards)}
@@ -986,10 +1006,10 @@ def main() -> None:
             print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
             return
 
-        stage = "바이두 TOP10 수집"
-        print("1. 바이두 TOP10 수집 시작")
+        stage = "바이두 热搜榜·民生榜 수집"
+        print("1. 바이두 热搜榜 5개 + 民生榜 10개 수집 시작")
         existing_titles = load_existing_titles()
-        raw_news = fetch_baidu_top10()
+        raw_news = fetch_baidu_top15()
         new_news_count = count_new_news(raw_news, existing_titles)
         print(f"2. 새로운 뉴스 제목: {new_news_count}개 · 최소 발송 기준 없이 계속 진행합니다.")
 
