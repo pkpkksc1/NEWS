@@ -36,6 +36,7 @@ EMAIL_USER = os.getenv("EMAIL_USER", "").strip()
 EMAIL_APP_PASSWORD = os.getenv("EMAIL_APP_PASSWORD", "").replace(" ", "").strip()
 EMAIL_TO = os.getenv("EMAIL_TO", "").strip()
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "").strip()
+FORCE_RUN = os.getenv("FORCE_RUN", "").strip().lower() in {"1", "true", "yes", "y"}
 
 
 CONVERSATION_FILE = Path("daily_conversations.json")
@@ -1001,10 +1002,13 @@ def main() -> None:
     stage = "초기화"
     try:
         stage = "달력 확인"
-        skip, reason = should_skip_for_calendar()
-        if skip:
-            print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
-            return
+        if FORCE_RUN:
+            print("수동 실행 감지 · 주말/중국 공휴일 검사를 건너뛰고 테스트 실행합니다.")
+        else:
+            skip, reason = should_skip_for_calendar()
+            if skip:
+                print(f"실행 건너뜀: 오늘은 {reason}입니다. API 호출과 이메일 발송을 하지 않습니다.")
+                return
 
         stage = "바이두 热搜榜·民生榜 수집"
         print("1. 바이두 热搜榜 5개 + 民生榜 10개 수집 시작")
