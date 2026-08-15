@@ -489,8 +489,8 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
       "chinese": "입력 제목 그대로",
       "translation": "한국어 제목",
       "detailPairs": [
-        {"chinese": "중국어 문장 1", "korean": "해당 문장의 한국어 번역"},
-        {"chinese": "중국어 문장 2", "korean": "해당 문장의 한국어 번역"}
+        {{"chinese": "중국어 문장 1", "korean": "해당 문장의 한국어 번역"}},
+        {{"chinese": "중국어 문장 2", "korean": "해당 문장의 한국어 번역"}}
       ],
       "expressions": [
         {{"chinese": "표현", "meaning": "한국어 뜻", "example": "중국어 예문", "exampleMeaning": "한국어 예문 뜻"}}
