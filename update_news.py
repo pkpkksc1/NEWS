@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from email.message import EmailMessage
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 from zoneinfo import ZoneInfo
 
 from openai import OpenAI
@@ -25,9 +26,11 @@ BAIDU_LIVELIHOOD_URL = "https://top.baidu.com/board?tab=livelihood"
 HOT_COUNT = 5
 LIVELIHOOD_COUNT = 10
 TOTAL_NEWS_COUNT = HOT_COUNT + LIVELIHOOD_COUNT
+SEARCH_SUMMARY_MAX_CHARS = 500
+MAX_WORDS_PER_NEWS = 12
 OUTPUT_FILE = Path("products.json")
 CONVERSATION_FILE = Path("daily_conversations.json")
-DATA_SCHEMA_VERSION = "v2.3-hot5-livelihood10"
+DATA_SCHEMA_VERSION = "v2.5-no-review-no-keypoint"
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5-mini").strip()
@@ -242,6 +245,95 @@ def ensure_expression_pinyin(news_items: list[dict[str, Any]]) -> None:
             item["expressions"] = expressions
             item["expression"] = expressions[0]
 
+
+def fetch_baidu_search_summary(page: Any, title: str) -> str:
+    """랭킹에 설명이 없을 때 제목으로 바이두 검색 후 요약문을 보완합니다.
+
+    사용자에게 검색 링크를 노출하지 않으며, 토큰 증가를 막기 위해
+    최대 SEARCH_SUMMARY_MAX_CHARS 글자까지만 사용합니다.
+    """
+    search_url = f"https://www.baidu.com/s?wd={quote(title)}"
+    try:
+        page.goto(search_url, wait_until="domcontentloaded", timeout=60000)
+        try:
+            page.wait_for_load_state("networkidle", timeout=15000)
+        except PlaywrightTimeoutError:
+            pass
+        page.wait_for_timeout(2200)
+    except Exception as error:
+        print(f"검색 보완 실패 · {title}: {error}")
+        return ""
+
+    # 바이두 검색 결과 DOM은 수시로 바뀌므로 여러 대표 컨테이너를 순서대로 확인합니다.
+    selectors = [
+        "#content_left .result",
+        "#content_left .c-container",
+        "#content_left > div",
+        ".result",
+        ".c-container",
+    ]
+    candidates: list[str] = []
+    seen: set[str] = set()
+
+    for selector in selectors:
+        try:
+            locator = page.locator(selector)
+            count = min(locator.count(), 8)
+        except Exception:
+            continue
+
+        for idx in range(count):
+            try:
+                value = clean_text(locator.nth(idx).inner_text(timeout=1500))
+            except Exception:
+                continue
+            if not value or value in seen:
+                continue
+            seen.add(value)
+
+            # 검색 제목 자체만 있는 결과, 지나치게 짧은 결과는 제외합니다.
+            if value == title or len(value) < 35:
+                continue
+
+            # 메뉴/검색도구 등 불필요한 문구를 간단히 제거합니다.
+            value = re.sub(
+                r"(百度一下|网页|图片|资讯|视频|笔记|地图|贴吧|文库|更多|搜索工具)",
+                " ",
+                value,
+            )
+            value = clean_text(value)
+            if len(value) >= 35:
+                candidates.append(value)
+
+    if not candidates:
+        # 마지막 수단으로 검색 본문 전체에서 제목 주변의 긴 텍스트를 사용합니다.
+        try:
+            body_text = clean_text(page.locator("#content_left").inner_text(timeout=2500))
+        except Exception:
+            body_text = ""
+        if len(body_text) >= 35:
+            candidates.append(body_text)
+
+    if not candidates:
+        return ""
+
+    # 제목과 겹치거나 설명성이 높은 첫 검색결과를 우선합니다.
+    def score(value: str) -> tuple[int, int]:
+        contains_title = 1 if title in value else 0
+        return (contains_title, len(value))
+
+    best = max(candidates, key=score)
+
+    # 검색 결과 카드의 제목이 앞에 붙어 있으면 한 번 제거합니다.
+    if best.startswith(title):
+        best = clean_text(best[len(title):])
+
+    result = best[:SEARCH_SUMMARY_MAX_CHARS].strip()
+    if len(best) > SEARCH_SUMMARY_MAX_CHARS:
+        result = result.rstrip("，。；;、 ") + "…"
+    return result
+
+
 def fetch_baidu_board(page: Any, url: str, category: str, limit: int, rank_offset: int = 0) -> list[dict[str, Any]]:
     """바이두의 지정 랭킹에서 필요한 개수만 수집합니다."""
     results: list[dict[str, Any]] = []
@@ -284,6 +376,20 @@ def fetch_baidu_board(page: Any, url: str, category: str, limit: int, rank_offse
 
     if len(results) < limit:
         raise RuntimeError(f"바이두 {category}에서 {limit}개를 가져오지 못했습니다. 가져온 항목: {len(results)}개")
+
+    # 랭킹 카드에 상세 설명이 없는 항목만 제목 검색으로 보완합니다.
+    missing = [item for item in results if not clean_text(str(item.get("sourceSummary", "")))]
+    if missing:
+        print(f"{category}: 상세 설명 없는 항목 {len(missing)}개 · 제목 검색으로 보완")
+    for item in missing:
+        title = clean_text(str(item.get("chinese", "")))
+        summary = fetch_baidu_search_summary(page, title)
+        if summary:
+            item["sourceSummary"] = summary
+            print(f"  보완 성공 · {title} · {len(summary)}자")
+        else:
+            print(f"  보완 실패 · {title}")
+
     return results
 
 
@@ -364,12 +470,11 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
 3. detailKorean은 sourceSummary만 사용해 자연스러운 한국어 3~5문장으로 번역·정리하세요.
    중국어 문장이나 중국어 한자를 그대로 섞지 마세요. 원문에 없는 사실을 추가하지 마세요.
    sourceSummary가 비어 있으면 "바이두에 상세 설명이 표시되지 않았습니다."라고 쓰세요.
-4. keyPoint는 sourceSummary에서 확인되는 핵심을 중복 없이 한국어 1문장, 최대 80자로 작성하세요. 원문이 없으면 빈 문자열입니다.
-5. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
-6. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다. 예문 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
-7. words는 제목의 핵심 단어 최대 8개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
-8. 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
-9. 반드시 설명 없이 유효한 JSON 객체 하나만 출력하세요.
+4. expressions는 제목에서 학습 가치가 높은 중국어 표현 1~2개입니다.
+5. 각 표현은 chinese, meaning, example, exampleMeaning을 모두 포함합니다. 예문 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
+6. words는 제목과 상세 내용에서 학습 가치가 높은 핵심 단어 최대 12개이며 meaning은 문맥에 맞는 한국어 뜻입니다.
+7. 병음은 출력하지 마세요. 프로그램이 로컬에서 생성합니다.
+8. 반드시 설명 없이 유효한 JSON 객체 하나만 출력하세요.
 
 출력 형식:
 {{
@@ -381,7 +486,6 @@ def build_learning_prompt(raw_news: list[dict[str, Any]]) -> str:
       "chinese": "입력 제목 그대로",
       "translation": "한국어 제목",
       "detailKorean": "한국어 상세 내용",
-      "keyPoint": "핵심을 요약한 한국어 한 문장",
       "expressions": [
         {{"chinese": "표현", "meaning": "한국어 뜻", "example": "중국어 예문", "exampleMeaning": "한국어 예문 뜻"}}
       ],
@@ -465,7 +569,7 @@ def validate_and_merge_learning_data(
                 expressions.append(expression)
         words: list[dict[str, str]] = []
         seen_words: set[str] = set()
-        for word in words_raw:
+        for word in words_raw[:MAX_WORDS_PER_NEWS]:
             if not isinstance(word, dict):
                 continue
             chinese = clean_text(str(word.get("chinese", "")))
@@ -693,22 +797,46 @@ def save_products_json(news: list[dict[str, Any]], fingerprint: str, api_used: b
 
 
 def make_word_html(words: list[dict[str, Any]]) -> str:
-    """이메일용 단어 목록을 만듭니다."""
-    items = []
-    for word in words:
-        chinese = html.escape(str(word.get("chinese", "")))
-        pinyin = html.escape(str(word.get("pinyin", "")))
-        meaning = html.escape(str(word.get("meaning", "")))
-        items.append(
-            f"""
-            <div style="border:1px solid #e5e7eb;border-radius:10px;padding:12px;margin:8px 0;background:#fafafa;">
-                <div style="font-size:22px;font-weight:700;">{chinese}</div>
-                <div style="margin-top:4px;color:#315efb;font-size:18px;font-weight:600;">{pinyin}</div>
-                <div style="margin-top:5px;color:#475467;font-size:17px;">{meaning}</div>
-            </div>
-            """
-        )
-    return "".join(items)
+    """이메일용 핵심 단어를 3열 가로형 표로 만듭니다."""
+    valid_words = [
+        word for word in words[:MAX_WORDS_PER_NEWS]
+        if isinstance(word, dict)
+    ]
+    if not valid_words:
+        return ""
+
+    rows: list[str] = []
+    for row_start in range(0, len(valid_words), 3):
+        chunk = valid_words[row_start:row_start + 3]
+        cells: list[str] = []
+
+        for word in chunk:
+            chinese = html.escape(str(word.get("chinese", "")))
+            pinyin = html.escape(str(word.get("pinyin", "")))
+            meaning = html.escape(str(word.get("meaning", "")))
+            cells.append(
+                f"""
+                <td width="33.33%" valign="top" style="width:33.33%;padding:5px;">
+                    <div style="min-height:96px;border:1px solid #e5e7eb;border-radius:10px;padding:11px;background:#fafafa;">
+                        <div style="font-size:19px;font-weight:800;line-height:1.35;color:#18202f;">{chinese}</div>
+                        <div style="margin-top:4px;color:#315efb;font-size:14px;font-weight:700;line-height:1.45;">{pinyin}</div>
+                        <div style="margin-top:5px;color:#475467;font-size:14px;line-height:1.45;">{meaning}</div>
+                    </div>
+                </td>
+                """
+            )
+
+        while len(cells) < 3:
+            cells.append('<td width="33.33%" style="width:33.33%;padding:5px;"></td>')
+
+        rows.append(f"<tr>{''.join(cells)}</tr>")
+
+    return (
+        '<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" '
+        'style="width:100%;border-collapse:collapse;">'
+        + "".join(rows)
+        + "</table>"
+    )
 
 
 def make_email_html(data: dict[str, Any]) -> str:
@@ -717,18 +845,7 @@ def make_email_html(data: dict[str, Any]) -> str:
 
     # 오늘의 표현/오늘의 단어 상단 카드는 표시하지 않습니다.
 
-    review_expression = data.get("reviewExpression", {})
-    review_html = ""
-    if isinstance(review_expression, dict) and review_expression.get("chinese"):
-        review_html = f"""
-        <section style="margin:0 0 24px;padding:22px;border:1px solid #d0d5dd;border-radius:18px;background:#f8fafc;">
-            <div style="margin-bottom:10px;color:#475467;font-size:13px;font-weight:800;letter-spacing:.08em;">🔁 3일 전 복습</div>
-            <div style="font-size:27px;font-weight:900;color:#18202f;">{html.escape(str(review_expression.get('chinese', '')))}</div>
-            <div style="margin-top:7px;color:#315efb;font-size:18px;font-weight:700;">{html.escape(str(review_expression.get('pinyin', '')))}</div>
-            <div style="margin-top:8px;color:#16794a;font-size:17px;font-weight:700;">{html.escape(str(review_expression.get('meaning', '')))}</div>
-            <div style="margin-top:12px;color:#667085;font-size:13px;">{html.escape(str(review_expression.get('date', '')))} 학습 표현</div>
-        </section>
-        """
+    # 3일 전 복습 카드는 표시하지 않습니다.
 
     cards = []
     for item in news_items:
@@ -799,13 +916,10 @@ def make_email_html(data: dict[str, Any]) -> str:
                         <div style="font-size:16px;line-height:1.9;color:#344054;">{summary}</div>
                     </div>
 
-                    <h3 style="margin:0 0 8px;color:#b54708;font-size:16px;">📌 핵심 내용</h3>
-                    <div style="margin-bottom:19px;">{key_points_html}</div>
-
                     <h3 style="margin:0 0 8px;color:#8a6500;font-size:16px;">💬 뉴스 표현</h3>
                     <div style="margin-bottom:20px;">{expressions_html}</div>
 
-                    <h3 style="margin:0 0 10px;color:#18202f;font-size:17px;">📚 핵심 단어 {len(words)}개</h3>
+                    <h3 style="margin:0 0 10px;color:#18202f;font-size:17px;">📚 핵심 단어 {min(len(words), MAX_WORDS_PER_NEWS)}개</h3>
                     {make_word_html(words)}
                 </div>
             </section>
@@ -862,7 +976,6 @@ def make_email_html(data: dict[str, Any]) -> str:
             </table>
 
             {conversation_html}
-            {review_html}
 
             <div style="margin:24px 0 14px;padding:0 4px;color:#667085;font-size:13px;line-height:1.6;">
                 바이두 热搜榜 TOP 5와 民生榜 TOP 10, 총 15개를 중국어 학습용으로 정리했습니다.
